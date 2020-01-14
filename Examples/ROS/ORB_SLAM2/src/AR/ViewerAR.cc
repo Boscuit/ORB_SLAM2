@@ -23,6 +23,7 @@
 #include <opencv2/highgui/highgui.hpp>
 
 #include <mutex>
+#include <unistd.h>
 #include <thread>
 #include <cstdlib>
 
