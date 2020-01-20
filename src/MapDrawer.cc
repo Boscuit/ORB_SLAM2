@@ -21,6 +21,7 @@
 #include "MapDrawer.h"
 #include "MapPoint.h"
 #include "KeyFrame.h"
+#include <iostream> //to print the transformation matric
 #include <pangolin/pangolin.h>
 #include <mutex>
 
@@ -256,9 +257,42 @@ void MapDrawer::GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M)
         M.m[13] = twc.at<float>(1);
         M.m[14] = twc.at<float>(2);
         M.m[15]  = 1.0;
+
     }
     else
         M.SetIdentity();
+}
+
+
+void MapDrawer::GetCurrentCameraPose(cv::Mat &TM)
+{
+  if(!mCameraPose.empty())
+  {
+      cv::Mat Rwc(3,3,CV_32F);
+      cv::Mat twc(3,1,CV_32F);
+      {
+          unique_lock<mutex> lock(mMutexCamera);
+          Rwc = mCameraPose.rowRange(0,3).colRange(0,3).t();
+          twc = -Rwc*mCameraPose.rowRange(0,3).col(3);
+      }
+
+      Rwc.copyTo(TM.rowRange(0,3).colRange(0,3));
+      twc.copyTo(TM.rowRange(0,3).col(3));
+      TM.at<float>(3,0) = 0;
+      TM.at<float>(3,1) = 0;
+      TM.at<float>(3,2) = 0;
+      TM.at<float>(3,3) = 1;
+    }
+    else
+        TM = cv::Mat::eye(4,4,CV_32F);
+
+    // cout << TM << endl;
+    // cout << "--------------------------------------------------------" << endl;
+    // cout << setw(10)<<setprecision(4)<<TM.at<float>(0,0)<<setw(10)<<setprecision(4)<<TM.at<float>(0,1)<<setw(10)<<setprecision(4)<<TM.at<float>(0,2)<<setw(10)<<setprecision(4)<<TM.at<float>(0,3) << endl;
+    // cout << setw(10)<<setprecision(4)<<TM.at<float>(1,0)<<setw(10)<<setprecision(4)<<TM.at<float>(1,1)<<setw(10)<<setprecision(4)<<TM.at<float>(1,2)<<setw(10)<<setprecision(4)<<TM.at<float>(1,3) << endl;
+    // cout << setw(10)<<setprecision(4)<<TM.at<float>(2,0)<<setw(10)<<setprecision(4)<<TM.at<float>(2,1)<<setw(10)<<setprecision(4)<<TM.at<float>(2,2)<<setw(10)<<setprecision(4)<<TM.at<float>(2,3) << endl;
+    // cout << setw(10)<<setprecision(4)<<TM.at<float>(3,0)<<setw(10)<<setprecision(4)<<TM.at<float>(3,1)<<setw(10)<<setprecision(4)<<TM.at<float>(3,2)<<setw(10)<<setprecision(4)<<TM.at<float>(3,3) << endl;
+
 }
 
 } //namespace ORB_SLAM

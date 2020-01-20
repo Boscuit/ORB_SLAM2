@@ -123,6 +123,10 @@ public:
     std::vector<MapPoint*> GetTrackedMapPoints();
     std::vector<cv::KeyPoint> GetTrackedKeyPointsUn();
 
+    std::vector<float> Twc2vPubPose(cv::Mat Twc);
+    cv::Mat Tcw2Twc(cv::Mat Tcw);
+    cv::Mat GetCurrentCameraPose();
+
 private:
 
     // Input sensor

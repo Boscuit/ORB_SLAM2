@@ -26,6 +26,7 @@
 #include <pangolin/pangolin.h>
 #include <iomanip>
 
+
 namespace ORB_SLAM2
 {
 
@@ -119,7 +120,7 @@ cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const
     {
         cerr << "ERROR: you called TrackStereo but input sensor was not set to STEREO." << endl;
         exit(-1);
-    }   
+    }
 
     // Check mode change
     {
@@ -170,7 +171,7 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const doub
     {
         cerr << "ERROR: you called TrackRGBD but input sensor was not set to RGBD." << endl;
         exit(-1);
-    }    
+    }
 
     // Check mode change
     {
@@ -340,8 +341,7 @@ void System::SaveTrajectoryTUM(const string &filename)
     f << fixed;
 
     // Frame pose is stored relative to its reference keyframe (which is optimized by BA and pose graph).
-    // We need to get first the keyframe pose and then concatenate the relative transformation.
-    // Frames not localized (tracking failure) are not saved.
+    // We need to get first the keyframe pose ilure) are not saved.
 
     // For each frame we have a reference keyframe (lRit), the timestamp (lT) and a flag
     // which is true when tracking failed (lbL).
@@ -376,7 +376,7 @@ void System::SaveTrajectoryTUM(const string &filename)
         f << setprecision(6) << *lT << " " <<  setprecision(9) << twc.at<float>(0) << " " << twc.at<float>(1) << " " << twc.at<float>(2) << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
     }
     f.close();
-    cout << endl << "trajectory saved!" << endl;
+    cout << endl << "TUM-trajectory saved!" << endl;
 }
 
 
@@ -413,7 +413,7 @@ void System::SaveKeyFrameTrajectoryTUM(const string &filename)
     }
 
     f.close();
-    cout << endl << "trajectory saved!" << endl;
+    cout << endl << "TUM-KEY-trajectory saved!" << endl;
 }
 
 void System::SaveTrajectoryKITTI(const string &filename)
@@ -468,7 +468,7 @@ void System::SaveTrajectoryKITTI(const string &filename)
              Rwc.at<float>(2,0) << " " << Rwc.at<float>(2,1)  << " " << Rwc.at<float>(2,2) << " "  << twc.at<float>(2) << endl;
     }
     f.close();
-    cout << endl << "trajectory saved!" << endl;
+    cout << endl << "KITTI-trajectory saved!" << endl;
 }
 
 int System::GetTrackingState()
@@ -488,5 +488,51 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
     unique_lock<mutex> lock(mMutexState);
     return mTrackedKeyPointsUn;
 }
+
+vector<float> System::Twc2vPubPose(cv::Mat Twc)
+{
+  vector<float> vPubPose;
+  cv::Mat twc(3,1,CV_32F);
+  cv::Mat Rwc(3,3,CV_32F);
+  Rwc = Twc.rowRange(0,3).colRange(0,3);
+  twc = Twc.rowRange(0,3).col(3);
+  vector<float> q = Converter::toQuaternion(Rwc);
+  vPubPose.push_back (twc.at<float>(0));
+  vPubPose.push_back (twc.at<float>(1));
+  vPubPose.push_back (twc.at<float>(2));
+  vPubPose.push_back (q[0]);
+  vPubPose.push_back (q[1]);
+  vPubPose.push_back (q[2]);
+  vPubPose.push_back (q[3]);
+
+  return vPubPose;
+}
+
+cv::Mat System::Tcw2Twc(cv::Mat Tcw)
+{
+  cv::Mat twc(3,1,CV_32F);
+  cv::Mat Rwc(3,3,CV_32F);
+  cv::Mat Twc(4,4,CV_32F);
+  Rwc = Tcw.rowRange(0,3).colRange(0,3).t();
+  twc = -Rwc*Tcw.rowRange(0,3).col(3);
+  Rwc.copyTo(Twc.rowRange(0,3).colRange(0,3));
+  twc.copyTo(Twc.rowRange(0,3).col(3));
+  Twc.at<float>(3,0) = 0;
+  Twc.at<float>(3,1) = 0;
+  Twc.at<float>(3,2) = 0;
+  Twc.at<float>(3,3) = 1;
+  return Twc;
+}
+
+cv::Mat System::GetCurrentCameraPose()
+{
+  //add <cv::Mat> TM to publish to rviz
+  cv::Mat Twc(4,4,CV_32F);
+  Twc = cv::Scalar(0);
+  mpMapDrawer->GetCurrentCameraPose(Twc);
+  cout << "MapDrawer_pose:" << endl << Twc << endl;
+  return Twc;
+}
+
 
 } //namespace ORB_SLAM
