@@ -94,7 +94,7 @@ void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
         for(size_t i=0; i<vpKFs.size(); i++)
         {
             KeyFrame* pKF = vpKFs[i];
-            cv::Mat Twc = pKF->GetPoseInverse().t();
+            cv::Mat Twc = pKF->GetPoseInverse().t();// transpose?
 
             glPushMatrix();
 

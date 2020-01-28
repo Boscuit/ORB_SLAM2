@@ -32,7 +32,7 @@ namespace ORB_SLAM2
 
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor,
                const bool bUseViewer):mSensor(sensor), mpViewer(static_cast<Viewer*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
-        mbDeactivateLocalizationMode(false)
+        mbDeactivateLocalizationMode(false),mbClear(true)
 {
     // Output welcome message
     cout << endl <<
@@ -153,6 +153,7 @@ cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const
     {
         mpTracker->Reset();
         mbReset = false;
+        mbClear = false;
     }
     }
 
@@ -204,6 +205,7 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap, const doub
     {
         mpTracker->Reset();
         mbReset = false;
+        mbClear = false;
     }
     }
 
@@ -255,6 +257,7 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     {
         mpTracker->Reset();
         mbReset = false;
+        mbClear = false;
     }
     }
 
@@ -297,6 +300,7 @@ void System::Reset()
 {
     unique_lock<mutex> lock(mMutexReset);
     mbReset = true;
+    mbClear = false;
 }
 
 void System::Shutdown()
@@ -534,5 +538,27 @@ cv::Mat System::GetCurrentCameraPose()
   return Twc;
 }
 
+vector<cv::Mat> System::GetKeyCameraPoseVector()
+{
+  vector<cv::Mat> vKeyPose;
+  const vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
+  for(size_t i=0; i<vpKFs.size(); i++)
+  {
+      KeyFrame* pKF = vpKFs[i];
+      cv::Mat Twc = pKF->GetPoseInverse();
+      vKeyPose.push_back(Twc);
+  }
+  return vKeyPose;
+}
+
+bool System::isClear()
+{
+  if(!mbClear)
+  {
+    mbClear = true;
+    return false;
+  }
+  else return true;
+}
 
 } //namespace ORB_SLAM

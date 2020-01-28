@@ -126,6 +126,8 @@ public:
     std::vector<float> Twc2vPubPose(cv::Mat Twc);
     cv::Mat Tcw2Twc(cv::Mat Tcw);
     cv::Mat GetCurrentCameraPose();
+    std::vector<cv::Mat> GetKeyCameraPoseVector();
+    bool isClear();
 
 private:
 
@@ -179,6 +181,8 @@ private:
     std::vector<MapPoint*> mTrackedMapPoints;
     std::vector<cv::KeyPoint> mTrackedKeyPointsUn;
     std::mutex mMutexState;
+
+    bool mbClear;
 };
 
 }// namespace ORB_SLAM
