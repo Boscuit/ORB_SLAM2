@@ -25,13 +25,16 @@
 #include<chrono>
 
 #include<ros/ros.h>
-#include <cv_bridge/cv_bridge.h>
+#include<tf2_ros/transform_broadcaster.h>
+#include<cv_bridge/cv_bridge.h>
 
 #include<opencv2/core/core.hpp>
 
 #include"../../../include/System.h"
+#include "geometry_msgs/TransformStamped.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "visualization_msgs/Marker.h"
+#include "nav_msgs/Path.h"
 
 using namespace std;
 
@@ -40,8 +43,8 @@ class ImageGrabber
 public:
     ImageGrabber(ORB_SLAM2::System* pSLAM,int footprint):mpSLAM(pSLAM),mfootprint(footprint) //constructor ：mpSLAM is initialized as pSLAM.
     {
-      pub_ = n_.advertise<geometry_msgs::PoseStamped>("current_pose",1);
       mark_ = n_.advertise<visualization_msgs::Marker>("pose_marker", 1);
+      path_ = n_.advertise<nav_msgs::Path>("Trajectory",1);
       key_ = n_.advertise<visualization_msgs::Marker>("keypose_marker", 1);
       sub_ = n_.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,this);
     }
@@ -58,23 +61,17 @@ private:
     vector<float> vPubPose{0,0,0,0,0,0,1};
     vector<float> vPubKeyPose{0,0,0,0,0,0,1};
     vector<cv::Mat> vKeyPose;
+    visualization_msgs::Marker keypose_marker;
+    nav_msgs::Path trajectory;//contains a vector of PoseStamped always needed to be kept.
+    tf2_ros::TransformBroadcaster tf2_;
     ros::NodeHandle n_;
-    ros::Publisher pub_;
     ros::Publisher mark_;
+    ros::Publisher path_;
     ros::Publisher key_;
     ros::Subscriber sub_;
 
 };
 
-// class PosePublisher
-// {
-// public:
-//     PosePublisher(ORB_SLAM2::System* pSLAM):mpSLAM(pSLAM){}
-//
-//     void PubPose(const sensor_msgs::ImageConstPtr& msg);
-//
-//     ORB_SLAM2::System* mpSLAM;
-// };
 
 int main(int argc, char **argv)
 {
@@ -92,16 +89,6 @@ int main(int argc, char **argv)
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
 
     ImageGrabber igb(&SLAM,100);
-    // PosePublisher pps(&SLAM);
-
-
-    // ros::NodeHandle nodeHandler;
-    // //Publisher
-    // ros::Publisher current_pose_pub = nodeHandler.advertise<geometry_msgs::PoseStamped>("current_pose",1);
-    //
-    // ros::Subscriber sub = nodeHandler.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,&igb);
-    // // ros::Subscriber pose_sub = nodeHandler.subscribe("/camera/image_raw", 1, &PosePublisher::PubPose,&pps);
-
 
     ros::spin();
 
@@ -139,6 +126,22 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
       vKeyPose = mpSLAM->GetKeyCameraPoseVector();
     }
 
+    /*--------------Current Pose with tf2---------------*/
+    geometry_msgs::TransformStamped current_tf;
+    current_tf.header.stamp = ros::Time::now();
+    current_tf.header.frame_id = "map";
+    current_tf.child_frame_id = "Camera";
+    current_tf.transform.translation.x = vPubPose[0];
+    current_tf.transform.translation.y = vPubPose[2];
+    current_tf.transform.translation.z = -vPubPose[1];
+    current_tf.transform.rotation.x = vPubPose[3];
+    current_tf.transform.rotation.y = vPubPose[5];
+    current_tf.transform.rotation.z = -vPubPose[4];
+    current_tf.transform.rotation.w = vPubPose[6];
+    tf2_.sendTransform(current_tf);
+
+
+    /*---------Current Pose with PoseStamped-------*/
     geometry_msgs::PoseStamped current_pose;
     current_pose.header.stamp = ros::Time::now();;
     current_pose.header.frame_id = "map";
@@ -149,48 +152,24 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     current_pose.pose.orientation.y = vPubPose[5];
     current_pose.pose.orientation.z = -vPubPose[4];
     current_pose.pose.orientation.w = vPubPose[6];
-    pub_.publish(current_pose);
 
+    /*---------------Trajectory-------------------*/
+    trajectory.header.stamp = ros::Time::now();
+    trajectory.header.frame_id = "map";
+    trajectory.poses.push_back(current_pose);
 
-    // if (count<mfootprint) count++;
-    // else count = 1;
-    count ++;
-
-    /*---------------current pose marker---------------*/
-    visualization_msgs::Marker pose_marker;
-    pose_marker.header.stamp = ros::Time::now();
-    pose_marker.header.frame_id = "map";
-    pose_marker.ns = "basic_shapes";
-    pose_marker.id = count;
-    pose_marker.type = visualization_msgs::Marker::CUBE;
-    pose_marker.action = visualization_msgs::Marker::ADD;
-
-    pose_marker.pose.position.x = vPubPose[0];
-    pose_marker.pose.position.y = vPubPose[2];
-    pose_marker.pose.position.z = -vPubPose[1];
-    pose_marker.pose.orientation.x = vPubPose[3];
-    pose_marker.pose.orientation.y = vPubPose[5];
-    pose_marker.pose.orientation.z = -vPubPose[4];
-    pose_marker.pose.orientation.w = vPubPose[6];
-    pose_marker.scale.x = 0.005;
-    pose_marker.scale.y = 0.02;
-    pose_marker.scale.z = 0.005;
-    pose_marker.color.r = 1.0f;
-    pose_marker.color.g = 0.0f;
-    pose_marker.color.b = 0.0f;
-    pose_marker.color.a = 0.5;
-
-    if (!mpSLAM->isClear() || count < 1) //Reset or initialze
+    if (!mpSLAM->isClear() || vKeyPose.size()<1) //Reset or initialze
     {
-      pose_marker.action = visualization_msgs::Marker::DELETEALL;
-      key_.publish(pose_marker);//Publish a dummy message to clear the keypose marker
+      keypose_marker.action = visualization_msgs::Marker::DELETEALL;
+      key_.publish(keypose_marker);//Publish a dummy message to clear the keypose marker
       vKeyPose.clear();
+      trajectory.poses.clear();
     }
-    mark_.publish(pose_marker);
+    path_.publish(trajectory);
+
 
     /*---------------key frame pose marker---------------*/
-    visualization_msgs::Marker keypose_marker;
-    for (int i = 0; i < vKeyPose.size(); i++)
+    for (unsigned i = 0; i < vKeyPose.size(); i++)
     {
       vPubKeyPose = mpSLAM->Twc2vPubPose(vKeyPose[i]);
       keypose_marker.header.stamp = ros::Time::now();
@@ -207,9 +186,9 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
       keypose_marker.pose.orientation.y = vPubKeyPose[5];
       keypose_marker.pose.orientation.z = -vPubKeyPose[4];
       keypose_marker.pose.orientation.w = vPubKeyPose[6];
-      keypose_marker.scale.x = 0.02;
-      keypose_marker.scale.y = 0.005;
-      keypose_marker.scale.z = 0.02;
+      keypose_marker.scale.x = 0.1;
+      keypose_marker.scale.y = 0.01;
+      keypose_marker.scale.z = 0.1;
       keypose_marker.color.r = 0.0f;
       keypose_marker.color.g = 0.0f;
       keypose_marker.color.b = 1.0f;

@@ -300,7 +300,6 @@ void System::Reset()
 {
     unique_lock<mutex> lock(mMutexReset);
     mbReset = true;
-    mbClear = false;
 }
 
 void System::Shutdown()
