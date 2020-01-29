@@ -58,10 +58,10 @@ private:
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
     cv::Mat Tcv = (cv::Mat_<float>(4,4) << 1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0);
+    cv::Mat xaxis = (cv::Mat_<float>(4,1) << 1, 0, 0, 1);
     vector<float> vPubPose{0,0,0,0,0,0,1};
     vector<float> vPubKeyPose{0,0,0,0,0,0,1};
     vector<cv::Mat> vKeyPose;
-    visualization_msgs::Marker keypose_marker;
     nav_msgs::Path trajectory;//contains a vector of PoseStamped always needed to be kept.
     tf2_ros::TransformBroadcaster tf2_;
     ros::NodeHandle n_;
@@ -160,42 +160,84 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
 
     if (!mpSLAM->isClear() || vKeyPose.size()<1) //Reset or initialze
     {
-      keypose_marker.action = visualization_msgs::Marker::DELETEALL;
-      key_.publish(keypose_marker);//Publish a dummy message to clear the keypose marker
       vKeyPose.clear();
       trajectory.poses.clear();
     }
     path_.publish(trajectory);
 
 
+
     /*---------------key frame pose marker---------------*/
+    visualization_msgs::Marker keypose_marker;
+    keypose_marker.header.stamp = ros::Time::now();
+    keypose_marker.header.frame_id = "map";
+    keypose_marker.ns = "basic_shapes";
+    keypose_marker.id = 0;//refresh every time
+    keypose_marker.type = visualization_msgs::Marker::LINE_LIST;
+    keypose_marker.action = visualization_msgs::Marker::ADD;
+    keypose_marker.scale.x = 0.003;
+    keypose_marker.color.r = 0.0f;
+    keypose_marker.color.g = 0.0f;
+    keypose_marker.color.b = 1.0f;
+    keypose_marker.color.a = 0.5;
     for (unsigned i = 0; i < vKeyPose.size(); i++)
     {
-      vPubKeyPose = mpSLAM->Twc2vPubPose(vKeyPose[i]);
-      keypose_marker.header.stamp = ros::Time::now();
-      keypose_marker.header.frame_id = "map";
-      keypose_marker.ns = "basic_shapes";
-      keypose_marker.id = i;
-      keypose_marker.type = visualization_msgs::Marker::CUBE;
-      keypose_marker.action = visualization_msgs::Marker::ADD;
+      cv::Mat keyTwc = vKeyPose[i];
+      vPubKeyPose = mpSLAM->Twc2vPubPose(keyTwc);
+      geometry_msgs::Point cc;
+      cc.x = vPubKeyPose[0];
+      cc.y = vPubKeyPose[2];
+      cc.z = -vPubKeyPose[1];
 
-      keypose_marker.pose.position.x = vPubKeyPose[0];
-      keypose_marker.pose.position.y = vPubKeyPose[2];
-      keypose_marker.pose.position.z = -vPubKeyPose[1];
-      keypose_marker.pose.orientation.x = vPubKeyPose[3];
-      keypose_marker.pose.orientation.y = vPubKeyPose[5];
-      keypose_marker.pose.orientation.z = -vPubKeyPose[4];
-      keypose_marker.pose.orientation.w = vPubKeyPose[6];
-      keypose_marker.scale.x = 0.1;
-      keypose_marker.scale.y = 0.01;
-      keypose_marker.scale.z = 0.1;
-      keypose_marker.color.r = 0.0f;
-      keypose_marker.color.g = 0.0f;
-      keypose_marker.color.b = 1.0f;
-      keypose_marker.color.a = 0.5;
-
-      key_.publish(keypose_marker);
+      float scale = 0.1;
+      cv::Mat fr = keyTwc*(cv::Mat_<float>(4,5) << 1, -1, -1, 1, 0,
+                                                  1, 1, -1, -1, 0,
+                                                  0, 0, 0, 0, -0.5,
+                      1/scale, 1/scale, 1/scale, 1/scale ,1/scale)*scale;
+      geometry_msgs::Point p;
+      vector<int> index = {0,1,1,2,2,3,3,0,4,0,4,1,4,2,4,3};
+      for (int i = 0; i < 16; i++)
+      {
+        p.x = fr.at<float>(0,index[i]);
+        p.y = fr.at<float>(2,index[i]);
+        p.z = -fr.at<float>(1,index[i]);
+        keypose_marker.points.push_back(p);
+      }
     }
+
+    key_.publish(keypose_marker);
+
+    // /*---------------key frame pose marker---------------*/
+    // visualization_msgs::Marker keypose_marker;
+    // keypose_marker.action = visualization_msgs::Marker::DELETEALL;
+    // key_.publish(keypose_marker);//Publish a dummy message to clear the keypose marker
+    // for (unsigned i = 0; i < vKeyPose.size(); i++)
+    // {
+    //   vPubKeyPose = mpSLAM->Twc2vPubPose(vKeyPose[i]);
+    //   keypose_marker.header.stamp = ros::Time::now();
+    //   keypose_marker.header.frame_id = "map";
+    //   keypose_marker.ns = "basic_shapes";
+    //   keypose_marker.id = i;
+    //   keypose_marker.type = visualization_msgs::Marker::CUBE;
+    //   keypose_marker.action = visualization_msgs::Marker::ADD;
+    //
+    //   keypose_marker.pose.position.x = vPubKeyPose[0];
+    //   keypose_marker.pose.position.y = vPubKeyPose[2];
+    //   keypose_marker.pose.position.z = -vPubKeyPose[1];
+    //   keypose_marker.pose.orientation.x = vPubKeyPose[3];
+    //   keypose_marker.pose.orientation.y = vPubKeyPose[5];
+    //   keypose_marker.pose.orientation.z = -vPubKeyPose[4];
+    //   keypose_marker.pose.orientation.w = vPubKeyPose[6];
+    //   keypose_marker.scale.x = 0.1;
+    //   keypose_marker.scale.y = 0.01;
+    //   keypose_marker.scale.z = 0.1;
+    //   keypose_marker.color.r = 0.0f;
+    //   keypose_marker.color.g = 0.0f;
+    //   keypose_marker.color.b = 1.0f;
+    //   keypose_marker.color.a = 0.5;
+    //
+    //   key_.publish(keypose_marker);
+    // }
 
 
 
