@@ -267,6 +267,7 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     mTrackingState = mpTracker->mState;
     mTrackedMapPoints = mpTracker->mCurrentFrame.mvpMapPoints;
     mTrackedKeyPointsUn = mpTracker->mCurrentFrame.mvKeysUn;
+    // mTrackedKeyPointsDescriptor = mpTracker->mCurrentFrame.mDescriptors;
 
     return Tcw;
 }
@@ -419,6 +420,62 @@ void System::SaveKeyFrameTrajectoryTUM(const string &filename)
     cout << endl << "TUM-KEY-trajectory saved!" << endl;
 }
 
+void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorFile)
+{
+    cout << endl << "Saving keyframe trajectory to " << TrajectoryFile << " ..." << endl;
+    cout << endl << "Saving keyframe key points to " << KeyPointsFile << " ..." << endl;
+    cout << endl << "Saving keyframe descriptors to " << DescriptorFile << " ..." << endl;
+
+    vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
+    sort(vpKFs.begin(),vpKFs.end(),KeyFrame::lId);
+
+    // Transform all keyframes so that the first keyframe is at the origin.
+    // After a loop closure the first keyframe might not be at the origin.
+    //cv::Mat Two = vpKFs[0]->GetPoseInverse();
+
+    ofstream f,k,d;
+    f.open(TrajectoryFile.c_str());
+    k.open(KeyPointsFile.c_str());
+    d.open(DescriptorFile.c_str());
+    f << fixed;
+    k << fixed;
+    d << fixed;
+
+    for(size_t i=0; i<vpKFs.size(); i++)
+    {
+        KeyFrame* pKF = vpKFs[i];
+
+       // pKF->SetPose(pKF->GetPose()*Two);
+
+        if(pKF->isBad())
+            continue;
+
+        cv::Mat R = pKF->GetRotation().t();
+        vector<float> q = Converter::toQuaternion(R);
+        cv::Mat t = pKF->GetCameraCenter();
+        f << setprecision(6) << pKF->mTimeStamp << setprecision(7) << " " << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2)
+          << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
+
+        k << setprecision(6) << pKF->mTimeStamp << " " << setprecision(1) << pKF->N << endl;
+        vector<cv::KeyPoint> vKeys = pKF->mvKeysUn;
+        for(size_t j=0; j<vKeys.size(); j++)
+        {
+          k << setprecision(7) << "(" << vKeys[j].pt.x << "," << vKeys[j].pt.y << ")" << endl;
+        }
+        k << endl;
+
+        d << setprecision(6) << pKF->mTimeStamp << " " << setprecision(1) << pKF->N << endl;
+        d << pKF->mDescriptors << endl << endl;
+
+    }
+
+    f.close();
+    k.close();
+    d.close();
+    cout << endl << "TUM-KEY-trajectory 2 saved!" << endl;
+}
+
+
 void System::SaveTrajectoryKITTI(const string &filename)
 {
     cout << endl << "Saving camera trajectory to " << filename << " ..." << endl;
@@ -492,6 +549,12 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
     return mTrackedKeyPointsUn;
 }
 
+// cv::Mat System::GetTrackedKeyPointsDescriptor()
+// {
+//     unique_lock<mutex> lock(mMutexState);
+//     return mTrackedKeyPointsDescriptor;
+// }
+
 vector<float> System::Twc2vPubPose(cv::Mat Twc)
 {
   vector<float> vPubPose;
@@ -511,7 +574,7 @@ vector<float> System::Twc2vPubPose(cv::Mat Twc)
   return vPubPose;
 }
 
-cv::Mat System::Tcw2Twc(cv::Mat Tcw)
+cv::Mat System::InverseT(cv::Mat Tcw)
 {
   cv::Mat twc(3,1,CV_32F);
   cv::Mat Rwc(3,3,CV_32F);
@@ -540,7 +603,8 @@ cv::Mat System::GetCurrentCameraPose()
 vector<cv::Mat> System::GetKeyCameraPoseVector()
 {
   vector<cv::Mat> vKeyPose;
-  const vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
+  vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
+  sort(vpKFs.begin(),vpKFs.end(),KeyFrame::lId);
   for(size_t i=0; i<vpKFs.size(); i++)
   {
       KeyFrame* pKF = vpKFs[i];

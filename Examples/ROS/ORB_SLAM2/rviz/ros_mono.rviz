@@ -8,10 +8,11 @@ Panels:
         - /Status1
         - /Marker1
         - /Marker1/Status1
+        - /Marker1/Namespaces1
         - /TF1
         - /TF1/Frames1
         - /Path1
-      Splitter Ratio: 0.5
+      Splitter Ratio: 0.5676470398902893
     Tree Height: 549
   - Class: rviz/Selection
     Name: Selection
@@ -62,7 +63,8 @@ Visualization Manager:
       Marker Topic: /keypose_marker
       Name: Marker
       Namespaces:
-        basic_shapes: true
+        keypose_index: true
+        keypose_marker: true
       Queue Size: 100
       Value: true
     - Class: rviz/TF
@@ -136,7 +138,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.06096887588501
+      Distance: 3.535247325897217
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -151,10 +153,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.08979716151952744
+      Pitch: 0.27479755878448486
       Target Frame: Camera
       Value: Orbit (rviz)
-      Yaw: 4.225454330444336
+      Yaw: 4.500591278076172
     Saved: ~
 Window Geometry:
   Displays:
@@ -172,5 +174,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 554
-  Y: 97
+  X: 440
+  Y: 73

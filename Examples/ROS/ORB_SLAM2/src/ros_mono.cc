@@ -22,6 +22,7 @@
 #include<iostream>
 #include<algorithm>
 #include<fstream>
+#include<string>
 #include<chrono>
 
 #include<ros/ros.h>
@@ -57,8 +58,7 @@ private:
     int count = -1;
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
-    cv::Mat Tcv = (cv::Mat_<float>(4,4) << 1, 0, 0, 0, 0, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0);
-    cv::Mat xaxis = (cv::Mat_<float>(4,1) << 1, 0, 0, 1);
+    cv::Mat Twv = (cv::Mat_<float>(4,4) << 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
     vector<float> vPubPose{0,0,0,0,0,0,1};
     vector<float> vPubKeyPose{0,0,0,0,0,0,1};
     vector<cv::Mat> vKeyPose;
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
     SLAM.Shutdown();
 
     // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+    SLAM.SaveKeyFrameTrajectoryTUM2("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt");
 
     ros::shutdown();
 
@@ -120,9 +120,9 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     cv::Mat Tcw = mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
     if (!Tcw.empty())
     {
-      Twc = mpSLAM->Tcw2Twc(Tcw);
-      // cv::Mat Twv = Tcv*Twc;
-      vPubPose = mpSLAM->Twc2vPubPose(Twc);
+      Twc = mpSLAM->InverseT(Tcw);
+      cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame
+      vPubPose = mpSLAM->Twc2vPubPose(Tvc);
       vKeyPose = mpSLAM->GetKeyCameraPoseVector();
     }
 
@@ -132,11 +132,11 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     current_tf.header.frame_id = "map";
     current_tf.child_frame_id = "Camera";
     current_tf.transform.translation.x = vPubPose[0];
-    current_tf.transform.translation.y = vPubPose[2];
-    current_tf.transform.translation.z = -vPubPose[1];
+    current_tf.transform.translation.y = vPubPose[1];
+    current_tf.transform.translation.z = vPubPose[2];
     current_tf.transform.rotation.x = vPubPose[3];
-    current_tf.transform.rotation.y = vPubPose[5];
-    current_tf.transform.rotation.z = -vPubPose[4];
+    current_tf.transform.rotation.y = vPubPose[4];
+    current_tf.transform.rotation.z = vPubPose[5];
     current_tf.transform.rotation.w = vPubPose[6];
     tf2_.sendTransform(current_tf);
 
@@ -146,11 +146,11 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     current_pose.header.stamp = ros::Time::now();;
     current_pose.header.frame_id = "map";
     current_pose.pose.position.x = vPubPose[0];
-    current_pose.pose.position.y = vPubPose[2];
-    current_pose.pose.position.z = -vPubPose[1];
+    current_pose.pose.position.y = vPubPose[1];
+    current_pose.pose.position.z = vPubPose[2];
     current_pose.pose.orientation.x = vPubPose[3];
-    current_pose.pose.orientation.y = vPubPose[5];
-    current_pose.pose.orientation.z = -vPubPose[4];
+    current_pose.pose.orientation.y = vPubPose[4];
+    current_pose.pose.orientation.z = vPubPose[5];
     current_pose.pose.orientation.w = vPubPose[6];
 
     /*---------------Trajectory-------------------*/
@@ -166,12 +166,25 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     path_.publish(trajectory);
 
 
+    /*---------key frame index marker------------*/
+    visualization_msgs::Marker keypose_index;
+    keypose_index.header.stamp = ros::Time::now();
+    keypose_index.header.frame_id = "map";
+    keypose_index.ns = "keypose_index";
+    keypose_index.id = 0;//refresh every time
+    keypose_index.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
+    keypose_index.action = visualization_msgs::Marker::ADD;
+    keypose_index.scale.z = 0.03;
+    keypose_index.color.r = 0.0f;
+    keypose_index.color.g = 0.0f;
+    keypose_index.color.b = 1.0f;
+    keypose_index.color.a = 1.0;
 
     /*---------------key frame pose marker---------------*/
     visualization_msgs::Marker keypose_marker;
     keypose_marker.header.stamp = ros::Time::now();
     keypose_marker.header.frame_id = "map";
-    keypose_marker.ns = "basic_shapes";
+    keypose_marker.ns = "keypose_marker";
     keypose_marker.id = 0;//refresh every time
     keypose_marker.type = visualization_msgs::Marker::LINE_LIST;
     keypose_marker.action = visualization_msgs::Marker::ADD;
@@ -180,29 +193,38 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     keypose_marker.color.g = 0.0f;
     keypose_marker.color.b = 1.0f;
     keypose_marker.color.a = 0.5;
-    for (unsigned i = 0; i < vKeyPose.size(); i++)
+    for (size_t i = 0; i < vKeyPose.size(); i++)
     {
       cv::Mat keyTwc = vKeyPose[i];
-      vPubKeyPose = mpSLAM->Twc2vPubPose(keyTwc);
-      geometry_msgs::Point cc;
-      cc.x = vPubKeyPose[0];
-      cc.y = vPubKeyPose[2];
-      cc.z = -vPubKeyPose[1];
+      cv::Mat keyTvc = Twv.t()*keyTwc*Twv;//T of c2 based on viewer frame
+      vPubKeyPose = mpSLAM->Twc2vPubPose(keyTvc);
 
-      float scale = 0.1;
-      cv::Mat fr = keyTwc*(cv::Mat_<float>(4,5) << 1, -1, -1, 1, 0,
-                                                  1, 1, -1, -1, 0,
+      float s = 0.1;//scales of the marker
+      cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 1, -1, -1, 1, 0,
                                                   0, 0, 0, 0, -0.5,
-                      1/scale, 1/scale, 1/scale, 1/scale ,1/scale)*scale;
+                                                  1, 1, -1, -1, 0,
+                                                  1/s, 1/s, 1/s, 1/s ,1/s)*s;
       geometry_msgs::Point p;
       vector<int> index = {0,1,1,2,2,3,3,0,4,0,4,1,4,2,4,3};
-      for (int i = 0; i < 16; i++)
+      for (int j = 0; j < 16; j++)
       {
-        p.x = fr.at<float>(0,index[i]);
-        p.y = fr.at<float>(2,index[i]);
-        p.z = -fr.at<float>(1,index[i]);
+        p.x = fr.at<float>(0,index[j]);
+        p.y = fr.at<float>(1,index[j]);
+        p.z = fr.at<float>(2,index[j]);
         keypose_marker.points.push_back(p);
       }
+      cv::Mat text = keyTvc*(cv::Mat_<float>(4,1) << 0, 0, s, 1);
+      keypose_index.id = i;//index in vKeyPose
+      keypose_index.pose.position.x = text.at<float>(0);
+      keypose_index.pose.position.y = text.at<float>(1);
+      keypose_index.pose.position.z = text.at<float>(2);
+      keypose_index.pose.orientation.x = 0.0;
+      keypose_index.pose.orientation.y = 0.0;
+      keypose_index.pose.orientation.z = 0.0;
+      keypose_index.pose.orientation.w = 1.0;
+      keypose_index.text = to_string(i);
+      key_.publish(keypose_index);
+
     }
 
     key_.publish(keypose_marker);

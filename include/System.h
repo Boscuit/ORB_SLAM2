@@ -106,6 +106,7 @@ public:
     // Call first Shutdown()
     // See format details at: http://vision.in.tum.de/data/datasets/rgbd-dataset
     void SaveKeyFrameTrajectoryTUM(const string &filename);
+    void SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorFile);
 
     // Save camera trajectory in the KITTI dataset format.
     // Only for stereo and RGB-D. This method does not work for monocular.
@@ -122,9 +123,10 @@ public:
     int GetTrackingState();
     std::vector<MapPoint*> GetTrackedMapPoints();
     std::vector<cv::KeyPoint> GetTrackedKeyPointsUn();
+    // cv::Mat GetTrackedKeyPointsDescriptor();
 
     std::vector<float> Twc2vPubPose(cv::Mat Twc);
-    cv::Mat Tcw2Twc(cv::Mat Tcw);
+    cv::Mat InverseT(cv::Mat Tcw);
     cv::Mat GetCurrentCameraPose();
     std::vector<cv::Mat> GetKeyCameraPoseVector();
     bool isClear();
@@ -180,6 +182,7 @@ private:
     int mTrackingState;
     std::vector<MapPoint*> mTrackedMapPoints;
     std::vector<cv::KeyPoint> mTrackedKeyPointsUn;
+    // cv::Mat mTrackedKeyPointsDescriptor;
     std::mutex mMutexState;
 
     bool mbClear;
