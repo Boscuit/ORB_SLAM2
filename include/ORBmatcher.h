@@ -29,13 +29,14 @@
 #include"MapPoint.h"
 #include"KeyFrame.h"
 #include"Frame.h"
+#include"LoadedKeyFrame.h"
 
 
 namespace ORB_SLAM2
 {
 
 class ORBmatcher
-{    
+{
 public:
 
     ORBmatcher(float nnratio=0.6, bool checkOri=true);
@@ -64,6 +65,7 @@ public:
     // Used in Relocalisation and Loop Detection
     int SearchByBoW(KeyFrame *pKF, Frame &F, std::vector<MapPoint*> &vpMapPointMatches);
     int SearchByBoW(KeyFrame *pKF1, KeyFrame* pKF2, std::vector<MapPoint*> &vpMatches12);
+    int SearchByBoW(LoadedKeyFrame *pLKF, Frame &F);
 
     // Matching for the Map Initialization (only used in the monocular case)
     int SearchForInitialization(Frame &F1, Frame &F2, std::vector<cv::Point2f> &vbPrevMatched, std::vector<int> &vnMatches12, int windowSize=10);

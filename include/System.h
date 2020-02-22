@@ -28,12 +28,14 @@
 #include<unistd.h>
 
 #include "Tracking.h"
+#include "BackTracking.h"
 #include "FrameDrawer.h"
 #include "MapDrawer.h"
 #include "Map.h"
 #include "LocalMapping.h"
 #include "LoopClosing.h"
 #include "KeyFrameDatabase.h"
+#include "LoadedKeyFrameDatabase.h"
 #include "ORBVocabulary.h"
 #include "Viewer.h"
 
@@ -44,6 +46,7 @@ class Viewer;
 class FrameDrawer;
 class Map;
 class Tracking;
+class BackTracking;
 class LocalMapping;
 class LoopClosing;
 
@@ -106,7 +109,7 @@ public:
     // Call first Shutdown()
     // See format details at: http://vision.in.tum.de/data/datasets/rgbd-dataset
     void SaveKeyFrameTrajectoryTUM(const string &filename);
-    void SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorFile);
+    void SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,const string &vInvertedFileFile);
 
     // Save camera trajectory in the KITTI dataset format.
     // Only for stereo and RGB-D. This method does not work for monocular.
@@ -133,6 +136,10 @@ public:
 
 private:
 
+    // int* pint;
+    // int* pint2;
+    // int* pint3;
+
     // Input sensor
     eSensor mSensor;
 
@@ -142,6 +149,8 @@ private:
     // KeyFrame database for place recognition (relocalization and loop detection).
     KeyFrameDatabase* mpKeyFrameDatabase;
 
+    LoadedKeyFrameDatabase* mpLoadedKeyFrameDatabase;
+
     // Map structure that stores the pointers to all KeyFrames and MapPoints.
     Map* mpMap;
 
@@ -149,6 +158,8 @@ private:
     // It also decides when to insert a new keyframe, create some new MapPoints and
     // performs relocalization if tracking fails.
     Tracking* mpTracker;
+
+    BackTracking* mpBackTracker;
 
     // Local Mapper. It manages the local map and performs local bundle adjustment.
     LocalMapping* mpLocalMapper;
@@ -165,6 +176,7 @@ private:
 
     // System threads: Local Mapping, Loop Closing, Viewer.
     // The Tracking thread "lives" in the main execution thread that creates the System object.
+    std::thread* mptBackTracking;
     std::thread* mptLocalMapping;
     std::thread* mptLoopClosing;
     std::thread* mptViewer;

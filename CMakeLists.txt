@@ -68,6 +68,9 @@ src/KeyFrameDatabase.cc
 src/Sim3Solver.cc
 src/Initializer.cc
 src/Viewer.cc
+src/LoadedKeyFrame.cc
+src/LoadedKeyFrameDatabase.cc
+src/BackTracking.cc
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -110,4 +113,3 @@ target_link_libraries(mono_kitti ${PROJECT_NAME})
 add_executable(mono_euroc
 Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
-

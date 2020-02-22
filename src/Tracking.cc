@@ -163,6 +163,11 @@ void Tracking::SetViewer(Viewer *pViewer)
     mpViewer=pViewer;
 }
 
+void Tracking::SetBackTracker(BackTracking *pBackTracker)
+{
+    mpBackTracker=pBackTracker;
+}
+
 
 cv::Mat Tracking::GrabImageStereo(const cv::Mat &imRectLeft, const cv::Mat &imRectRight, const double &timestamp)
 {
@@ -416,6 +421,9 @@ void Tracking::Track()
 
         // Update drawer
         mpFrameDrawer->Update(this);
+
+        //update backtracking frame
+        mpBackTracker->Update(this);
 
         // If tracking were good, check if we insert a keyframe
         if(bOK)
@@ -916,7 +924,7 @@ bool Tracking::TrackWithMotionModel()
             else if(mCurrentFrame.mvpMapPoints[i]->Observations()>0)
                 nmatchesMap++;
         }
-    }    
+    }
 
     if(mbOnlyTracking)
     {

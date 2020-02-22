@@ -20,6 +20,7 @@
 
 #include "KeyFrameDatabase.h"
 
+#include <iostream>
 #include "KeyFrame.h"
 #include "Thirdparty/DBoW2/DBoW2/BowVector.h"
 
@@ -306,6 +307,28 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
     }
 
     return vpRelocCandidates;
+}
+
+vector<vector<long unsigned int>> KeyFrameDatabase::GetvInvertedFile()
+{
+  vector<vector<long unsigned int>> vReadyInvertedFile;
+  vector<long unsigned int> vCommonKF;
+  for(vector<list<KeyFrame*> >::iterator vit=mvInvertedFile.begin(), vitend=mvInvertedFile.end(); vit!=vitend; vit++)
+  {
+    if (vit->empty())
+    {
+      vReadyInvertedFile.push_back(vCommonKF);
+      continue;
+    }
+    for(list<KeyFrame*>::iterator lit=vit->begin(), litend=vit->end(); lit!=litend; lit++)
+    {
+      KeyFrame* pKFi = *lit;
+      vCommonKF.push_back(pKFi->mnId);
+    }
+    vReadyInvertedFile.push_back(vCommonKF);
+    vCommonKF.clear();
+  }
+  return vReadyInvertedFile;
 }
 
 } //namespace ORB_SLAM

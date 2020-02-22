@@ -58,7 +58,7 @@ private:
     int count = -1;
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
-    cv::Mat Twv = (cv::Mat_<float>(4,4) << 1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
+    cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
     vector<float> vPubPose{0,0,0,0,0,0,1};
     vector<float> vPubKeyPose{0,0,0,0,0,0,1};
     vector<cv::Mat> vKeyPose;
@@ -84,11 +84,14 @@ int main(int argc, char **argv)
         ros::shutdown();
         return 1;
     }
+    // cout<<"main strVocFile address: " << &argv[1] <<endl;
+    // cout<<"main strSettingsFile address: " << &argv[2]<<endl;
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
 
     ImageGrabber igb(&SLAM,100);
+
 
     ros::spin();
 
@@ -96,9 +99,11 @@ int main(int argc, char **argv)
     SLAM.Shutdown();
 
     // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryTUM2("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt");
+    SLAM.SaveKeyFrameTrajectoryTUM2("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt","KeyFramevInvertedFile.txt");
+    cout<<"Save"<<endl;
 
     ros::shutdown();
+    cout<<"ros down"<<endl;
 
     return 0;
 }
@@ -200,8 +205,8 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
       vPubKeyPose = mpSLAM->Twc2vPubPose(keyTvc);
 
       float s = 0.1;//scales of the marker
-      cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 1, -1, -1, 1, 0,
-                                                  0, 0, 0, 0, -0.5,
+      cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 0, 0, 0, 0, -0.5,
+                                                  1, -1, -1, 1, 0,
                                                   1, 1, -1, -1, 0,
                                                   1/s, 1/s, 1/s, 1/s ,1/s)*s;
       geometry_msgs::Point p;

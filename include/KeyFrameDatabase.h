@@ -57,6 +57,9 @@ public:
    // Relocalization
    std::vector<KeyFrame*> DetectRelocalizationCandidates(Frame* F);
 
+   //Return a InvertedFile KF indicate by its mnId
+   std::vector<vector<long unsigned int> > GetvInvertedFile();
+
 protected:
 
   // Associated vocabulary

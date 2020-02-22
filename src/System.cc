@@ -50,7 +50,6 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     else if(mSensor==RGBD)
         cout << "RGB-D" << endl;
 
-    //Check settings file
     cv::FileStorage fsSettings(strSettingsFile.c_str(), cv::FileStorage::READ);
     if(!fsSettings.isOpened())
     {
@@ -75,6 +74,11 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     //Create KeyFrame Database
     mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
 
+    //Create LoadedKeyFrame Database
+    LoadedKeyFrameDatabase* mpLoadedKeyFrameDatabase = new LoadedKeyFrameDatabase(mpVocabulary);
+    mpLoadedKeyFrameDatabase->LoadLKFFromTextFile("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt");
+    mpLoadedKeyFrameDatabase->LoadDBFromTextFile("KeyFramevInvertedFile.txt");
+
     //Create the Map
     mpMap = new Map();
 
@@ -87,6 +91,12 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
                              mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
 
+    cout << "Initializing Backtracker..." << endl;
+
+    mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker);
+    mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
+
+    cout << "Finished." << endl;
     //Initialize the Local Mapping thread and launch
     mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
     mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
@@ -106,6 +116,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     //Set pointers between threads
     mpTracker->SetLocalMapper(mpLocalMapper);
     mpTracker->SetLoopClosing(mpLoopCloser);
+
+    mpTracker->SetBackTracker(mpBackTracker);
 
     mpLocalMapper->SetTracker(mpTracker);
     mpLocalMapper->SetLoopCloser(mpLoopCloser);
@@ -307,6 +319,7 @@ void System::Shutdown()
 {
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
+    mpBackTracker->RequestFinish();
     if(mpViewer)
     {
         mpViewer->RequestFinish();
@@ -315,7 +328,7 @@ void System::Shutdown()
     }
 
     // Wait until all thread have effectively stopped
-    while(!mpLocalMapper->isFinished() || !mpLoopCloser->isFinished() || mpLoopCloser->isRunningGBA())
+    while(!mpBackTracker->isFinished() || !mpLocalMapper->isFinished() || !mpLoopCloser->isFinished() || mpLoopCloser->isRunningGBA())
     {
         usleep(5000);
     }
@@ -420,11 +433,14 @@ void System::SaveKeyFrameTrajectoryTUM(const string &filename)
     cout << endl << "TUM-KEY-trajectory saved!" << endl;
 }
 
-void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorFile)
+void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,const string &vInvertedFileFile)
 {
     cout << endl << "Saving keyframe trajectory to " << TrajectoryFile << " ..." << endl;
     cout << endl << "Saving keyframe key points to " << KeyPointsFile << " ..." << endl;
-    cout << endl << "Saving keyframe descriptors to " << DescriptorFile << " ..." << endl;
+    cout << endl << "Saving keyframe descriptors to " << DescriptorsFile << " ..." << endl;
+    cout << endl << "Saving keyframe FeatureVector to " << FeatureVectorFile << " ..." << endl;
+    cout << endl << "Saving keyframe BowVector to " << BowVectorFile << " ..." << endl;
+    cout << endl << "Saving keyframe vInvertedFile to " << vInvertedFileFile << " ..." << endl;
 
     vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
     sort(vpKFs.begin(),vpKFs.end(),KeyFrame::lId);
@@ -433,13 +449,19 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
     // After a loop closure the first keyframe might not be at the origin.
     //cv::Mat Two = vpKFs[0]->GetPoseInverse();
 
-    ofstream f,k,d;
+    ofstream f,k,d,fv,bv,vinv;
     f.open(TrajectoryFile.c_str());
     k.open(KeyPointsFile.c_str());
-    d.open(DescriptorFile.c_str());
+    d.open(DescriptorsFile.c_str());
+    fv.open(FeatureVectorFile.c_str());
+    bv.open(BowVectorFile.c_str());
+    vinv.open(vInvertedFileFile.c_str());
     f << fixed;
     k << fixed;
     d << fixed;
+    fv << fixed;
+    bv << fixed;
+    vinv << fixed;
 
     for(size_t i=0; i<vpKFs.size(); i++)
     {
@@ -453,25 +475,58 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
         cv::Mat R = pKF->GetRotation().t();
         vector<float> q = Converter::toQuaternion(R);
         cv::Mat t = pKF->GetCameraCenter();
-        f << setprecision(6) << pKF->mTimeStamp << setprecision(7) << " " << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2)
+        f << setprecision(6) << pKF->mTimeStamp <<  setprecision(1) << " " << pKF->mnId
+          << setprecision(7) << " " << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2)
           << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
 
-        k << setprecision(6) << pKF->mTimeStamp << " " << setprecision(1) << pKF->N << endl;
+        k << setprecision(1) << pKF->mnId << endl;
         vector<cv::KeyPoint> vKeys = pKF->mvKeysUn;
         for(size_t j=0; j<vKeys.size(); j++)
         {
-          k << setprecision(7) << "(" << vKeys[j].pt.x << "," << vKeys[j].pt.y << ")" << endl;
+          k << setprecision(7) << vKeys[j].pt.x << " " << vKeys[j].pt.y << " ";
         }
         k << endl;
 
-        d << setprecision(6) << pKF->mTimeStamp << " " << setprecision(1) << pKF->N << endl;
-        d << pKF->mDescriptors << endl << endl;
+        d << setprecision(1)<< pKF->N << endl;
+        d << pKF->mDescriptors;
 
+
+        for(DBoW2::FeatureVector::const_iterator FVit=pKF->mFeatVec.begin(), FVend=pKF->mFeatVec.end(); FVit != FVend; FVit++)
+        {
+          fv << FVit->first << ",";
+          vector<unsigned int> feature_vector = FVit->second;
+          for (size_t j=0; j<feature_vector.size(); j++)
+          {
+            fv << feature_vector[j] << " ";
+          }
+          fv << endl;
+        }
+        fv << "#";
+
+        for(DBoW2::BowVector::const_iterator BVit=pKF->mBowVec.begin(), BVend=pKF->mBowVec.end(); BVit != BVend; BVit++)
+        {
+          bv << setprecision(1)  << BVit->first << " " << setprecision(9) << BVit->second << " ";
+        }
+        bv << endl;
+    }
+
+    vector<vector<long unsigned int> > vInvertedFile = mpKeyFrameDatabase->GetvInvertedFile();
+    for(vector<vector<long unsigned int> >::iterator vit=vInvertedFile.begin(), vitend=vInvertedFile.end(); vit!=vitend; vit++)
+    {
+      vector<long unsigned int> vCommonKF = *vit;
+      for(size_t i=0; i<vCommonKF.size(); i++)
+      {
+        vinv << setprecision(1) << vCommonKF[i] << " ";
+      }
+      vinv << endl;
     }
 
     f.close();
     k.close();
     d.close();
+    fv.close();
+    bv.close();
+    vinv.close();
     cout << endl << "TUM-KEY-trajectory 2 saved!" << endl;
 }
 
