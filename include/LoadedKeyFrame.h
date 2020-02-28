@@ -3,11 +3,15 @@
 
 #include <vector>
 #include <opencv2/opencv.hpp>
+#include "MapPoint.h"
 #include "Thirdparty/DBoW2/DBoW2/BowVector.h"
 #include "Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 
 namespace ORB_SLAM2
 {
+
+class Map;
+class MapPoint;
 
 class LoadedKeyFrame
 {
@@ -17,7 +21,7 @@ public:
     static bool largerScore(LoadedKeyFrame* pLKF1, LoadedKeyFrame* pLKF2){
         return pLKF1->mBackTrackScore>pLKF2->mBackTrackScore;
     }
-    
+
 public:
     long unsigned int mnId;
     int mN;

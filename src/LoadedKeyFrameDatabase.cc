@@ -22,45 +22,18 @@ void LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &TrajectoryFile,c
 {
     ifstream f(TrajectoryFile);
     ifstream k(KeyPointsFile);
-    ifstream d(DescriptorsFile);
-    ifstream fv(FeatureVectorFile);
-    ifstream bv(BowVectorFile);
     cout<<"loadingLKF"<<endl;
 
     string KFline;
     string KPsline;
-    string Descriptorsblock;
-    string strRow;
-    string strN;
-    string element;
-    string FeatureVectorblock;
-    string FeatureVectorline;
-    string BowVectorblock;
-    int e;
-    int row=0;
-    int col=0;
     int countKF=0;
-    bool even=true;
     vector<float> vKPx;
     vector<float> vKPy;
     float KPxy;
     long unsigned int LKFid;//id of loaded key frame in last experiment
     vector<long unsigned int> vLKFid;//vector of id of loaded key frame in last experiment
-    int N;//number of key points in this frame
-    vector<int> vN;//vector of number of key points in each frame
-    DBoW2::NodeId nid;//id of node in FeatureVector
-    string snid;
-    double word;
-    string sword;
-    DBoW2::WordId wid;
-    DBoW2::WordValue wv;
-    unsigned int feature;
     vector<cv::KeyPoint> vKeys;
     vector<vector<cv::KeyPoint>> vvKeys;
-    vector<cv::Mat> vDescriptors;
-    vector<DBoW2::BowVector> vBowVec;
-    vector<DBoW2::FeatureVector> vFeatVec;
-
 
     //load frame id and key points
     while (getline(k,KPsline))
@@ -102,101 +75,20 @@ void LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &TrajectoryFile,c
     cout<<"size of vvKeys:"<<vvKeys.size()<<endl;
 
     //load descriptors
-    while (getline(d,Descriptorsblock,']'))
-    {
-      stringstream sDescriptorsblock(Descriptorsblock);
-      getline(sDescriptorsblock,strN);
-      N = atoi(strN.c_str());
-      vN.push_back(N);
-      cv::Mat Descriptors(N,32,CV_8UC1);
-      while (getline(sDescriptorsblock,strRow))
-      {
-        if (row == 0)  strRow.erase(0,1);
-        stringstream sstrRow(strRow);
-        while (getline(sstrRow,element,','))
-        {
-          // cout << "step3";
-          e = atoi(element.c_str());
-          Descriptors.at<unsigned char>(row,col) = (unsigned char)e;
-          col++;
-        }
-        row++;
-        col=0;
-      }
-      vDescriptors.push_back(Descriptors);
-      row=0;
-      N=0;
-    }
-    cout<<"size of vDescriptors:"<<vDescriptors.size()<<endl;
-
+    vector<cv::Mat> vDescriptors = LoadLKFDescriptorFromTextFile(DescriptorsFile);
 
     //load FeatureVector
-    while (getline(fv,FeatureVectorblock,'#'))
-    {
-      stringstream sFeatureVectorblock(FeatureVectorblock);
-      DBoW2::FeatureVector tempFeatVec;
-      while (getline(sFeatureVectorblock,FeatureVectorline))
-      {
-        stringstream sFeatureVectorline(FeatureVectorline);
-        getline(sFeatureVectorline,snid,',');
-        nid = atoi(snid.c_str());
-        while (sFeatureVectorline >> feature)
-        {
-          tempFeatVec.addFeature(nid,feature);
-        }
-      }
-      vFeatVec.push_back(tempFeatVec);
-    }
-
-    cout<<"size of vFeatVec:"<<vFeatVec.size()<<endl;
-    // cout<<"get first fv"<<endl;
-    // DBoW2::FeatureVector firstfeatvec = vFeatVec[0];
-    // for(DBoW2::FeatureVector::const_iterator FVit=firstfeatvec.begin(), FVend=firstfeatvec.end(); FVit != FVend; FVit++)
-    // {
-    //   cout << FVit->first << ",";
-    //   vector<unsigned int> feature_vector = FVit->second;
-    //   for (size_t j=0; j<feature_vector.size(); j++)
-    //   {
-    //     cout << feature_vector[j] << " ";
-    //   }
-    //   cout << endl;
-    // }
-    // cout<<endl;
+    vector<DBoW2::FeatureVector> vFeatVec = LoadFeatureVectorFromTextFile(FeatureVectorFile);
 
     //load BowVector
-    while (getline(bv,BowVectorblock))
-    {
-      stringstream sBowVectorblock(BowVectorblock);
-      DBoW2::BowVector tempBowVec;
-      while (sBowVectorblock >> word)
-      {
-        if(even)
-        {
-          wid = (int)word;
-          even = false;
-        }
-        else
-        {
-          wv = word;
-          tempBowVec.addIfNotExist(wid,wv);
-          even = true;
-        }
-      }
-      vBowVec.push_back(tempBowVec);
-    }
-    cout<<"size of vBowVec:"<<vBowVec.size()<<endl;
-    // for(size_t i=0; i<vBowVec.size();i++)
-    // {
-    //   cout<< "size of tempBowVec:" << vBowVec[i].size()<<endl;
-    // }
-
+    vector<DBoW2::BowVector> vBowVec = LoadBowVectorFromTextFile (BowVectorFile);
 
     //construct LoadedKeyFrame
     for(size_t nLKF=0;nLKF<vvKeys.size();nLKF++)
     {
       LKFid = vLKFid[nLKF];
-      N = vN[nLKF];
       vKeys = vvKeys[nLKF];
+      int N = vKeys.size();
       cv::Mat Descriptors = vDescriptors[nLKF];
       DBoW2::BowVector BowVec = vBowVec[nLKF];
       DBoW2::FeatureVector FeatVec = vFeatVec[nLKF];
@@ -233,6 +125,11 @@ void LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
     LoadedInvertedFile.clear();
     nline++;
   }
+  if(mvLoadedInvertedFile.size()!=mpLoadedVoc->size())
+  {
+    cout << "Loading last database failed. Initializing..." << endl;
+    mvLoadedInvertedFile.resize(mpLoadedVoc->size());
+  }
   cout<<"size of mvLoadedInvertedFile:"<<mvLoadedInvertedFile.size()<<endl;
   // for(size_t i=0;i<mvLoadedInvertedFile.size();i++)
   // {
@@ -251,7 +148,7 @@ void LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
 }
 
 
-vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame *F)
+vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame *F, int nMaxCan)
 {
     // cout <<"F BowVec: "<<F->mBowVec.size()<<endl;
 
@@ -318,10 +215,10 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
     sort(vScoredMatch.begin(),vScoredMatch.end(),LoadedKeyFrame::largerScore);//larger score come first
 
 
-    if(vScoredMatch.size()>5)
+    if(vScoredMatch.size()>nMaxCan)
     {
       vector<LoadedKeyFrame*>::const_iterator vit=vScoredMatch.begin();
-      vector<LoadedKeyFrame*>::const_iterator vitend=vScoredMatch.begin()+5;
+      vector<LoadedKeyFrame*>::const_iterator vitend=vScoredMatch.begin()+nMaxCan;
       vector<LoadedKeyFrame*> vpBackTrackCandidates(vit,vitend);
       return vpBackTrackCandidates;
     }
@@ -383,5 +280,131 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
 }
 
 
+vector<cv::Mat> LoadedKeyFrameDatabase::LoadLKFDescriptorFromTextFile (const string &DescriptorsFile)
+{
+  int N;//number of key points in this frame
+  int e;
+  int row=0;
+  int col=0;
+  string Descriptorsblock;
+  string strRow;
+  string strN;
+  string element;
+  vector<cv::Mat> vDescriptors;
+
+  ifstream d(DescriptorsFile);
+
+  while (getline(d,Descriptorsblock,']'))
+  {
+    stringstream sDescriptorsblock(Descriptorsblock);
+    getline(sDescriptorsblock,strN);
+    N = atoi(strN.c_str());
+    // vN.push_back(N);
+    cv::Mat Descriptors(N,32,CV_8UC1);
+    while (getline(sDescriptorsblock,strRow))
+    {
+      if (row == 0)  strRow.erase(0,1);
+      stringstream sstrRow(strRow);
+      while (getline(sstrRow,element,','))
+      {
+        // cout << "step3";
+        e = atoi(element.c_str());
+        Descriptors.at<unsigned char>(row,col) = (unsigned char)e;
+        col++;
+      }
+      row++;
+      col=0;
+    }
+    vDescriptors.push_back(Descriptors);
+    row=0;
+    N=0;
+  }
+  cout<<"size of vDescriptors:"<<vDescriptors.size()<<endl;
+
+  return vDescriptors;
+}
+
+vector<DBoW2::FeatureVector> LoadedKeyFrameDatabase::LoadFeatureVectorFromTextFile (const string &FeatureVectorFile)
+{
+  unsigned int feature;
+  DBoW2::NodeId nid;//id of node in FeatureVector
+  string snid;
+  string FeatureVectorblock;
+  string FeatureVectorline;
+  vector<DBoW2::FeatureVector> vFeatVec;
+
+  ifstream fv(FeatureVectorFile);
+
+  while (getline(fv,FeatureVectorblock,'#'))
+  {
+    stringstream sFeatureVectorblock(FeatureVectorblock);
+    DBoW2::FeatureVector tempFeatVec;
+    while (getline(sFeatureVectorblock,FeatureVectorline))
+    {
+      stringstream sFeatureVectorline(FeatureVectorline);
+      getline(sFeatureVectorline,snid,',');
+      nid = atoi(snid.c_str());
+      while (sFeatureVectorline >> feature)
+      {
+        tempFeatVec.addFeature(nid,feature);
+      }
+    }
+    vFeatVec.push_back(tempFeatVec);
+  }
+  cout<<"size of vFeatVec:"<<vFeatVec.size()<<endl;
+  // cout<<"get first fv"<<endl;
+  // DBoW2::FeatureVector firstfeatvec = vFeatVec[0];
+  // for(DBoW2::FeatureVector::const_iterator FVit=firstfeatvec.begin(), FVend=firstfeatvec.end(); FVit != FVend; FVit++)
+  // {
+  //   cout << FVit->first << ",";
+  //   vector<unsigned int> feature_vector = FVit->second;
+  //   for (size_t j=0; j<feature_vector.size(); j++)
+  //   {
+  //     cout << feature_vector[j] << " ";
+  //   }
+  //   cout << endl;
+  // }
+  // cout<<endl;
+  return vFeatVec;
+}
+
+vector<DBoW2::BowVector> LoadedKeyFrameDatabase::LoadBowVectorFromTextFile (const string &BowVectorFile)
+{
+  bool even=true;
+  double word;
+  string BowVectorblock;
+  DBoW2::WordId wid;
+  DBoW2::WordValue wv;
+  vector<DBoW2::BowVector> vBowVec;
+
+  ifstream bv(BowVectorFile);
+
+  while (getline(bv,BowVectorblock))
+  {
+    stringstream sBowVectorblock(BowVectorblock);
+    DBoW2::BowVector tempBowVec;
+    while (sBowVectorblock >> word)
+    {
+      if(even)
+      {
+        wid = (int)word;
+        even = false;
+      }
+      else
+      {
+        wv = word;
+        tempBowVec.addIfNotExist(wid,wv);
+        even = true;
+      }
+    }
+    vBowVec.push_back(tempBowVec);
+  }
+  cout<<"size of vBowVec:"<<vBowVec.size()<<endl;
+  // for(size_t i=0; i<vBowVec.size();i++)
+  // {
+  //   cout<< "size of tempBowVec:" << vBowVec[i].size()<<endl;
+  // }
+  return vBowVec;
+}
 
 } //namespace ORB_SLAM

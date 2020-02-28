@@ -33,6 +33,7 @@ void Map::AddKeyFrame(KeyFrame *pKF)
 {
     unique_lock<mutex> lock(mMutexMap);
     mspKeyFrames.insert(pKF);
+    mspKeyFramesNoCulling.insert(pKF);
     if(pKF->mnId>mnMaxKFid)
         mnMaxKFid=pKF->mnId;
 }
@@ -85,6 +86,12 @@ vector<KeyFrame*> Map::GetAllKeyFrames()
     return vector<KeyFrame*>(mspKeyFrames.begin(),mspKeyFrames.end());
 }
 
+vector<KeyFrame*> Map::GetAllKeyFramesNoCulling()
+{
+    unique_lock<mutex> lock(mMutexMap);
+    return vector<KeyFrame*>(mspKeyFramesNoCulling.begin(),mspKeyFramesNoCulling.end());
+}
+
 vector<MapPoint*> Map::GetAllMapPoints()
 {
     unique_lock<mutex> lock(mMutexMap);
@@ -120,11 +127,12 @@ void Map::clear()
     for(set<MapPoint*>::iterator sit=mspMapPoints.begin(), send=mspMapPoints.end(); sit!=send; sit++)
         delete *sit;
 
-    for(set<KeyFrame*>::iterator sit=mspKeyFrames.begin(), send=mspKeyFrames.end(); sit!=send; sit++)
+    for(set<KeyFrame*>::iterator sit=mspKeyFramesNoCulling.begin(), send=mspKeyFramesNoCulling.end(); sit!=send; sit++)
         delete *sit;
 
     mspMapPoints.clear();
     mspKeyFrames.clear();
+    mspKeyFramesNoCulling.clear();
     mnMaxKFid = 0;
     mvpReferenceMapPoints.clear();
     mvpKeyFrameOrigins.clear();

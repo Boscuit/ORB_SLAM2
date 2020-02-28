@@ -49,6 +49,7 @@ public:
     int GetLastBigChangeIdx();
 
     std::vector<KeyFrame*> GetAllKeyFrames();
+    std::vector<KeyFrame*> GetAllKeyFramesNoCulling();
     std::vector<MapPoint*> GetAllMapPoints();
     std::vector<MapPoint*> GetReferenceMapPoints();
 
@@ -69,6 +70,7 @@ public:
 protected:
     std::set<MapPoint*> mspMapPoints;
     std::set<KeyFrame*> mspKeyFrames;
+    std::set<KeyFrame*> mspKeyFramesNoCulling;
 
     std::vector<MapPoint*> mvpReferenceMapPoints;
 

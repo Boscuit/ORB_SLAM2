@@ -35,6 +35,7 @@ KeyFrameDatabase::KeyFrameDatabase (const ORBVocabulary &voc):
     mpVoc(&voc)
 {
     mvInvertedFile.resize(voc.size());
+    mvInvertedFileNoCulling.resize(voc.size());
 }
 
 
@@ -44,6 +45,9 @@ void KeyFrameDatabase::add(KeyFrame *pKF)
 
     for(DBoW2::BowVector::const_iterator vit= pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit!=vend; vit++)
         mvInvertedFile[vit->first].push_back(pKF);
+
+    for(DBoW2::BowVector::const_iterator vit= pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit!=vend; vit++)
+        mvInvertedFileNoCulling[vit->first].push_back(pKF->mnId);
 }
 
 void KeyFrameDatabase::erase(KeyFrame* pKF)
@@ -71,6 +75,8 @@ void KeyFrameDatabase::clear()
 {
     mvInvertedFile.clear();
     mvInvertedFile.resize(mpVoc->size());
+    mvInvertedFileNoCulling.clear();
+    mvInvertedFileNoCulling.resize(mpVoc->size());
 }
 
 
@@ -311,6 +317,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
 
 vector<vector<long unsigned int>> KeyFrameDatabase::GetvInvertedFile()
 {
+  unique_lock<mutex> lock(mMutex);
   vector<vector<long unsigned int>> vReadyInvertedFile;
   vector<long unsigned int> vCommonKF;
   for(vector<list<KeyFrame*> >::iterator vit=mvInvertedFile.begin(), vitend=mvInvertedFile.end(); vit!=vitend; vit++)
@@ -329,6 +336,12 @@ vector<vector<long unsigned int>> KeyFrameDatabase::GetvInvertedFile()
     vCommonKF.clear();
   }
   return vReadyInvertedFile;
+}
+
+vector<vector<long unsigned int>> KeyFrameDatabase::GetvInvertedFileNoCulling()
+{
+  unique_lock<mutex> lock(mMutex);
+  return mvInvertedFileNoCulling;
 }
 
 } //namespace ORB_SLAM

@@ -60,6 +60,9 @@ public:
    //Return a InvertedFile KF indicate by its mnId
    std::vector<vector<long unsigned int> > GetvInvertedFile();
 
+   //Return a No Culling InvertedFile KF indicate by its mnId
+   std::vector<vector<long unsigned int> > GetvInvertedFileNoCulling();
+
 protected:
 
   // Associated vocabulary
@@ -67,6 +70,9 @@ protected:
 
   // Inverted file
   std::vector<list<KeyFrame*> > mvInvertedFile;
+
+  // Inverted file without culling
+  std::vector<vector<long unsigned int> > mvInvertedFileNoCulling;
 
   // Mutex
   std::mutex mMutex;

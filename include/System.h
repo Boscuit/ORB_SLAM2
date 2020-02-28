@@ -109,7 +109,9 @@ public:
     // Call first Shutdown()
     // See format details at: http://vision.in.tum.de/data/datasets/rgbd-dataset
     void SaveKeyFrameTrajectoryTUM(const string &filename);
-    void SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,const string &vInvertedFileFile);
+    void SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,
+      const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,
+      const string &vInvertedFileFile, const string &MapPointsLocationFile, const string &MapPointsDescritorFile);
 
     // Save camera trajectory in the KITTI dataset format.
     // Only for stereo and RGB-D. This method does not work for monocular.

@@ -99,7 +99,9 @@ int main(int argc, char **argv)
     SLAM.Shutdown();
 
     // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryTUM2("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt","KeyFramevInvertedFile.txt");
+    SLAM.SaveKeyFrameTrajectoryTUM2("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt",
+    "KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt",
+    "KeyFramevInvertedFile.txt","MapPointsLocationFile.txt","MapPointsDescritorFile.txt");
     cout<<"Save"<<endl;
 
     ros::shutdown();

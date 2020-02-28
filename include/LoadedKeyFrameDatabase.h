@@ -22,15 +22,27 @@ class LoadedKeyFrameDatabase
 {
 public:
 
-    LoadedKeyFrameDatabase(ORBVocabulary* pVoc);
+  LoadedKeyFrameDatabase(ORBVocabulary* pVoc);
 
-    void LoadDBFromTextFile (const string &vInvertedFileFile);
+  void LoadDBFromTextFile (const string &vInvertedFileFile);
 
-    void LoadLKFFromTextFile (const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile);
+  void LoadLKFFromTextFile (const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile);
 
 
-   //BackTrack candidate given by BowScore
-   std::vector<LoadedKeyFrame*> DetectBackTrackCandidates(Frame *F);
+  //BackTrack candidate given by BowScore
+  std::vector<LoadedKeyFrame*> DetectBackTrackCandidates(Frame *F, int nMaxCan);
+
+private:
+
+  std::vector<cv::Mat> LoadLKFDescriptorFromTextFile (const string &DescriptorsFile);
+
+  std::vector<DBoW2::FeatureVector> LoadFeatureVectorFromTextFile (const string &FeatureVectorFile);
+
+  std::vector<DBoW2::BowVector> LoadBowVectorFromTextFile (const string &BowVectorFile);
+
+  // std::vector<vector<cv::Mat> > LoadMapPointLocationFromTextFile ()
+
+
 
 protected:
 

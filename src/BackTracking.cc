@@ -24,7 +24,8 @@ namespace ORB_SLAM2
 {
 
 BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker):
-    mState(READY), mnCandidate(0), mbFinishRequested(false), mbFinished(true), mpORBVocabulary(pVoc), mpLoadedKeyFrameDB(pLKFDB), mpTracker(pTracker)
+    mState(READY), mnCandidate(0), mnCurrentId(0), mnNextId(0), mbFinishRequested(false), mbFinished(true),
+    mpORBVocabulary(pVoc), mpLoadedKeyFrameDB(pLKFDB), mpTracker(pTracker)
 {
 }
 
@@ -99,7 +100,7 @@ void BackTracking::Update(Tracking *pTracker)
   {
     mState = ARRIVE;
     mCurrentFrame = mpTracker->mCurrentFrame;
-    cout<<"BackTrack updated! ";
+    // cout<<"BackTrack updated! ";
   }
 }
 
@@ -109,11 +110,13 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
     // Compute Bag of Words Vector
     mpCurrentFrame->ComputeBoW();
 
-    cout<<"Current frame: "<<mpCurrentFrame->mnId<<" Back Tracking... ";
+    cout<<"CF: "<<mpCurrentFrame->mnId<<" BT... ";
 
     // Relocalization is performed when tracking is lost
     // Track Lost: Query KeyFrame Database for keyframe candidates for relocalisation
-    vector<LoadedKeyFrame*> vpCandidateLKFs = mpLoadedKeyFrameDB->DetectBackTrackCandidates(mpCurrentFrame);
+
+    //sorted by BoW score in descending order
+    vector<LoadedKeyFrame*> vpCandidateLKFs = mpLoadedKeyFrameDB->DetectBackTrackCandidates(mpCurrentFrame,5);
 
     if(vpCandidateLKFs.empty())
         return 0;
@@ -160,14 +163,36 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         // }
     }
 
-    cout << "match: ";
-    for(int can=0; can<mnCandidate; can++)
-    {
-      cout << vpOutstandingLKFs[can]->mnId << " ";
-    }
-    cout << endl;
+    // cout << "match: ";
+    // for(int can=0; can<mnCandidate; can++)
+    // {
+    //   cout << vpOutstandingLKFs[can]->mnId << " ";
+    // }
+    // cout << endl;
 
-    return mnCandidate;
+    if(!mnCurrentId && mnCandidate)//means mnCurrentId==0 and mnCandidate!=0
+    {
+      mnCurrentId = vpOutstandingLKFs[0]->mnId;//initialze with the first detected frame id
+      mnNextId = mnCurrentId+1;
+    }
+
+    // for(int can=0; can<mnCandidate; can++)
+    // {
+    //   if(vpOutstandingLKFs[can]->mnId == mnNextId)//position is reached
+    //   {
+    //     mnCurrentId = mnNextId++;
+    //     break;
+    //   }
+    // }
+
+    if(mnCandidate==1)
+    {
+      if(vpOutstandingLKFs[0]->mnId == mnNextId)
+        mnCurrentId = mnNextId++;
+    }
+    cout << "Current: " << mnCurrentId << ", Next: " << mnNextId << "." << endl;
+
+    return mnNextId;
 
     // // Alternatively perform some iterations of P4P RANSAC
     // // Until we found a camera pose supported by enough inliers

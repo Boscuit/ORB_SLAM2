@@ -46,7 +46,7 @@ public:
 
 public:
 
-    long unsigned int mnCandidate;
+    int mnCandidate;
 
 protected:
 
@@ -54,6 +54,9 @@ protected:
     // Frame* mpCurrentFrame;
     Frame mCurrentFrame;
     std::mutex mMutex;
+
+    long unsigned int mnCurrentId;
+    long unsigned int mnNextId;
 
     //Tracker for Current Frame
     Tracking* mpTracker;

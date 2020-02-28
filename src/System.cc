@@ -433,7 +433,9 @@ void System::SaveKeyFrameTrajectoryTUM(const string &filename)
     cout << endl << "TUM-KEY-trajectory saved!" << endl;
 }
 
-void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,const string &vInvertedFileFile)
+void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,
+  const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,
+  const string &vInvertedFileFile, const string &MapPointsLocationFile, const string &MapPointsDescritorFile)
 {
     cout << endl << "Saving keyframe trajectory to " << TrajectoryFile << " ..." << endl;
     cout << endl << "Saving keyframe key points to " << KeyPointsFile << " ..." << endl;
@@ -441,27 +443,34 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
     cout << endl << "Saving keyframe FeatureVector to " << FeatureVectorFile << " ..." << endl;
     cout << endl << "Saving keyframe BowVector to " << BowVectorFile << " ..." << endl;
     cout << endl << "Saving keyframe vInvertedFile to " << vInvertedFileFile << " ..." << endl;
+    cout << endl << "Saving keyframe MapPointsLocation to " << MapPointsLocationFile << " ..." << endl;
+    cout << endl << "Saving keyframe MapPointsDescritor to " << MapPointsDescritorFile << " ..." << endl;
 
-    vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
+    vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFramesNoCulling();
+    // vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
     sort(vpKFs.begin(),vpKFs.end(),KeyFrame::lId);
 
     // Transform all keyframes so that the first keyframe is at the origin.
     // After a loop closure the first keyframe might not be at the origin.
     //cv::Mat Two = vpKFs[0]->GetPoseInverse();
 
-    ofstream f,k,d,fv,bv,vinv;
+    ofstream f,k,d,fv,bv,vinv,mpl,mpd;
     f.open(TrajectoryFile.c_str());
     k.open(KeyPointsFile.c_str());
     d.open(DescriptorsFile.c_str());
     fv.open(FeatureVectorFile.c_str());
     bv.open(BowVectorFile.c_str());
     vinv.open(vInvertedFileFile.c_str());
+    mpl.open(MapPointsLocationFile.c_str());
+    mpd.open(MapPointsDescritorFile.c_str());
     f << fixed;
     k << fixed;
     d << fixed;
     fv << fixed;
     bv << fixed;
     vinv << fixed;
+    mpl << fixed;
+    mpd << fixed;
 
     for(size_t i=0; i<vpKFs.size(); i++)
     {
@@ -469,8 +478,8 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
 
        // pKF->SetPose(pKF->GetPose()*Two);
 
-        if(pKF->isBad())
-            continue;
+        // if(pKF->isBad())
+        //     continue;
 
         cv::Mat R = pKF->GetRotation().t();
         vector<float> q = Converter::toQuaternion(R);
@@ -486,6 +495,19 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
           k << setprecision(7) << vKeys[j].pt.x << " " << vKeys[j].pt.y << " ";
         }
         k << endl;
+
+        vector<MapPoint*> vpMapPoints = pKF->GetMapPointMatches();
+        for(size_t j=0; j<vKeys.size(); j++)
+        {
+          MapPoint* pMP = vpMapPoints[j];
+          if(!pMP || pMP->isBad())
+            continue;
+          cv::Mat MapPointLocation = pMP->GetWorldPos();
+          mpl << j <<" "<<MapPointLocation.at<float>(0)<<" "<<MapPointLocation.at<float>(1)<<" "<<MapPointLocation.at<float>(2)<<" "<<endl;
+          mpd << j <<" "<<pMP->GetDescriptor()<<endl;
+        }
+        mpl << "#";
+        mpd << "#";
 
         d << setprecision(1)<< pKF->N << endl;
         d << pKF->mDescriptors;
@@ -510,7 +532,7 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
         bv << endl;
     }
 
-    vector<vector<long unsigned int> > vInvertedFile = mpKeyFrameDatabase->GetvInvertedFile();
+    vector<vector<long unsigned int> > vInvertedFile = mpKeyFrameDatabase->GetvInvertedFileNoCulling();
     for(vector<vector<long unsigned int> >::iterator vit=vInvertedFile.begin(), vitend=vInvertedFile.end(); vit!=vitend; vit++)
     {
       vector<long unsigned int> vCommonKF = *vit;
@@ -527,6 +549,8 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
     fv.close();
     bv.close();
     vinv.close();
+    mpl.close();
+    mpd.close();
     cout << endl << "TUM-KEY-trajectory 2 saved!" << endl;
 }
 
