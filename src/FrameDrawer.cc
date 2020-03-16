@@ -23,16 +23,18 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <cmath>
 
 #include<mutex>
 
 namespace ORB_SLAM2
 {
 
-FrameDrawer::FrameDrawer(Map* pMap):mpMap(pMap)
+FrameDrawer::FrameDrawer(Map* pMap):mpMap(pMap),mnfId(0)
 {
     mState=Tracking::SYSTEM_NOT_READY;
     mIm = cv::Mat(480,640,CV_8UC3, cv::Scalar(0,0,0));
+    mSimilarityGraph = cv::Mat(50,100,CV_8UC3, cv::Scalar(0,0,0));
 }
 
 cv::Mat FrameDrawer::DrawFrame()
@@ -84,7 +86,7 @@ cv::Mat FrameDrawer::DrawFrame()
                 cv::line(im,vIniKeys[i].pt,vCurrentKeys[vMatches[i]].pt,
                         cv::Scalar(0,255,0));
             }
-        }        
+        }
     }
     else if(state==Tracking::OK) //TRACKING
     {
@@ -198,6 +200,41 @@ void FrameDrawer::Update(Tracking *pTracker)
         }
     }
     mState=static_cast<int>(pTracker->mLastProcessedState);
+}
+
+void FrameDrawer::setSimilarity(unsigned int nKFload)
+{
+  mSimilarityGraph = cv::Mat(nKFload,1000,CV_8UC3, cv::Scalar(0,0,0));
+}
+
+cv::Mat FrameDrawer::DrawSimilarity()
+{
+  unique_lock<mutex> lock(mMutexSimilarity);
+  cv::Mat heatmap;
+  cv::applyColorMap(mSimilarityGraph, heatmap, cv::COLORMAP_JET);
+  return heatmap;
+}
+
+void FrameDrawer::UpdateSimilarity(map<long unsigned int, float> vSimilarity,long unsigned int fId)
+{
+  unique_lock<mutex> lock(mMutexSimilarity);
+  fId = fId%1000;
+  int nfId = mnfId%1000;
+  const float r = 1;
+  cv::Point2f pt1,pt2;
+  pt1.x=nfId*r;
+  pt1.y=0;
+  pt2.x=(nfId+1)*r-1;
+  pt2.y=r-1;
+  for(map<long unsigned int, float>::iterator mit=vSimilarity.begin(), mend=vSimilarity.end(); mit!=mend; mit++)
+  {
+    float similarity = mit->second;
+    float s = pow(similarity,0.25);
+    cv::rectangle(mSimilarityGraph,pt1,pt2,cv::Scalar(s*255,s*255,s*255));
+    pt1.y+=r;
+    pt2.y+=r;
+  }
+  mnfId++;
 }
 
 } //namespace ORB_SLAM

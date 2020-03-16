@@ -24,15 +24,18 @@ public:
 
   LoadedKeyFrameDatabase(ORBVocabulary* pVoc);
 
-  void LoadDBFromTextFile (const string &vInvertedFileFile);
+  bool LoadDBFromTextFile (const string &vInvertedFileFile);
 
-  void LoadLKFFromTextFile (const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile);
+  unsigned int LoadLKFFromTextFile (const string &GroundTruthFile, const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile);
 
 
   //BackTrack candidate given by BowScore
-  std::vector<LoadedKeyFrame*> DetectBackTrackCandidates(Frame *F, int nMaxCan);
+  std::vector<LoadedKeyFrame*> DetectBackTrackCandidates(Frame *F, unsigned int nMaxCan);
+
+  std::map<long unsigned int, float> GetSimilarity();
 
 private:
+  std::map<double,vector<float> > LoadTrajectoryFromTextFile (const string &GroundTruthFile,const float offset);
 
   std::vector<cv::Mat> LoadLKFDescriptorFromTextFile (const string &DescriptorsFile);
 
@@ -49,8 +52,9 @@ protected:
   // Associated vocabulary
   ORBVocabulary* mpLoadedVoc;
 
-  std::map<long unsigned int,LoadedKeyFrame*> vpLoaedKeyFrame;//<nId,pLoadedKeyFrame>
+  std::map<long unsigned int,LoadedKeyFrame*> mvpLoaedKeyFrame;//<nId,pLoadedKeyFrame>
 
+  std::set<LoadedKeyFrame*> mspScoredLKF;
 
   // Inverted file
   std::vector<list<LoadedKeyFrame*> > mvLoadedInvertedFile;

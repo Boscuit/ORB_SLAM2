@@ -46,7 +46,7 @@ namespace ORB_SLAM2
 Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor):
     mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), mbVO(false), mpORBVocabulary(pVoc),
     mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys), mpViewer(NULL),
-    mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0)
+    mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0), mbRecord(false)
 {
     // Load camera parameters from settings file
 
@@ -163,9 +163,14 @@ void Tracking::SetViewer(Viewer *pViewer)
     mpViewer=pViewer;
 }
 
-void Tracking::SetBackTracker(BackTracking *pBackTracker)
+void Tracking::SetBackTracker(BackTracking *pBackTracker, unsigned int nKFload, bool bDBload)
 {
     mpBackTracker=pBackTracker;
+    mbBackTrack=(nKFload!=0) && bDBload;
+    if(mbBackTrack)
+    {
+      mpFrameDrawer->setSimilarity(nKFload);
+    }
 }
 
 
@@ -423,7 +428,8 @@ void Tracking::Track()
         mpFrameDrawer->Update(this);
 
         //update backtracking frame
-        mpBackTracker->Update(this);
+        if(mbBackTrack)
+          mpBackTracker->Update(this);
 
         // If tracking were good, check if we insert a keyframe
         if(bOK)
@@ -647,6 +653,15 @@ void Tracking::CreateInitialMapMonocular()
     // Create KeyFrames
     KeyFrame* pKFini = new KeyFrame(mInitialFrame,mpMap,mpKeyFrameDB);
     KeyFrame* pKFcur = new KeyFrame(mCurrentFrame,mpMap,mpKeyFrameDB);
+
+    {
+      unique_lock<mutex> lock(mMutexRecord);
+      if(mbRecord)
+      {
+        pKFini->SetRecord();
+        pKFcur->SetRecord();
+      }
+    }
 
 
     pKFini->ComputeBoW();
@@ -1074,6 +1089,12 @@ void Tracking::CreateNewKeyFrame()
         return;
 
     KeyFrame* pKF = new KeyFrame(mCurrentFrame,mpMap,mpKeyFrameDB);
+
+    {
+      unique_lock<mutex> lock(mMutexRecord);
+      if(mbRecord)
+        pKF->SetRecord();
+    }
 
     mpReferenceKF = pKF;
     mCurrentFrame.mpReferenceKF = pKF;
@@ -1548,6 +1569,8 @@ void Tracking::Reset()
         mpInitializer = static_cast<Initializer*>(NULL);
     }
 
+    mvGroundTruth.clear();
+    mlSimilarityMatches.clear();
     mlRelativeFramePoses.clear();
     mlpReferences.clear();
     mlFrameTimes.clear();
@@ -1595,6 +1618,19 @@ void Tracking::InformOnlyTracking(const bool &flag)
     mbOnlyTracking = flag;
 }
 
+void Tracking::StartRecord()
+{
+  unique_lock<mutex> lock(mMutexRecord);
+  mbRecord = true;
+  cout << "Record Start" << endl;
+}
+
+void Tracking::StopRecord()
+{
+  unique_lock<mutex> lock(mMutexRecord);
+  mbRecord = false;
+  cout << "Record Stop"<<endl;
+}
 
 
 } //namespace ORB_SLAM

@@ -105,6 +105,10 @@ public:
     void SetBadFlag();
     bool isBad();
 
+    //Enable Record
+    void SetRecord();
+    bool isRecording();
+
     // Compute Scene Depth (q=2 median). Used in monocular.
     float ComputeSceneMedianDepth(const int q);
 
@@ -222,7 +226,12 @@ protected:
     // Bad flags
     bool mbNotErase;
     bool mbToBeErased;
-    bool mbBad;    
+    bool mbBad;
+
+    //Record flag, is initalized as false
+    //Do Not need mutex since setRecord is called right after we creat new KF
+    //And will never change again. isRecording is called when we add it to map and DB
+    bool mbRecord;
 
     float mHalfBaseline; // Only for visualization
 

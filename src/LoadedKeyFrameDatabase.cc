@@ -1,5 +1,6 @@
 #include "LoadedKeyFrameDatabase.h"
 
+#include <cstdio>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -18,9 +19,8 @@ LoadedKeyFrameDatabase::LoadedKeyFrameDatabase (ORBVocabulary* pVoc):mpLoadedVoc
 }
 
 
-void LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile)
+unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile)
 {
-    ifstream f(TrajectoryFile);
     ifstream k(KeyPointsFile);
     cout<<"loadingLKF"<<endl;
 
@@ -73,37 +73,84 @@ void LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &TrajectoryFile,c
     countKF=0;
 
     cout<<"size of vvKeys:"<<vvKeys.size()<<endl;
+    if(vvKeys.size()==0)
+      return 0;
+
+    //load GroundTruth trajectory
+    map<double,vector<float> > vGroundTruth = LoadTrajectoryFromTextFile (GroundTruthFile,-1);
+    if(vGroundTruth.size()==0)
+      return 0;
+
+    //load estimated trajectory
+    map<double,vector<float> > vEstimatedPose = LoadTrajectoryFromTextFile (TrajectoryFile,0);
+    if(vEstimatedPose.size()==0)
+      return 0;
+    else if(vEstimatedPose.begin()->first > vGroundTruth.rbegin()->first)
+    {
+      cerr << "Trajectory(begin at "<<vEstimatedPose.begin()->first<<") does not match GroundTruth(end at " <<vGroundTruth.rbegin()->first<< ")" <<endl;
+      return 0;
+    }
+    else if(vGroundTruth.begin()->first > vEstimatedPose.rbegin()->first)
+    {
+      cerr << "GroundTruth(begin at "<<vGroundTruth.begin()->first<<") does not match Trajectory(end at " <<vEstimatedPose.rbegin()->first<< ")" <<endl;
+      return 0;
+    }
+
 
     //load descriptors
     vector<cv::Mat> vDescriptors = LoadLKFDescriptorFromTextFile(DescriptorsFile);
+    if(vDescriptors.size()==0)
+      return 0;
 
     //load FeatureVector
     vector<DBoW2::FeatureVector> vFeatVec = LoadFeatureVectorFromTextFile(FeatureVectorFile);
+    if(vFeatVec.size()==0)
+      return 0;
 
     //load BowVector
     vector<DBoW2::BowVector> vBowVec = LoadBowVectorFromTextFile (BowVectorFile);
+    if(vBowVec.size()==0)
+      return 0;
+
+    if(vEstimatedPose.size()!=vvKeys.size() || vDescriptors.size()!=vvKeys.size() ||
+        vFeatVec.size()!=vvKeys.size() || vBowVec.size()!=vvKeys.size())
+        return 0;
 
     //construct LoadedKeyFrame
-    for(size_t nLKF=0;nLKF<vvKeys.size();nLKF++)
+    for(map<double,vector<float> >::iterator it=vEstimatedPose.begin(), itend=vEstimatedPose.end(); it!=itend; it++)
     {
+      double TimeStamp = it->first;
+      map<double,vector<float>>::iterator tempit = vGroundTruth.lower_bound(TimeStamp);
+      if(tempit==vGroundTruth.end())//incase the timestamp of LKF is larger than what GoundTruth has
+        tempit--;
+      // cout << "Constructing LKF: "<< fixed << tempit->first;
+      vector<float> GoundTruth = tempit->second;
+      // cout << " Found GroundTruth. " << countKF <<endl;
+      // int nLKF = it-vEstimatedPose.begin();//??? error: no match for ‘operator-’
+      int nLKF = countKF;
       LKFid = vLKFid[nLKF];
       vKeys = vvKeys[nLKF];
       int N = vKeys.size();
       cv::Mat Descriptors = vDescriptors[nLKF];
       DBoW2::BowVector BowVec = vBowVec[nLKF];
       DBoW2::FeatureVector FeatVec = vFeatVec[nLKF];
-      LoadedKeyFrame* pLKF = new LoadedKeyFrame(LKFid,N,vKeys,Descriptors,BowVec,FeatVec);
-      vpLoaedKeyFrame.insert(pair<long unsigned int,LoadedKeyFrame*>(LKFid,pLKF));
+      LoadedKeyFrame* pLKF = new LoadedKeyFrame(TimeStamp,LKFid,N,vKeys,Descriptors,BowVec,FeatVec,GoundTruth);
+      mvpLoaedKeyFrame.insert(pair<long unsigned int,LoadedKeyFrame*>(LKFid,pLKF));
+      countKF++;
     }
-    cout<<"size of vpLoaedKeyFrame:"<<vpLoaedKeyFrame.size()<<endl;
-    // for(std::map<long unsigned int,LoadedKeyFrame*>::const_iterator it=vpLoaedKeyFrame.begin(), itend=vpLoaedKeyFrame.end(); it != itend; it++)
+
+    cout<<"size of mvpLoaedKeyFrame:"<<mvpLoaedKeyFrame.size()<<endl;
+    // for(std::map<long unsigned int,LoadedKeyFrame*>::const_iterator it=mvpLoaedKeyFrame.begin(), itend=mvpLoaedKeyFrame.end(); it != itend; it++)
     // {
-    //   cout<<it->first<<endl;
+    //   LoadedKeyFrame* temp = it->second;
+    //   cout<<temp->mnId<<endl;
     // }
+
+    return mvpLoaedKeyFrame.size();
 }
 
 
-void LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile)
+bool LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile)
 {
   ifstream inv(vInvertedFileFile);
   string line;
@@ -118,7 +165,7 @@ void LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
     while(sline >> LKFid)
     {
         // cout << LKFid << " ";
-        LoadedKeyFrame* pLKF = vpLoaedKeyFrame.find(LKFid)->second;
+        LoadedKeyFrame* pLKF = mvpLoaedKeyFrame.find(LKFid)->second;
         LoadedInvertedFile.push_back(pLKF);
     }
     mvLoadedInvertedFile.push_back(LoadedInvertedFile);
@@ -129,6 +176,7 @@ void LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
   {
     cout << "Loading last database failed. Initializing..." << endl;
     mvLoadedInvertedFile.resize(mpLoadedVoc->size());
+    return false;
   }
   cout<<"size of mvLoadedInvertedFile:"<<mvLoadedInvertedFile.size()<<endl;
   // for(size_t i=0;i<mvLoadedInvertedFile.size();i++)
@@ -145,10 +193,11 @@ void LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
   //     cout <<endl;
   //   }
   // }
+  return true;
 }
 
 
-vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame *F, int nMaxCan)
+vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame *F, unsigned int nMaxCan)
 {
     // cout <<"F BowVec: "<<F->mBowVec.size()<<endl;
 
@@ -162,10 +211,14 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
         {
             list<LoadedKeyFrame*> &lKFs = mvLoadedInvertedFile[vit->first];
             // cout << "lKFs.size: " << lKFs.size() <<endl;
-
             for(list<LoadedKeyFrame*>::iterator lit=lKFs.begin(), lend= lKFs.end(); lit!=lend; lit++)
             {
                 LoadedKeyFrame* pLKFi=*lit;
+                if(pLKFi==NULL)
+                {
+                  // cout << "NULL pLKFi at word: " << vit->first <<endl;
+                  continue;
+                }
                 if(pLKFi->mnBackTrackQuery!=F->mnId)
                 {
                     pLKFi->mnBackTrackWords=0;
@@ -176,7 +229,8 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
             }
         }
     }
-    // cout << "lKFsSharingWords.size: " << lKFsSharingWords.size() <<endl;
+    // cout<<"size of lKFsSharingWords: "<<lKFsSharingWords.size()<<endl;
+
     if(lKFsSharingWords.empty())
         return vector<LoadedKeyFrame*>();
 
@@ -191,6 +245,7 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
     int minCommonWords = maxCommonWords*0.8f;
 
     vector<LoadedKeyFrame*> vScoredMatch;//modified code
+    mspScoredLKF.clear();
 
     int nscores=0;
 
@@ -199,13 +254,16 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
     {
         LoadedKeyFrame* pLKFi = *lit;
 
-        if(pLKFi->mnBackTrackWords>minCommonWords)
-        {
+        // if(pLKFi->mnBackTrackWords>minCommonWords)
+        // {
             nscores++;
             float si = mpLoadedVoc->score(F->mBowVec,pLKFi->mBowVec);
             pLKFi->mBackTrackScore=si;
+            mspScoredLKF.insert(pLKFi);
+            if(pLKFi->mnBackTrackWords>minCommonWords)
+            {
             vScoredMatch.push_back(pLKFi);
-        }
+            }
     }
     // cout << "vScoredMatch.size: " << vScoredMatch.size() <<endl;
 
@@ -280,6 +338,59 @@ vector<LoadedKeyFrame*> LoadedKeyFrameDatabase::DetectBackTrackCandidates(Frame 
 }
 
 
+map<long unsigned int, float> LoadedKeyFrameDatabase::GetSimilarity()
+{
+  map<long unsigned int, float> vIdAndScore;
+  for(map<long unsigned int,LoadedKeyFrame*>::iterator vit=mvpLoaedKeyFrame.begin(), vend=mvpLoaedKeyFrame.end(); vit!=vend; vit++)
+  {
+    LoadedKeyFrame* pLKFi = vit->second;
+    if(mspScoredLKF.count(pLKFi))
+      vIdAndScore.insert(pair<long unsigned int,float>(pLKFi->mnId,pLKFi->mBackTrackScore));
+    else
+      vIdAndScore.insert(pair<long unsigned int,float>(pLKFi->mnId,0));
+  }
+  return vIdAndScore;
+}
+
+map<double,vector<float> > LoadedKeyFrameDatabase::LoadTrajectoryFromTextFile (const string &TrajectoryFile,const float offset)
+{
+  double t;
+  float px, py, pz, qx, qy, qz, qw;
+  map<double, vector<float> > vPose;
+  FILE * pTrajectoryFile = fopen(TrajectoryFile.c_str(),"r");
+  if(pTrajectoryFile==NULL)
+  {
+    cerr << "can't load ground truth; wrong path " << TrajectoryFile << endl;
+    return vPose;
+  }
+  char tmp[10000];
+  if (fgets(tmp, 10000, pTrajectoryFile) == NULL)
+  {
+    cerr << "can't load " << TrajectoryFile << "; no data available" << endl;
+    return vPose;
+  }
+  while (!feof(pTrajectoryFile))
+  {
+    if(fscanf(pTrajectoryFile, "%lf,%f,%f,%f,%f,%f,%f,%f", &t,
+            &px, &py, &pz, &qx, &qy, &qz, &qw) != EOF)
+    {
+      vector<float> Pose;
+      Pose.push_back(px);
+      Pose.push_back(py);
+      Pose.push_back(pz+offset);
+      Pose.push_back(qx);
+      Pose.push_back(qy);
+      Pose.push_back(qz);
+      Pose.push_back(qw);
+      vPose.insert(pair<double,vector<float> >(t,Pose));
+      // printf("Read: %lf,%f,%f,%f,%f,%f,%f,%f\n",t,px,py,pz,qx,qy,qz,qw);
+    }
+  }
+  fclose(pTrajectoryFile);
+  cout << "size of Trajectory: "<< vPose.size()<<endl;
+  return vPose;
+}
+
 vector<cv::Mat> LoadedKeyFrameDatabase::LoadLKFDescriptorFromTextFile (const string &DescriptorsFile)
 {
   int N;//number of key points in this frame
@@ -299,7 +410,6 @@ vector<cv::Mat> LoadedKeyFrameDatabase::LoadLKFDescriptorFromTextFile (const str
     stringstream sDescriptorsblock(Descriptorsblock);
     getline(sDescriptorsblock,strN);
     N = atoi(strN.c_str());
-    // vN.push_back(N);
     cv::Mat Descriptors(N,32,CV_8UC1);
     while (getline(sDescriptorsblock,strRow))
     {
@@ -307,7 +417,6 @@ vector<cv::Mat> LoadedKeyFrameDatabase::LoadLKFDescriptorFromTextFile (const str
       stringstream sstrRow(strRow);
       while (getline(sstrRow,element,','))
       {
-        // cout << "step3";
         e = atoi(element.c_str());
         Descriptors.at<unsigned char>(row,col) = (unsigned char)e;
         col++;

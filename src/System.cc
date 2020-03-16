@@ -76,8 +76,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     //Create LoadedKeyFrame Database
     LoadedKeyFrameDatabase* mpLoadedKeyFrameDatabase = new LoadedKeyFrameDatabase(mpVocabulary);
-    mpLoadedKeyFrameDatabase->LoadLKFFromTextFile("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt");
-    mpLoadedKeyFrameDatabase->LoadDBFromTextFile("KeyFramevInvertedFile.txt");
+    unsigned int nKFload = mpLoadedKeyFrameDatabase->LoadLKFFromTextFile("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt");
+    bool bDBload = mpLoadedKeyFrameDatabase->LoadDBFromTextFile("KeyFramevInvertedFile.txt");
 
     //Create the Map
     mpMap = new Map();
@@ -93,7 +93,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     cout << "Initializing Backtracker..." << endl;
 
-    mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker);
+    mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker, mpFrameDrawer);
     mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
 
     cout << "Finished." << endl;
@@ -117,7 +117,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpTracker->SetLocalMapper(mpLocalMapper);
     mpTracker->SetLoopClosing(mpLoopCloser);
 
-    mpTracker->SetBackTracker(mpBackTracker);
+    mpTracker->SetBackTracker(mpBackTracker,nKFload,bDBload);
 
     mpLocalMapper->SetTracker(mpTracker);
     mpLocalMapper->SetLoopCloser(mpLoopCloser);
@@ -433,10 +433,11 @@ void System::SaveKeyFrameTrajectoryTUM(const string &filename)
     cout << endl << "TUM-KEY-trajectory saved!" << endl;
 }
 
-void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,
+void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsFile,
   const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,
-  const string &vInvertedFileFile, const string &MapPointsLocationFile, const string &MapPointsDescritorFile)
+  const string &vInvertedFileFile,const string &MapPointsLocationFile,const string &MapPointsDescritorFile)
 {
+    cout << endl << "Saving ground truth to " << GroundTruthFile << " ..." << endl;
     cout << endl << "Saving keyframe trajectory to " << TrajectoryFile << " ..." << endl;
     cout << endl << "Saving keyframe key points to " << KeyPointsFile << " ..." << endl;
     cout << endl << "Saving keyframe descriptors to " << DescriptorsFile << " ..." << endl;
@@ -446,6 +447,7 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
     cout << endl << "Saving keyframe MapPointsLocation to " << MapPointsLocationFile << " ..." << endl;
     cout << endl << "Saving keyframe MapPointsDescritor to " << MapPointsDescritorFile << " ..." << endl;
 
+    map<double, vector<float> > vGroundTruth = mpTracker->mvGroundTruth;
     vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFramesNoCulling();
     // vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
     sort(vpKFs.begin(),vpKFs.end(),KeyFrame::lId);
@@ -454,7 +456,8 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
     // After a loop closure the first keyframe might not be at the origin.
     //cv::Mat Two = vpKFs[0]->GetPoseInverse();
 
-    ofstream f,k,d,fv,bv,vinv,mpl,mpd;
+    ofstream gt,f,k,d,fv,bv,vinv,mpl,mpd;
+    gt.open(GroundTruthFile.c_str());
     f.open(TrajectoryFile.c_str());
     k.open(KeyPointsFile.c_str());
     d.open(DescriptorsFile.c_str());
@@ -463,15 +466,25 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
     vinv.open(vInvertedFileFile.c_str());
     mpl.open(MapPointsLocationFile.c_str());
     mpd.open(MapPointsDescritorFile.c_str());
-    f << fixed;
-    k << fixed;
-    d << fixed;
-    fv << fixed;
-    bv << fixed;
+    gt   << fixed;
+    f    << fixed;
+    k    << fixed;
+    d    << fixed;
+    fv   << fixed;
+    bv   << fixed;
     vinv << fixed;
-    mpl << fixed;
-    mpd << fixed;
+    mpl  << fixed;
+    mpd  << fixed;
 
+    gt << "#timestamp, p_x [m], p_y [m], p_z [m], q_x [], q_y [], q_z [], q_w []" << endl;
+    for(map<double,vector<float> >::iterator it=vGroundTruth.begin(), itend=vGroundTruth.end(); it!=itend; it++)
+    {
+      vector<float> tfv = it->second;
+      gt << setprecision(6) << it->first <<","<<tfv[0] << ","<< tfv[1] << ","
+      << tfv[2] << ","<< tfv[3] << ","<< tfv[4] << ","<< tfv[5] << ","<< tfv[6] << endl;
+    }
+
+    f << "#timestamp, p_x [m], p_y [m], p_z [m], q_x [], q_y [], q_z [], q_w []" << endl;
     for(size_t i=0; i<vpKFs.size(); i++)
     {
         KeyFrame* pKF = vpKFs[i];
@@ -484,15 +497,15 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
         cv::Mat R = pKF->GetRotation().t();
         vector<float> q = Converter::toQuaternion(R);
         cv::Mat t = pKF->GetCameraCenter();
-        f << setprecision(6) << pKF->mTimeStamp <<  setprecision(1) << " " << pKF->mnId
-          << setprecision(7) << " " << t.at<float>(0) << " " << t.at<float>(1) << " " << t.at<float>(2)
-          << " " << q[0] << " " << q[1] << " " << q[2] << " " << q[3] << endl;
+        f << setprecision(6) << pKF->mTimeStamp
+          << "," << t.at<float>(0) << "," << t.at<float>(1) << "," << t.at<float>(2)
+          << "," << q[0] << "," << q[1] << "," << q[2] << "," << q[3] << endl;
 
         k << setprecision(1) << pKF->mnId << endl;
         vector<cv::KeyPoint> vKeys = pKF->mvKeysUn;
         for(size_t j=0; j<vKeys.size(); j++)
         {
-          k << setprecision(7) << vKeys[j].pt.x << " " << vKeys[j].pt.y << " ";
+          k << setprecision(6) << vKeys[j].pt.x << " " << vKeys[j].pt.y << " ";
         }
         k << endl;
 
@@ -543,6 +556,7 @@ void System::SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const strin
       vinv << endl;
     }
 
+    gt.close();
     f.close();
     k.close();
     d.close();
@@ -634,7 +648,18 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
 //     return mTrackedKeyPointsDescriptor;
 // }
 
-vector<float> System::Twc2vPubPose(cv::Mat Twc)
+void System::AddGroundTruth(const double &timestamp, const vector<float> &groundtruth)
+{
+  mpTracker->mvGroundTruth.insert(pair<double,vector<float> >(timestamp,groundtruth));
+}
+
+list<vector<float> > System::GetlSimilarityMatches()
+{
+  unique_lock<mutex> lock(mpTracker->mMutexSimilarityMatches);
+  return mpTracker->mlSimilarityMatches;
+}
+
+vector<float> System::Twc2sevenD(cv::Mat Twc)
 {
   vector<float> vPubPose;
   cv::Mat twc(3,1,CV_32F);
@@ -652,6 +677,24 @@ vector<float> System::Twc2vPubPose(cv::Mat Twc)
 
   return vPubPose;
 }
+
+cv::Mat System::sevenDToTwc(vector<float> sevenD)
+{
+  cv::Mat Twc(4,4,CV_32F);
+  vector<float> q(sevenD.begin()+3,sevenD.end());
+  cv::Mat Rwc = Converter::toCvMat(q);
+  Rwc.copyTo(Twc.rowRange(0,3).colRange(0,3));
+  Twc.at<float>(0,3) = sevenD[0];
+  Twc.at<float>(1,3) = sevenD[1];
+  Twc.at<float>(2,3) = sevenD[2];
+  Twc.at<float>(3,0) = 0;
+  Twc.at<float>(3,1) = 0;
+  Twc.at<float>(3,2) = 0;
+  Twc.at<float>(3,3) = 1;
+
+  return Twc;
+}
+
 
 cv::Mat System::InverseT(cv::Mat Tcw)
 {

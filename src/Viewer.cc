@@ -71,6 +71,7 @@ void Viewer::Run()
     pangolin::Var<bool> menuShowKeyFrames("menu.Show KeyFrames",true,true);
     pangolin::Var<bool> menuShowGraph("menu.Show Graph",true,true);
     pangolin::Var<bool> menuLocalizationMode("menu.Localization Mode",false,true);
+    pangolin::Var<bool> menuRecordTrajectory("menu.Record Trajectory",false,true);
     pangolin::Var<bool> menuReset("menu.Reset",false,false);
 
     // Define Camera Render Object (for view / scene browsing)
@@ -88,9 +89,11 @@ void Viewer::Run()
     Twc.SetIdentity();
 
     cv::namedWindow("ORB-SLAM2: Current Frame");
+    cv::namedWindow("Back Track Simularity");
 
     bool bFollow = true;
     bool bLocalizationMode = false;
+    bool bRecord = false;
 
     while(1)
     {
@@ -124,6 +127,17 @@ void Viewer::Run()
             bLocalizationMode = false;
         }
 
+        if(menuRecordTrajectory && !bRecord)
+        {
+            mpTracker->StartRecord();//Not yet added
+            bRecord = true;
+        }
+        else if(!menuRecordTrajectory && bRecord)
+        {
+            mpTracker->StopRecord();//Not yet added
+            bRecord = false;
+        }
+
         d_cam.Activate(s_cam);
         glClearColor(1.0f,1.0f,1.0f,1.0f);
         mpMapDrawer->DrawCurrentCamera(Twc);
@@ -135,7 +149,9 @@ void Viewer::Run()
         pangolin::FinishFrame();
 
         cv::Mat im = mpFrameDrawer->DrawFrame();
+        cv::Mat im2 = mpFrameDrawer->DrawSimilarity();
         cv::imshow("ORB-SLAM2: Current Frame",im);
+        cv::imshow("Back Track Simularity",im2);
         cv::waitKey(mT);
 
         if(menuReset)
@@ -144,9 +160,11 @@ void Viewer::Run()
             menuShowKeyFrames = true;
             menuShowPoints = true;
             menuLocalizationMode = false;
+            menuRecordTrajectory = false;
             if(bLocalizationMode)
                 mpSystem->DeactivateLocalizationMode();
             bLocalizationMode = false;
+            bRecord = false;
             bFollow = true;
             menuFollowCamera = true;
             mpSystem->Reset();

@@ -23,9 +23,9 @@ using namespace std;
 namespace ORB_SLAM2
 {
 
-BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker):
+BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker, FrameDrawer* pFrameDrawer):
     mState(READY), mnCandidate(0), mnCurrentId(0), mnNextId(0), mbFinishRequested(false), mbFinished(true),
-    mpORBVocabulary(pVoc), mpLoadedKeyFrameDB(pLKFDB), mpTracker(pTracker)
+    mpORBVocabulary(pVoc), mpLoadedKeyFrameDB(pLKFDB), mpTracker(pTracker),mpFrameDrawer(pFrameDrawer)
 {
 }
 
@@ -44,12 +44,7 @@ void BackTracking::Run()
     }
     if (state == ARRIVE)
     {
-      // Frame mCurrentFrame = Frame(mpTracker->mCurrentFrame);
-      // mpCurrentFrame = &mCurrentFrame;
-      // mState = Tracking::OK;
-      // cout<<"Frame copied "<<endl;
-      // cout<<"from tracker:"<<mpTracker->mCurrentFrame.mnId<<" to local:"
-      // <<mpCurrentFrame->mnId<<endl;
+      // cout <<mCurrentFrame.mnId<<endl;
       long unsigned int result = BackTrack(&mCurrentFrame);
       // cout<<"Bset match: " << result <<endl;
       {
@@ -107,19 +102,35 @@ void BackTracking::Update(Tracking *pTracker)
 long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
 {
     mnCandidate = 0;
+    float scoreTH = 0.9;
     // Compute Bag of Words Vector
     mpCurrentFrame->ComputeBoW();
 
-    cout<<"CF: "<<mpCurrentFrame->mnId<<" BT... ";
+    cout<<"CF: "<<mpCurrentFrame->mnId<<" BT... "<<endl;
 
     // Relocalization is performed when tracking is lost
     // Track Lost: Query KeyFrame Database for keyframe candidates for relocalisation
 
     //sorted by BoW score in descending order
     vector<LoadedKeyFrame*> vpCandidateLKFs = mpLoadedKeyFrameDB->DetectBackTrackCandidates(mpCurrentFrame,5);
+    map<long unsigned int, float> mvSimilarity = mpLoadedKeyFrameDB->GetSimilarity();
+    mpFrameDrawer->UpdateSimilarity(mvSimilarity,mpCurrentFrame->mnId);
 
     if(vpCandidateLKFs.empty())
         return 0;
+
+    LoadedKeyFrame* pBestLKF = vpCandidateLKFs[0];
+    if(pBestLKF->mBackTrackScore>scoreTH)
+    {
+      unique_lock<mutex> lock(mpTracker->mMutexSimilarityMatches);
+      map<double,vector<float>>::iterator it = mpTracker->mvGroundTruth.lower_bound(mpCurrentFrame->mTimeStamp);
+      if(it==mpTracker->mvGroundTruth.end())
+        it--;
+      vector<float> currentFrameGT = it->second;
+      vector<float> bestLKFGT = pBestLKF->mGroundTruth;
+      mpTracker->mlSimilarityMatches.push_back(currentFrameGT);
+      mpTracker->mlSimilarityMatches.push_back(bestLKFGT);
+    }
 
     const int nLKFs = vpCandidateLKFs.size();
 
@@ -163,12 +174,12 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         // }
     }
 
-    // cout << "match: ";
-    // for(int can=0; can<mnCandidate; can++)
-    // {
-    //   cout << vpOutstandingLKFs[can]->mnId << " ";
-    // }
-    // cout << endl;
+    cout << "match: ";
+    for(int can=0; can<mnCandidate; can++)
+    {
+      cout << vpOutstandingLKFs[can]->mnId << " ";
+    }
+    cout << endl;
 
     if(!mnCurrentId && mnCandidate)//means mnCurrentId==0 and mnCandidate!=0
     {
@@ -190,7 +201,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
       if(vpOutstandingLKFs[0]->mnId == mnNextId)
         mnCurrentId = mnNextId++;
     }
-    cout << "Current: " << mnCurrentId << ", Next: " << mnNextId << "." << endl;
+    // cout << "Current: " << mnCurrentId << ", Next: " << mnNextId << "." << endl;
 
     return mnNextId;
 

@@ -67,7 +67,7 @@ public:
     void SetLocalMapper(LocalMapping* pLocalMapper);
     void SetLoopClosing(LoopClosing* pLoopClosing);
     void SetViewer(Viewer* pViewer);
-    void SetBackTracker(BackTracking* pBackTracker);
+    void SetBackTracker(BackTracking* pBackTracker,unsigned int nKFload, bool bDBload);
 
     // Load new settings
     // The focal lenght should be similar or scale prediction will fail when projecting points
@@ -113,10 +113,18 @@ public:
     list<double> mlFrameTimes;
     list<bool> mlbLost;
 
+    std::map<double,vector<float>> mvGroundTruth;
+    list<vector<float>> mlSimilarityMatches;
+    mutex mMutexSimilarityMatches;
+
     // True if local mapping is deactivated and we are performing only localization
     bool mbOnlyTracking;
 
     void Reset();
+
+    void StartRecord();
+
+    void StopRecord();
 
 protected:
 
@@ -152,6 +160,12 @@ protected:
     // In that case we are doing visual odometry. The system will try to do relocalization to recover
     // "zero-drift" localization to the map.
     bool mbVO;
+
+    bool mbBackTrack;
+
+    //Record
+    std::mutex mMutexRecord;
+    bool mbRecord;
 
     //Other Thread Pointers
     LocalMapping* mpLocalMapper;

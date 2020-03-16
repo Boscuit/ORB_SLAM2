@@ -46,8 +46,11 @@ void KeyFrameDatabase::add(KeyFrame *pKF)
     for(DBoW2::BowVector::const_iterator vit= pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit!=vend; vit++)
         mvInvertedFile[vit->first].push_back(pKF);
 
-    for(DBoW2::BowVector::const_iterator vit= pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit!=vend; vit++)
-        mvInvertedFileNoCulling[vit->first].push_back(pKF->mnId);
+    if(pKF->isRecording())
+    {
+      for(DBoW2::BowVector::const_iterator vit= pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit!=vend; vit++)
+          mvInvertedFileNoCulling[vit->first].push_back(pKF->mnId);
+    }
 }
 
 void KeyFrameDatabase::erase(KeyFrame* pKF)

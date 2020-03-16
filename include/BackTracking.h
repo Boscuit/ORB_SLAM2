@@ -6,6 +6,7 @@
 #include<unistd.h>
 
 #include"Tracking.h"
+#include"FrameDrawer.h"
 #include"Frame.h"
 #include"LoadedKeyFrame.h"
 #include"ORBVocabulary.h"
@@ -17,6 +18,7 @@ namespace ORB_SLAM2
 {
 
 class Tracking;
+class FrameDrawer;
 
 class BackTracking
 {
@@ -30,7 +32,7 @@ public:
         PROCESSING=2
     };
 
-    BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDBm, Tracking* pTracker);
+    BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDBm, Tracking* pTracker, FrameDrawer* pFrameDrawer);
 
     void Run();
 
@@ -60,6 +62,9 @@ protected:
 
     //Tracker for Current Frame
     Tracking* mpTracker;
+
+    //FrameDrawer
+    FrameDrawer* mpFrameDrawer;
 
     //BoW
     ORBVocabulary* mpORBVocabulary;

@@ -33,7 +33,8 @@ void Map::AddKeyFrame(KeyFrame *pKF)
 {
     unique_lock<mutex> lock(mMutexMap);
     mspKeyFrames.insert(pKF);
-    mspKeyFramesNoCulling.insert(pKF);
+    if(pKF->isRecording())
+        mspKeyFramesNoCulling.insert(pKF);
     if(pKF->mnId>mnMaxKFid)
         mnMaxKFid=pKF->mnId;
 }
@@ -127,7 +128,7 @@ void Map::clear()
     for(set<MapPoint*>::iterator sit=mspMapPoints.begin(), send=mspMapPoints.end(); sit!=send; sit++)
         delete *sit;
 
-    for(set<KeyFrame*>::iterator sit=mspKeyFramesNoCulling.begin(), send=mspKeyFramesNoCulling.end(); sit!=send; sit++)
+    for(set<KeyFrame*>::iterator sit=mspKeyFrames.begin(), send=mspKeyFrames.end(); sit!=send; sit++)
         delete *sit;
 
     mspMapPoints.clear();

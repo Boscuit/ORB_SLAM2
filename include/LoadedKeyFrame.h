@@ -16,13 +16,15 @@ class MapPoint;
 class LoadedKeyFrame
 {
 public:
-    LoadedKeyFrame(long unsigned int nId, int N, std::vector<cv::KeyPoint> vKeys, cv::Mat Descriptors, DBoW2::BowVector BowVec, DBoW2::FeatureVector FeatVec);
+    LoadedKeyFrame(double TimeStamp, long unsigned int nId, int N, std::vector<cv::KeyPoint> vKeys,
+       cv::Mat Descriptors, DBoW2::BowVector BowVec, DBoW2::FeatureVector FeatVec, std::vector<float> GroundTruth);
 
     static bool largerScore(LoadedKeyFrame* pLKF1, LoadedKeyFrame* pLKF2){
         return pLKF1->mBackTrackScore>pLKF2->mBackTrackScore;
     }
 
 public:
+    double mTimeStamp;
     long unsigned int mnId;
     int mN;
     std::vector<cv::KeyPoint> mvKeys;
@@ -35,6 +37,8 @@ public:
     long unsigned int mnBackTrackQuery;
     int mnBackTrackWords;
     float mBackTrackScore;
+
+    std::vector<float> mGroundTruth;
 };
 
 

@@ -109,7 +109,7 @@ public:
     // Call first Shutdown()
     // See format details at: http://vision.in.tum.de/data/datasets/rgbd-dataset
     void SaveKeyFrameTrajectoryTUM(const string &filename);
-    void SaveKeyFrameTrajectoryTUM2(const string &TrajectoryFile,const string &KeyPointsFile,
+    void SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsFile,
       const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,
       const string &vInvertedFileFile, const string &MapPointsLocationFile, const string &MapPointsDescritorFile);
 
@@ -130,7 +130,11 @@ public:
     std::vector<cv::KeyPoint> GetTrackedKeyPointsUn();
     // cv::Mat GetTrackedKeyPointsDescriptor();
 
-    std::vector<float> Twc2vPubPose(cv::Mat Twc);
+    void AddGroundTruth(const double &timestamp, const vector<float> &groundtruth);
+    list<vector<float> > GetlSimilarityMatches();
+
+    std::vector<float> Twc2sevenD(cv::Mat Twc);
+    cv::Mat sevenDToTwc(vector<float>);
     cv::Mat InverseT(cv::Mat Tcw);
     cv::Mat GetCurrentCameraPose();
     std::vector<cv::Mat> GetKeyCameraPoseVector();

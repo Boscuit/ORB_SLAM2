@@ -44,13 +44,19 @@ class ImageGrabber
 public:
     ImageGrabber(ORB_SLAM2::System* pSLAM,int footprint):mpSLAM(pSLAM),mfootprint(footprint) //constructor ：mpSLAM is initialized as pSLAM.
     {
-      mark_ = n_.advertise<visualization_msgs::Marker>("pose_marker", 1);
       path_ = n_.advertise<nav_msgs::Path>("Trajectory",1);
       key_ = n_.advertise<visualization_msgs::Marker>("keypose_marker", 1);
+      gt_ = n_.advertise<nav_msgs::Path>("GroundTruthPath",1);
+      lgt_ = n_.advertise<nav_msgs::Path>("LastGroundTruthPath",1);
+      sim_ = n_.advertise<visualization_msgs::Marker>("similarity_marker", 1);
       sub_ = n_.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,this);
+      subGT_ = n_.subscribe("/vicon/firefly_sbx/firefly_sbx", 1, &ImageGrabber::ShowGroundTruth,this);
+
     }
 
     void GrabImage(const sensor_msgs::ImageConstPtr& msg); //callback
+
+    void ShowGroundTruth(const geometry_msgs::TransformStamped& tfs);
 
     ORB_SLAM2::System* mpSLAM;
 
@@ -59,16 +65,22 @@ private:
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
     cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
+    vector<float> vPubMapOrigin{0,0,0,0,0,0,1};
     vector<float> vPubPose{0,0,0,0,0,0,1};
     vector<float> vPubKeyPose{0,0,0,0,0,0,1};
     vector<cv::Mat> vKeyPose;
     nav_msgs::Path trajectory;//contains a vector of PoseStamped always needed to be kept.
+    nav_msgs::Path GroundTruthPath;
+    nav_msgs::Path LastGroundTruthPath;
     tf2_ros::TransformBroadcaster tf2_;
     ros::NodeHandle n_;
-    ros::Publisher mark_;
     ros::Publisher path_;
     ros::Publisher key_;
+    ros::Publisher gt_;
+    ros::Publisher lgt_;
+    ros::Publisher sim_;
     ros::Subscriber sub_;
+    ros::Subscriber subGT_;
 
 };
 
@@ -84,8 +96,6 @@ int main(int argc, char **argv)
         ros::shutdown();
         return 1;
     }
-    // cout<<"main strVocFile address: " << &argv[1] <<endl;
-    // cout<<"main strSettingsFile address: " << &argv[2]<<endl;
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::MONOCULAR,true);
@@ -99,7 +109,7 @@ int main(int argc, char **argv)
     SLAM.Shutdown();
 
     // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryTUM2("KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt",
+    SLAM.SaveKeyFrameTrajectoryEuRoc("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt",
     "KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt",
     "KeyFramevInvertedFile.txt","MapPointsLocationFile.txt","MapPointsDescritorFile.txt");
     cout<<"Save"<<endl;
@@ -129,9 +139,23 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       Twc = mpSLAM->InverseT(Tcw);
       cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame
-      vPubPose = mpSLAM->Twc2vPubPose(Tvc);
+      vPubPose = mpSLAM->Twc2sevenD(Tvc);
       vKeyPose = mpSLAM->GetKeyCameraPoseVector();
     }
+
+    //align map to groundtruth in world frame
+    geometry_msgs::TransformStamped map_origin;
+    map_origin.header.stamp = ros::Time::now();
+    map_origin.header.frame_id = "world";
+    map_origin.child_frame_id = "map";
+    map_origin.transform.translation.x = vPubMapOrigin[0];
+    map_origin.transform.translation.y = vPubMapOrigin[1];
+    map_origin.transform.translation.z = vPubMapOrigin[2];
+    map_origin.transform.rotation.x = vPubMapOrigin[3];
+    map_origin.transform.rotation.y = vPubMapOrigin[4];
+    map_origin.transform.rotation.z = vPubMapOrigin[5];
+    map_origin.transform.rotation.w = vPubMapOrigin[6];
+    tf2_.sendTransform(map_origin);
 
     /*--------------Current Pose with tf2---------------*/
     geometry_msgs::TransformStamped current_tf;
@@ -150,7 +174,7 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
 
     /*---------Current Pose with PoseStamped-------*/
     geometry_msgs::PoseStamped current_pose;
-    current_pose.header.stamp = ros::Time::now();;
+    current_pose.header.stamp = ros::Time::now();
     current_pose.header.frame_id = "map";
     current_pose.pose.position.x = vPubPose[0];
     current_pose.pose.position.y = vPubPose[1];
@@ -204,7 +228,7 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       cv::Mat keyTwc = vKeyPose[i];
       cv::Mat keyTvc = Twv.t()*keyTwc*Twv;//T of c2 based on viewer frame
-      vPubKeyPose = mpSLAM->Twc2vPubPose(keyTvc);
+      vPubKeyPose = mpSLAM->Twc2sevenD(keyTvc);
 
       float s = 0.1;//scales of the marker
       cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 0, 0, 0, 0, -0.5,
@@ -236,38 +260,110 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
 
     key_.publish(keypose_marker);
 
-    // /*---------------key frame pose marker---------------*/
-    // visualization_msgs::Marker keypose_marker;
-    // keypose_marker.action = visualization_msgs::Marker::DELETEALL;
-    // key_.publish(keypose_marker);//Publish a dummy message to clear the keypose marker
-    // for (unsigned i = 0; i < vKeyPose.size(); i++)
-    // {
-    //   vPubKeyPose = mpSLAM->Twc2vPubPose(vKeyPose[i]);
-    //   keypose_marker.header.stamp = ros::Time::now();
-    //   keypose_marker.header.frame_id = "map";
-    //   keypose_marker.ns = "basic_shapes";
-    //   keypose_marker.id = i;
-    //   keypose_marker.type = visualization_msgs::Marker::CUBE;
-    //   keypose_marker.action = visualization_msgs::Marker::ADD;
-    //
-    //   keypose_marker.pose.position.x = vPubKeyPose[0];
-    //   keypose_marker.pose.position.y = vPubKeyPose[2];
-    //   keypose_marker.pose.position.z = -vPubKeyPose[1];
-    //   keypose_marker.pose.orientation.x = vPubKeyPose[3];
-    //   keypose_marker.pose.orientation.y = vPubKeyPose[5];
-    //   keypose_marker.pose.orientation.z = -vPubKeyPose[4];
-    //   keypose_marker.pose.orientation.w = vPubKeyPose[6];
-    //   keypose_marker.scale.x = 0.1;
-    //   keypose_marker.scale.y = 0.01;
-    //   keypose_marker.scale.z = 0.1;
-    //   keypose_marker.color.r = 0.0f;
-    //   keypose_marker.color.g = 0.0f;
-    //   keypose_marker.color.b = 1.0f;
-    //   keypose_marker.color.a = 0.5;
-    //
-    //   key_.publish(keypose_marker);
-    // }
+
+}
 
 
+void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
+{
+  geometry_msgs::PoseStamped GroundTruth_pose;
+  GroundTruth_pose.header.stamp = tfs.header.stamp;
+  GroundTruth_pose.header.frame_id = "world";
+  GroundTruth_pose.pose.position.x = tfs.transform.translation.x;
+  GroundTruth_pose.pose.position.y = tfs.transform.translation.y;
+  GroundTruth_pose.pose.position.z = tfs.transform.translation.z;
+  GroundTruth_pose.pose.orientation.x = tfs.transform.rotation.x;
+  GroundTruth_pose.pose.orientation.y = tfs.transform.rotation.y;
+  GroundTruth_pose.pose.orientation.z = tfs.transform.rotation.z;
+  GroundTruth_pose.pose.orientation.w = tfs.transform.rotation.w;
+
+  vector<float> tfv;
+  tfv.push_back(tfs.transform.translation.x);
+  tfv.push_back(tfs.transform.translation.y);
+  tfv.push_back(tfs.transform.translation.z);
+  tfv.push_back(tfs.transform.rotation.x);
+  tfv.push_back(tfs.transform.rotation.y);
+  tfv.push_back(tfs.transform.rotation.z);
+  tfv.push_back(tfs.transform.rotation.w);
+  mpSLAM->AddGroundTruth(tfs.header.stamp.toSec(),tfv);
+
+
+  /*---------------GroundTruthPath-------------------*/
+  GroundTruthPath.header.stamp = ros::Time::now();
+  GroundTruthPath.header.frame_id = "world";
+  GroundTruthPath.poses.push_back(GroundTruth_pose);
+
+  LastGroundTruthPath.header.stamp = ros::Time::now();
+  LastGroundTruthPath.header.frame_id = "world";
+
+  if (vKeyPose.size()<1) //Reset or initialze
+  {
+    //Show last ground truth path with offset=1
+    LastGroundTruthPath.poses.clear();
+    // cout << "load last_groundtruth from file"<<endl;
+    FILE * pLGTFile = fopen("GroundTruth.csv","r");
+    char tmp[10000];
+    if(pLGTFile==NULL)
+    {
+      cerr << "Open GroundTruth.csv failed. Wrong path." << endl;
+    }
+    else if(fgets(tmp, 10000, pLGTFile) == NULL)
+    {
+      cerr << "Can't load GroundTruth.csv. File is empty."<< endl;
+    }
+    else
+    {
+      double t;
+      float px, py, pz, qx, qy, qz, qw;
+      float offset = -1;
+      while (!feof(pLGTFile))
+      {
+        if(fscanf(pLGTFile, "%lf,%f,%f,%f,%f,%f,%f,%f", &t,
+                &px, &py, &pz, &qx, &qy, &qz, &qw) != EOF)
+        {
+          geometry_msgs::PoseStamped last_groundtruth;
+          last_groundtruth.header.stamp = ros::Time::now();
+          last_groundtruth.header.frame_id = "world";
+          last_groundtruth.pose.position.x = px;
+          last_groundtruth.pose.position.y = py;
+          last_groundtruth.pose.position.z = pz+offset;
+          last_groundtruth.pose.orientation.x = qx;
+          last_groundtruth.pose.orientation.y = qy;
+          last_groundtruth.pose.orientation.z = qz;
+          last_groundtruth.pose.orientation.w = qw;
+          LastGroundTruthPath.poses.push_back(last_groundtruth);
+        }
+      }
+      fclose(pLGTFile);
+    }
+    GroundTruthPath.poses.clear();
+    vPubMapOrigin = tfv;
+  }
+  lgt_.publish(LastGroundTruthPath);
+  gt_.publish(GroundTruthPath);
+
+  visualization_msgs::Marker similarity_marker;
+  similarity_marker.header.stamp = ros::Time::now();
+  similarity_marker.header.frame_id = "world";
+  similarity_marker.ns = "similarity_marker";
+  similarity_marker.id = 0;
+  similarity_marker.type = visualization_msgs::Marker::LINE_LIST;
+  similarity_marker.action = visualization_msgs::Marker::ADD;
+  similarity_marker.scale.x = 0.003;
+  similarity_marker.color.r = 0.0f;
+  similarity_marker.color.g = 1.0f;
+  similarity_marker.color.b = 0.0f;
+  similarity_marker.color.a = 1.0;
+  list<vector<float> > lSimilarityMatches = mpSLAM->GetlSimilarityMatches();
+  for(list<vector<float> >::iterator lit=lSimilarityMatches.begin(), lend=lSimilarityMatches.end(); lit!=lend; lit++)
+  {
+    vector<float> GroundTruth = *lit;
+    geometry_msgs::Point p;
+    p.x = GroundTruth[0];
+    p.y = GroundTruth[1];
+    p.z = GroundTruth[2];
+    similarity_marker.points.push_back(p);
+  }
+  sim_.publish(similarity_marker);
 
 }

@@ -48,13 +48,21 @@ public:
     // Draw last processed frame.
     cv::Mat DrawFrame();
 
+    void setSimilarity(unsigned int nKFload);
+
+    cv::Mat DrawSimilarity();
+
+    void UpdateSimilarity(map<long unsigned int, float> vSimilarity,long unsigned int fId);
+
 protected:
 
     void DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText);
 
     // Info of the frame to be drawn
     cv::Mat mIm;
+    cv::Mat mSimilarityGraph;
     int N;
+    int mnfId;
     vector<cv::KeyPoint> mvCurrentKeys;
     vector<bool> mvbMap, mvbVO;
     bool mbOnlyTracking;
@@ -66,6 +74,7 @@ protected:
     Map* mpMap;
 
     std::mutex mMutex;
+    std::mutex mMutexSimilarity;
 };
 
 } //namespace ORB_SLAM
