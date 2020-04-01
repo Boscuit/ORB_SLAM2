@@ -46,8 +46,9 @@ public:
     {
       path_ = n_.advertise<nav_msgs::Path>("Trajectory",1);
       key_ = n_.advertise<visualization_msgs::Marker>("keypose_marker", 1);
-      gt_ = n_.advertise<nav_msgs::Path>("GroundTruthPath",1);
-      lgt_ = n_.advertise<nav_msgs::Path>("LastGroundTruthPath",1);
+      gtpose_ = n_.advertise<geometry_msgs::PoseStamped>("GroundTruthPose",1);
+      gtpath_ = n_.advertise<nav_msgs::Path>("GroundTruthPath",1);
+      lgtpath_ = n_.advertise<nav_msgs::Path>("LastGroundTruthPath",1);
       sim_ = n_.advertise<visualization_msgs::Marker>("similarity_marker", 1);
       sub_ = n_.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,this);
       subGT_ = n_.subscribe("/vicon/firefly_sbx/firefly_sbx", 1, &ImageGrabber::ShowGroundTruth,this);
@@ -62,6 +63,7 @@ public:
 
 private:
     int count = -1;
+    float offset = -0.2;//offset of last groundtruth for visualization
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
     cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
@@ -76,8 +78,9 @@ private:
     ros::NodeHandle n_;
     ros::Publisher path_;
     ros::Publisher key_;
-    ros::Publisher gt_;
-    ros::Publisher lgt_;
+    ros::Publisher gtpose_;
+    ros::Publisher gtpath_;
+    ros::Publisher lgtpath_;
     ros::Publisher sim_;
     ros::Subscriber sub_;
     ros::Subscriber subGT_;
@@ -276,6 +279,7 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
   GroundTruth_pose.pose.orientation.y = tfs.transform.rotation.y;
   GroundTruth_pose.pose.orientation.z = tfs.transform.rotation.z;
   GroundTruth_pose.pose.orientation.w = tfs.transform.rotation.w;
+  gtpose_.publish(GroundTruth_pose);
 
   vector<float> tfv;
   tfv.push_back(tfs.transform.translation.x);
@@ -298,7 +302,7 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
 
   if (vKeyPose.size()<1) //Reset or initialze
   {
-    //Show last ground truth path with offset=1
+    //Show last ground truth path with offset=-0.5
     LastGroundTruthPath.poses.clear();
     // cout << "load last_groundtruth from file"<<endl;
     FILE * pLGTFile = fopen("GroundTruth.csv","r");
@@ -315,7 +319,6 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
     {
       double t;
       float px, py, pz, qx, qy, qz, qw;
-      float offset = -1;
       while (!feof(pLGTFile))
       {
         if(fscanf(pLGTFile, "%lf,%f,%f,%f,%f,%f,%f,%f", &t,
@@ -339,8 +342,8 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
     GroundTruthPath.poses.clear();
     vPubMapOrigin = tfv;
   }
-  lgt_.publish(LastGroundTruthPath);
-  gt_.publish(GroundTruthPath);
+  lgtpath_.publish(LastGroundTruthPath);
+  gtpath_.publish(GroundTruthPath);
 
   visualization_msgs::Marker similarity_marker;
   similarity_marker.header.stamp = ros::Time::now();
@@ -354,14 +357,16 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
   similarity_marker.color.g = 1.0f;
   similarity_marker.color.b = 0.0f;
   similarity_marker.color.a = 1.0;
-  list<vector<float> > lSimilarityMatches = mpSLAM->GetlSimilarityMatches();
-  for(list<vector<float> >::iterator lit=lSimilarityMatches.begin(), lend=lSimilarityMatches.end(); lit!=lend; lit++)
+  vector<vector<float> > vSimilarityMatches = mpSLAM->GetvSimilarityMatches();
+  for(vector<vector<float> >::iterator vit=vSimilarityMatches.begin(), vend=vSimilarityMatches.end(); vit!=vend; vit++)
   {
-    vector<float> GroundTruth = *lit;
+    vector<float> GroundTruth = *vit;
     geometry_msgs::Point p;
     p.x = GroundTruth[0];
     p.y = GroundTruth[1];
     p.z = GroundTruth[2];
+    if ((vit-vSimilarityMatches.begin())%2 != 0)//last groundtruth(odd index) is offseted for visualization
+      p.z += offset;
     similarity_marker.points.push_back(p);
   }
   sim_.publish(similarity_marker);

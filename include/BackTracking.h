@@ -5,6 +5,7 @@
 #include<opencv2/features2d/features2d.hpp>
 #include<unistd.h>
 
+#include"Initializer.h"
 #include"Tracking.h"
 #include"FrameDrawer.h"
 #include"Frame.h"
@@ -27,9 +28,8 @@ public:
 
     // Back Tracking states
     enum eBackTrackingState{
-        READY=0,
-        ARRIVE=1,
-        PROCESSING=2
+        NOT_INITIALIZED=1,
+        OK=2
     };
 
     BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDBm, Tracking* pTracker, FrameDrawer* pFrameDrawer);
@@ -38,30 +38,41 @@ public:
 
     void Update(Tracking *pTracker);
 
-    long unsigned int BackTrack(Frame* mpCurrentFrame);
-
     void RequestFinish();
 
     bool isFinished();
 
     // cv::Mat GrabImageMonocular(const cv::Mat &im, const double &timestamp);
 
-public:
+private:
 
-    int mnCandidate;
+    bool CheckFinish();
+
+    void SetFinish();
+
+    bool CheckNewFrames();
+
+    long unsigned int BackTrack(Frame* mpCurrentFrame);
+
 
 protected:
 
     eBackTrackingState mState;
     // Frame* mpCurrentFrame;
-    Frame mCurrentFrame;
-    std::mutex mMutex;
+    list<Frame> mlFrameBuffer;
+    std::mutex mMutexBuffer;
 
-    long unsigned int mnCurrentId;
-    long unsigned int mnNextId;
+    long unsigned int mnCurrentLKFId;
+    LoadedKeyFrame* mpNextLKF;
 
     //Tracker for Current Frame
     Tracking* mpTracker;
+
+    //Initializer for pose estimate
+    Initializer* mpInitializer;
+    std::vector<int> mvIniMatches;
+    std::vector<cv::Point2f> mvbPrevMatched;
+    std::vector<cv::Point3f> mvIniP3D;
 
     //FrameDrawer
     FrameDrawer* mpFrameDrawer;
@@ -70,9 +81,6 @@ protected:
     ORBVocabulary* mpORBVocabulary;
     LoadedKeyFrameDatabase* mpLoadedKeyFrameDB;
 
-
-    bool CheckFinish();
-    void SetFinish();
     bool mbFinishRequested;
     bool mbFinished;
     std::mutex mMutexFinish;

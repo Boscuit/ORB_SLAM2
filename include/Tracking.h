@@ -114,7 +114,7 @@ public:
     list<bool> mlbLost;
 
     std::map<double,vector<float>> mvGroundTruth;
-    list<vector<float>> mlSimilarityMatches;
+    vector<vector<float>> mvSimilarityMatches;
     mutex mMutexSimilarityMatches;
 
     // True if local mapping is deactivated and we are performing only localization

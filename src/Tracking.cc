@@ -328,6 +328,7 @@ void Tracking::Track()
             else
             {
                 bOK = Relocalization();
+                cout << "Relocalization"<<endl;
             }
         }
         else
@@ -1570,7 +1571,7 @@ void Tracking::Reset()
     }
 
     mvGroundTruth.clear();
-    mlSimilarityMatches.clear();
+    mvSimilarityMatches.clear();
     mlRelativeFramePoses.clear();
     mlpReferences.clear();
     mlFrameTimes.clear();

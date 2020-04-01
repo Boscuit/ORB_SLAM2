@@ -131,7 +131,7 @@ public:
     // cv::Mat GetTrackedKeyPointsDescriptor();
 
     void AddGroundTruth(const double &timestamp, const vector<float> &groundtruth);
-    list<vector<float> > GetlSimilarityMatches();
+    vector<vector<float> > GetvSimilarityMatches();
 
     std::vector<float> Twc2sevenD(cv::Mat Twc);
     cv::Mat sevenDToTwc(vector<float>);

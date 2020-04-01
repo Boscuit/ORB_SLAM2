@@ -66,6 +66,8 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
           vKeys.push_back(KP);
         }
         vvKeys.push_back(vKeys);
+        vKPx.clear();
+        vKPy.clear();
         vKeys.clear();
       }
       countKF++;
@@ -77,12 +79,12 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
       return 0;
 
     //load GroundTruth trajectory
-    map<double,vector<float> > vGroundTruth = LoadTrajectoryFromTextFile (GroundTruthFile,-1);
+    map<double,vector<float> > vGroundTruth = LoadTrajectoryFromTextFile (GroundTruthFile);
     if(vGroundTruth.size()==0)
       return 0;
 
     //load estimated trajectory
-    map<double,vector<float> > vEstimatedPose = LoadTrajectoryFromTextFile (TrajectoryFile,0);
+    map<double,vector<float> > vEstimatedPose = LoadTrajectoryFromTextFile (TrajectoryFile);
     if(vEstimatedPose.size()==0)
       return 0;
     else if(vEstimatedPose.begin()->first > vGroundTruth.rbegin()->first)
@@ -352,7 +354,30 @@ map<long unsigned int, float> LoadedKeyFrameDatabase::GetSimilarity()
   return vIdAndScore;
 }
 
-map<double,vector<float> > LoadedKeyFrameDatabase::LoadTrajectoryFromTextFile (const string &TrajectoryFile,const float offset)
+LoadedKeyFrame* LoadedKeyFrameDatabase::GetNextLKF(const long unsigned int nCurrentId, bool bForward)
+{
+  long unsigned int nNextId;
+  if(bForward)
+    nNextId = nCurrentId+1;
+  else
+    nNextId = nCurrentId-1;
+  map<long unsigned int,LoadedKeyFrame*>::iterator it = mvpLoaedKeyFrame.find(nNextId);
+  if(it != mvpLoaedKeyFrame.end())
+    return it->second;
+  else
+    return mvpLoaedKeyFrame.find(nCurrentId)->second;
+}
+
+bool LoadedKeyFrameDatabase::IsLast(const long unsigned int nCurrentId, bool bForward)
+{
+  if(bForward)
+    return (nCurrentId == mvpLoaedKeyFrame.rbegin()->first);
+  else
+   return (nCurrentId == mvpLoaedKeyFrame.begin()->first);
+}
+
+
+map<double,vector<float> > LoadedKeyFrameDatabase::LoadTrajectoryFromTextFile (const string &TrajectoryFile)
 {
   double t;
   float px, py, pz, qx, qy, qz, qw;
@@ -377,7 +402,7 @@ map<double,vector<float> > LoadedKeyFrameDatabase::LoadTrajectoryFromTextFile (c
       vector<float> Pose;
       Pose.push_back(px);
       Pose.push_back(py);
-      Pose.push_back(pz+offset);
+      Pose.push_back(pz);
       Pose.push_back(qx);
       Pose.push_back(qy);
       Pose.push_back(qz);

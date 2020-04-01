@@ -34,8 +34,12 @@ public:
 
   std::map<long unsigned int, float> GetSimilarity();
 
+  LoadedKeyFrame* GetNextLKF(const long unsigned int nCurrentId, bool bForward);
+
+  bool IsLast(const long unsigned int nCurrentId, bool bForward);
+
 private:
-  std::map<double,vector<float> > LoadTrajectoryFromTextFile (const string &GroundTruthFile,const float offset);
+  std::map<double,vector<float> > LoadTrajectoryFromTextFile (const string &GroundTruthFile);
 
   std::vector<cv::Mat> LoadLKFDescriptorFromTextFile (const string &DescriptorsFile);
 

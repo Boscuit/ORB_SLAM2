@@ -653,10 +653,10 @@ void System::AddGroundTruth(const double &timestamp, const vector<float> &ground
   mpTracker->mvGroundTruth.insert(pair<double,vector<float> >(timestamp,groundtruth));
 }
 
-list<vector<float> > System::GetlSimilarityMatches()
+vector<vector<float> > System::GetvSimilarityMatches()
 {
   unique_lock<mutex> lock(mpTracker->mMutexSimilarityMatches);
-  return mpTracker->mlSimilarityMatches;
+  return mpTracker->mvSimilarityMatches;
 }
 
 vector<float> System::Twc2sevenD(cv::Mat Twc)
