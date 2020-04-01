@@ -46,7 +46,6 @@ public:
     {
       path_ = n_.advertise<nav_msgs::Path>("Trajectory",1);
       key_ = n_.advertise<visualization_msgs::Marker>("keypose_marker", 1);
-      gtpose_ = n_.advertise<geometry_msgs::PoseStamped>("GroundTruthPose",1);
       gtpath_ = n_.advertise<nav_msgs::Path>("GroundTruthPath",1);
       lgtpath_ = n_.advertise<nav_msgs::Path>("LastGroundTruthPath",1);
       sim_ = n_.advertise<visualization_msgs::Marker>("similarity_marker", 1);
@@ -67,9 +66,10 @@ private:
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
     cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
-    vector<float> vPubMapOrigin{0,0,0,0,0,0,1};
-    vector<float> vPubPose{0,0,0,0,0,0,1};
-    vector<float> vPubKeyPose{0,0,0,0,0,0,1};
+    vector<float> mvPubMapOrigin{0,0,0,0,0,0,1};
+    vector<float> mvPubCurrentGT{0,0,0,0,0,0,1};
+    vector<float> mvPubPose{0,0,0,0,0,0,1};
+    vector<float> mvPubKeyPose{0,0,0,0,0,0,1};
     vector<cv::Mat> vKeyPose;
     nav_msgs::Path trajectory;//contains a vector of PoseStamped always needed to be kept.
     nav_msgs::Path GroundTruthPath;
@@ -78,7 +78,6 @@ private:
     ros::NodeHandle n_;
     ros::Publisher path_;
     ros::Publisher key_;
-    ros::Publisher gtpose_;
     ros::Publisher gtpath_;
     ros::Publisher lgtpath_;
     ros::Publisher sim_;
@@ -142,7 +141,7 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       Twc = mpSLAM->InverseT(Tcw);
       cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame
-      vPubPose = mpSLAM->Twc2sevenD(Tvc);
+      mvPubPose = mpSLAM->Twc2sevenD(Tvc);
       vKeyPose = mpSLAM->GetKeyCameraPoseVector();
     }
 
@@ -151,13 +150,13 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     map_origin.header.stamp = ros::Time::now();
     map_origin.header.frame_id = "world";
     map_origin.child_frame_id = "map";
-    map_origin.transform.translation.x = vPubMapOrigin[0];
-    map_origin.transform.translation.y = vPubMapOrigin[1];
-    map_origin.transform.translation.z = vPubMapOrigin[2];
-    map_origin.transform.rotation.x = vPubMapOrigin[3];
-    map_origin.transform.rotation.y = vPubMapOrigin[4];
-    map_origin.transform.rotation.z = vPubMapOrigin[5];
-    map_origin.transform.rotation.w = vPubMapOrigin[6];
+    map_origin.transform.translation.x = mvPubMapOrigin[0];
+    map_origin.transform.translation.y = mvPubMapOrigin[1];
+    map_origin.transform.translation.z = mvPubMapOrigin[2];
+    map_origin.transform.rotation.x = mvPubMapOrigin[3];
+    map_origin.transform.rotation.y = mvPubMapOrigin[4];
+    map_origin.transform.rotation.z = mvPubMapOrigin[5];
+    map_origin.transform.rotation.w = mvPubMapOrigin[6];
     tf2_.sendTransform(map_origin);
 
     /*--------------Current Pose with tf2---------------*/
@@ -165,13 +164,13 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     current_tf.header.stamp = ros::Time::now();
     current_tf.header.frame_id = "map";
     current_tf.child_frame_id = "Camera";
-    current_tf.transform.translation.x = vPubPose[0];
-    current_tf.transform.translation.y = vPubPose[1];
-    current_tf.transform.translation.z = vPubPose[2];
-    current_tf.transform.rotation.x = vPubPose[3];
-    current_tf.transform.rotation.y = vPubPose[4];
-    current_tf.transform.rotation.z = vPubPose[5];
-    current_tf.transform.rotation.w = vPubPose[6];
+    current_tf.transform.translation.x = mvPubPose[0];
+    current_tf.transform.translation.y = mvPubPose[1];
+    current_tf.transform.translation.z = mvPubPose[2];
+    current_tf.transform.rotation.x = mvPubPose[3];
+    current_tf.transform.rotation.y = mvPubPose[4];
+    current_tf.transform.rotation.z = mvPubPose[5];
+    current_tf.transform.rotation.w = mvPubPose[6];
     tf2_.sendTransform(current_tf);
 
 
@@ -179,13 +178,13 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     geometry_msgs::PoseStamped current_pose;
     current_pose.header.stamp = ros::Time::now();
     current_pose.header.frame_id = "map";
-    current_pose.pose.position.x = vPubPose[0];
-    current_pose.pose.position.y = vPubPose[1];
-    current_pose.pose.position.z = vPubPose[2];
-    current_pose.pose.orientation.x = vPubPose[3];
-    current_pose.pose.orientation.y = vPubPose[4];
-    current_pose.pose.orientation.z = vPubPose[5];
-    current_pose.pose.orientation.w = vPubPose[6];
+    current_pose.pose.position.x = mvPubPose[0];
+    current_pose.pose.position.y = mvPubPose[1];
+    current_pose.pose.position.z = mvPubPose[2];
+    current_pose.pose.orientation.x = mvPubPose[3];
+    current_pose.pose.orientation.y = mvPubPose[4];
+    current_pose.pose.orientation.z = mvPubPose[5];
+    current_pose.pose.orientation.w = mvPubPose[6];
 
     /*---------------Trajectory-------------------*/
     trajectory.header.stamp = ros::Time::now();
@@ -196,6 +195,15 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       vKeyPose.clear();
       trajectory.poses.clear();
+      current_pose.pose.position.x = 0;
+      current_pose.pose.position.y = 0;
+      current_pose.pose.position.z = 0;
+      current_pose.pose.orientation.x = 0;
+      current_pose.pose.orientation.y = 0;
+      current_pose.pose.orientation.z = 0;
+      current_pose.pose.orientation.w = 1;
+      trajectory.poses.push_back(current_pose);
+      mvPubMapOrigin = mvPubCurrentGT;//update map origin to current groundtruth
     }
     path_.publish(trajectory);
 
@@ -231,10 +239,10 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       cv::Mat keyTwc = vKeyPose[i];
       cv::Mat keyTvc = Twv.t()*keyTwc*Twv;//T of c2 based on viewer frame
-      vPubKeyPose = mpSLAM->Twc2sevenD(keyTvc);
+      mvPubKeyPose = mpSLAM->Twc2sevenD(keyTvc);
 
       float s = 0.1;//scales of the marker
-      cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 0, 0, 0, 0, -0.5,
+      cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 0.5, 0.5, 0.5, 0.5, 0,
                                                   1, -1, -1, 1, 0,
                                                   1, 1, -1, -1, 0,
                                                   1/s, 1/s, 1/s, 1/s ,1/s)*s;
@@ -279,7 +287,6 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
   GroundTruth_pose.pose.orientation.y = tfs.transform.rotation.y;
   GroundTruth_pose.pose.orientation.z = tfs.transform.rotation.z;
   GroundTruth_pose.pose.orientation.w = tfs.transform.rotation.w;
-  gtpose_.publish(GroundTruth_pose);
 
   vector<float> tfv;
   tfv.push_back(tfs.transform.translation.x);
@@ -290,6 +297,7 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
   tfv.push_back(tfs.transform.rotation.z);
   tfv.push_back(tfs.transform.rotation.w);
   mpSLAM->AddGroundTruth(tfs.header.stamp.toSec(),tfv);
+  mvPubCurrentGT = tfv;
 
 
   /*---------------GroundTruthPath-------------------*/
@@ -302,7 +310,6 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
 
   if (vKeyPose.size()<1) //Reset or initialze
   {
-    //Show last ground truth path with offset=-0.5
     LastGroundTruthPath.poses.clear();
     // cout << "load last_groundtruth from file"<<endl;
     FILE * pLGTFile = fopen("GroundTruth.csv","r");
@@ -340,7 +347,15 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
       fclose(pLGTFile);
     }
     GroundTruthPath.poses.clear();
-    vPubMapOrigin = tfv;
+    //preserve the origin of path
+    GroundTruth_pose.pose.position.x = mvPubMapOrigin[0];
+    GroundTruth_pose.pose.position.y = mvPubMapOrigin[1];
+    GroundTruth_pose.pose.position.z = mvPubMapOrigin[2];
+    GroundTruth_pose.pose.orientation.x = mvPubMapOrigin[3];
+    GroundTruth_pose.pose.orientation.y = mvPubMapOrigin[4];
+    GroundTruth_pose.pose.orientation.z = mvPubMapOrigin[5];
+    GroundTruth_pose.pose.orientation.w = mvPubMapOrigin[6];
+    GroundTruthPath.poses.push_back(GroundTruth_pose);
   }
   lgtpath_.publish(LastGroundTruthPath);
   gtpath_.publish(GroundTruthPath);
