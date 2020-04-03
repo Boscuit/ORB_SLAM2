@@ -140,9 +140,9 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     if (!Tcw.empty())
     {
       Twc = mpSLAM->InverseT(Tcw);
-      cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame
+      cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame(Twv=Tcv)
       mvPubPose = mpSLAM->Twc2sevenD(Tvc);
-      vKeyPose = mpSLAM->GetKeyCameraPoseVector();
+      vKeyPose = mpSLAM->GetKeyCameraPoseVector();//vector<cv::Mat> base on world
     }
 
     //align map to groundtruth in world frame

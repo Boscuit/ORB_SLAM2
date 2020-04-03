@@ -23,16 +23,28 @@ using namespace std;
 namespace ORB_SLAM2
 {
 
-BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker, FrameDrawer* pFrameDrawer):
+BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker, FrameDrawer* pFrameDrawer, unsigned int nKFload, bool bDBload, const string &strSettingPath):
     mState(NOT_INITIALIZED), mnCurrentLKFId(0), mpNextLKF(static_cast<LoadedKeyFrame*>(NULL)), mbFinishRequested(false), mbFinished(true),
     mpInitializer(static_cast<Initializer*>(NULL)), mpORBVocabulary(pVoc), mpLoadedKeyFrameDB(pLKFDB), mpTracker(pTracker),mpFrameDrawer(pFrameDrawer)
 {
+  cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
+  int BackTrackMode = fSettings["BackTracking.Mode"];
+  cout << "BackTrack.Mode: " << BackTrackMode << endl;
+  mbBackTrack = (nKFload!=0) && bDBload && (BackTrackMode!=0);
+  if(mbBackTrack)
+  {
+    pFrameDrawer->setSimilarity(nKFload);
+    if(BackTrackMode==1)
+      mbForward = true;
+    else
+      mbForward = false;
+  }
 }
 
 
 void BackTracking::Run()
 {
-  mbFinished = false;
+  mbFinished = false;//if BackTracking thread is not open. mbFinished is default as true.
   while(1)
   {
     if (CheckNewFrames())
@@ -83,6 +95,11 @@ bool BackTracking::isFinished()
     return mbFinished;
 }
 
+bool BackTracking::isBackTrack()
+{
+    return mbBackTrack;
+}
+
 void BackTracking::Update(Tracking *pTracker)
 {
   if (pTracker->mState == Tracking::OK)
@@ -102,7 +119,6 @@ bool BackTracking::CheckNewFrames()
 
 long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
 {
-    bool bForward = true;
     float matchTH = 0.1;
     float lostTH = 0.01;
     // Compute Bag of Words Vector
@@ -140,7 +156,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         // mnCurrentLKFId = mpNextLKF->mnId;
         mpTracker->mvSimilarityMatches.push_back(pBestLKF->mGroundTruth);//
         mnCurrentLKFId = pBestLKF->mnId;//
-        mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,bForward);
+        mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
       }
     }
     else//mState == OK
@@ -154,7 +170,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         mpTracker->mvSimilarityMatches.push_back(currentFrameGT);
         mpTracker->mvSimilarityMatches.push_back(mpNextLKF->mGroundTruth);
         mnCurrentLKFId = mpNextLKF->mnId;
-        mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,bForward);
+        mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
         cout << " CurrentLKF: "<< mnCurrentLKFId<<". NextLKF: "<<mpNextLKF->mnId<<". "<<endl;
       }
       else if(mpNextLKF->mBackTrackScore<lostTH)//relocalization
@@ -166,7 +182,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
       else
         cout << "Approching. CurrentLKF: "<< mnCurrentLKFId<<". NextLKF: "<<mpNextLKF->mnId<<". Score: "<<mpNextLKF->mBackTrackScore<< "."<<endl;
     }
-    if(mpLoadedKeyFrameDB->IsLast(mnCurrentLKFId, bForward))
+    if(mpLoadedKeyFrameDB->IsLast(mnCurrentLKFId, mbForward))
     {
       cout << "Reach the end."<<endl;
       RequestFinish();
@@ -250,7 +266,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
     //   }
     //   mpTracker->mvSimilarityMatches.push_back(currentFrameGT);
     //   mpTracker->mvSimilarityMatches.push_back(bestLKFGT);
-    //   mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,bForward);
+    //   mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
     //
     //   if(mpInitializer != NULL)
     //   {

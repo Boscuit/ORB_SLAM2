@@ -32,7 +32,7 @@ public:
         OK=2
     };
 
-    BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDBm, Tracking* pTracker, FrameDrawer* pFrameDrawer);
+    BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDBm, Tracking* pTracker, FrameDrawer* pFrameDrawer, unsigned int nKFload, bool bDBload, const string &strSettingPath);
 
     void Run();
 
@@ -41,6 +41,8 @@ public:
     void RequestFinish();
 
     bool isFinished();
+
+    bool isBackTrack();
 
     // cv::Mat GrabImageMonocular(const cv::Mat &im, const double &timestamp);
 
@@ -56,6 +58,9 @@ private:
 
 
 protected:
+    //TRUE: if nLKF!=0, bDBload==1 and Backtracking.Setting!=0 in yaml file.
+    bool mbBackTrack;
+    bool mbForward;
 
     eBackTrackingState mState;
     // Frame* mpCurrentFrame;

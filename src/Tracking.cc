@@ -163,14 +163,9 @@ void Tracking::SetViewer(Viewer *pViewer)
     mpViewer=pViewer;
 }
 
-void Tracking::SetBackTracker(BackTracking *pBackTracker, unsigned int nKFload, bool bDBload)
+void Tracking::SetBackTracker(BackTracking *pBackTracker)
 {
     mpBackTracker=pBackTracker;
-    mbBackTrack=(nKFload!=0) && bDBload;
-    if(mbBackTrack)
-    {
-      mpFrameDrawer->setSimilarity(nKFload);
-    }
 }
 
 
@@ -429,7 +424,7 @@ void Tracking::Track()
         mpFrameDrawer->Update(this);
 
         //update backtracking frame
-        if(mbBackTrack)
+        if(mpBackTracker->isBackTrack())
           mpBackTracker->Update(this);
 
         // If tracking were good, check if we insert a keyframe

@@ -91,10 +91,11 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
                              mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
 
-    cout << "Initializing Backtracker..." << endl;
+    cout << endl << "Initializing Backtracker..." << endl;
 
-    mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker, mpFrameDrawer);
-    mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
+    mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker, mpFrameDrawer, nKFload, bDBload, strSettingsFile);
+    if(mpBackTracker->isBackTrack())
+      mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
 
     cout << "Finished." << endl;
     //Initialize the Local Mapping thread and launch
@@ -117,7 +118,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpTracker->SetLocalMapper(mpLocalMapper);
     mpTracker->SetLoopClosing(mpLoopCloser);
 
-    mpTracker->SetBackTracker(mpBackTracker,nKFload,bDBload);
+    mpTracker->SetBackTracker(mpBackTracker);
 
     mpLocalMapper->SetTracker(mpTracker);
     mpLocalMapper->SetLoopCloser(mpLoopCloser);

@@ -129,12 +129,12 @@ void Viewer::Run()
 
         if(menuRecordTrajectory && !bRecord)
         {
-            mpTracker->StartRecord();//Not yet added
+            mpTracker->StartRecord();
             bRecord = true;
         }
         else if(!menuRecordTrajectory && bRecord)
         {
-            mpTracker->StopRecord();//Not yet added
+            mpTracker->StopRecord();
             bRecord = false;
         }
 
