@@ -36,6 +36,7 @@
 #include "geometry_msgs/PoseStamped.h"
 #include "visualization_msgs/Marker.h"
 #include "nav_msgs/Path.h"
+#include "std_msgs/Bool.h"
 
 using namespace std;
 
@@ -51,12 +52,15 @@ public:
       sim_ = n_.advertise<visualization_msgs::Marker>("similarity_marker", 1);
       sub_ = n_.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,this);
       subGT_ = n_.subscribe("/vicon/firefly_sbx/firefly_sbx", 1, &ImageGrabber::ShowGroundTruth,this);
+      subRR_ = n_.subscribe("/RequestRecord", 1, &ImageGrabber::SetRecord,this);
 
     }
 
     void GrabImage(const sensor_msgs::ImageConstPtr& msg); //callback
 
     void ShowGroundTruth(const geometry_msgs::TransformStamped& tfs);
+
+    void SetRecord(const std_msgs::Bool& brr);
 
     ORB_SLAM2::System* mpSLAM;
 
@@ -83,6 +87,7 @@ private:
     ros::Publisher sim_;
     ros::Subscriber sub_;
     ros::Subscriber subGT_;
+    ros::Subscriber subRR_;
 
 };
 
@@ -385,5 +390,15 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
     similarity_marker.points.push_back(p);
   }
   sim_.publish(similarity_marker);
+
+}
+
+void ImageGrabber::SetRecord(const std_msgs::Bool& brr)
+{
+  bool bRequestRecord = brr.data;
+  if(bRequestRecord)
+    mpSLAM->StartRecord();
+  else
+    mpSLAM->StopRecord();
 
 }

@@ -91,13 +91,10 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
                              mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
 
-    cout << endl << "Initializing Backtracker..." << endl;
-
     mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker, mpFrameDrawer, nKFload, bDBload, strSettingsFile);
     if(mpBackTracker->isBackTrack())
       mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
 
-    cout << "Finished." << endl;
     //Initialize the Local Mapping thread and launch
     mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
     mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
@@ -648,6 +645,16 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
 //     unique_lock<mutex> lock(mMutexState);
 //     return mTrackedKeyPointsDescriptor;
 // }
+
+void System::StartRecord()
+{
+  mpTracker->StartRecord();
+}
+
+void System::StopRecord()
+{
+  mpTracker->StopRecord();
+}
 
 void System::AddGroundTruth(const double &timestamp, const vector<float> &groundtruth)
 {

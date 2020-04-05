@@ -130,6 +130,9 @@ public:
     std::vector<cv::KeyPoint> GetTrackedKeyPointsUn();
     // cv::Mat GetTrackedKeyPointsDescriptor();
 
+    void StartRecord();
+    void StopRecord();
+
     void AddGroundTruth(const double &timestamp, const vector<float> &groundtruth);
     vector<vector<float> > GetvSimilarityMatches();
 
