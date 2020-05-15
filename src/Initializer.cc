@@ -121,6 +121,7 @@ bool Initializer::Initialize(const Frame &CurrentFrame, const vector<int> &vMatc
 
     // Compute ratio of scores
     float RH = SH/(SH+SF);
+    cout <<"SH="<<SH<<" SF="<<SF<<" RH="<<RH<<endl;
 
     // Try to reconstruct from homography or fundamental depending on the ratio (0.40-0.45)
     if(RH>0.40)
@@ -265,7 +266,7 @@ void Initializer::FindHomography(vector<bool> &vbMatchesInliers, float &score, c
 
 void Initializer::FindFundamental(vector<bool> &vbMatchesInliers, float &score, cv::Mat &F21)
 {
-    // Number of putative matches
+    // Number of putative matches, zero at the begining.
     const int N = vbMatchesInliers.size();
 
     // Normalize coordinates
@@ -588,7 +589,8 @@ bool Initializer::ReconstructF(vector<bool> &vbMatchesInliers, cv::Mat &F21, cv:
     int nGood4 = CheckRT(R2,t2,mvKeys1,mvKeys2,mvMatches12,vbMatchesInliers,K, vP3D4, 4.0*mSigma2, vbTriangulated4, parallax4);
 
     int maxGood = max(nGood1,max(nGood2,max(nGood3,nGood4)));
-    cout<<"#Good1: "<<nGood1<<" #Good2: "<<nGood2<<" #Good3: "<<nGood3<<" #Good4: "<<nGood4<<endl;
+    cout<<"#Good1: "<<nGood1<<"  #Good2: "<<nGood2<<"  #Good3: "<<nGood3<<" #Good4: "<<nGood4<< " amount "<< N <<endl;
+    cout<<"parallax1: "<<parallax1<<" parallax2: "<<parallax2<<" parallax3: "<<parallax3<<" parallax4: "<<parallax4<<" min parallax: "<<minParallax<<endl;
 
     R21 = cv::Mat();
     t21 = cv::Mat();

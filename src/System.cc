@@ -32,7 +32,7 @@ namespace ORB_SLAM2
 
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor,
                const bool bUseViewer):mSensor(sensor), mpViewer(static_cast<Viewer*>(NULL)), mbReset(false),mbActivateLocalizationMode(false),
-        mbDeactivateLocalizationMode(false),mbClear(true)
+        mbDeactivateLocalizationMode(false),mbRecord(false),mbClear(true)
 {
     // Output welcome message
     cout << endl <<
@@ -76,7 +76,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     //Create LoadedKeyFrame Database
     LoadedKeyFrameDatabase* mpLoadedKeyFrameDatabase = new LoadedKeyFrameDatabase(mpVocabulary);
-    unsigned int nKFload = mpLoadedKeyFrameDatabase->LoadLKFFromTextFile("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt");
+    unsigned int nKFload = mpLoadedKeyFrameDatabase->LoadLKFFromTextFile("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPointsUn.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt");
     bool bDBload = mpLoadedKeyFrameDatabase->LoadDBFromTextFile("KeyFramevInvertedFile.txt");
 
     //Create the Map
@@ -431,12 +431,13 @@ void System::SaveKeyFrameTrajectoryTUM(const string &filename)
     cout << endl << "TUM-KEY-trajectory saved!" << endl;
 }
 
-void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsFile,
+void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsUnFile, const string &KeyPointsFile,
   const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,
   const string &vInvertedFileFile,const string &MapPointsLocationFile,const string &MapPointsDescritorFile)
 {
     cout << endl << "Saving ground truth to " << GroundTruthFile << " ..." << endl;
     cout << endl << "Saving keyframe trajectory to " << TrajectoryFile << " ..." << endl;
+    cout << endl << "Saving keyframe undistorted key points to " << KeyPointsUnFile << " ..." << endl;
     cout << endl << "Saving keyframe key points to " << KeyPointsFile << " ..." << endl;
     cout << endl << "Saving keyframe descriptors to " << DescriptorsFile << " ..." << endl;
     cout << endl << "Saving keyframe FeatureVector to " << FeatureVectorFile << " ..." << endl;
@@ -445,6 +446,11 @@ void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const str
     cout << endl << "Saving keyframe MapPointsLocation to " << MapPointsLocationFile << " ..." << endl;
     cout << endl << "Saving keyframe MapPointsDescritor to " << MapPointsDescritorFile << " ..." << endl;
 
+    vector<int> compression_params;
+    compression_params.push_back(CV_IMWRITE_PNG_COMPRESSION);
+    compression_params.push_back(0);
+
+    map<long unsigned int, cv::Mat> vKeyFramesIm = mpTracker->mvKeyFramesIm;
     map<double, vector<float> > vGroundTruth = mpTracker->mvGroundTruth;
     vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFramesNoCulling();
     // vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
@@ -454,9 +460,10 @@ void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const str
     // After a loop closure the first keyframe might not be at the origin.
     //cv::Mat Two = vpKFs[0]->GetPoseInverse();
 
-    ofstream gt,f,k,d,fv,bv,vinv,mpl,mpd;
+    ofstream gt,f,ku,k,d,fv,bv,vinv,mpl,mpd;
     gt.open(GroundTruthFile.c_str());
     f.open(TrajectoryFile.c_str());
+    ku.open(KeyPointsUnFile.c_str());
     k.open(KeyPointsFile.c_str());
     d.open(DescriptorsFile.c_str());
     fv.open(FeatureVectorFile.c_str());
@@ -466,6 +473,7 @@ void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const str
     mpd.open(MapPointsDescritorFile.c_str());
     gt   << fixed;
     f    << fixed;
+    ku   << fixed;
     k    << fixed;
     d    << fixed;
     fv   << fixed;
@@ -499,13 +507,21 @@ void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const str
           << "," << t.at<float>(0) << "," << t.at<float>(1) << "," << t.at<float>(2)
           << "," << q[0] << "," << q[1] << "," << q[2] << "," << q[3] << endl;
 
+        ku << setprecision(1) <<  pKF->mnId << endl;
+        vector<cv::KeyPoint> vKeysUn = pKF->mvKeysUn;
+        for(size_t j=0; j<vKeysUn.size(); j++)
+        {
+          ku << setprecision(6) << vKeysUn[j].pt.x << " " << vKeysUn[j].pt.y << " " << vKeysUn[j].angle << " " << vKeysUn[j].octave << endl;
+        }
+        ku << "#";
+
         k << setprecision(1) << pKF->mnId << endl;
-        vector<cv::KeyPoint> vKeys = pKF->mvKeysUn;
+        vector<cv::KeyPoint> vKeys = pKF->mvKeys;
         for(size_t j=0; j<vKeys.size(); j++)
         {
-          k << setprecision(6) << vKeys[j].pt.x << " " << vKeys[j].pt.y << " ";
+          k << setprecision(6) << vKeys[j].pt.x << " " << vKeys[j].pt.y << " "<< vKeys[j].angle << " " << vKeys[j].octave << endl;
         }
-        k << endl;
+        k << "#";
 
         vector<MapPoint*> vpMapPoints = pKF->GetMapPointMatches();
         for(size_t j=0; j<vKeys.size(); j++)
@@ -541,7 +557,30 @@ void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const str
           bv << setprecision(1)  << BVit->first << " " << setprecision(9) << BVit->second << " ";
         }
         bv << endl;
+
+        try
+        {
+          stringstream name;
+          name << "KeyImages/"<< pKF->mnId << ".png";
+          cv::imwrite(name.str(),vKeyFramesIm[pKF->mnId],compression_params);
+        }
+        catch (runtime_error& ex) {
+            fprintf(stderr, "Exception converting image to PNG format: %s\n", ex.what());
+        }
     }
+
+    // for(map<long unsigned int, cv::Mat>::iterator vit=vKeyFramesIm.begin(),vend=vKeyFramesIm.end();vit!=vend;vit++)
+    // {
+    //   try
+    //   {
+    //     stringstream name;
+    //     name << "KeyImages/"<< vit->first << ".png";
+    //     cv::imwrite(name.str(),vit->second,compression_params);
+    //   }
+    //   catch (runtime_error& ex) {
+    //       fprintf(stderr, "Exception converting image to PNG format: %s\n", ex.what());
+    //   }
+    // }
 
     vector<vector<long unsigned int> > vInvertedFile = mpKeyFrameDatabase->GetvInvertedFileNoCulling();
     for(vector<vector<long unsigned int> >::iterator vit=vInvertedFile.begin(), vitend=vInvertedFile.end(); vit!=vitend; vit++)
@@ -556,6 +595,7 @@ void System::SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const str
 
     gt.close();
     f.close();
+    ku.close();
     k.close();
     d.close();
     fv.close();
@@ -648,12 +688,22 @@ vector<cv::KeyPoint> System::GetTrackedKeyPointsUn()
 
 void System::StartRecord()
 {
+  unique_lock<mutex> lock(mMutexRecord);
+  mbRecord = true;
   mpTracker->StartRecord();
 }
 
 void System::StopRecord()
 {
+  unique_lock<mutex> lock(mMutexRecord);
   mpTracker->StopRecord();
+  mbRecord = false;
+}
+
+bool System::isRecording()
+{
+  unique_lock<mutex> lock(mMutexRecord);
+  return mbRecord;
 }
 
 void System::AddGroundTruth(const double &timestamp, const vector<float> &groundtruth)

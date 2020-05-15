@@ -54,6 +54,8 @@ public:
 
     void UpdateSimilarity(map<long unsigned int, float> vSimilarity,long unsigned int fId);
 
+    void UpdateBTMatch(vector<cv::KeyPoint> vRefKeysUn,vector<int> vBTMatches,cv::Mat refIm);
+
 protected:
 
     void DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText);
@@ -69,6 +71,9 @@ protected:
     int mnTracked, mnTrackedVO;
     vector<cv::KeyPoint> mvIniKeys;
     vector<int> mvIniMatches;
+    cv::Mat mRefIm;
+    vector<cv::KeyPoint> mvRefKeysUn;
+    vector<int> mvBTMatches;
     int mState;
 
     Map* mpMap;

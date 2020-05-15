@@ -116,7 +116,7 @@ int main(int argc, char **argv)
     SLAM.Shutdown();
 
     // Save camera trajectory
-    SLAM.SaveKeyFrameTrajectoryEuRoc("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPoints.txt",
+    SLAM.SaveKeyFrameTrajectoryEuRoc("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPointsUn.txt","KeyFrameKeyPoints.txt",
     "KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt",
     "KeyFramevInvertedFile.txt","MapPointsLocationFile.txt","MapPointsDescritorFile.txt");
     cout<<"Save"<<endl;
@@ -396,9 +396,9 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
 void ImageGrabber::SetRecord(const std_msgs::Bool& brr)
 {
   bool bRequestRecord = brr.data;
-  if(bRequestRecord)
-    mpSLAM->StartRecord();
-  else
+  if(mpSLAM->isRecording() && !bRequestRecord)//request stop
     mpSLAM->StopRecord();
+  else if(!mpSLAM->isRecording() && bRequestRecord)//request start
+    mpSLAM->StartRecord();
 
 }

@@ -522,7 +522,7 @@ int ORBmatcher::SearchForInitialization(Frame &F1, Frame &F2, vector<cv::Point2f
 int ORBmatcher::SearchForInitialization(LoadedKeyFrame* pLKF, Frame &F2, vector<cv::Point2f> &vbPrevMatched, vector<int> &vnMatches12, int windowSize)
 {
     int nmatches=0;
-    vnMatches12 = vector<int>(pLKF->mvKeys.size(),-1);
+    vnMatches12 = vector<int>(pLKF->mvKeysUn.size(),-1);
 
     vector<int> rotHist[HISTO_LENGTH];
     for(int i=0;i<HISTO_LENGTH;i++)
@@ -532,14 +532,14 @@ int ORBmatcher::SearchForInitialization(LoadedKeyFrame* pLKF, Frame &F2, vector<
     vector<int> vMatchedDistance(F2.mvKeysUn.size(),INT_MAX);
     vector<int> vnMatches21(F2.mvKeysUn.size(),-1);
 
-    for(size_t i1=0, iend1=pLKF->mvKeys.size(); i1<iend1; i1++)
+    for(size_t i1=0, iend1=pLKF->mvKeysUn.size(); i1<iend1; i1++)
     {
-        cv::KeyPoint kp1 = pLKF->mvKeys[i1];
+        cv::KeyPoint kp1 = pLKF->mvKeysUn[i1];
         int level1 = kp1.octave;
         if(level1>0)
             continue;
 
-        // cout << "\nrow1: " << i1 <<" in "<<pLKF->mvKeys.size();
+        // cout << "\nrow1: " << i1 <<" in "<<pLKF->mvKeysUn.size();
         // cout << " F2 Keys: " << F2.mvKeysUn.size();
         vector<size_t> vIndices2 = F2.GetFeaturesInArea(vbPrevMatched[i1].x,vbPrevMatched[i1].y, windowSize,level1,level1);
         // cout << " Indices2: " << vIndices2.size() << endl;
@@ -594,7 +594,7 @@ int ORBmatcher::SearchForInitialization(LoadedKeyFrame* pLKF, Frame &F2, vector<
 
                 if(mbCheckOrientation)
                 {
-                    float rot = pLKF->mvKeys[i1].angle-F2.mvKeysUn[bestIdx2].angle;
+                    float rot = pLKF->mvKeysUn[i1].angle-F2.mvKeysUn[bestIdx2].angle;
                     if(rot<0.0)
                         rot+=360.0f;
                     int bin = round(rot*factor);
@@ -1785,7 +1785,7 @@ int ORBmatcher::DescriptorDistance(const cv::Mat &a, const cv::Mat &b)
     return dist;
 }
 
-
+//LKF:1 F:2
 int ORBmatcher::SearchByBoW(LoadedKeyFrame* pLKF,Frame &F)
 {
     // const vector<MapPoint*> vpMapPointsKF = pLKF->GetMapPointMatches();
@@ -1866,6 +1866,7 @@ int ORBmatcher::SearchByBoW(LoadedKeyFrame* pLKF,Frame &F)
                 {
                     if(static_cast<float>(bestDist1)<mfNNratio*static_cast<float>(bestDist2))
                     {
+                        
                         vbMatched[bestIdxF]=true;
 
                         const cv::KeyPoint &kp = pLKF->mvKeys[realIdxKF];

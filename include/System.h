@@ -23,6 +23,7 @@
 #define SYSTEM_H
 
 #include<string>
+#include<sstream>
 #include<thread>
 #include<opencv2/core/core.hpp>
 #include<unistd.h>
@@ -109,7 +110,7 @@ public:
     // Call first Shutdown()
     // See format details at: http://vision.in.tum.de/data/datasets/rgbd-dataset
     void SaveKeyFrameTrajectoryTUM(const string &filename);
-    void SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsFile,
+    void SaveKeyFrameTrajectoryEuRoc(const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsUnFile, const string &KeyPointsFile,
       const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile,
       const string &vInvertedFileFile, const string &MapPointsLocationFile, const string &MapPointsDescritorFile);
 
@@ -132,6 +133,7 @@ public:
 
     void StartRecord();
     void StopRecord();
+    bool isRecording();
 
     void AddGroundTruth(const double &timestamp, const vector<float> &groundtruth);
     vector<vector<float> > GetvSimilarityMatches();
@@ -144,10 +146,6 @@ public:
     bool isClear();
 
 private:
-
-    // int* pint;
-    // int* pint2;
-    // int* pint3;
 
     // Input sensor
     eSensor mSensor;
@@ -193,6 +191,10 @@ private:
     // Reset flag
     std::mutex mMutexReset;
     bool mbReset;
+
+    //Record flags
+    std::mutex mMutexRecord;
+    bool mbRecord;
 
     // Change mode flags
     std::mutex mMutexMode;

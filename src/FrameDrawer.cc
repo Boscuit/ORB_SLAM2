@@ -34,16 +34,19 @@ FrameDrawer::FrameDrawer(Map* pMap):mpMap(pMap),mnfId(0)
 {
     mState=Tracking::SYSTEM_NOT_READY;
     mIm = cv::Mat(480,640,CV_8UC3, cv::Scalar(0,0,0));
+    mRefIm = cv::Mat(480,640,CV_8UC3, cv::Scalar(0,0,0));
     mSimilarityGraph = cv::Mat(50,100,CV_8UC3, cv::Scalar(0,0,0));
 }
 
 cv::Mat FrameDrawer::DrawFrame()
 {
-    cv::Mat im;
+    cv::Mat im = cv::Mat(max(mIm.rows,mRefIm.rows),mIm.cols+mRefIm.cols,mIm.type());
     vector<cv::KeyPoint> vIniKeys; // Initialization: KeyPoints in reference frame
     vector<int> vMatches; // Initialization: correspondeces with reference keypoints
     vector<cv::KeyPoint> vCurrentKeys; // KeyPoints in current frame
     vector<bool> vbVO, vbMap; // Tracked MapPoints in current frame
+    vector<cv::KeyPoint> vRefKeysUn;
+    vector<int> vBTMatches;
     int state; // Tracking state
 
     //Copy variables within scoped mutex
@@ -53,7 +56,17 @@ cv::Mat FrameDrawer::DrawFrame()
         if(mState==Tracking::SYSTEM_NOT_READY)
             mState=Tracking::NO_IMAGES_YET;
 
-        mIm.copyTo(im);
+        // cout << "mRefIm.rows: "<<mRefIm.rows<<" mRefIm.cols: "<<mRefIm.cols<<endl;
+        // cout << "mIm.rows: "<<mIm.rows<<" mIm.cols: "<<mIm.cols<<endl;
+        // cout << "im.rows: "<<im.rows<<" im.cols: "<<im.cols<<endl;
+        // cout <<"mRefIm type: "<<mRefIm.type()<<endl;
+        // cout <<"mIm type: "<<mIm.type()<<endl;
+        mIm.copyTo(im.rowRange(0,mIm.rows).colRange(0,mIm.cols));
+        // im.colRange(mIm.cols,im.cols) = cv::Mat::zeros(im.rows,mRefIm.cols,im.type());
+        if(mRefIm.type() == 0)
+          mRefIm.copyTo(im.rowRange(0,mRefIm.rows).colRange(mIm.cols,mIm.cols+mRefIm.cols));
+        else
+          im.colRange(mIm.cols,im.cols) = cv::Mat::zeros(im.rows,mRefIm.cols,im.type());
 
         if(mState==Tracking::NOT_INITIALIZED)
         {
@@ -66,16 +79,21 @@ cv::Mat FrameDrawer::DrawFrame()
             vCurrentKeys = mvCurrentKeys;
             vbVO = mvbVO;
             vbMap = mvbMap;
+            vRefKeysUn = mvRefKeysUn;
+            vBTMatches = mvBTMatches;
         }
         else if(mState==Tracking::LOST)
         {
             vCurrentKeys = mvCurrentKeys;
+            vRefKeysUn = mvRefKeysUn;
+            vBTMatches = mvBTMatches;
         }
     } // destroy scoped mutex -> release mutex
 
     if(im.channels()<3) //this should be always true
         cvtColor(im,im,CV_GRAY2BGR);
 
+    // cout << "vBTMatches size: " << vBTMatches.size()<<", vCurrentKeys size: "<<vCurrentKeys.size()<<endl;
     //Draw
     if(state==Tracking::NOT_INITIALIZED) //INITIALIZING
     {
@@ -94,6 +112,19 @@ cv::Mat FrameDrawer::DrawFrame()
         mnTrackedVO=0;
         const float r = 5;
         const int n = vCurrentKeys.size();
+        const int nR = vRefKeysUn.size();
+        for(int j=0;j<nR;j++)
+        {
+          cv::Point2f ptR,ptR1,ptR2;
+          ptR.x=vRefKeysUn[j].pt.x+mIm.cols;
+          ptR.y=vRefKeysUn[j].pt.y;
+          ptR1.x=ptR.x-r-1;
+          ptR1.y=ptR.y-r-1;
+          ptR2.x=ptR.x+r+1;
+          ptR2.y=ptR.y+r+1;
+          cv::rectangle(im,ptR1,ptR2,cv::Scalar(0,253,0));
+          cv::circle(im,ptR,2,cv::Scalar(0,253,0),-1);
+        }
         for(int i=0;i<n;i++)
         {
             if(vbVO[i] || vbMap[i])
@@ -117,6 +148,25 @@ cv::Mat FrameDrawer::DrawFrame()
                     cv::circle(im,vCurrentKeys[i].pt,2,cv::Scalar(255,0,0),-1);
                     mnTrackedVO++;
                 }
+            }
+            else
+            {
+                cv::Point2f pt1,pt2;
+                pt1.x=vCurrentKeys[i].pt.x-r;
+                pt1.y=vCurrentKeys[i].pt.y-r;
+                pt2.x=vCurrentKeys[i].pt.x+r;
+                pt2.y=vCurrentKeys[i].pt.y+r;
+                cv::rectangle(im,pt1,pt2,cv::Scalar(0,254,0));
+                cv::circle(im,vCurrentKeys[i].pt,2,cv::Scalar(0,254,0),-1);
+            }
+            if(vBTMatches.size()!=vCurrentKeys.size())//in case CurrentKeys update before vBTMatches update
+              continue;
+            if(vBTMatches[i]>=0)
+            {
+              cv::Point2f ptR;
+              ptR.x=vRefKeysUn[vBTMatches[i]].pt.x+mIm.cols;
+              ptR.y=vRefKeysUn[vBTMatches[i]].pt.y;
+              cv::line(im,vCurrentKeys[i].pt,ptR,cv::Scalar(0,0,255));
             }
         }
     }
@@ -235,6 +285,14 @@ void FrameDrawer::UpdateSimilarity(map<long unsigned int, float> vSimilarity,lon
     pt2.y+=r;
   }
   mnfId++;
+}
+
+void FrameDrawer::UpdateBTMatch(vector<cv::KeyPoint> vRefKeysUn, vector<int> vBTMatches, cv::Mat refIm)
+{
+  unique_lock<mutex> lock(mMutex);
+  refIm.copyTo(mRefIm);
+  mvRefKeysUn = vRefKeysUn;
+  mvBTMatches = vBTMatches;//store index of RefLKF's KeyPoints base on current KeyPoints
 }
 
 } //namespace ORB_SLAM

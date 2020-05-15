@@ -16,7 +16,7 @@ class MapPoint;
 class LoadedKeyFrame
 {
 public:
-    LoadedKeyFrame(double TimeStamp, long unsigned int nId, int N, std::vector<cv::KeyPoint> vKeys,
+    LoadedKeyFrame(double TimeStamp, long unsigned int nId, int N, std::vector<cv::KeyPoint> vKeysUn, std::vector<cv::KeyPoint> vKeys,
        cv::Mat Descriptors, DBoW2::BowVector BowVec, DBoW2::FeatureVector FeatVec, std::vector<float> GroundTruth);
 
     static bool largerScore(LoadedKeyFrame* pLKF1, LoadedKeyFrame* pLKF2){
@@ -27,6 +27,7 @@ public:
     double mTimeStamp;
     long unsigned int mnId;
     int mN;
+    std::vector<cv::KeyPoint> mvKeysUn;
     std::vector<cv::KeyPoint> mvKeys;
     cv::Mat mDescriptors;
 

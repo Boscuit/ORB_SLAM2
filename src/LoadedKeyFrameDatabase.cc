@@ -19,60 +19,134 @@ LoadedKeyFrameDatabase::LoadedKeyFrameDatabase (ORBVocabulary* pVoc):mpLoadedVoc
 }
 
 
-unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile)
+unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTruthFile,const string &TrajectoryFile,const string &KeyPointsUnFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile)
 {
+    ifstream ku(KeyPointsUnFile);
     ifstream k(KeyPointsFile);
     cout<<"loadingLKF"<<endl;
 
     string KFline;
     string KPsline;
-    int countKF=0;
-    vector<float> vKPx;
-    vector<float> vKPy;
-    float KPxy;
+    // int countKF=0;
+    // vector<float> vKPx;
+    // vector<float> vKPy;
+    // float KPxy;
+    bool bEvenline=true;
+    float KPx;
+    float KPy;
+    float KPangle;
+    int KPoctave;
     long unsigned int LKFid;//id of loaded key frame in last experiment
     vector<long unsigned int> vLKFid;//vector of id of loaded key frame in last experiment
+    vector<cv::KeyPoint> vKeysUn;
     vector<cv::KeyPoint> vKeys;
+    vector<vector<cv::KeyPoint>> vvKeysUn;
     vector<vector<cv::KeyPoint>> vvKeys;
 
-    //load frame id and key points
-    while (getline(k,KPsline))
+    //load frame id and key points Undistored
+    while (getline(ku,KFline,'#'))
     {
-      int countKP=0;
-      stringstream sKPsline(KPsline);
-      if (countKF%2 == 0)//even line indicate id
+      stringstream sKFline(KFline);
+      getline(sKFline,KPsline);
+      LKFid = atoi(KPsline.c_str());
+      vLKFid.push_back(LKFid);
+      while (getline(sKFline,KPsline))
       {
-        sKPsline >> LKFid;
-        vLKFid.push_back(LKFid);
+        cv::KeyPoint kp;
+        sscanf(KPsline.c_str(), "%f%f%f%d", &kp.pt.x, &kp.pt.y, &kp.angle, &kp.octave);
+        // cv::KeyPoint kp;
+        // kp.pt.x = KPx;
+        // kp.pt.y = KPy;
+        // kp.angle = KPangle;
+        // kp.octave = KPoctave;
+        vKeysUn.push_back(kp);
       }
-      else
-      {
-        while (sKPsline >> KPxy)
-        {
-          if (countKP%2 == 0)
-            vKPx.push_back(KPxy);
-          else
-          {
-            vKPy.push_back(KPxy);
-          }
-          countKP++;
-        }
-        //push KP
-        for (size_t i=0; i<vKPx.size(); i++)
-        {
-          cv::KeyPoint KP;
-          KP.pt.x=vKPx[i];
-          KP.pt.y=vKPy[i];
-          vKeys.push_back(KP);
-        }
-        vvKeys.push_back(vKeys);
-        vKPx.clear();
-        vKPy.clear();
-        vKeys.clear();
-      }
-      countKF++;
+      vvKeysUn.push_back(vKeysUn);
+      vKeysUn.clear();
     }
-    countKF=0;
+    // if(vvKeysUn.size()!=0)
+    // {
+    //   vKeysUn = vvKeysUn[0];
+    //   for (size_t i=0;i<10;i++)
+    //   {
+    //     cout<<vKeysUn[i].pt.x << " " << vKeysUn[i].pt.y << " " << vKeysUn[i].angle << " " << vKeysUn[i].octave << endl;
+    //   }
+    //   for(size_t i=0;i<vvKeysUn.size();i++)
+    //   {
+    //     cout << "size of vKeysUn:" << vvKeysUn[i].size()<<endl;
+    //   }
+    // }
+
+    cout<<"size of vvKeysUn:"<<vvKeysUn.size()<<endl;
+    if(vvKeysUn.size()==0)
+      return 0;
+
+    //load frame id and key points
+    bEvenline=true;
+    while (getline(k,KFline,'#'))
+    {
+      stringstream sKFline(KFline);
+      getline(sKFline,KPsline);
+      while (getline(sKFline,KPsline))
+      {
+        cv::KeyPoint kp;
+        sscanf(KPsline.c_str(), "%f%f%f%d", &kp.pt.x, &kp.pt.y, &kp.angle, &kp.octave);
+        // cv::KeyPoint kp;
+        // kp.pt.x = KPx;
+        // kp.pt.y = KPy;
+        // kp.angle = KPangle;
+        // kp.octave = KPoctave;
+        vKeys.push_back(kp);
+      }
+      vvKeys.push_back(vKeys);
+      vKeys.clear();
+    }
+    // if(vvKeys.size()!=0)
+    // {
+    //   vKeys = vvKeys[0];
+    //   for (size_t i=0;i<10;i++)
+    //   {
+    //     cout<<vKeys[i].pt.x << " " << vKeys[i].pt.y << " " << vKeys[i].angle << " " << vKeys[i].octave << endl;
+    //   }
+    //   for(size_t i=0;i<vvKeys.size();i++)
+    //   {
+    //     cout << "size of vKeys:" << vvKeys[i].size()<<endl;
+    //   }
+    // }
+
+    // //load frame id and key points
+    // while (getline(k,KPsline))
+    // {
+    //   int countKP=0;
+    //   stringstream sKPsline(KPsline);
+    //   if(countKF%2 != 0)
+    //   {
+    //     while (sKPsline >> KPxy)
+    //     {
+    //       if (countKP%2 == 0)
+    //         vKPx.push_back(KPxy);
+    //       else
+    //       {
+    //         vKPy.push_back(KPxy);
+    //       }
+    //       countKP++;
+    //     }
+    //     //push KP
+    //     for (size_t i=0; i<vKPx.size(); i++)
+    //     {
+    //       cv::KeyPoint KP;
+    //       KP.pt.x=vKPx[i];
+    //       KP.pt.y=vKPy[i];
+    //       vKeys.push_back(KP);
+    //     }
+    //     vvKeys.push_back(vKeys);
+    //     vKPx.clear();
+    //     vKPy.clear();
+    //     vKeys.clear();
+    //   }
+    //   countKF++;
+    // }
+    // countKF=0;
 
     cout<<"size of vvKeys:"<<vvKeys.size()<<endl;
     if(vvKeys.size()==0)
@@ -114,11 +188,12 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
     if(vBowVec.size()==0)
       return 0;
 
-    if(vEstimatedPose.size()!=vvKeys.size() || vDescriptors.size()!=vvKeys.size() ||
-        vFeatVec.size()!=vvKeys.size() || vBowVec.size()!=vvKeys.size())
+    if(vEstimatedPose.size()!=vvKeysUn.size() || vDescriptors.size()!=vvKeysUn.size() ||
+        vFeatVec.size()!=vvKeysUn.size() || vBowVec.size()!=vvKeysUn.size() || vvKeys.size()!=vvKeysUn.size())
         return 0;
 
     //construct LoadedKeyFrame
+    int countKF = 0;
     for(map<double,vector<float> >::iterator it=vEstimatedPose.begin(), itend=vEstimatedPose.end(); it!=itend; it++)
     {
       double TimeStamp = it->first;
@@ -131,12 +206,13 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
       // int nLKF = it-vEstimatedPose.begin();//??? error: no match for ‘operator-’
       int nLKF = countKF;
       LKFid = vLKFid[nLKF];
+      vKeysUn = vvKeysUn[nLKF];
       vKeys = vvKeys[nLKF];
       int N = vKeys.size();
       cv::Mat Descriptors = vDescriptors[nLKF];
       DBoW2::BowVector BowVec = vBowVec[nLKF];
       DBoW2::FeatureVector FeatVec = vFeatVec[nLKF];
-      LoadedKeyFrame* pLKF = new LoadedKeyFrame(TimeStamp,LKFid,N,vKeys,Descriptors,BowVec,FeatVec,GoundTruth);
+      LoadedKeyFrame* pLKF = new LoadedKeyFrame(TimeStamp,LKFid,N,vKeysUn,vKeys,Descriptors,BowVec,FeatVec,GoundTruth);
       mvpLoaedKeyFrame.insert(pair<long unsigned int,LoadedKeyFrame*>(LKFid,pLKF));
       countKF++;
     }
@@ -147,6 +223,28 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
     //   LoadedKeyFrame* temp = it->second;
     //   cout<<temp->mnId<<endl;
     // }
+
+    //load Images
+    for(size_t i=0;i<vLKFid.size();i++)
+    {
+      cv::Mat tempIm;
+      stringstream name;
+      name << "KeyImages/"<< vLKFid[i] << ".png";
+      tempIm = cv::imread(name.str(),CV_LOAD_IMAGE_UNCHANGED);
+      if(tempIm.empty())
+      {
+        cerr << endl << "Failed to load image at: " <<  name.str() << endl;
+        return 0;
+      }
+      if(tempIm.channels()==3)
+      {
+        cvtColor(tempIm,tempIm,CV_RGB2GRAY);
+      }
+      mvLoadedImages.insert(pair<long unsigned int, cv::Mat>(vLKFid[i],tempIm));
+    }
+    cout << "size of mvLoadedImages: "<<mvLoadedImages.size()<<endl;
+    if(mvLoadedImages.size()==0)
+      return 0;
 
     return mvpLoaedKeyFrame.size();
 }

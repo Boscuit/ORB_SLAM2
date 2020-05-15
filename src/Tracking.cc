@@ -323,7 +323,7 @@ void Tracking::Track()
             else
             {
                 bOK = Relocalization();
-                cout << "Relocalization"<<endl;
+                // cout << "Relocalization"<<endl;
             }
         }
         else
@@ -591,6 +591,8 @@ void Tracking::MonocularInitialization()
 
             fill(mvIniMatches.begin(),mvIniMatches.end(),-1);
 
+            mImGray.copyTo(mInitialImGray);
+
             return;
         }
     }
@@ -656,6 +658,15 @@ void Tracking::CreateInitialMapMonocular()
       {
         pKFini->SetRecord();
         pKFcur->SetRecord();
+        mvKeyFramesIm.insert(pair<long unsigned int,cv::Mat> (pKFini->mnId,mInitialImGray));
+        cv::Mat tempImGray;
+        mImGray.copyTo(tempImGray);
+        mvKeyFramesIm.insert(pair<long unsigned int,cv::Mat> (pKFcur->mnId,tempImGray));
+      //   bool eq = cv::countNonZero(mInitialImGray!=mImGray) == 0;
+      //   if(eq)
+      //     cout << "mImGray == mInitialImGray" << endl;
+      //   else
+      //     cout << "mImGray != mInitialImGray" << endl;
       }
     }
 
@@ -1089,7 +1100,12 @@ void Tracking::CreateNewKeyFrame()
     {
       unique_lock<mutex> lock(mMutexRecord);
       if(mbRecord)
+      {
         pKF->SetRecord();
+        cv::Mat tempImGray;
+        mImGray.copyTo(tempImGray);
+        mvKeyFramesIm.insert(pair<long unsigned int,cv::Mat> (pKF->mnId,tempImGray));
+      }
     }
 
     mpReferenceKF = pKF;
@@ -1565,6 +1581,7 @@ void Tracking::Reset()
         mpInitializer = static_cast<Initializer*>(NULL);
     }
 
+    mvKeyFramesIm.clear();
     mvGroundTruth.clear();
     mvSimilarityMatches.clear();
     mlRelativeFramePoses.clear();

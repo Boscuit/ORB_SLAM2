@@ -4,6 +4,7 @@
 #include<opencv2/core/core.hpp>
 #include<opencv2/features2d/features2d.hpp>
 #include<unistd.h>
+#include<iostream>
 
 #include"Initializer.h"
 #include"Tracking.h"
@@ -54,7 +55,7 @@ private:
 
     bool CheckNewFrames();
 
-    long unsigned int BackTrack(Frame* mpCurrentFrame);
+    long unsigned int BackTrack(Frame* mpCurrentFrame,ofstream& BTlog);
 
 
 protected:
@@ -85,6 +86,9 @@ protected:
     //BoW
     ORBVocabulary* mpORBVocabulary;
     LoadedKeyFrameDatabase* mpLoadedKeyFrameDB;
+
+    //SearchByBoW
+    std::vector<int> mvBoWMatches;
 
     bool mbFinishRequested;
     bool mbFinished;

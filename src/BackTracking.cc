@@ -45,6 +45,9 @@ BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, 
 void BackTracking::Run()
 {
   mbFinished = false;//if BackTracking thread is not open. mbFinished is default as true.
+  ofstream BTlog;
+  BTlog.open("BTlog.txt");
+  BTlog << fixed;
   while(1)
   {
     if (CheckNewFrames())
@@ -57,7 +60,7 @@ void BackTracking::Run()
         CurrentFrame = mlFrameBuffer.front();
         mlFrameBuffer.pop_front();
       }
-      long unsigned int result = BackTrack(&CurrentFrame);
+      long unsigned int nMatches = BackTrack(&CurrentFrame,BTlog);
       // cout<<"Bset match: " << result <<endl;
     }
 
@@ -66,7 +69,7 @@ void BackTracking::Run()
 
     usleep(3000);
   }
-
+  BTlog.close();
   SetFinish();
 }
 
@@ -117,10 +120,13 @@ bool BackTracking::CheckNewFrames()
     return(!mlFrameBuffer.empty());
 }
 
-long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
+long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
 {
     float matchTH = 0.1;
     float lostTH = 0.01;
+    int nInimatches;//Number of matches in SearchForInitialization
+    int nBoWmatches;//Number of matches in SearchByBoW
+
     // Compute Bag of Words Vector
     mpCurrentFrame->ComputeBoW();
 
@@ -157,6 +163,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         mpTracker->mvSimilarityMatches.push_back(pBestLKF->mGroundTruth);//
         mnCurrentLKFId = pBestLKF->mnId;//
         mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
+        // mpNextLKF = pBestLKF;
       }
     }
     else//mState == OK
@@ -171,12 +178,14 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         mpTracker->mvSimilarityMatches.push_back(mpNextLKF->mGroundTruth);
         mnCurrentLKFId = mpNextLKF->mnId;
         mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
+        // mpNextLKF = pBestLKF;
         cout << " CurrentLKF: "<< mnCurrentLKFId<<". NextLKF: "<<mpNextLKF->mnId<<". "<<endl;
       }
       else if(mpNextLKF->mBackTrackScore<lostTH)//relocalization
       {
         cout << "lost. score: "<<mpNextLKF->mBackTrackScore;
-        mpNextLKF = pBestLKF;
+        mnCurrentLKFId = pBestLKF->mnId;
+        mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
         cout << " CurrentLKF: "<< mnCurrentLKFId<<". NextLKF: "<<mpNextLKF->mnId<<". Reloc score: "<<mpNextLKF->mBackTrackScore<< "."<<endl;
       }
       else
@@ -185,6 +194,9 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
     if(mpLoadedKeyFrameDB->IsLast(mnCurrentLKFId, mbForward))
     {
       cout << "Reach the end."<<endl;
+      // vector<cv::KeyPoint> vEmptyKeys;
+      // vector<int> vEmptyMatches;
+      // mpFrameDrawer -> UpdateBTMatch(vEmptyKeys ,vEmptyMatches);//clear the ref KeyPoints in FrameDrawer
       RequestFinish();
       return 0;
     }
@@ -202,29 +214,45 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
         delete mpInitializer;
         mpInitializer = static_cast<Initializer*>(NULL);
       }
-      // cout << "New initializer"<<endl;
-      mpInitializer =  new Initializer(mpNextLKF->mvKeys,mpCurrentFrame->mK,0.1,200);//mK is Calibration matrix
-      fill(mvIniMatches.begin(),mvIniMatches.end(),-1);
 
-      //If user have matches between two points set (mvIniMatches), don't need to search
-      //------------------------------------------------------------
-      // cout<< "mvbPrevMatched initialize"<<endl;
-      mvbPrevMatched.resize(mpNextLKF->mvKeys.size());
-      for(size_t i=0; i<mpNextLKF->mvKeys.size(); i++)
-          mvbPrevMatched[i]=mpNextLKF->mvKeys[i].pt;
+      //            -----change pBestLKF/mpNextLKF-----start     //
+
+      // cout << "New initializer"<<endl;
+      mpInitializer =  new Initializer(pBestLKF->mvKeysUn,mpCurrentFrame->mK,1.0,200);//mK is Calibration matrix
+      fill(mvIniMatches.begin(),mvIniMatches.end(),-1);// May not use
+
+      // If user have matches between two points set (mvIniMatches), don't need to search
+      // ------------------------------------------------------------
+      cout<< "mvbPrevMatched initialize"<<endl;
+      mvbPrevMatched.resize(pBestLKF->mvKeysUn.size());
+      for(size_t i=0; i<pBestLKF->mvKeysUn.size(); i++)
+          mvbPrevMatched[i]=pBestLKF->mvKeysUn[i].pt;
 
       // Find correspondences
       ORBmatcher matcher(0.9,true);
       // cout<<"serchbyinitialization"<<endl;
-      int nInimatches = matcher.SearchForInitialization(mpNextLKF,*mpCurrentFrame,mvbPrevMatched,mvIniMatches,100);
+      nInimatches = matcher.SearchForInitialization(pBestLKF,*mpCurrentFrame,mvbPrevMatched,mvIniMatches,200);
       // Check if there are enough correspondences
-      // cout<<"serchbyinitialization done. nInimatches: "<< nInimatches << endl;
+      cout<<"SfInit 0.9 matches: "<< nInimatches << endl;
+      BTlog<<"BestMatchLKF: "<<pBestLKF->mnId;
+      BTlog<<", SfInit 0.9 matches: "<< nInimatches << endl;
+
+      vector<int> vInvertMatches = vector<int>(mpCurrentFrame->mvKeysUn.size(),-1);//store index of referenceLKF's keypoints
+      for (size_t i=0;i<mvIniMatches.size();i++)
+      {
+        if(mvIniMatches[i]>=0)
+        {
+          vInvertMatches[mvIniMatches[i]] = i;
+        }
+      }
+       mpFrameDrawer -> UpdateBTMatch(pBestLKF->mvKeys,vInvertMatches,mpLoadedKeyFrameDB->mvLoadedImages[pBestLKF->mnId]);
       if(nInimatches<10)
       {
         cout << "Not enough correspondences! Pose estimate may be not accurate." << endl;
         return 0;
       }
       //------------------------------------------------------------
+      //            -----change pBestLKF/mpNextLKF-----end     //
 
       cv::Mat Rcw(3,3,CV_32F); // Current Camera Rotation
       cv::Mat tcw(3,1,CV_32F); // Current Camera Translation
@@ -232,7 +260,8 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
       // cout<<"initialize"<<endl;
       if(mpInitializer->Initialize(mpCurrentFrame->mvKeysUn, mvIniMatches, Rcw, tcw, mvIniP3D, vbTriangulated))
       {
-        cout<<"initialize succeed"<<endl;
+        cout<<"Pose estimate succeed"<<endl;
+        BTlog<<"Pose estimate succeed"<<endl;
           for(size_t i=0, iend=mvIniMatches.size(); i<iend;i++)
           {
               if(mvIniMatches[i]>=0 && !vbTriangulated[i])
@@ -247,7 +276,15 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
           Rcw.copyTo(Tcw.rowRange(0,3).colRange(0,3));
           tcw.copyTo(Tcw.rowRange(0,3).col(3));
           cout << Tcw << endl;
+          BTlog<< Tcw << endl;
       }
+
+      // ORBmatcher matcher2(0.75,true);
+      // nBowmatches = matcher2.SearchByBoW(pBestLKF,*mpCurrentFrame);
+      // cout<<"Sb 0.9 matches: "<< nInimatches << endl;
+      // BTlog<<"BestMatchLKF: "<<pBestLKF->mnId;
+      // BTlog<<", SbInit 0.9 matches: "<< nInimatches << endl;
+
     }
 
     // if(pBestLKF->mBackTrackScore>matchTH)
@@ -343,7 +380,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame)
 
     // ORBmatcher matcher(0.75,true);
     // int nmatches = matcher.SearchByBoW(mpNextLKF,*mpCurrentFrame);
-    return mnCurrentLKFId;
+  return mnCurrentLKFId;
 
 }
 
