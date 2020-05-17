@@ -219,7 +219,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
 
       // // cout << "New initializer"<<endl;
       // mpInitializer =  new Initializer(pBestLKF->mvKeysUn,mpCurrentFrame->mK,1.0,200);//mK is Calibration matrix
-      // fill(mvIniMatches.begin(),mvIniMatches.end(),-1);// May not use
+      // fill(mvIniMatches.begin(),mvIniMatches.end(),-1);// May not need
 
       // // If user have matches between two points set (mvIniMatches), don't need to search
       // // ------------------------------------------------------------
@@ -283,10 +283,59 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
       vector<int> vBTMatches21;
       nBoWmatches = matcher2.SearchByBoW(pBestLKF,*mpCurrentFrame,vBTMatches21);
       cout<<"SbBoW 0.75 matches: "<< nBoWmatches << endl;
-      BTlog<<"BestMatchLKF: "<<pBestLKF->mnId;
-      BTlog<<", SbBoW 0.75 matches: "<< nBoWmatches << endl;
+      BTlog<<"Current Frame: "<<mpCurrentFrame->mnId<<", BestMatchLKF: "<<pBestLKF->mnId;
+      BTlog<<", SbBoW 0.75 matches: "<< nBoWmatches;
       mpFrameDrawer -> UpdateBTMatch(pBestLKF->mvKeys,vBTMatches21,mpLoadedKeyFrameDB->mvLoadedImages[pBestLKF->mnId]);
 
+      vector<int> vBTMatches12 = vector<int>(pBestLKF->mvKeysUn.size(),-1);//store index of Current Frame's keypoints
+      for (size_t i=0;i<vBTMatches21.size();i++)
+      {
+        if(vBTMatches21[i]>=0)
+        {
+          vBTMatches12[vBTMatches21[i]] = i;
+        }
+      }
+      if(nBoWmatches<10)
+      {
+        cout << "Not enough correspondences! Pose estimate may be not accurate." << endl;
+        return 0;
+      }
+
+
+      if(mpInitializer != NULL)
+      {
+        cout <<"delete initializer"<<endl;
+        delete mpInitializer;
+        mpInitializer = static_cast<Initializer*>(NULL);
+      }
+      cout << "New initializer"<<endl;
+      mpInitializer =  new Initializer(pBestLKF->mvKeysUn,mpCurrentFrame->mK,1.0,200);//mK is Calibration matrix
+      cv::Mat Rcw(3,3,CV_32F); // Current Camera Rotation
+      cv::Mat tcw(3,1,CV_32F); // Current Camera Translation
+      vector<bool> vbTriangulated; // Triangulated Correspondences (mvIniMatches)
+      cout<<"initialize"<<endl;
+      if(mpInitializer->Initialize(mpCurrentFrame->mvKeysUn, vBTMatches12, Rcw, tcw, mvIniP3D, vbTriangulated))
+      {
+          for(size_t i=0, iend=vBTMatches12.size(); i<iend;i++)
+          {
+              if(vBTMatches12[i]>=0 && !vbTriangulated[i])
+              {
+                vBTMatches12[i]=-1;
+                nBoWmatches--;
+              }
+          }
+          BTlog<<", Triangulate: "<<nBoWmatches<<endl;
+
+          // Set Frame Poses
+          cv::Mat Tcw = cv::Mat::eye(4,4,CV_32F);
+          Rcw.copyTo(Tcw.rowRange(0,3).colRange(0,3));
+          tcw.copyTo(Tcw.rowRange(0,3).col(3));
+          cout << Tcw << endl;
+          BTlog<< Tcw << endl;
+      }
+      else
+        BTlog<<endl;
+      
     }
 
     // if(pBestLKF->mBackTrackScore>matchTH)

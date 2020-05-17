@@ -1,1268 +1,2098 @@
-BestMatchLKF: 4, SbBoW 0.75 matches: 379
-BestMatchLKF: 5, SbBoW 0.75 matches: 334
-BestMatchLKF: 3, SbBoW 0.75 matches: 342
-BestMatchLKF: 6, SbBoW 0.75 matches: 979
-BestMatchLKF: 6, SbBoW 0.75 matches: 319
-BestMatchLKF: 6, SbBoW 0.75 matches: 242
-BestMatchLKF: 6, SbBoW 0.75 matches: 210
-BestMatchLKF: 1, SbBoW 0.75 matches: 276
-BestMatchLKF: 6, SbBoW 0.75 matches: 200
-BestMatchLKF: 7, SbBoW 0.75 matches: 251
-BestMatchLKF: 7, SbBoW 0.75 matches: 311
-BestMatchLKF: 7, SbBoW 0.75 matches: 978
-BestMatchLKF: 7, SbBoW 0.75 matches: 288
-BestMatchLKF: 8, SbBoW 0.75 matches: 241
-BestMatchLKF: 8, SbBoW 0.75 matches: 976
-BestMatchLKF: 8, SbBoW 0.75 matches: 256
-BestMatchLKF: 8, SbBoW 0.75 matches: 226
-BestMatchLKF: 9, SbBoW 0.75 matches: 283
-BestMatchLKF: 9, SbBoW 0.75 matches: 283
-BestMatchLKF: 9, SbBoW 0.75 matches: 972
-BestMatchLKF: 9, SbBoW 0.75 matches: 317
-BestMatchLKF: 9, SbBoW 0.75 matches: 281
-BestMatchLKF: 10, SbBoW 0.75 matches: 215
-BestMatchLKF: 10, SbBoW 0.75 matches: 217
-BestMatchLKF: 10, SbBoW 0.75 matches: 278
-BestMatchLKF: 10, SbBoW 0.75 matches: 986
-BestMatchLKF: 11, SbBoW 0.75 matches: 977
-BestMatchLKF: 11, SbBoW 0.75 matches: 183
-BestMatchLKF: 12, SbBoW 0.75 matches: 176
-BestMatchLKF: 12, SbBoW 0.75 matches: 180
-BestMatchLKF: 12, SbBoW 0.75 matches: 236
-BestMatchLKF: 12, SbBoW 0.75 matches: 263
-BestMatchLKF: 12, SbBoW 0.75 matches: 203
-BestMatchLKF: 12, SbBoW 0.75 matches: 189
-BestMatchLKF: 13, SbBoW 0.75 matches: 223
-BestMatchLKF: 13, SbBoW 0.75 matches: 224
-BestMatchLKF: 13, SbBoW 0.75 matches: 281
-BestMatchLKF: 13, SbBoW 0.75 matches: 331
-BestMatchLKF: 13, SbBoW 0.75 matches: 253
-BestMatchLKF: 14, SbBoW 0.75 matches: 221
-BestMatchLKF: 14, SbBoW 0.75 matches: 334
-BestMatchLKF: 14, SbBoW 0.75 matches: 991
-BestMatchLKF: 14, SbBoW 0.75 matches: 350
-BestMatchLKF: 14, SbBoW 0.75 matches: 296
-BestMatchLKF: 14, SbBoW 0.75 matches: 244
-BestMatchLKF: 15, SbBoW 0.75 matches: 231
-BestMatchLKF: 15, SbBoW 0.75 matches: 245
-BestMatchLKF: 15, SbBoW 0.75 matches: 301
-BestMatchLKF: 15, SbBoW 0.75 matches: 351
-BestMatchLKF: 15, SbBoW 0.75 matches: 292
-BestMatchLKF: 15, SbBoW 0.75 matches: 267
-BestMatchLKF: 15, SbBoW 0.75 matches: 253
-BestMatchLKF: 15, SbBoW 0.75 matches: 226
-BestMatchLKF: 15, SbBoW 0.75 matches: 220
-BestMatchLKF: 15, SbBoW 0.75 matches: 192
-BestMatchLKF: 16, SbBoW 0.75 matches: 207
-BestMatchLKF: 16, SbBoW 0.75 matches: 243
-BestMatchLKF: 16, SbBoW 0.75 matches: 246
-BestMatchLKF: 16, SbBoW 0.75 matches: 301
-BestMatchLKF: 16, SbBoW 0.75 matches: 347
-BestMatchLKF: 16, SbBoW 0.75 matches: 368
-BestMatchLKF: 16, SbBoW 0.75 matches: 306
-BestMatchLKF: 16, SbBoW 0.75 matches: 280
-BestMatchLKF: 17, SbBoW 0.75 matches: 227
-BestMatchLKF: 17, SbBoW 0.75 matches: 281
-BestMatchLKF: 17, SbBoW 0.75 matches: 994
-BestMatchLKF: 17, SbBoW 0.75 matches: 308
-BestMatchLKF: 17, SbBoW 0.75 matches: 277
-BestMatchLKF: 18, SbBoW 0.75 matches: 363
-BestMatchLKF: 18, SbBoW 0.75 matches: 373
-BestMatchLKF: 18, SbBoW 0.75 matches: 280
-BestMatchLKF: 18, SbBoW 0.75 matches: 276
-BestMatchLKF: 18, SbBoW 0.75 matches: 210
-BestMatchLKF: 19, SbBoW 0.75 matches: 244
-BestMatchLKF: 19, SbBoW 0.75 matches: 287
-BestMatchLKF: 19, SbBoW 0.75 matches: 288
-BestMatchLKF: 19, SbBoW 0.75 matches: 367
-BestMatchLKF: 19, SbBoW 0.75 matches: 283
-BestMatchLKF: 20, SbBoW 0.75 matches: 252
-BestMatchLKF: 20, SbBoW 0.75 matches: 345
-BestMatchLKF: 20, SbBoW 0.75 matches: 389
-BestMatchLKF: 21, SbBoW 0.75 matches: 381
-BestMatchLKF: 21, SbBoW 0.75 matches: 364
-BestMatchLKF: 21, SbBoW 0.75 matches: 299
-BestMatchLKF: 21, SbBoW 0.75 matches: 263
-BestMatchLKF: 22, SbBoW 0.75 matches: 281
-BestMatchLKF: 22, SbBoW 0.75 matches: 993
-BestMatchLKF: 22, SbBoW 0.75 matches: 320
-BestMatchLKF: 23, SbBoW 0.75 matches: 280
-BestMatchLKF: 23, SbBoW 0.75 matches: 283
-BestMatchLKF: 23, SbBoW 0.75 matches: 311
-BestMatchLKF: 23, SbBoW 0.75 matches: 328
-BestMatchLKF: 23, SbBoW 0.75 matches: 344
-BestMatchLKF: 23, SbBoW 0.75 matches: 417
-BestMatchLKF: 23, SbBoW 0.75 matches: 982
-BestMatchLKF: 23, SbBoW 0.75 matches: 344
-BestMatchLKF: 23, SbBoW 0.75 matches: 309
-BestMatchLKF: 23, SbBoW 0.75 matches: 257
-BestMatchLKF: 23, SbBoW 0.75 matches: 264
-BestMatchLKF: 23, SbBoW 0.75 matches: 246
-BestMatchLKF: 24, SbBoW 0.75 matches: 247
-BestMatchLKF: 24, SbBoW 0.75 matches: 271
-BestMatchLKF: 24, SbBoW 0.75 matches: 332
-BestMatchLKF: 24, SbBoW 0.75 matches: 986
-BestMatchLKF: 24, SbBoW 0.75 matches: 357
-BestMatchLKF: 24, SbBoW 0.75 matches: 293
-BestMatchLKF: 24, SbBoW 0.75 matches: 243
-BestMatchLKF: 24, SbBoW 0.75 matches: 232
-BestMatchLKF: 24, SbBoW 0.75 matches: 235
-BestMatchLKF: 24, SbBoW 0.75 matches: 264
-BestMatchLKF: 25, SbBoW 0.75 matches: 249
-BestMatchLKF: 25, SbBoW 0.75 matches: 264
-BestMatchLKF: 25, SbBoW 0.75 matches: 266
-BestMatchLKF: 25, SbBoW 0.75 matches: 369
-BestMatchLKF: 25, SbBoW 0.75 matches: 365
-BestMatchLKF: 25, SbBoW 0.75 matches: 332
-BestMatchLKF: 25, SbBoW 0.75 matches: 233
-BestMatchLKF: 26, SbBoW 0.75 matches: 220
-BestMatchLKF: 26, SbBoW 0.75 matches: 242
-BestMatchLKF: 26, SbBoW 0.75 matches: 263
-BestMatchLKF: 26, SbBoW 0.75 matches: 375
-BestMatchLKF: 26, SbBoW 0.75 matches: 392
-BestMatchLKF: 26, SbBoW 0.75 matches: 318
-BestMatchLKF: 26, SbBoW 0.75 matches: 240
-BestMatchLKF: 27, SbBoW 0.75 matches: 233
-BestMatchLKF: 27, SbBoW 0.75 matches: 224
-BestMatchLKF: 27, SbBoW 0.75 matches: 236
-BestMatchLKF: 27, SbBoW 0.75 matches: 288
-BestMatchLKF: 27, SbBoW 0.75 matches: 986
-BestMatchLKF: 27, SbBoW 0.75 matches: 303
-BestMatchLKF: 27, SbBoW 0.75 matches: 268
-BestMatchLKF: 27, SbBoW 0.75 matches: 226
-BestMatchLKF: 27, SbBoW 0.75 matches: 212
-BestMatchLKF: 28, SbBoW 0.75 matches: 209
-BestMatchLKF: 28, SbBoW 0.75 matches: 297
-BestMatchLKF: 28, SbBoW 0.75 matches: 238
-BestMatchLKF: 28, SbBoW 0.75 matches: 223
-BestMatchLKF: 28, SbBoW 0.75 matches: 213
-BestMatchLKF: 29, SbBoW 0.75 matches: 211
-BestMatchLKF: 29, SbBoW 0.75 matches: 229
-BestMatchLKF: 29, SbBoW 0.75 matches: 333
-BestMatchLKF: 29, SbBoW 0.75 matches: 322
-BestMatchLKF: 29, SbBoW 0.75 matches: 279
-BestMatchLKF: 29, SbBoW 0.75 matches: 277
-BestMatchLKF: 29, SbBoW 0.75 matches: 235
-BestMatchLKF: 29, SbBoW 0.75 matches: 181
-BestMatchLKF: 29, SbBoW 0.75 matches: 201
-BestMatchLKF: 29, SbBoW 0.75 matches: 186
-BestMatchLKF: 30, SbBoW 0.75 matches: 271
-BestMatchLKF: 30, SbBoW 0.75 matches: 262
-BestMatchLKF: 30, SbBoW 0.75 matches: 291
-BestMatchLKF: 30, SbBoW 0.75 matches: 347
-BestMatchLKF: 30, SbBoW 0.75 matches: 284
-BestMatchLKF: 31, SbBoW 0.75 matches: 225
-BestMatchLKF: 31, SbBoW 0.75 matches: 224
-BestMatchLKF: 31, SbBoW 0.75 matches: 262
-BestMatchLKF: 31, SbBoW 0.75 matches: 283
-BestMatchLKF: 31, SbBoW 0.75 matches: 314
-BestMatchLKF: 31, SbBoW 0.75 matches: 339
-BestMatchLKF: 31, SbBoW 0.75 matches: 356
-BestMatchLKF: 31, SbBoW 0.75 matches: 316
-BestMatchLKF: 31, SbBoW 0.75 matches: 281
-BestMatchLKF: 31, SbBoW 0.75 matches: 246
-BestMatchLKF: 31, SbBoW 0.75 matches: 219
-BestMatchLKF: 31, SbBoW 0.75 matches: 215
-BestMatchLKF: 31, SbBoW 0.75 matches: 206
-BestMatchLKF: 32, SbBoW 0.75 matches: 165
-BestMatchLKF: 32, SbBoW 0.75 matches: 190
-BestMatchLKF: 32, SbBoW 0.75 matches: 216
-BestMatchLKF: 32, SbBoW 0.75 matches: 280
-BestMatchLKF: 32, SbBoW 0.75 matches: 980
-BestMatchLKF: 32, SbBoW 0.75 matches: 265
-BestMatchLKF: 32, SbBoW 0.75 matches: 245
-BestMatchLKF: 32, SbBoW 0.75 matches: 205
-BestMatchLKF: 32, SbBoW 0.75 matches: 167
-BestMatchLKF: 32, SbBoW 0.75 matches: 164
-BestMatchLKF: 32, SbBoW 0.75 matches: 142
-BestMatchLKF: 32, SbBoW 0.75 matches: 156
-BestMatchLKF: 32, SbBoW 0.75 matches: 125
-BestMatchLKF: 32, SbBoW 0.75 matches: 101
-BestMatchLKF: 97, SbBoW 0.75 matches: 56
-BestMatchLKF: 33, SbBoW 0.75 matches: 126
-BestMatchLKF: 33, SbBoW 0.75 matches: 146
-BestMatchLKF: 33, SbBoW 0.75 matches: 190
-BestMatchLKF: 33, SbBoW 0.75 matches: 288
-BestMatchLKF: 33, SbBoW 0.75 matches: 317
-BestMatchLKF: 33, SbBoW 0.75 matches: 213
-BestMatchLKF: 34, SbBoW 0.75 matches: 207
-BestMatchLKF: 34, SbBoW 0.75 matches: 201
-BestMatchLKF: 34, SbBoW 0.75 matches: 188
-BestMatchLKF: 34, SbBoW 0.75 matches: 176
-BestMatchLKF: 34, SbBoW 0.75 matches: 208
-BestMatchLKF: 34, SbBoW 0.75 matches: 319
-BestMatchLKF: 34, SbBoW 0.75 matches: 986
-BestMatchLKF: 34, SbBoW 0.75 matches: 303
-BestMatchLKF: 34, SbBoW 0.75 matches: 223
-BestMatchLKF: 34, SbBoW 0.75 matches: 155
-BestMatchLKF: 35, SbBoW 0.75 matches: 103
-BestMatchLKF: 41, SbBoW 0.75 matches: 109
-BestMatchLKF: 36, SbBoW 0.75 matches: 148
-BestMatchLKF: 35, SbBoW 0.75 matches: 172
-BestMatchLKF: 35, SbBoW 0.75 matches: 204
-BestMatchLKF: 35, SbBoW 0.75 matches: 265
-BestMatchLKF: 35, SbBoW 0.75 matches: 269
-BestMatchLKF: 35, SbBoW 0.75 matches: 408
-BestMatchLKF: 35, SbBoW 0.75 matches: 986
-BestMatchLKF: 35, SbBoW 0.75 matches: 357
-BestMatchLKF: 35, SbBoW 0.75 matches: 276
-BestMatchLKF: 35, SbBoW 0.75 matches: 254
-BestMatchLKF: 35, SbBoW 0.75 matches: 226
-BestMatchLKF: 35, SbBoW 0.75 matches: 206
-BestMatchLKF: 35, SbBoW 0.75 matches: 222
-BestMatchLKF: 35, SbBoW 0.75 matches: 200
-BestMatchLKF: 35, SbBoW 0.75 matches: 184
-BestMatchLKF: 35, SbBoW 0.75 matches: 242
-BestMatchLKF: 35, SbBoW 0.75 matches: 226
-BestMatchLKF: 35, SbBoW 0.75 matches: 201
-BestMatchLKF: 36, SbBoW 0.75 matches: 221
-BestMatchLKF: 36, SbBoW 0.75 matches: 286
-BestMatchLKF: 36, SbBoW 0.75 matches: 984
-BestMatchLKF: 36, SbBoW 0.75 matches: 379
-BestMatchLKF: 36, SbBoW 0.75 matches: 272
-BestMatchLKF: 36, SbBoW 0.75 matches: 222
-BestMatchLKF: 36, SbBoW 0.75 matches: 194
-BestMatchLKF: 36, SbBoW 0.75 matches: 164
-BestMatchLKF: 36, SbBoW 0.75 matches: 156
-BestMatchLKF: 34, SbBoW 0.75 matches: 167
-BestMatchLKF: 36, SbBoW 0.75 matches: 133
-BestMatchLKF: 41, SbBoW 0.75 matches: 134
-BestMatchLKF: 37, SbBoW 0.75 matches: 171
-BestMatchLKF: 34, SbBoW 0.75 matches: 138
-BestMatchLKF: 37, SbBoW 0.75 matches: 203
-BestMatchLKF: 37, SbBoW 0.75 matches: 248
-BestMatchLKF: 37, SbBoW 0.75 matches: 273
-BestMatchLKF: 37, SbBoW 0.75 matches: 981
-BestMatchLKF: 37, SbBoW 0.75 matches: 299
-BestMatchLKF: 38, SbBoW 0.75 matches: 145
-BestMatchLKF: 38, SbBoW 0.75 matches: 157
-BestMatchLKF: 38, SbBoW 0.75 matches: 209
-BestMatchLKF: 38, SbBoW 0.75 matches: 254
-BestMatchLKF: 40, SbBoW 0.75 matches: 221
-BestMatchLKF: 40, SbBoW 0.75 matches: 319
-BestMatchLKF: 40, SbBoW 0.75 matches: 298
-BestMatchLKF: 40, SbBoW 0.75 matches: 253
-BestMatchLKF: 40, SbBoW 0.75 matches: 222
-BestMatchLKF: 40, SbBoW 0.75 matches: 182
-BestMatchLKF: 40, SbBoW 0.75 matches: 147
-BestMatchLKF: 41, SbBoW 0.75 matches: 156
-BestMatchLKF: 41, SbBoW 0.75 matches: 188
-BestMatchLKF: 41, SbBoW 0.75 matches: 237
-BestMatchLKF: 41, SbBoW 0.75 matches: 301
-BestMatchLKF: 41, SbBoW 0.75 matches: 986
-BestMatchLKF: 41, SbBoW 0.75 matches: 253
-BestMatchLKF: 41, SbBoW 0.75 matches: 261
-BestMatchLKF: 41, SbBoW 0.75 matches: 222
-BestMatchLKF: 41, SbBoW 0.75 matches: 213
-BestMatchLKF: 41, SbBoW 0.75 matches: 187
-BestMatchLKF: 42, SbBoW 0.75 matches: 196
-BestMatchLKF: 42, SbBoW 0.75 matches: 216
-BestMatchLKF: 42, SbBoW 0.75 matches: 254
-BestMatchLKF: 42, SbBoW 0.75 matches: 267
-BestMatchLKF: 42, SbBoW 0.75 matches: 295
-BestMatchLKF: 42, SbBoW 0.75 matches: 338
-BestMatchLKF: 42, SbBoW 0.75 matches: 370
-BestMatchLKF: 42, SbBoW 0.75 matches: 356
-BestMatchLKF: 42, SbBoW 0.75 matches: 244
-BestMatchLKF: 42, SbBoW 0.75 matches: 214
-BestMatchLKF: 42, SbBoW 0.75 matches: 173
-BestMatchLKF: 42, SbBoW 0.75 matches: 162
-BestMatchLKF: 42, SbBoW 0.75 matches: 173
-BestMatchLKF: 42, SbBoW 0.75 matches: 150
-BestMatchLKF: 42, SbBoW 0.75 matches: 147
-BestMatchLKF: 42, SbBoW 0.75 matches: 125
-BestMatchLKF: 43, SbBoW 0.75 matches: 132
-BestMatchLKF: 42, SbBoW 0.75 matches: 129
-BestMatchLKF: 43, SbBoW 0.75 matches: 164
-BestMatchLKF: 43, SbBoW 0.75 matches: 187
-BestMatchLKF: 43, SbBoW 0.75 matches: 162
-BestMatchLKF: 43, SbBoW 0.75 matches: 183
-BestMatchLKF: 43, SbBoW 0.75 matches: 215
-BestMatchLKF: 43, SbBoW 0.75 matches: 238
-BestMatchLKF: 43, SbBoW 0.75 matches: 288
-BestMatchLKF: 43, SbBoW 0.75 matches: 295
-BestMatchLKF: 43, SbBoW 0.75 matches: 265
-BestMatchLKF: 43, SbBoW 0.75 matches: 229
-BestMatchLKF: 43, SbBoW 0.75 matches: 225
-BestMatchLKF: 43, SbBoW 0.75 matches: 203
-BestMatchLKF: 43, SbBoW 0.75 matches: 189
-BestMatchLKF: 43, SbBoW 0.75 matches: 185
-BestMatchLKF: 44, SbBoW 0.75 matches: 135
-BestMatchLKF: 44, SbBoW 0.75 matches: 157
-BestMatchLKF: 44, SbBoW 0.75 matches: 196
-BestMatchLKF: 44, SbBoW 0.75 matches: 214
-BestMatchLKF: 44, SbBoW 0.75 matches: 286
-BestMatchLKF: 44, SbBoW 0.75 matches: 333
-BestMatchLKF: 44, SbBoW 0.75 matches: 339
-BestMatchLKF: 44, SbBoW 0.75 matches: 242
-BestMatchLKF: 44, SbBoW 0.75 matches: 219
-BestMatchLKF: 45, SbBoW 0.75 matches: 202
-BestMatchLKF: 45, SbBoW 0.75 matches: 254
-BestMatchLKF: 45, SbBoW 0.75 matches: 325
-BestMatchLKF: 45, SbBoW 0.75 matches: 975
-BestMatchLKF: 45, SbBoW 0.75 matches: 278
-BestMatchLKF: 45, SbBoW 0.75 matches: 254
-BestMatchLKF: 45, SbBoW 0.75 matches: 262
-BestMatchLKF: 45, SbBoW 0.75 matches: 233
-BestMatchLKF: 45, SbBoW 0.75 matches: 282
-BestMatchLKF: 45, SbBoW 0.75 matches: 248
-BestMatchLKF: 45, SbBoW 0.75 matches: 228
-BestMatchLKF: 45, SbBoW 0.75 matches: 225
-BestMatchLKF: 45, SbBoW 0.75 matches: 192
-BestMatchLKF: 45, SbBoW 0.75 matches: 202
-BestMatchLKF: 45, SbBoW 0.75 matches: 191
-BestMatchLKF: 45, SbBoW 0.75 matches: 170
-BestMatchLKF: 45, SbBoW 0.75 matches: 150
-BestMatchLKF: 45, SbBoW 0.75 matches: 174
-BestMatchLKF: 45, SbBoW 0.75 matches: 169
-BestMatchLKF: 45, SbBoW 0.75 matches: 149
-BestMatchLKF: 45, SbBoW 0.75 matches: 148
-BestMatchLKF: 45, SbBoW 0.75 matches: 126
-BestMatchLKF: 45, SbBoW 0.75 matches: 122
-BestMatchLKF: 45, SbBoW 0.75 matches: 127
-BestMatchLKF: 45, SbBoW 0.75 matches: 130
-BestMatchLKF: 45, SbBoW 0.75 matches: 123
-BestMatchLKF: 45, SbBoW 0.75 matches: 122
-BestMatchLKF: 45, SbBoW 0.75 matches: 123
-BestMatchLKF: 45, SbBoW 0.75 matches: 127
-BestMatchLKF: 45, SbBoW 0.75 matches: 114
-BestMatchLKF: 45, SbBoW 0.75 matches: 102
-BestMatchLKF: 45, SbBoW 0.75 matches: 101
-BestMatchLKF: 45, SbBoW 0.75 matches: 95
-BestMatchLKF: 45, SbBoW 0.75 matches: 85
-BestMatchLKF: 45, SbBoW 0.75 matches: 79
-BestMatchLKF: 44, SbBoW 0.75 matches: 40
-BestMatchLKF: 91, SbBoW 0.75 matches: 79
-BestMatchLKF: 45, SbBoW 0.75 matches: 66
-BestMatchLKF: 46, SbBoW 0.75 matches: 114
-BestMatchLKF: 46, SbBoW 0.75 matches: 109
-BestMatchLKF: 46, SbBoW 0.75 matches: 114
-BestMatchLKF: 46, SbBoW 0.75 matches: 139
-BestMatchLKF: 46, SbBoW 0.75 matches: 121
-BestMatchLKF: 46, SbBoW 0.75 matches: 172
-BestMatchLKF: 46, SbBoW 0.75 matches: 171
-BestMatchLKF: 46, SbBoW 0.75 matches: 213
-BestMatchLKF: 46, SbBoW 0.75 matches: 304
-BestMatchLKF: 46, SbBoW 0.75 matches: 244
-BestMatchLKF: 46, SbBoW 0.75 matches: 238
-BestMatchLKF: 46, SbBoW 0.75 matches: 184
-BestMatchLKF: 46, SbBoW 0.75 matches: 154
-BestMatchLKF: 47, SbBoW 0.75 matches: 157
-BestMatchLKF: 47, SbBoW 0.75 matches: 164
-BestMatchLKF: 47, SbBoW 0.75 matches: 180
-BestMatchLKF: 47, SbBoW 0.75 matches: 214
-BestMatchLKF: 47, SbBoW 0.75 matches: 248
-BestMatchLKF: 47, SbBoW 0.75 matches: 289
-BestMatchLKF: 47, SbBoW 0.75 matches: 276
-BestMatchLKF: 47, SbBoW 0.75 matches: 220
-BestMatchLKF: 47, SbBoW 0.75 matches: 201
-BestMatchLKF: 47, SbBoW 0.75 matches: 168
-BestMatchLKF: 47, SbBoW 0.75 matches: 159
-BestMatchLKF: 47, SbBoW 0.75 matches: 133
-BestMatchLKF: 47, SbBoW 0.75 matches: 147
-BestMatchLKF: 47, SbBoW 0.75 matches: 139
-BestMatchLKF: 47, SbBoW 0.75 matches: 127
-BestMatchLKF: 48, SbBoW 0.75 matches: 212
-BestMatchLKF: 48, SbBoW 0.75 matches: 298
-BestMatchLKF: 48, SbBoW 0.75 matches: 241
-BestMatchLKF: 48, SbBoW 0.75 matches: 147
-BestMatchLKF: 48, SbBoW 0.75 matches: 128
-BestMatchLKF: 48, SbBoW 0.75 matches: 113
-BestMatchLKF: 48, SbBoW 0.75 matches: 131
-BestMatchLKF: 49, SbBoW 0.75 matches: 160
-BestMatchLKF: 49, SbBoW 0.75 matches: 199
-BestMatchLKF: 49, SbBoW 0.75 matches: 282
-BestMatchLKF: 49, SbBoW 0.75 matches: 221
-BestMatchLKF: 49, SbBoW 0.75 matches: 160
-BestMatchLKF: 49, SbBoW 0.75 matches: 156
-BestMatchLKF: 50, SbBoW 0.75 matches: 188
-BestMatchLKF: 50, SbBoW 0.75 matches: 246
-BestMatchLKF: 50, SbBoW 0.75 matches: 239
-BestMatchLKF: 50, SbBoW 0.75 matches: 976
-BestMatchLKF: 50, SbBoW 0.75 matches: 297
-BestMatchLKF: 50, SbBoW 0.75 matches: 284
-BestMatchLKF: 50, SbBoW 0.75 matches: 240
-BestMatchLKF: 50, SbBoW 0.75 matches: 211
-BestMatchLKF: 50, SbBoW 0.75 matches: 177
-BestMatchLKF: 50, SbBoW 0.75 matches: 184
-BestMatchLKF: 51, SbBoW 0.75 matches: 115
-BestMatchLKF: 51, SbBoW 0.75 matches: 132
-BestMatchLKF: 51, SbBoW 0.75 matches: 158
-BestMatchLKF: 51, SbBoW 0.75 matches: 205
-BestMatchLKF: 51, SbBoW 0.75 matches: 992
-BestMatchLKF: 51, SbBoW 0.75 matches: 228
-BestMatchLKF: 51, SbBoW 0.75 matches: 210
-BestMatchLKF: 51, SbBoW 0.75 matches: 131
-BestMatchLKF: 51, SbBoW 0.75 matches: 143
-BestMatchLKF: 51, SbBoW 0.75 matches: 135
-BestMatchLKF: 52, SbBoW 0.75 matches: 111
-BestMatchLKF: 52, SbBoW 0.75 matches: 138
-BestMatchLKF: 52, SbBoW 0.75 matches: 203
-BestMatchLKF: 52, SbBoW 0.75 matches: 193
-BestMatchLKF: 52, SbBoW 0.75 matches: 320
-BestMatchLKF: 52, SbBoW 0.75 matches: 263
-BestMatchLKF: 52, SbBoW 0.75 matches: 199
-BestMatchLKF: 52, SbBoW 0.75 matches: 142
-BestMatchLKF: 52, SbBoW 0.75 matches: 129
-BestMatchLKF: 52, SbBoW 0.75 matches: 113
-BestMatchLKF: 53, SbBoW 0.75 matches: 143
-BestMatchLKF: 53, SbBoW 0.75 matches: 233
-BestMatchLKF: 53, SbBoW 0.75 matches: 986
-BestMatchLKF: 53, SbBoW 0.75 matches: 199
-BestMatchLKF: 54, SbBoW 0.75 matches: 127
-BestMatchLKF: 54, SbBoW 0.75 matches: 120
-BestMatchLKF: 54, SbBoW 0.75 matches: 154
-BestMatchLKF: 54, SbBoW 0.75 matches: 162
-BestMatchLKF: 54, SbBoW 0.75 matches: 146
-BestMatchLKF: 54, SbBoW 0.75 matches: 186
-BestMatchLKF: 54, SbBoW 0.75 matches: 219
-BestMatchLKF: 54, SbBoW 0.75 matches: 294
-BestMatchLKF: 54, SbBoW 0.75 matches: 274
-BestMatchLKF: 54, SbBoW 0.75 matches: 212
-BestMatchLKF: 54, SbBoW 0.75 matches: 170
-BestMatchLKF: 54, SbBoW 0.75 matches: 177
-BestMatchLKF: 54, SbBoW 0.75 matches: 184
-BestMatchLKF: 54, SbBoW 0.75 matches: 196
-BestMatchLKF: 54, SbBoW 0.75 matches: 158
-BestMatchLKF: 54, SbBoW 0.75 matches: 140
-BestMatchLKF: 53, SbBoW 0.75 matches: 90
-BestMatchLKF: 54, SbBoW 0.75 matches: 121
-BestMatchLKF: 54, SbBoW 0.75 matches: 114
-BestMatchLKF: 54, SbBoW 0.75 matches: 112
-BestMatchLKF: 54, SbBoW 0.75 matches: 102
-BestMatchLKF: 54, SbBoW 0.75 matches: 105
-BestMatchLKF: 54, SbBoW 0.75 matches: 126
-BestMatchLKF: 55, SbBoW 0.75 matches: 60
-BestMatchLKF: 54, SbBoW 0.75 matches: 108
-BestMatchLKF: 54, SbBoW 0.75 matches: 85
-BestMatchLKF: 55, SbBoW 0.75 matches: 85
-BestMatchLKF: 54, SbBoW 0.75 matches: 104
-BestMatchLKF: 54, SbBoW 0.75 matches: 92
-BestMatchLKF: 55, SbBoW 0.75 matches: 82
-BestMatchLKF: 54, SbBoW 0.75 matches: 102
-BestMatchLKF: 55, SbBoW 0.75 matches: 95
-BestMatchLKF: 55, SbBoW 0.75 matches: 100
-BestMatchLKF: 53, SbBoW 0.75 matches: 73
-BestMatchLKF: 55, SbBoW 0.75 matches: 119
-BestMatchLKF: 55, SbBoW 0.75 matches: 163
-BestMatchLKF: 55, SbBoW 0.75 matches: 151
-BestMatchLKF: 55, SbBoW 0.75 matches: 156
-BestMatchLKF: 55, SbBoW 0.75 matches: 172
-BestMatchLKF: 55, SbBoW 0.75 matches: 201
-BestMatchLKF: 55, SbBoW 0.75 matches: 242
-BestMatchLKF: 55, SbBoW 0.75 matches: 270
-BestMatchLKF: 55, SbBoW 0.75 matches: 325
-BestMatchLKF: 55, SbBoW 0.75 matches: 979
-BestMatchLKF: 55, SbBoW 0.75 matches: 338
-BestMatchLKF: 55, SbBoW 0.75 matches: 269
-BestMatchLKF: 55, SbBoW 0.75 matches: 207
-BestMatchLKF: 55, SbBoW 0.75 matches: 168
-BestMatchLKF: 55, SbBoW 0.75 matches: 177
-BestMatchLKF: 55, SbBoW 0.75 matches: 133
-BestMatchLKF: 55, SbBoW 0.75 matches: 131
-BestMatchLKF: 55, SbBoW 0.75 matches: 121
-BestMatchLKF: 55, SbBoW 0.75 matches: 97
-BestMatchLKF: 56, SbBoW 0.75 matches: 113
-BestMatchLKF: 56, SbBoW 0.75 matches: 127
-BestMatchLKF: 56, SbBoW 0.75 matches: 125
-BestMatchLKF: 56, SbBoW 0.75 matches: 128
-BestMatchLKF: 56, SbBoW 0.75 matches: 167
-BestMatchLKF: 56, SbBoW 0.75 matches: 168
-BestMatchLKF: 56, SbBoW 0.75 matches: 202
-BestMatchLKF: 56, SbBoW 0.75 matches: 221
-BestMatchLKF: 56, SbBoW 0.75 matches: 271
-BestMatchLKF: 56, SbBoW 0.75 matches: 989
-BestMatchLKF: 56, SbBoW 0.75 matches: 308
-BestMatchLKF: 56, SbBoW 0.75 matches: 251
-BestMatchLKF: 56, SbBoW 0.75 matches: 211
-BestMatchLKF: 56, SbBoW 0.75 matches: 171
-BestMatchLKF: 56, SbBoW 0.75 matches: 152
-BestMatchLKF: 57, SbBoW 0.75 matches: 142
-BestMatchLKF: 57, SbBoW 0.75 matches: 152
-BestMatchLKF: 57, SbBoW 0.75 matches: 175
-BestMatchLKF: 57, SbBoW 0.75 matches: 178
-BestMatchLKF: 57, SbBoW 0.75 matches: 217
-BestMatchLKF: 57, SbBoW 0.75 matches: 256
-BestMatchLKF: 57, SbBoW 0.75 matches: 379
-BestMatchLKF: 57, SbBoW 0.75 matches: 347
-BestMatchLKF: 57, SbBoW 0.75 matches: 328
-BestMatchLKF: 57, SbBoW 0.75 matches: 243
-BestMatchLKF: 57, SbBoW 0.75 matches: 204
-BestMatchLKF: 57, SbBoW 0.75 matches: 175
-BestMatchLKF: 58, SbBoW 0.75 matches: 123
-BestMatchLKF: 57, SbBoW 0.75 matches: 137
-BestMatchLKF: 58, SbBoW 0.75 matches: 145
-BestMatchLKF: 58, SbBoW 0.75 matches: 149
-BestMatchLKF: 58, SbBoW 0.75 matches: 159
-BestMatchLKF: 58, SbBoW 0.75 matches: 151
-BestMatchLKF: 58, SbBoW 0.75 matches: 186
-BestMatchLKF: 58, SbBoW 0.75 matches: 185
-BestMatchLKF: 58, SbBoW 0.75 matches: 227
-BestMatchLKF: 58, SbBoW 0.75 matches: 262
-BestMatchLKF: 58, SbBoW 0.75 matches: 310
-BestMatchLKF: 58, SbBoW 0.75 matches: 374
-BestMatchLKF: 58, SbBoW 0.75 matches: 371
-BestMatchLKF: 58, SbBoW 0.75 matches: 342
-BestMatchLKF: 58, SbBoW 0.75 matches: 264
-BestMatchLKF: 58, SbBoW 0.75 matches: 233
-BestMatchLKF: 58, SbBoW 0.75 matches: 174
-BestMatchLKF: 58, SbBoW 0.75 matches: 181
-BestMatchLKF: 58, SbBoW 0.75 matches: 140
-BestMatchLKF: 58, SbBoW 0.75 matches: 136
-BestMatchLKF: 58, SbBoW 0.75 matches: 137
-BestMatchLKF: 59, SbBoW 0.75 matches: 120
-BestMatchLKF: 59, SbBoW 0.75 matches: 145
-BestMatchLKF: 59, SbBoW 0.75 matches: 147
-BestMatchLKF: 59, SbBoW 0.75 matches: 167
-BestMatchLKF: 59, SbBoW 0.75 matches: 207
-BestMatchLKF: 59, SbBoW 0.75 matches: 260
-BestMatchLKF: 59, SbBoW 0.75 matches: 388
-BestMatchLKF: 59, SbBoW 0.75 matches: 374
-BestMatchLKF: 59, SbBoW 0.75 matches: 221
-BestMatchLKF: 59, SbBoW 0.75 matches: 205
-BestMatchLKF: 60, SbBoW 0.75 matches: 123
-BestMatchLKF: 60, SbBoW 0.75 matches: 123
-BestMatchLKF: 59, SbBoW 0.75 matches: 133
-BestMatchLKF: 59, SbBoW 0.75 matches: 125
-BestMatchLKF: 60, SbBoW 0.75 matches: 161
-BestMatchLKF: 60, SbBoW 0.75 matches: 190
-BestMatchLKF: 60, SbBoW 0.75 matches: 172
-BestMatchLKF: 60, SbBoW 0.75 matches: 211
-BestMatchLKF: 60, SbBoW 0.75 matches: 222
-BestMatchLKF: 60, SbBoW 0.75 matches: 305
-BestMatchLKF: 60, SbBoW 0.75 matches: 983
-BestMatchLKF: 60, SbBoW 0.75 matches: 279
-BestMatchLKF: 60, SbBoW 0.75 matches: 191
-BestMatchLKF: 60, SbBoW 0.75 matches: 187
-BestMatchLKF: 60, SbBoW 0.75 matches: 177
-BestMatchLKF: 60, SbBoW 0.75 matches: 161
-BestMatchLKF: 60, SbBoW 0.75 matches: 150
-BestMatchLKF: 61, SbBoW 0.75 matches: 154
-BestMatchLKF: 61, SbBoW 0.75 matches: 160
-BestMatchLKF: 61, SbBoW 0.75 matches: 162
-BestMatchLKF: 61, SbBoW 0.75 matches: 175
-BestMatchLKF: 61, SbBoW 0.75 matches: 189
-BestMatchLKF: 61, SbBoW 0.75 matches: 235
-BestMatchLKF: 61, SbBoW 0.75 matches: 337
-BestMatchLKF: 61, SbBoW 0.75 matches: 217
-BestMatchLKF: 61, SbBoW 0.75 matches: 162
-BestMatchLKF: 61, SbBoW 0.75 matches: 131
-BestMatchLKF: 61, SbBoW 0.75 matches: 124
-BestMatchLKF: 61, SbBoW 0.75 matches: 126
-BestMatchLKF: 61, SbBoW 0.75 matches: 125
-BestMatchLKF: 61, SbBoW 0.75 matches: 104
-BestMatchLKF: 62, SbBoW 0.75 matches: 168
-BestMatchLKF: 61, SbBoW 0.75 matches: 109
-BestMatchLKF: 62, SbBoW 0.75 matches: 178
-BestMatchLKF: 62, SbBoW 0.75 matches: 166
-BestMatchLKF: 62, SbBoW 0.75 matches: 253
-BestMatchLKF: 62, SbBoW 0.75 matches: 306
-BestMatchLKF: 62, SbBoW 0.75 matches: 367
-BestMatchLKF: 62, SbBoW 0.75 matches: 283
-BestMatchLKF: 62, SbBoW 0.75 matches: 217
-BestMatchLKF: 62, SbBoW 0.75 matches: 180
-BestMatchLKF: 62, SbBoW 0.75 matches: 160
-BestMatchLKF: 63, SbBoW 0.75 matches: 162
-BestMatchLKF: 63, SbBoW 0.75 matches: 155
-BestMatchLKF: 63, SbBoW 0.75 matches: 203
-BestMatchLKF: 63, SbBoW 0.75 matches: 232
-BestMatchLKF: 63, SbBoW 0.75 matches: 244
-BestMatchLKF: 63, SbBoW 0.75 matches: 307
-BestMatchLKF: 63, SbBoW 0.75 matches: 352
-BestMatchLKF: 63, SbBoW 0.75 matches: 261
-BestMatchLKF: 63, SbBoW 0.75 matches: 206
-BestMatchLKF: 64, SbBoW 0.75 matches: 128
-BestMatchLKF: 64, SbBoW 0.75 matches: 138
-BestMatchLKF: 64, SbBoW 0.75 matches: 162
-BestMatchLKF: 64, SbBoW 0.75 matches: 182
-BestMatchLKF: 64, SbBoW 0.75 matches: 223
-BestMatchLKF: 64, SbBoW 0.75 matches: 241
-BestMatchLKF: 64, SbBoW 0.75 matches: 319
-BestMatchLKF: 64, SbBoW 0.75 matches: 229
-BestMatchLKF: 64, SbBoW 0.75 matches: 181
-BestMatchLKF: 64, SbBoW 0.75 matches: 159
-BestMatchLKF: 64, SbBoW 0.75 matches: 169
-BestMatchLKF: 64, SbBoW 0.75 matches: 148
-BestMatchLKF: 64, SbBoW 0.75 matches: 151
-BestMatchLKF: 64, SbBoW 0.75 matches: 150
-BestMatchLKF: 64, SbBoW 0.75 matches: 169
-BestMatchLKF: 64, SbBoW 0.75 matches: 160
-BestMatchLKF: 64, SbBoW 0.75 matches: 152
-BestMatchLKF: 64, SbBoW 0.75 matches: 131
-BestMatchLKF: 65, SbBoW 0.75 matches: 140
-BestMatchLKF: 65, SbBoW 0.75 matches: 170
-BestMatchLKF: 65, SbBoW 0.75 matches: 185
-BestMatchLKF: 65, SbBoW 0.75 matches: 240
-BestMatchLKF: 65, SbBoW 0.75 matches: 988
-BestMatchLKF: 65, SbBoW 0.75 matches: 284
-BestMatchLKF: 65, SbBoW 0.75 matches: 230
-BestMatchLKF: 65, SbBoW 0.75 matches: 201
-BestMatchLKF: 65, SbBoW 0.75 matches: 179
-BestMatchLKF: 65, SbBoW 0.75 matches: 177
-BestMatchLKF: 65, SbBoW 0.75 matches: 142
-BestMatchLKF: 65, SbBoW 0.75 matches: 149
-BestMatchLKF: 65, SbBoW 0.75 matches: 143
-BestMatchLKF: 65, SbBoW 0.75 matches: 130
-BestMatchLKF: 65, SbBoW 0.75 matches: 119
-BestMatchLKF: 65, SbBoW 0.75 matches: 133
-BestMatchLKF: 65, SbBoW 0.75 matches: 113
-BestMatchLKF: 65, SbBoW 0.75 matches: 109
-BestMatchLKF: 65, SbBoW 0.75 matches: 96
-BestMatchLKF: 65, SbBoW 0.75 matches: 91
-BestMatchLKF: 90, SbBoW 0.75 matches: 48
-BestMatchLKF: 90, SbBoW 0.75 matches: 67
-BestMatchLKF: 88, SbBoW 0.75 matches: 85
-BestMatchLKF: 65, SbBoW 0.75 matches: 62
-BestMatchLKF: 86, SbBoW 0.75 matches: 110
-BestMatchLKF: 89, SbBoW 0.75 matches: 83
-BestMatchLKF: 86, SbBoW 0.75 matches: 105
-BestMatchLKF: 87, SbBoW 0.75 matches: 144
-BestMatchLKF: 88, SbBoW 0.75 matches: 158
-BestMatchLKF: 87, SbBoW 0.75 matches: 188
-BestMatchLKF: 66, SbBoW 0.75 matches: 215
-BestMatchLKF: 66, SbBoW 0.75 matches: 236
-BestMatchLKF: 66, SbBoW 0.75 matches: 277
-BestMatchLKF: 66, SbBoW 0.75 matches: 288
-BestMatchLKF: 66, SbBoW 0.75 matches: 237
-BestMatchLKF: 66, SbBoW 0.75 matches: 200
-BestMatchLKF: 66, SbBoW 0.75 matches: 206
-BestMatchLKF: 66, SbBoW 0.75 matches: 144
-BestMatchLKF: 67, SbBoW 0.75 matches: 182
-BestMatchLKF: 67, SbBoW 0.75 matches: 178
-BestMatchLKF: 67, SbBoW 0.75 matches: 188
-BestMatchLKF: 67, SbBoW 0.75 matches: 210
-BestMatchLKF: 67, SbBoW 0.75 matches: 233
-BestMatchLKF: 67, SbBoW 0.75 matches: 212
-BestMatchLKF: 67, SbBoW 0.75 matches: 253
-BestMatchLKF: 67, SbBoW 0.75 matches: 317
-BestMatchLKF: 67, SbBoW 0.75 matches: 308
-BestMatchLKF: 67, SbBoW 0.75 matches: 276
-BestMatchLKF: 67, SbBoW 0.75 matches: 244
-BestMatchLKF: 67, SbBoW 0.75 matches: 200
-BestMatchLKF: 67, SbBoW 0.75 matches: 165
-BestMatchLKF: 92, SbBoW 0.75 matches: 136
-BestMatchLKF: 67, SbBoW 0.75 matches: 104
-BestMatchLKF: 92, SbBoW 0.75 matches: 103
-BestMatchLKF: 67, SbBoW 0.75 matches: 68
-BestMatchLKF: 68, SbBoW 0.75 matches: 95
-BestMatchLKF: 68, SbBoW 0.75 matches: 117
-BestMatchLKF: 68, SbBoW 0.75 matches: 105
-BestMatchLKF: 71, SbBoW 0.75 matches: 81
-BestMatchLKF: 68, SbBoW 0.75 matches: 144
-BestMatchLKF: 68, SbBoW 0.75 matches: 176
-BestMatchLKF: 68, SbBoW 0.75 matches: 172
-BestMatchLKF: 68, SbBoW 0.75 matches: 210
-BestMatchLKF: 68, SbBoW 0.75 matches: 214
-BestMatchLKF: 68, SbBoW 0.75 matches: 234
-BestMatchLKF: 68, SbBoW 0.75 matches: 971
-BestMatchLKF: 68, SbBoW 0.75 matches: 237
-BestMatchLKF: 68, SbBoW 0.75 matches: 183
-BestMatchLKF: 70, SbBoW 0.75 matches: 129
-BestMatchLKF: 70, SbBoW 0.75 matches: 138
-BestMatchLKF: 70, SbBoW 0.75 matches: 140
-BestMatchLKF: 69, SbBoW 0.75 matches: 202
-BestMatchLKF: 69, SbBoW 0.75 matches: 211
-BestMatchLKF: 69, SbBoW 0.75 matches: 234
-BestMatchLKF: 69, SbBoW 0.75 matches: 252
-BestMatchLKF: 69, SbBoW 0.75 matches: 298
-BestMatchLKF: 69, SbBoW 0.75 matches: 970
-BestMatchLKF: 69, SbBoW 0.75 matches: 315
-BestMatchLKF: 69, SbBoW 0.75 matches: 246
-BestMatchLKF: 69, SbBoW 0.75 matches: 202
-BestMatchLKF: 69, SbBoW 0.75 matches: 177
-BestMatchLKF: 69, SbBoW 0.75 matches: 162
-BestMatchLKF: 70, SbBoW 0.75 matches: 115
-BestMatchLKF: 69, SbBoW 0.75 matches: 156
-BestMatchLKF: 70, SbBoW 0.75 matches: 169
-BestMatchLKF: 70, SbBoW 0.75 matches: 181
-BestMatchLKF: 70, SbBoW 0.75 matches: 210
-BestMatchLKF: 70, SbBoW 0.75 matches: 251
-BestMatchLKF: 70, SbBoW 0.75 matches: 981
-BestMatchLKF: 70, SbBoW 0.75 matches: 180
-BestMatchLKF: 70, SbBoW 0.75 matches: 133
-BestMatchLKF: 70, SbBoW 0.75 matches: 133
-BestMatchLKF: 71, SbBoW 0.75 matches: 102
-BestMatchLKF: 71, SbBoW 0.75 matches: 140
-BestMatchLKF: 71, SbBoW 0.75 matches: 150
-BestMatchLKF: 71, SbBoW 0.75 matches: 169
-BestMatchLKF: 71, SbBoW 0.75 matches: 151
-BestMatchLKF: 71, SbBoW 0.75 matches: 202
-BestMatchLKF: 71, SbBoW 0.75 matches: 227
-BestMatchLKF: 71, SbBoW 0.75 matches: 265
-BestMatchLKF: 71, SbBoW 0.75 matches: 323
-BestMatchLKF: 71, SbBoW 0.75 matches: 329
-BestMatchLKF: 71, SbBoW 0.75 matches: 266
-BestMatchLKF: 71, SbBoW 0.75 matches: 238
-BestMatchLKF: 71, SbBoW 0.75 matches: 204
-BestMatchLKF: 71, SbBoW 0.75 matches: 185
-BestMatchLKF: 71, SbBoW 0.75 matches: 172
-BestMatchLKF: 71, SbBoW 0.75 matches: 172
-BestMatchLKF: 71, SbBoW 0.75 matches: 184
-BestMatchLKF: 71, SbBoW 0.75 matches: 184
-BestMatchLKF: 72, SbBoW 0.75 matches: 214
-BestMatchLKF: 72, SbBoW 0.75 matches: 972
-BestMatchLKF: 72, SbBoW 0.75 matches: 264
-BestMatchLKF: 72, SbBoW 0.75 matches: 211
-BestMatchLKF: 72, SbBoW 0.75 matches: 180
-BestMatchLKF: 72, SbBoW 0.75 matches: 168
-BestMatchLKF: 72, SbBoW 0.75 matches: 160
-BestMatchLKF: 73, SbBoW 0.75 matches: 191
-BestMatchLKF: 73, SbBoW 0.75 matches: 220
-BestMatchLKF: 73, SbBoW 0.75 matches: 225
-BestMatchLKF: 73, SbBoW 0.75 matches: 220
-BestMatchLKF: 73, SbBoW 0.75 matches: 252
-BestMatchLKF: 73, SbBoW 0.75 matches: 251
-BestMatchLKF: 73, SbBoW 0.75 matches: 270
-BestMatchLKF: 73, SbBoW 0.75 matches: 304
-BestMatchLKF: 73, SbBoW 0.75 matches: 337
-BestMatchLKF: 73, SbBoW 0.75 matches: 363
-BestMatchLKF: 73, SbBoW 0.75 matches: 302
-BestMatchLKF: 73, SbBoW 0.75 matches: 227
-BestMatchLKF: 73, SbBoW 0.75 matches: 203
-BestMatchLKF: 74, SbBoW 0.75 matches: 164
-BestMatchLKF: 74, SbBoW 0.75 matches: 159
-BestMatchLKF: 74, SbBoW 0.75 matches: 216
-BestMatchLKF: 74, SbBoW 0.75 matches: 237
-BestMatchLKF: 74, SbBoW 0.75 matches: 253
-BestMatchLKF: 74, SbBoW 0.75 matches: 282
-BestMatchLKF: 74, SbBoW 0.75 matches: 302
-BestMatchLKF: 74, SbBoW 0.75 matches: 309
-BestMatchLKF: 74, SbBoW 0.75 matches: 363
-BestMatchLKF: 74, SbBoW 0.75 matches: 377
-BestMatchLKF: 74, SbBoW 0.75 matches: 979
-BestMatchLKF: 74, SbBoW 0.75 matches: 393
-BestMatchLKF: 74, SbBoW 0.75 matches: 361
-BestMatchLKF: 74, SbBoW 0.75 matches: 290
-BestMatchLKF: 74, SbBoW 0.75 matches: 291
-BestMatchLKF: 74, SbBoW 0.75 matches: 272
-BestMatchLKF: 74, SbBoW 0.75 matches: 248
-BestMatchLKF: 74, SbBoW 0.75 matches: 249
-BestMatchLKF: 75, SbBoW 0.75 matches: 206
-BestMatchLKF: 75, SbBoW 0.75 matches: 241
-BestMatchLKF: 75, SbBoW 0.75 matches: 312
-BestMatchLKF: 75, SbBoW 0.75 matches: 951
-BestMatchLKF: 75, SbBoW 0.75 matches: 341
-BestMatchLKF: 75, SbBoW 0.75 matches: 318
-BestMatchLKF: 75, SbBoW 0.75 matches: 273
-BestMatchLKF: 75, SbBoW 0.75 matches: 252
-BestMatchLKF: 75, SbBoW 0.75 matches: 248
-BestMatchLKF: 75, SbBoW 0.75 matches: 253
-BestMatchLKF: 75, SbBoW 0.75 matches: 220
-BestMatchLKF: 75, SbBoW 0.75 matches: 215
-BestMatchLKF: 76, SbBoW 0.75 matches: 198
-BestMatchLKF: 75, SbBoW 0.75 matches: 184
-BestMatchLKF: 76, SbBoW 0.75 matches: 202
-BestMatchLKF: 76, SbBoW 0.75 matches: 224
-BestMatchLKF: 75, SbBoW 0.75 matches: 175
-BestMatchLKF: 76, SbBoW 0.75 matches: 215
-BestMatchLKF: 76, SbBoW 0.75 matches: 230
-BestMatchLKF: 76, SbBoW 0.75 matches: 265
-BestMatchLKF: 76, SbBoW 0.75 matches: 284
-BestMatchLKF: 76, SbBoW 0.75 matches: 306
-BestMatchLKF: 76, SbBoW 0.75 matches: 342
-BestMatchLKF: 76, SbBoW 0.75 matches: 943
-BestMatchLKF: 76, SbBoW 0.75 matches: 344
-BestMatchLKF: 76, SbBoW 0.75 matches: 272
-BestMatchLKF: 76, SbBoW 0.75 matches: 227
-BestMatchLKF: 77, SbBoW 0.75 matches: 196
-BestMatchLKF: 77, SbBoW 0.75 matches: 223
-BestMatchLKF: 77, SbBoW 0.75 matches: 256
-BestMatchLKF: 77, SbBoW 0.75 matches: 354
-BestMatchLKF: 77, SbBoW 0.75 matches: 371
-BestMatchLKF: 77, SbBoW 0.75 matches: 287
-BestMatchLKF: 77, SbBoW 0.75 matches: 280
-BestMatchLKF: 77, SbBoW 0.75 matches: 254
-BestMatchLKF: 77, SbBoW 0.75 matches: 258
-BestMatchLKF: 77, SbBoW 0.75 matches: 231
-BestMatchLKF: 77, SbBoW 0.75 matches: 222
-BestMatchLKF: 77, SbBoW 0.75 matches: 171
-BestMatchLKF: 78, SbBoW 0.75 matches: 286
-BestMatchLKF: 78, SbBoW 0.75 matches: 271
-BestMatchLKF: 78, SbBoW 0.75 matches: 216
-BestMatchLKF: 78, SbBoW 0.75 matches: 213
-BestMatchLKF: 78, SbBoW 0.75 matches: 176
-BestMatchLKF: 79, SbBoW 0.75 matches: 161
-BestMatchLKF: 79, SbBoW 0.75 matches: 184
-BestMatchLKF: 79, SbBoW 0.75 matches: 246
-BestMatchLKF: 79, SbBoW 0.75 matches: 284
-BestMatchLKF: 79, SbBoW 0.75 matches: 331
-BestMatchLKF: 79, SbBoW 0.75 matches: 249
-BestMatchLKF: 79, SbBoW 0.75 matches: 201
-BestMatchLKF: 79, SbBoW 0.75 matches: 150
-BestMatchLKF: 80, SbBoW 0.75 matches: 146
-BestMatchLKF: 80, SbBoW 0.75 matches: 173
-BestMatchLKF: 80, SbBoW 0.75 matches: 208
-BestMatchLKF: 80, SbBoW 0.75 matches: 240
-BestMatchLKF: 80, SbBoW 0.75 matches: 276
-BestMatchLKF: 80, SbBoW 0.75 matches: 277
-BestMatchLKF: 80, SbBoW 0.75 matches: 257
-BestMatchLKF: 80, SbBoW 0.75 matches: 169
-BestMatchLKF: 80, SbBoW 0.75 matches: 176
-BestMatchLKF: 80, SbBoW 0.75 matches: 148
-BestMatchLKF: 81, SbBoW 0.75 matches: 146
-BestMatchLKF: 81, SbBoW 0.75 matches: 158
-BestMatchLKF: 81, SbBoW 0.75 matches: 168
-BestMatchLKF: 81, SbBoW 0.75 matches: 182
-BestMatchLKF: 81, SbBoW 0.75 matches: 200
-BestMatchLKF: 81, SbBoW 0.75 matches: 243
-BestMatchLKF: 81, SbBoW 0.75 matches: 254
-BestMatchLKF: 81, SbBoW 0.75 matches: 298
-BestMatchLKF: 81, SbBoW 0.75 matches: 319
-BestMatchLKF: 81, SbBoW 0.75 matches: 985
-BestMatchLKF: 81, SbBoW 0.75 matches: 306
-BestMatchLKF: 81, SbBoW 0.75 matches: 267
-BestMatchLKF: 81, SbBoW 0.75 matches: 254
-BestMatchLKF: 81, SbBoW 0.75 matches: 214
-BestMatchLKF: 81, SbBoW 0.75 matches: 205
-BestMatchLKF: 81, SbBoW 0.75 matches: 159
-BestMatchLKF: 81, SbBoW 0.75 matches: 170
-BestMatchLKF: 81, SbBoW 0.75 matches: 160
-BestMatchLKF: 81, SbBoW 0.75 matches: 135
-BestMatchLKF: 81, SbBoW 0.75 matches: 131
-BestMatchLKF: 81, SbBoW 0.75 matches: 125
-BestMatchLKF: 81, SbBoW 0.75 matches: 101
-BestMatchLKF: 81, SbBoW 0.75 matches: 124
-BestMatchLKF: 81, SbBoW 0.75 matches: 109
-BestMatchLKF: 81, SbBoW 0.75 matches: 107
-BestMatchLKF: 81, SbBoW 0.75 matches: 109
-BestMatchLKF: 81, SbBoW 0.75 matches: 88
-BestMatchLKF: 108, SbBoW 0.75 matches: 67
-BestMatchLKF: 107, SbBoW 0.75 matches: 70
-BestMatchLKF: 96, SbBoW 0.75 matches: 77
-BestMatchLKF: 96, SbBoW 0.75 matches: 76
-BestMatchLKF: 96, SbBoW 0.75 matches: 74
-BestMatchLKF: 107, SbBoW 0.75 matches: 72
-BestMatchLKF: 108, SbBoW 0.75 matches: 65
-BestMatchLKF: 96, SbBoW 0.75 matches: 84
-BestMatchLKF: 96, SbBoW 0.75 matches: 83
-BestMatchLKF: 96, SbBoW 0.75 matches: 89
-BestMatchLKF: 107, SbBoW 0.75 matches: 73
-BestMatchLKF: 107, SbBoW 0.75 matches: 80
-BestMatchLKF: 96, SbBoW 0.75 matches: 87
-BestMatchLKF: 108, SbBoW 0.75 matches: 75
-BestMatchLKF: 96, SbBoW 0.75 matches: 94
-BestMatchLKF: 107, SbBoW 0.75 matches: 90
-BestMatchLKF: 107, SbBoW 0.75 matches: 98
-BestMatchLKF: 107, SbBoW 0.75 matches: 109
-BestMatchLKF: 96, SbBoW 0.75 matches: 99
-BestMatchLKF: 96, SbBoW 0.75 matches: 92
-BestMatchLKF: 96, SbBoW 0.75 matches: 115
-BestMatchLKF: 96, SbBoW 0.75 matches: 103
-BestMatchLKF: 96, SbBoW 0.75 matches: 112
-BestMatchLKF: 96, SbBoW 0.75 matches: 103
-BestMatchLKF: 96, SbBoW 0.75 matches: 117
-BestMatchLKF: 96, SbBoW 0.75 matches: 117
-BestMatchLKF: 82, SbBoW 0.75 matches: 90
-BestMatchLKF: 82, SbBoW 0.75 matches: 81
-BestMatchLKF: 96, SbBoW 0.75 matches: 96
-BestMatchLKF: 96, SbBoW 0.75 matches: 107
-BestMatchLKF: 96, SbBoW 0.75 matches: 89
-BestMatchLKF: 82, SbBoW 0.75 matches: 92
-BestMatchLKF: 96, SbBoW 0.75 matches: 110
-BestMatchLKF: 96, SbBoW 0.75 matches: 108
-BestMatchLKF: 30, SbBoW 0.75 matches: 73
-BestMatchLKF: 96, SbBoW 0.75 matches: 83
-BestMatchLKF: 82, SbBoW 0.75 matches: 108
-BestMatchLKF: 82, SbBoW 0.75 matches: 138
-BestMatchLKF: 82, SbBoW 0.75 matches: 150
-BestMatchLKF: 82, SbBoW 0.75 matches: 188
-BestMatchLKF: 82, SbBoW 0.75 matches: 221
-BestMatchLKF: 82, SbBoW 0.75 matches: 270
-BestMatchLKF: 82, SbBoW 0.75 matches: 289
-BestMatchLKF: 82, SbBoW 0.75 matches: 985
-BestMatchLKF: 82, SbBoW 0.75 matches: 233
-BestMatchLKF: 82, SbBoW 0.75 matches: 222
-BestMatchLKF: 82, SbBoW 0.75 matches: 192
-BestMatchLKF: 82, SbBoW 0.75 matches: 176
-BestMatchLKF: 82, SbBoW 0.75 matches: 160
-BestMatchLKF: 82, SbBoW 0.75 matches: 140
-BestMatchLKF: 83, SbBoW 0.75 matches: 183
-BestMatchLKF: 83, SbBoW 0.75 matches: 203
-BestMatchLKF: 83, SbBoW 0.75 matches: 232
-BestMatchLKF: 83, SbBoW 0.75 matches: 246
-BestMatchLKF: 83, SbBoW 0.75 matches: 312
-BestMatchLKF: 83, SbBoW 0.75 matches: 394
-BestMatchLKF: 84, SbBoW 0.75 matches: 197
-BestMatchLKF: 84, SbBoW 0.75 matches: 239
-BestMatchLKF: 84, SbBoW 0.75 matches: 282
-BestMatchLKF: 84, SbBoW 0.75 matches: 989
-BestMatchLKF: 84, SbBoW 0.75 matches: 278
-BestMatchLKF: 84, SbBoW 0.75 matches: 257
-BestMatchLKF: 85, SbBoW 0.75 matches: 366
-BestMatchLKF: 85, SbBoW 0.75 matches: 314
-BestMatchLKF: 86, SbBoW 0.75 matches: 343
-BestMatchLKF: 86, SbBoW 0.75 matches: 295
-BestMatchLKF: 87, SbBoW 0.75 matches: 351
-BestMatchLKF: 87, SbBoW 0.75 matches: 346
-BestMatchLKF: 88, SbBoW 0.75 matches: 291
-BestMatchLKF: 89, SbBoW 0.75 matches: 375
-BestMatchLKF: 89, SbBoW 0.75 matches: 357
-BestMatchLKF: 89, SbBoW 0.75 matches: 279
-BestMatchLKF: 90, SbBoW 0.75 matches: 249
-BestMatchLKF: 90, SbBoW 0.75 matches: 272
-BestMatchLKF: 90, SbBoW 0.75 matches: 254
-BestMatchLKF: 90, SbBoW 0.75 matches: 301
-BestMatchLKF: 90, SbBoW 0.75 matches: 347
-BestMatchLKF: 90, SbBoW 0.75 matches: 303
-BestMatchLKF: 90, SbBoW 0.75 matches: 267
-BestMatchLKF: 90, SbBoW 0.75 matches: 249
-BestMatchLKF: 90, SbBoW 0.75 matches: 221
-BestMatchLKF: 90, SbBoW 0.75 matches: 220
-BestMatchLKF: 90, SbBoW 0.75 matches: 209
-BestMatchLKF: 90, SbBoW 0.75 matches: 188
-BestMatchLKF: 90, SbBoW 0.75 matches: 185
-BestMatchLKF: 90, SbBoW 0.75 matches: 170
-BestMatchLKF: 90, SbBoW 0.75 matches: 137
-BestMatchLKF: 91, SbBoW 0.75 matches: 137
-BestMatchLKF: 91, SbBoW 0.75 matches: 150
-BestMatchLKF: 91, SbBoW 0.75 matches: 165
-BestMatchLKF: 91, SbBoW 0.75 matches: 188
-BestMatchLKF: 91, SbBoW 0.75 matches: 190
-BestMatchLKF: 91, SbBoW 0.75 matches: 205
-BestMatchLKF: 91, SbBoW 0.75 matches: 240
-BestMatchLKF: 91, SbBoW 0.75 matches: 245
-BestMatchLKF: 91, SbBoW 0.75 matches: 246
-BestMatchLKF: 91, SbBoW 0.75 matches: 174
-BestMatchLKF: 91, SbBoW 0.75 matches: 259
-BestMatchLKF: 91, SbBoW 0.75 matches: 275
-BestMatchLKF: 91, SbBoW 0.75 matches: 317
-BestMatchLKF: 91, SbBoW 0.75 matches: 893
-BestMatchLKF: 91, SbBoW 0.75 matches: 307
-BestMatchLKF: 91, SbBoW 0.75 matches: 292
-BestMatchLKF: 91, SbBoW 0.75 matches: 228
-BestMatchLKF: 91, SbBoW 0.75 matches: 177
-BestMatchLKF: 91, SbBoW 0.75 matches: 171
-BestMatchLKF: 91, SbBoW 0.75 matches: 140
-BestMatchLKF: 91, SbBoW 0.75 matches: 142
-BestMatchLKF: 91, SbBoW 0.75 matches: 128
-BestMatchLKF: 92, SbBoW 0.75 matches: 148
-BestMatchLKF: 92, SbBoW 0.75 matches: 168
-BestMatchLKF: 92, SbBoW 0.75 matches: 187
-BestMatchLKF: 92, SbBoW 0.75 matches: 224
-BestMatchLKF: 92, SbBoW 0.75 matches: 232
-BestMatchLKF: 92, SbBoW 0.75 matches: 342
-BestMatchLKF: 92, SbBoW 0.75 matches: 266
-BestMatchLKF: 92, SbBoW 0.75 matches: 242
-BestMatchLKF: 92, SbBoW 0.75 matches: 191
-BestMatchLKF: 92, SbBoW 0.75 matches: 193
-BestMatchLKF: 92, SbBoW 0.75 matches: 173
-BestMatchLKF: 92, SbBoW 0.75 matches: 178
-BestMatchLKF: 92, SbBoW 0.75 matches: 145
-BestMatchLKF: 92, SbBoW 0.75 matches: 146
-BestMatchLKF: 92, SbBoW 0.75 matches: 137
-BestMatchLKF: 92, SbBoW 0.75 matches: 107
-BestMatchLKF: 93, SbBoW 0.75 matches: 92
-BestMatchLKF: 93, SbBoW 0.75 matches: 139
-BestMatchLKF: 93, SbBoW 0.75 matches: 171
-BestMatchLKF: 93, SbBoW 0.75 matches: 214
-BestMatchLKF: 93, SbBoW 0.75 matches: 244
-BestMatchLKF: 93, SbBoW 0.75 matches: 988
-BestMatchLKF: 93, SbBoW 0.75 matches: 242
-BestMatchLKF: 93, SbBoW 0.75 matches: 207
-BestMatchLKF: 93, SbBoW 0.75 matches: 182
-BestMatchLKF: 93, SbBoW 0.75 matches: 148
-BestMatchLKF: 93, SbBoW 0.75 matches: 134
-BestMatchLKF: 93, SbBoW 0.75 matches: 142
-BestMatchLKF: 93, SbBoW 0.75 matches: 100
-BestMatchLKF: 94, SbBoW 0.75 matches: 73
-BestMatchLKF: 94, SbBoW 0.75 matches: 75
-BestMatchLKF: 94, SbBoW 0.75 matches: 95
-BestMatchLKF: 94, SbBoW 0.75 matches: 104
-BestMatchLKF: 94, SbBoW 0.75 matches: 121
-BestMatchLKF: 94, SbBoW 0.75 matches: 155
-BestMatchLKF: 94, SbBoW 0.75 matches: 177
-BestMatchLKF: 94, SbBoW 0.75 matches: 227
-BestMatchLKF: 94, SbBoW 0.75 matches: 282
-BestMatchLKF: 94, SbBoW 0.75 matches: 337
-BestMatchLKF: 94, SbBoW 0.75 matches: 266
-BestMatchLKF: 94, SbBoW 0.75 matches: 236
-BestMatchLKF: 94, SbBoW 0.75 matches: 171
-BestMatchLKF: 94, SbBoW 0.75 matches: 162
-BestMatchLKF: 94, SbBoW 0.75 matches: 160
-BestMatchLKF: 94, SbBoW 0.75 matches: 135
-BestMatchLKF: 94, SbBoW 0.75 matches: 127
-BestMatchLKF: 94, SbBoW 0.75 matches: 101
-BestMatchLKF: 94, SbBoW 0.75 matches: 95
-BestMatchLKF: 10, SbBoW 0.75 matches: 72
-BestMatchLKF: 95, SbBoW 0.75 matches: 127
-BestMatchLKF: 95, SbBoW 0.75 matches: 146
-BestMatchLKF: 95, SbBoW 0.75 matches: 182
-BestMatchLKF: 95, SbBoW 0.75 matches: 195
-BestMatchLKF: 95, SbBoW 0.75 matches: 234
-BestMatchLKF: 95, SbBoW 0.75 matches: 246
-BestMatchLKF: 95, SbBoW 0.75 matches: 368
-BestMatchLKF: 95, SbBoW 0.75 matches: 405
-BestMatchLKF: 95, SbBoW 0.75 matches: 240
-BestMatchLKF: 95, SbBoW 0.75 matches: 206
-BestMatchLKF: 95, SbBoW 0.75 matches: 164
-BestMatchLKF: 95, SbBoW 0.75 matches: 156
-BestMatchLKF: 95, SbBoW 0.75 matches: 154
-BestMatchLKF: 95, SbBoW 0.75 matches: 135
-BestMatchLKF: 95, SbBoW 0.75 matches: 145
-BestMatchLKF: 95, SbBoW 0.75 matches: 138
-BestMatchLKF: 95, SbBoW 0.75 matches: 129
-BestMatchLKF: 95, SbBoW 0.75 matches: 137
-BestMatchLKF: 95, SbBoW 0.75 matches: 123
-BestMatchLKF: 107, SbBoW 0.75 matches: 24
-BestMatchLKF: 95, SbBoW 0.75 matches: 92
-BestMatchLKF: 96, SbBoW 0.75 matches: 103
-BestMatchLKF: 96, SbBoW 0.75 matches: 142
-BestMatchLKF: 96, SbBoW 0.75 matches: 190
-BestMatchLKF: 96, SbBoW 0.75 matches: 238
-BestMatchLKF: 96, SbBoW 0.75 matches: 251
-BestMatchLKF: 96, SbBoW 0.75 matches: 267
-BestMatchLKF: 96, SbBoW 0.75 matches: 264
-BestMatchLKF: 96, SbBoW 0.75 matches: 323
-BestMatchLKF: 96, SbBoW 0.75 matches: 358
-BestMatchLKF: 96, SbBoW 0.75 matches: 997
-BestMatchLKF: 96, SbBoW 0.75 matches: 326
-BestMatchLKF: 96, SbBoW 0.75 matches: 315
-BestMatchLKF: 96, SbBoW 0.75 matches: 267
-BestMatchLKF: 96, SbBoW 0.75 matches: 256
-BestMatchLKF: 96, SbBoW 0.75 matches: 227
-BestMatchLKF: 96, SbBoW 0.75 matches: 223
-BestMatchLKF: 96, SbBoW 0.75 matches: 210
-BestMatchLKF: 96, SbBoW 0.75 matches: 183
-BestMatchLKF: 96, SbBoW 0.75 matches: 163
-BestMatchLKF: 96, SbBoW 0.75 matches: 166
-BestMatchLKF: 96, SbBoW 0.75 matches: 129
-BestMatchLKF: 96, SbBoW 0.75 matches: 124
-BestMatchLKF: 96, SbBoW 0.75 matches: 130
-BestMatchLKF: 96, SbBoW 0.75 matches: 130
-BestMatchLKF: 96, SbBoW 0.75 matches: 115
-BestMatchLKF: 96, SbBoW 0.75 matches: 106
-BestMatchLKF: 96, SbBoW 0.75 matches: 86
-BestMatchLKF: 96, SbBoW 0.75 matches: 90
-BestMatchLKF: 96, SbBoW 0.75 matches: 82
-BestMatchLKF: 82, SbBoW 0.75 matches: 114
-BestMatchLKF: 96, SbBoW 0.75 matches: 64
-BestMatchLKF: 32, SbBoW 0.75 matches: 80
-BestMatchLKF: 82, SbBoW 0.75 matches: 139
-BestMatchLKF: 82, SbBoW 0.75 matches: 125
-BestMatchLKF: 82, SbBoW 0.75 matches: 142
-BestMatchLKF: 97, SbBoW 0.75 matches: 115
-BestMatchLKF: 97, SbBoW 0.75 matches: 119
-BestMatchLKF: 97, SbBoW 0.75 matches: 148
-BestMatchLKF: 97, SbBoW 0.75 matches: 165
-BestMatchLKF: 97, SbBoW 0.75 matches: 209
-BestMatchLKF: 97, SbBoW 0.75 matches: 348
-BestMatchLKF: 97, SbBoW 0.75 matches: 246
-BestMatchLKF: 83, SbBoW 0.75 matches: 166
-BestMatchLKF: 84, SbBoW 0.75 matches: 224
-BestMatchLKF: 84, SbBoW 0.75 matches: 218
-BestMatchLKF: 84, SbBoW 0.75 matches: 186
-BestMatchLKF: 84, SbBoW 0.75 matches: 149
-BestMatchLKF: 84, SbBoW 0.75 matches: 146
-BestMatchLKF: 66, SbBoW 0.75 matches: 174
-BestMatchLKF: 90, SbBoW 0.75 matches: 129
-BestMatchLKF: 90, SbBoW 0.75 matches: 139
-BestMatchLKF: 89, SbBoW 0.75 matches: 120
-BestMatchLKF: 90, SbBoW 0.75 matches: 93
-BestMatchLKF: 90, SbBoW 0.75 matches: 80
-BestMatchLKF: 90, SbBoW 0.75 matches: 84
-BestMatchLKF: 98, SbBoW 0.75 matches: 121
-BestMatchLKF: 98, SbBoW 0.75 matches: 134
-BestMatchLKF: 98, SbBoW 0.75 matches: 137
-BestMatchLKF: 98, SbBoW 0.75 matches: 187
-BestMatchLKF: 98, SbBoW 0.75 matches: 217
-BestMatchLKF: 98, SbBoW 0.75 matches: 308
-BestMatchLKF: 98, SbBoW 0.75 matches: 245
-BestMatchLKF: 98, SbBoW 0.75 matches: 227
-BestMatchLKF: 98, SbBoW 0.75 matches: 194
-BestMatchLKF: 98, SbBoW 0.75 matches: 181
-BestMatchLKF: 98, SbBoW 0.75 matches: 172
-BestMatchLKF: 99, SbBoW 0.75 matches: 156
-BestMatchLKF: 99, SbBoW 0.75 matches: 164
-BestMatchLKF: 98, SbBoW 0.75 matches: 124
-BestMatchLKF: 99, SbBoW 0.75 matches: 182
-BestMatchLKF: 99, SbBoW 0.75 matches: 184
-BestMatchLKF: 99, SbBoW 0.75 matches: 199
-BestMatchLKF: 99, SbBoW 0.75 matches: 201
-BestMatchLKF: 99, SbBoW 0.75 matches: 217
-BestMatchLKF: 99, SbBoW 0.75 matches: 204
-BestMatchLKF: 99, SbBoW 0.75 matches: 219
-BestMatchLKF: 99, SbBoW 0.75 matches: 247
-BestMatchLKF: 99, SbBoW 0.75 matches: 283
-BestMatchLKF: 99, SbBoW 0.75 matches: 324
-BestMatchLKF: 99, SbBoW 0.75 matches: 268
-BestMatchLKF: 99, SbBoW 0.75 matches: 246
-BestMatchLKF: 99, SbBoW 0.75 matches: 219
-BestMatchLKF: 99, SbBoW 0.75 matches: 199
-BestMatchLKF: 99, SbBoW 0.75 matches: 185
-BestMatchLKF: 100, SbBoW 0.75 matches: 155
-BestMatchLKF: 100, SbBoW 0.75 matches: 152
-BestMatchLKF: 99, SbBoW 0.75 matches: 152
-BestMatchLKF: 100, SbBoW 0.75 matches: 166
-BestMatchLKF: 100, SbBoW 0.75 matches: 230
-BestMatchLKF: 100, SbBoW 0.75 matches: 276
-BestMatchLKF: 100, SbBoW 0.75 matches: 367
-BestMatchLKF: 100, SbBoW 0.75 matches: 984
-BestMatchLKF: 100, SbBoW 0.75 matches: 343
-BestMatchLKF: 100, SbBoW 0.75 matches: 290
-BestMatchLKF: 100, SbBoW 0.75 matches: 246
-BestMatchLKF: 100, SbBoW 0.75 matches: 198
-BestMatchLKF: 100, SbBoW 0.75 matches: 180
-BestMatchLKF: 100, SbBoW 0.75 matches: 162
-BestMatchLKF: 100, SbBoW 0.75 matches: 152
-BestMatchLKF: 100, SbBoW 0.75 matches: 159
-BestMatchLKF: 100, SbBoW 0.75 matches: 158
-BestMatchLKF: 100, SbBoW 0.75 matches: 175
-BestMatchLKF: 100, SbBoW 0.75 matches: 208
-BestMatchLKF: 100, SbBoW 0.75 matches: 223
-BestMatchLKF: 100, SbBoW 0.75 matches: 210
-BestMatchLKF: 100, SbBoW 0.75 matches: 221
-BestMatchLKF: 100, SbBoW 0.75 matches: 192
-BestMatchLKF: 100, SbBoW 0.75 matches: 195
-BestMatchLKF: 100, SbBoW 0.75 matches: 185
-BestMatchLKF: 100, SbBoW 0.75 matches: 141
-BestMatchLKF: 100, SbBoW 0.75 matches: 147
-BestMatchLKF: 100, SbBoW 0.75 matches: 138
-BestMatchLKF: 101, SbBoW 0.75 matches: 159
-BestMatchLKF: 101, SbBoW 0.75 matches: 206
-BestMatchLKF: 101, SbBoW 0.75 matches: 297
-BestMatchLKF: 101, SbBoW 0.75 matches: 987
-BestMatchLKF: 101, SbBoW 0.75 matches: 231
-BestMatchLKF: 101, SbBoW 0.75 matches: 173
-BestMatchLKF: 101, SbBoW 0.75 matches: 128
-BestMatchLKF: 100, SbBoW 0.75 matches: 38
-BestMatchLKF: 101, SbBoW 0.75 matches: 86
-BestMatchLKF: 101, SbBoW 0.75 matches: 90
-BestMatchLKF: 100, SbBoW 0.75 matches: 36
-BestMatchLKF: 102, SbBoW 0.75 matches: 66
-BestMatchLKF: 102, SbBoW 0.75 matches: 84
-BestMatchLKF: 102, SbBoW 0.75 matches: 94
-BestMatchLKF: 102, SbBoW 0.75 matches: 98
-BestMatchLKF: 102, SbBoW 0.75 matches: 119
-BestMatchLKF: 102, SbBoW 0.75 matches: 132
-BestMatchLKF: 102, SbBoW 0.75 matches: 170
-BestMatchLKF: 102, SbBoW 0.75 matches: 197
-BestMatchLKF: 102, SbBoW 0.75 matches: 317
-BestMatchLKF: 102, SbBoW 0.75 matches: 322
-BestMatchLKF: 102, SbBoW 0.75 matches: 226
-BestMatchLKF: 102, SbBoW 0.75 matches: 182
-BestMatchLKF: 102, SbBoW 0.75 matches: 137
-BestMatchLKF: 102, SbBoW 0.75 matches: 145
-BestMatchLKF: 102, SbBoW 0.75 matches: 119
-BestMatchLKF: 102, SbBoW 0.75 matches: 107
-BestMatchLKF: 103, SbBoW 0.75 matches: 124
-BestMatchLKF: 103, SbBoW 0.75 matches: 132
-BestMatchLKF: 103, SbBoW 0.75 matches: 122
-BestMatchLKF: 103, SbBoW 0.75 matches: 176
-BestMatchLKF: 103, SbBoW 0.75 matches: 201
-BestMatchLKF: 103, SbBoW 0.75 matches: 258
-BestMatchLKF: 103, SbBoW 0.75 matches: 256
-BestMatchLKF: 103, SbBoW 0.75 matches: 185
-BestMatchLKF: 103, SbBoW 0.75 matches: 133
-BestMatchLKF: 103, SbBoW 0.75 matches: 122
-BestMatchLKF: 104, SbBoW 0.75 matches: 122
-BestMatchLKF: 104, SbBoW 0.75 matches: 141
-BestMatchLKF: 104, SbBoW 0.75 matches: 164
-BestMatchLKF: 104, SbBoW 0.75 matches: 184
-BestMatchLKF: 104, SbBoW 0.75 matches: 236
-BestMatchLKF: 104, SbBoW 0.75 matches: 315
-BestMatchLKF: 104, SbBoW 0.75 matches: 323
-BestMatchLKF: 104, SbBoW 0.75 matches: 218
-BestMatchLKF: 104, SbBoW 0.75 matches: 176
-BestMatchLKF: 104, SbBoW 0.75 matches: 145
-BestMatchLKF: 104, SbBoW 0.75 matches: 125
-BestMatchLKF: 105, SbBoW 0.75 matches: 64
-BestMatchLKF: 105, SbBoW 0.75 matches: 76
-BestMatchLKF: 105, SbBoW 0.75 matches: 81
-BestMatchLKF: 105, SbBoW 0.75 matches: 101
-BestMatchLKF: 105, SbBoW 0.75 matches: 132
-BestMatchLKF: 105, SbBoW 0.75 matches: 278
-BestMatchLKF: 105, SbBoW 0.75 matches: 247
-BestMatchLKF: 105, SbBoW 0.75 matches: 175
-BestMatchLKF: 105, SbBoW 0.75 matches: 110
-BestMatchLKF: 105, SbBoW 0.75 matches: 61
-BestMatchLKF: 105, SbBoW 0.75 matches: 65
-BestMatchLKF: 105, SbBoW 0.75 matches: 56
-BestMatchLKF: 105, SbBoW 0.75 matches: 50
-BestMatchLKF: 105, SbBoW 0.75 matches: 31
-BestMatchLKF: 105, SbBoW 0.75 matches: 29
-BestMatchLKF: 105, SbBoW 0.75 matches: 19
-BestMatchLKF: 105, SbBoW 0.75 matches: 27
-BestMatchLKF: 105, SbBoW 0.75 matches: 23
-BestMatchLKF: 105, SbBoW 0.75 matches: 26
-BestMatchLKF: 105, SbBoW 0.75 matches: 17
-BestMatchLKF: 105, SbBoW 0.75 matches: 19
-BestMatchLKF: 106, SbBoW 0.75 matches: 82
-BestMatchLKF: 106, SbBoW 0.75 matches: 981
-BestMatchLKF: 106, SbBoW 0.75 matches: 95
-BestMatchLKF: 106, SbBoW 0.75 matches: 59
-BestMatchLKF: 96, SbBoW 0.75 matches: 61
-BestMatchLKF: 107, SbBoW 0.75 matches: 81
-BestMatchLKF: 107, SbBoW 0.75 matches: 85
-BestMatchLKF: 107, SbBoW 0.75 matches: 90
-BestMatchLKF: 107, SbBoW 0.75 matches: 120
-BestMatchLKF: 107, SbBoW 0.75 matches: 112
-BestMatchLKF: 107, SbBoW 0.75 matches: 128
-BestMatchLKF: 107, SbBoW 0.75 matches: 153
-BestMatchLKF: 107, SbBoW 0.75 matches: 181
-BestMatchLKF: 107, SbBoW 0.75 matches: 200
-BestMatchLKF: 107, SbBoW 0.75 matches: 322
-BestMatchLKF: 107, SbBoW 0.75 matches: 251
-BestMatchLKF: 107, SbBoW 0.75 matches: 206
-BestMatchLKF: 107, SbBoW 0.75 matches: 164
-BestMatchLKF: 107, SbBoW 0.75 matches: 171
-BestMatchLKF: 108, SbBoW 0.75 matches: 127
-BestMatchLKF: 107, SbBoW 0.75 matches: 166
-BestMatchLKF: 107, SbBoW 0.75 matches: 170
-BestMatchLKF: 108, SbBoW 0.75 matches: 145
-BestMatchLKF: 107, SbBoW 0.75 matches: 145
-BestMatchLKF: 107, SbBoW 0.75 matches: 146
-BestMatchLKF: 107, SbBoW 0.75 matches: 143
-BestMatchLKF: 107, SbBoW 0.75 matches: 133
-BestMatchLKF: 107, SbBoW 0.75 matches: 140
-BestMatchLKF: 107, SbBoW 0.75 matches: 149
-BestMatchLKF: 107, SbBoW 0.75 matches: 163
-BestMatchLKF: 107, SbBoW 0.75 matches: 152
-BestMatchLKF: 107, SbBoW 0.75 matches: 161
-BestMatchLKF: 107, SbBoW 0.75 matches: 143
-BestMatchLKF: 107, SbBoW 0.75 matches: 145
-BestMatchLKF: 108, SbBoW 0.75 matches: 170
-BestMatchLKF: 108, SbBoW 0.75 matches: 173
-BestMatchLKF: 108, SbBoW 0.75 matches: 195
-BestMatchLKF: 108, SbBoW 0.75 matches: 215
-BestMatchLKF: 108, SbBoW 0.75 matches: 249
-BestMatchLKF: 108, SbBoW 0.75 matches: 239
-BestMatchLKF: 108, SbBoW 0.75 matches: 239
-BestMatchLKF: 108, SbBoW 0.75 matches: 229
-BestMatchLKF: 108, SbBoW 0.75 matches: 271
-BestMatchLKF: 108, SbBoW 0.75 matches: 219
-BestMatchLKF: 108, SbBoW 0.75 matches: 158
-BestMatchLKF: 108, SbBoW 0.75 matches: 116
-BestMatchLKF: 108, SbBoW 0.75 matches: 76
-BestMatchLKF: 108, SbBoW 0.75 matches: 75
-BestMatchLKF: 108, SbBoW 0.75 matches: 64
-BestMatchLKF: 108, SbBoW 0.75 matches: 66
-BestMatchLKF: 108, SbBoW 0.75 matches: 62
-BestMatchLKF: 108, SbBoW 0.75 matches: 75
-BestMatchLKF: 108, SbBoW 0.75 matches: 71
-BestMatchLKF: 108, SbBoW 0.75 matches: 73
-BestMatchLKF: 8, SbBoW 0.75 matches: 21
-BestMatchLKF: 108, SbBoW 0.75 matches: 64
-BestMatchLKF: 107, SbBoW 0.75 matches: 38
-BestMatchLKF: 108, SbBoW 0.75 matches: 39
-BestMatchLKF: 110, SbBoW 0.75 matches: 34
-BestMatchLKF: 110, SbBoW 0.75 matches: 71
-BestMatchLKF: 109, SbBoW 0.75 matches: 100
-BestMatchLKF: 110, SbBoW 0.75 matches: 142
-BestMatchLKF: 109, SbBoW 0.75 matches: 202
-BestMatchLKF: 109, SbBoW 0.75 matches: 258
-BestMatchLKF: 109, SbBoW 0.75 matches: 245
-BestMatchLKF: 109, SbBoW 0.75 matches: 286
-BestMatchLKF: 109, SbBoW 0.75 matches: 346
-BestMatchLKF: 109, SbBoW 0.75 matches: 990
-BestMatchLKF: 109, SbBoW 0.75 matches: 275
-BestMatchLKF: 109, SbBoW 0.75 matches: 256
-BestMatchLKF: 109, SbBoW 0.75 matches: 262
-BestMatchLKF: 109, SbBoW 0.75 matches: 255
-BestMatchLKF: 110, SbBoW 0.75 matches: 261
-BestMatchLKF: 110, SbBoW 0.75 matches: 253
-BestMatchLKF: 110, SbBoW 0.75 matches: 279
-BestMatchLKF: 110, SbBoW 0.75 matches: 281
-BestMatchLKF: 110, SbBoW 0.75 matches: 286
-BestMatchLKF: 110, SbBoW 0.75 matches: 306
-BestMatchLKF: 110, SbBoW 0.75 matches: 295
-BestMatchLKF: 110, SbBoW 0.75 matches: 304
+Current Frame: 9, BestMatchLKF: 6, SbBoW 0.75 matches: 327
+Current Frame: 10, BestMatchLKF: 6, SbBoW 0.75 matches: 296
+Current Frame: 11, BestMatchLKF: 7, SbBoW 0.75 matches: 303
+Current Frame: 12, BestMatchLKF: 7, SbBoW 0.75 matches: 283
+Current Frame: 13, BestMatchLKF: 9, SbBoW 0.75 matches: 979
+Current Frame: 14, BestMatchLKF: 11, SbBoW 0.75 matches: 987
+Current Frame: 15, BestMatchLKF: 11, SbBoW 0.75 matches: 244
+Current Frame: 16, BestMatchLKF: 11, SbBoW 0.75 matches: 158
+Current Frame: 17, BestMatchLKF: 12, SbBoW 0.75 matches: 141, Triangulate: 122
+[0.97830683, -0.081634425, 0.19039842, -0.71694028;
+ 0.081984535, 0.99661529, 0.0060507059, -0.091981068;
+ -0.19024792, 0.0096903183, 0.98168832, 0.69103986;
+ 0, 0, 0, 1]
+Current Frame: 18, BestMatchLKF: 12, SbBoW 0.75 matches: 180
+Current Frame: 19, BestMatchLKF: 12, SbBoW 0.75 matches: 233
+Current Frame: 20, BestMatchLKF: 12, SbBoW 0.75 matches: 266
+Current Frame: 21, BestMatchLKF: 12, SbBoW 0.75 matches: 189, Triangulate: 166
+[0.99441379, 0.040207829, -0.097595245, 0.94696957;
+ -0.039763115, 0.99918789, 0.006497765, -0.075298093;
+ 0.097777218, -0.0025807302, 0.9952051, -0.31237608;
+ 0, 0, 0, 1]
+Current Frame: 22, BestMatchLKF: 12, SbBoW 0.75 matches: 127
+Current Frame: 23, BestMatchLKF: 13, SbBoW 0.75 matches: 197
+Current Frame: 24, BestMatchLKF: 13, SbBoW 0.75 matches: 196
+Current Frame: 25, BestMatchLKF: 13, SbBoW 0.75 matches: 244
+Current Frame: 26, BestMatchLKF: 13, SbBoW 0.75 matches: 993
+Current Frame: 27, BestMatchLKF: 13, SbBoW 0.75 matches: 336
+Current Frame: 28, BestMatchLKF: 13, SbBoW 0.75 matches: 334
+Current Frame: 29, BestMatchLKF: 13, SbBoW 0.75 matches: 287, Triangulate: 241
+[0.99940193, 0.012183771, -0.032362401, 0.98160201;
+ -0.011825219, 0.99986684, 0.011247318, -0.18776833;
+ 0.0324951, -0.01085788, 0.99941289, -0.034649067;
+ 0, 0, 0, 1]
+Current Frame: 30, BestMatchLKF: 14, SbBoW 0.75 matches: 239
+Current Frame: 31, BestMatchLKF: 14, SbBoW 0.75 matches: 317
+Current Frame: 32, BestMatchLKF: 14, SbBoW 0.75 matches: 313
+Current Frame: 33, BestMatchLKF: 14, SbBoW 0.75 matches: 242, Triangulate: 198
+[0.99962139, -0.0270516, 0.0050242841, 0.59509271;
+ 0.027011234, 0.99960351, 0.0079329293, 0.035679154;
+ -0.0052368343, -0.0077942237, 0.99995589, -0.80286467;
+ 0, 0, 0, 1]
+Current Frame: 34, BestMatchLKF: 14, SbBoW 0.75 matches: 218, Triangulate: 181
+[0.99868846, -0.051193021, -0.00062292814, 0.8870123;
+ 0.051191986, 0.998353, 0.025893111, -0.14027907;
+ -0.00070363283, -0.025891028, 0.99966455, -0.43992147;
+ 0, 0, 0, 1]
+Current Frame: 35, BestMatchLKF: 14, SbBoW 0.75 matches: 183, Triangulate: 135
+[0.99867266, -0.050347019, 0.01087752, 0.36552697;
+ 0.049879923, 0.99796867, 0.039628088, -0.17445748;
+ -0.012850583, -0.039032876, 0.99915534, -0.91430557;
+ 0, 0, 0, 1]
+Current Frame: 36, BestMatchLKF: 14, SbBoW 0.75 matches: 195
+Current Frame: 37, BestMatchLKF: 14, SbBoW 0.75 matches: 192
+Current Frame: 38, BestMatchLKF: 14, SbBoW 0.75 matches: 168
+Current Frame: 39, BestMatchLKF: 14, SbBoW 0.75 matches: 164
+Current Frame: 40, BestMatchLKF: 14, SbBoW 0.75 matches: 157, Triangulate: 119
+[0.98150337, 0.069795296, -0.17826879, 0.71642858;
+ -0.067144021, 0.99752498, 0.020869911, 0.29613847;
+ 0.17928413, -0.0085142553, 0.98376048, -0.63168991;
+ 0, 0, 0, 1]
+Current Frame: 41, BestMatchLKF: 14, SbBoW 0.75 matches: 151
+Current Frame: 42, BestMatchLKF: 14, SbBoW 0.75 matches: 152
+Current Frame: 43, BestMatchLKF: 15, SbBoW 0.75 matches: 164, Triangulate: 129
+[0.99860507, 0.047734052, 0.022573419, 0.46014273;
+ -0.047883183, 0.99883425, 0.0061022639, -0.86783659;
+ -0.022255741, -0.0071747154, 0.99972659, 0.18742546;
+ 0, 0, 0, 1]
+Current Frame: 44, BestMatchLKF: 15, SbBoW 0.75 matches: 183, Triangulate: 131
+[0.99946022, 0.028759748, 0.015878648, 0.44513774;
+ -0.028757662, 0.99958646, -0.00036421418, -0.83407891;
+ -0.015882507, -9.2625618e-05, 0.99987394, 0.32582927;
+ 0, 0, 0, 1]
+Current Frame: 45, BestMatchLKF: 15, SbBoW 0.75 matches: 217
+Current Frame: 46, BestMatchLKF: 15, SbBoW 0.75 matches: 237, Triangulate: 188
+[0.99995422, 0.0081554651, 0.0050123632, 0.49013636;
+ -0.0081302822, 0.99995416, -0.0050594211, -0.72250342;
+ -0.0050534308, 0.0050183833, 0.99997461, 0.48760146;
+ 0, 0, 0, 1]
+Current Frame: 47, BestMatchLKF: 15, SbBoW 0.75 matches: 285, Triangulate: 222
+[0.99995899, 0.0077849627, 0.0046173334, 0.4671514;
+ -0.0077530742, 0.99994612, -0.006896466, -0.79004884;
+ -0.0046708435, 0.0068603456, 0.99996555, 0.39697897;
+ 0, 0, 0, 1]
+Current Frame: 48, BestMatchLKF: 15, SbBoW 0.75 matches: 299, Triangulate: 241
+[0.99999142, 0.0031386614, -0.0026859343, 0.68470937;
+ -0.0031502843, 0.99998534, -0.0043585896, -0.46872643;
+ 0.0026723444, 0.0043670833, 0.99998695, 0.55809367;
+ 0, 0, 0, 1]
+Current Frame: 49, BestMatchLKF: 15, SbBoW 0.75 matches: 990
+Current Frame: 50, BestMatchLKF: 16, SbBoW 0.75 matches: 219, Triangulate: 147
+[0.9974612, -0.0054136068, 0.071005218, 0.16460489;
+ 0.0046327859, 0.99992698, 0.011156499, -0.41952485;
+ -0.071060419, -0.010799259, 0.99741364, 0.89269489;
+ 0, 0, 0, 1]
+Current Frame: 51, BestMatchLKF: 16, SbBoW 0.75 matches: 272
+Current Frame: 52, BestMatchLKF: 16, SbBoW 0.75 matches: 304
+Current Frame: 53, BestMatchLKF: 16, SbBoW 0.75 matches: 353
+Current Frame: 54, BestMatchLKF: 16, SbBoW 0.75 matches: 240
+Current Frame: 55, BestMatchLKF: 17, SbBoW 0.75 matches: 231
+Current Frame: 56, BestMatchLKF: 17, SbBoW 0.75 matches: 287
+Current Frame: 57, BestMatchLKF: 17, SbBoW 0.75 matches: 343
+Current Frame: 58, BestMatchLKF: 17, SbBoW 0.75 matches: 257
+Current Frame: 59, BestMatchLKF: 17, SbBoW 0.75 matches: 210
+Current Frame: 60, BestMatchLKF: 17, SbBoW 0.75 matches: 206
+Current Frame: 61, BestMatchLKF: 17, SbBoW 0.75 matches: 192
+Current Frame: 62, BestMatchLKF: 17, SbBoW 0.75 matches: 192
+Current Frame: 63, BestMatchLKF: 17, SbBoW 0.75 matches: 189, Triangulate: 153
+[0.98163116, 0.033080965, -0.18789801, -0.44937342;
+ -0.034394175, 0.99940133, -0.0037325919, 0.5500986;
+ 0.18766214, 0.010126591, 0.98218149, -0.70388567;
+ 0, 0, 0, 1]
+Current Frame: 64, BestMatchLKF: 18, SbBoW 0.75 matches: 162, Triangulate: 138
+[0.98454487, -0.055506784, 0.16610369, 0.10606965;
+ 0.047083803, 0.99741805, 0.054227233, 0.49475572;
+ -0.16868478, -0.045568407, 0.98461616, 0.86253458;
+ 0, 0, 0, 1]
+Current Frame: 65, BestMatchLKF: 18, SbBoW 0.75 matches: 164, Triangulate: 130
+[0.98885292, -0.055204403, 0.13828395, 0.090940811;
+ 0.048959106, 0.9976387, 0.048166394, 0.49984962;
+ -0.14061645, -0.040859193, 0.98922068, 0.86132461;
+ 0, 0, 0, 1]
+Current Frame: 66, BestMatchLKF: 17, SbBoW 0.75 matches: 167
+Current Frame: 67, BestMatchLKF: 18, SbBoW 0.75 matches: 194, Triangulate: 164
+[0.9950285, -0.045846388, 0.088409655, -0.027560461;
+ 0.043021549, 0.99850911, 0.033596575, 0.44536504;
+ -0.08981809, -0.029626042, 0.99551749, 0.89492482;
+ 0, 0, 0, 1]
+Current Frame: 68, BestMatchLKF: 18, SbBoW 0.75 matches: 199, Triangulate: 159
+[0.9976719, -0.030592006, 0.060951233, -0.1444504;
+ 0.028438315, 0.99895096, 0.035894215, 0.27823156;
+ -0.061985359, -0.034077361, 0.99749517, 0.94959003;
+ 0, 0, 0, 1]
+Current Frame: 69, BestMatchLKF: 18, SbBoW 0.75 matches: 227, Triangulate: 188
+[0.99958026, -0.017988343, 0.022710443, -0.16245474;
+ 0.01763412, 0.99972135, 0.01569733, 0.30665827;
+ -0.022986546, -0.015290171, 0.99961877, 0.93785346;
+ 0, 0, 0, 1]
+Current Frame: 70, BestMatchLKF: 18, SbBoW 0.75 matches: 265, Triangulate: 214
+[0.99979645, 0.0040531, -0.01976797, -0.26759416;
+ -0.0039956272, 0.9999876, 0.002947662, 0.040294904;
+ 0.019779667, -0.0028680414, 0.99980021, 0.9626888;
+ 0, 0, 0, 1]
+Current Frame: 71, BestMatchLKF: 18, SbBoW 0.75 matches: 255, Triangulate: 187
+[0.99922216, 0.0065110289, -0.038894385, -0.19576365;
+ -0.0064431336, 0.99997759, 0.0018701777, -0.11783905;
+ 0.03890571, -0.0016180947, 0.99924153, 0.97354531;
+ 0, 0, 0, 1]
+Current Frame: 72, BestMatchLKF: 18, SbBoW 0.75 matches: 263, Triangulate: 179
+[0.99920398, 0.014361508, -0.037214786, -0.25249824;
+ -0.014239542, 0.99989241, 0.0035398901, -0.31609419;
+ 0.03726165, -0.0030070841, 0.99930096, 0.91451031;
+ 0, 0, 0, 1]
+Current Frame: 73, BestMatchLKF: 18, SbBoW 0.75 matches: 353
+Current Frame: 74, BestMatchLKF: 18, SbBoW 0.75 matches: 990
+Current Frame: 75, BestMatchLKF: 18, SbBoW 0.75 matches: 330
+Current Frame: 76, BestMatchLKF: 18, SbBoW 0.75 matches: 307
+Current Frame: 77, BestMatchLKF: 18, SbBoW 0.75 matches: 232, Triangulate: 151
+[0.99946958, 0.0077393204, 0.031629503, 0.37157878;
+ -0.0073245019, 0.99988586, -0.013211071, 0.44305411;
+ -0.031728059, 0.012972236, 0.9994123, -0.81586289;
+ 0, 0, 0, 1]
+Current Frame: 78, BestMatchLKF: 18, SbBoW 0.75 matches: 203, Triangulate: 166
+[0.99947995, 0.0090746582, 0.030945361, 0.42945069;
+ -0.0087691247, 0.99991167, -0.0099905431, 0.60987705;
+ -0.031033367, 0.0097141862, 0.99947125, -0.66604954;
+ 0, 0, 0, 1]
+Current Frame: 79, BestMatchLKF: 18, SbBoW 0.75 matches: 191, Triangulate: 151
+[0.99958289, 0.011030182, 0.026690364, 0.38375533;
+ -0.011166215, 0.99992532, 0.0049537122, 0.56069696;
+ -0.026633739, -0.0052497089, 0.9996314, -0.73372388;
+ 0, 0, 0, 1]
+Current Frame: 80, BestMatchLKF: 19, SbBoW 0.75 matches: 244, Triangulate: 206
+[0.99846566, -0.054600611, 0.0092244148, -0.4158569;
+ 0.054689854, 0.99845612, -0.009724766, -0.4844496;
+ -0.0086792409, 0.010214269, 0.99991012, 0.76965678;
+ 0, 0, 0, 1]
+Current Frame: 81, BestMatchLKF: 19, SbBoW 0.75 matches: 294
+Current Frame: 82, BestMatchLKF: 19, SbBoW 0.75 matches: 988
+Current Frame: 83, BestMatchLKF: 19, SbBoW 0.75 matches: 255
+Current Frame: 84, BestMatchLKF: 19, SbBoW 0.75 matches: 239, Triangulate: 173
+[0.99898523, 0.032412533, -0.031272031, 0.13826796;
+ -0.032339878, 0.99947298, 0.0028274655, 0.26217845;
+ 0.031347178, -0.0018133521, 0.99950695, -0.95506251;
+ 0, 0, 0, 1]
+Current Frame: 85, BestMatchLKF: 19, SbBoW 0.75 matches: 211, Triangulate: 167
+[0.99789602, 0.031230969, -0.056816161, 0.21619363;
+ -0.030798096, 0.99948967, 0.0084793363, -0.022602456;
+ 0.057051986, -0.0067116786, 0.99834865, -0.97608882;
+ 0, 0, 0, 1]
+Current Frame: 86, BestMatchLKF: 20, SbBoW 0.75 matches: 255
+Current Frame: 87, BestMatchLKF: 20, SbBoW 0.75 matches: 997
+Current Frame: 88, BestMatchLKF: 20, SbBoW 0.75 matches: 263, Triangulate: 186
+[0.99949241, -0.026498336, -0.017687172, -0.50472903;
+ 0.026496425, 0.99964875, -0.00034106337, 0.027380137;
+ 0.017690063, -0.00012772158, 0.99984354, -0.86284351;
+ 0, 0, 0, 1]
+Current Frame: 89, BestMatchLKF: 20, SbBoW 0.75 matches: 232, Triangulate: 176
+[0.99887145, -0.041697465, -0.022745579, -0.18111297;
+ 0.041692749, 0.99913013, -0.00067877024, -0.041220941;
+ 0.022754058, -0.00027029961, 0.99974114, -0.98259807;
+ 0, 0, 0, 1]
+Current Frame: 90, BestMatchLKF: 20, SbBoW 0.75 matches: 204, Triangulate: 173
+[0.99877846, -0.047940325, 0.01197651, -0.39660785;
+ 0.047959156, 0.99884856, -0.0012852009, 0.028999504;
+ -0.0119012, 0.0018580034, 0.9999274, -0.91752994;
+ 0, 0, 0, 1]
+Current Frame: 91, BestMatchLKF: 21, SbBoW 0.75 matches: 239, Triangulate: 181
+[0.99402165, 0.05126594, -0.09639813, -0.088252194;
+ -0.053524926, 0.99834573, -0.020995766, -0.17880143;
+ 0.095162317, 0.026029944, 0.99512142, 0.97991914;
+ 0, 0, 0, 1]
+Current Frame: 92, BestMatchLKF: 21, SbBoW 0.75 matches: 987
+Current Frame: 93, BestMatchLKF: 21, SbBoW 0.75 matches: 241
+Current Frame: 94, BestMatchLKF: 21, SbBoW 0.75 matches: 197, Triangulate: 158
+[0.98588043, -0.084707931, 0.14444464, -0.26055565;
+ 0.076211691, 0.99507517, 0.063381404, 0.15884523;
+ -0.14910218, -0.051478073, 0.98748094, -0.95230192;
+ 0, 0, 0, 1]
+Current Frame: 95, BestMatchLKF: 22, SbBoW 0.75 matches: 148
+Current Frame: 96, BestMatchLKF: 22, SbBoW 0.75 matches: 180
+Current Frame: 97, BestMatchLKF: 22, SbBoW 0.75 matches: 195, Triangulate: 161
+[0.99538654, 0.0304638, -0.090981737, 0.17397526;
+ -0.033321619, 0.99899256, -0.030058652, -0.77513468;
+ 0.089974359, 0.032951564, 0.99539888, 0.60737038;
+ 0, 0, 0, 1]
+Current Frame: 98, BestMatchLKF: 22, SbBoW 0.75 matches: 267
+Current Frame: 99, BestMatchLKF: 22, SbBoW 0.75 matches: 322
+Current Frame: 100, BestMatchLKF: 22, SbBoW 0.75 matches: 282
+Current Frame: 101, BestMatchLKF: 22, SbBoW 0.75 matches: 232, Triangulate: 194
+[0.98673362, -0.050667554, 0.15423834, -0.44262582;
+ 0.05841434, 0.99722683, -0.04611218, 0.87293214;
+ -0.15147427, 0.054510131, 0.98695701, -0.20511423;
+ 0, 0, 0, 1]
+Current Frame: 102, BestMatchLKF: 23, SbBoW 0.75 matches: 237
+Current Frame: 103, BestMatchLKF: 23, SbBoW 0.75 matches: 271
+Current Frame: 104, BestMatchLKF: 23, SbBoW 0.75 matches: 299
+Current Frame: 105, BestMatchLKF: 23, SbBoW 0.75 matches: 304
+Current Frame: 106, BestMatchLKF: 23, SbBoW 0.75 matches: 324
+Current Frame: 107, BestMatchLKF: 23, SbBoW 0.75 matches: 234, Triangulate: 191
+[0.98702401, -0.06434536, 0.14711703, -0.81492561;
+ 0.070532739, 0.99681455, -0.037229419, -0.53214979;
+ -0.14425282, 0.047122851, 0.98841834, -0.22959289;
+ 0, 0, 0, 1]
+Current Frame: 108, BestMatchLKF: 24, SbBoW 0.75 matches: 227
+Current Frame: 109, BestMatchLKF: 24, SbBoW 0.75 matches: 265, Triangulate: 172
+[0.98479748, 0.031731874, -0.17078328, 0.69376111;
+ -0.03534326, 0.99921042, -0.018146768, 0.67974389;
+ 0.17007267, 0.023906857, 0.98514152, -0.23799945;
+ 0, 0, 0, 1]
+Current Frame: 110, BestMatchLKF: 24, SbBoW 0.75 matches: 312
+Current Frame: 111, BestMatchLKF: 24, SbBoW 0.75 matches: 326
+Current Frame: 112, BestMatchLKF: 24, SbBoW 0.75 matches: 354
+Current Frame: 113, BestMatchLKF: 24, SbBoW 0.75 matches: 279
+Current Frame: 114, BestMatchLKF: 24, SbBoW 0.75 matches: 239
+Current Frame: 115, BestMatchLKF: 24, SbBoW 0.75 matches: 217
+Current Frame: 116, BestMatchLKF: 25, SbBoW 0.75 matches: 194
+Current Frame: 117, BestMatchLKF: 25, SbBoW 0.75 matches: 227
+Current Frame: 118, BestMatchLKF: 25, SbBoW 0.75 matches: 981
+Current Frame: 119, BestMatchLKF: 25, SbBoW 0.75 matches: 224
+Current Frame: 120, BestMatchLKF: 25, SbBoW 0.75 matches: 212
+Current Frame: 121, BestMatchLKF: 25, SbBoW 0.75 matches: 221
+Current Frame: 122, BestMatchLKF: 26, SbBoW 0.75 matches: 149
+Current Frame: 123, BestMatchLKF: 25, SbBoW 0.75 matches: 147
+Current Frame: 124, BestMatchLKF: 26, SbBoW 0.75 matches: 175
+Current Frame: 125, BestMatchLKF: 26, SbBoW 0.75 matches: 268, Triangulate: 238
+[0.99844682, 0.031921118, -0.045660719, 0.96897221;
+ -0.032088757, 0.99948072, -0.0029430874, -0.12741144;
+ 0.04554309, 0.0044036955, 0.99895269, -0.21180001;
+ 0, 0, 0, 1]
+Current Frame: 126, BestMatchLKF: 26, SbBoW 0.75 matches: 336
+Current Frame: 127, BestMatchLKF: 26, SbBoW 0.75 matches: 209
+Current Frame: 128, BestMatchLKF: 26, SbBoW 0.75 matches: 180
+Current Frame: 129, BestMatchLKF: 26, SbBoW 0.75 matches: 139
+Current Frame: 130, BestMatchLKF: 27, SbBoW 0.75 matches: 166
+Current Frame: 131, BestMatchLKF: 27, SbBoW 0.75 matches: 167
+Current Frame: 132, BestMatchLKF: 27, SbBoW 0.75 matches: 218, Triangulate: 176
+[0.99822474, 0.050453365, -0.031651009, 0.95807338;
+ -0.049998313, 0.9986366, 0.015007689, 0.2753258;
+ 0.032365002, -0.013398493, 0.99938613, 0.079316244;
+ 0, 0, 0, 1]
+Current Frame: 133, BestMatchLKF: 27, SbBoW 0.75 matches: 257
+Current Frame: 134, BestMatchLKF: 27, SbBoW 0.75 matches: 282
+Current Frame: 135, BestMatchLKF: 27, SbBoW 0.75 matches: 264
+Current Frame: 136, BestMatchLKF: 27, SbBoW 0.75 matches: 271, Triangulate: 219
+[0.99988019, -0.015253857, 0.0026153922, -0.77167898;
+ 0.015264735, 0.99987459, -0.0041942447, -0.24287377;
+ -0.0025511384, 0.0042336881, 0.99998778, 0.58781272;
+ 0, 0, 0, 1]
+Current Frame: 137, BestMatchLKF: 27, SbBoW 0.75 matches: 232
+Current Frame: 138, BestMatchLKF: 27, SbBoW 0.75 matches: 186
+Current Frame: 139, BestMatchLKF: 27, SbBoW 0.75 matches: 178
+Current Frame: 140, BestMatchLKF: 27, SbBoW 0.75 matches: 146
+Current Frame: 141, BestMatchLKF: 29, SbBoW 0.75 matches: 92
+Current Frame: 142, BestMatchLKF: 28, SbBoW 0.75 matches: 163, Triangulate: 120
+[0.97786015, 0.071411997, -0.19669798, -0.041110702;
+ -0.076347053, 0.99692571, -0.01761201, -0.40169299;
+ 0.19483557, 0.032239318, 0.98030603, 0.91485119;
+ 0, 0, 0, 1]
+Current Frame: 143, BestMatchLKF: 28, SbBoW 0.75 matches: 212, Triangulate: 143
+[0.99329084, 0.046262793, -0.10598656, 0.028046507;
+ -0.048418269, 0.99866754, -0.017853931, -0.26207587;
+ 0.10501935, 0.022865877, 0.9942072, 0.9646396;
+ 0, 0, 0, 1]
+Current Frame: 144, BestMatchLKF: 28, SbBoW 0.75 matches: 301
+Current Frame: 145, BestMatchLKF: 28, SbBoW 0.75 matches: 987
+Current Frame: 146, BestMatchLKF: 28, SbBoW 0.75 matches: 199, Triangulate: 160
+[0.99605322, -0.066815317, 0.058429077, -0.28701696;
+ 0.064095616, 0.99682468, 0.047245175, 0.30231822;
+ -0.061400265, -0.043313652, 0.99717301, -0.90896916;
+ 0, 0, 0, 1]
+Current Frame: 147, BestMatchLKF: 28, SbBoW 0.75 matches: 176, Triangulate: 146
+[0.99578393, -0.047227271, 0.078638226, -0.38055888;
+ 0.042165101, 0.99700493, 0.064833641, 0.25250241;
+ -0.081464469, -0.061244458, 0.99479276, -0.88961643;
+ 0, 0, 0, 1]
+Current Frame: 148, BestMatchLKF: 28, SbBoW 0.75 matches: 166, Triangulate: 124
+[0.9962219, -0.04375457, 0.075016901, -0.26512152;
+ 0.039137505, 0.99731153, 0.061952114, 0.278999;
+ -0.077526018, -0.05878213, 0.99525595, -0.92296809;
+ 0, 0, 0, 1]
+Current Frame: 149, BestMatchLKF: 28, SbBoW 0.75 matches: 150, Triangulate: 117
+[0.99660099, -0.02827172, 0.077375948, -0.43545473;
+ 0.023854844, 0.99806464, 0.057424858, 0.27432218;
+ -0.078849673, -0.055383906, 0.99534672, -0.85739517;
+ 0, 0, 0, 1]
+Current Frame: 150, BestMatchLKF: 28, SbBoW 0.75 matches: 137, Triangulate: 100
+[0.99691331, -0.046060115, 0.063580066, -0.50838804;
+ 0.042471141, 0.99748802, 0.056690335, 0.37359956;
+ -0.066031426, -0.053815067, 0.99636531, -0.77586395;
+ 0, 0, 0, 1]
+Current Frame: 151, BestMatchLKF: 28, SbBoW 0.75 matches: 161, Triangulate: 127
+[0.99682671, -0.060408667, 0.051839381, -0.59895766;
+ 0.057436317, 0.99671894, 0.057030231, 0.31960255;
+ -0.055114418, -0.053871781, 0.99702585, -0.7342369;
+ 0, 0, 0, 1]
+Current Frame: 152, BestMatchLKF: 28, SbBoW 0.75 matches: 140, Triangulate: 95
+[0.99682313, -0.078771561, 0.011780888, -0.4575831;
+ 0.077429757, 0.99306804, 0.088434733, 0.12492295;
+ -0.018665224, -0.08724162, 0.99601233, -0.88034767;
+ 0, 0, 0, 1]
+Current Frame: 153, BestMatchLKF: 28, SbBoW 0.75 matches: 141
+Current Frame: 154, BestMatchLKF: 28, SbBoW 0.75 matches: 124, Triangulate: 107
+[0.99666464, -0.080302179, 0.014526069, -0.64925992;
+ 0.078760751, 0.99314916, 0.086322851, 0.1165063;
+ -0.02135849, -0.084890857, 0.99616134, -0.75159013;
+ 0, 0, 0, 1]
+Current Frame: 155, BestMatchLKF: 28, SbBoW 0.75 matches: 149
+Current Frame: 156, BestMatchLKF: 28, SbBoW 0.75 matches: 160
+Current Frame: 157, BestMatchLKF: 28, SbBoW 0.75 matches: 169
+Current Frame: 158, BestMatchLKF: 28, SbBoW 0.75 matches: 178, Triangulate: 143
+[0.99834859, -0.053655569, 0.020522237, -0.91931236;
+ 0.053371556, 0.99847472, 0.014148351, -0.1128173;
+ -0.021250099, -0.013029719, 0.99968928, -0.37701061;
+ 0, 0, 0, 1]
+Current Frame: 159, BestMatchLKF: 28, SbBoW 0.75 matches: 200, Triangulate: 161
+[0.9982776, -0.053344235, 0.024417996, -0.94869912;
+ 0.052979738, 0.99847782, 0.015338387, -0.26287076;
+ -0.025199026, -0.014018316, 0.99958408, -0.17569545;
+ 0, 0, 0, 1]
+Current Frame: 160, BestMatchLKF: 28, SbBoW 0.75 matches: 161, Triangulate: 132
+[0.99816853, -0.05822435, 0.016421111, -0.91575891;
+ 0.057704687, 0.99786717, 0.03051799, -0.40118462;
+ -0.018162984, -0.029514574, 0.99939919, 0.020893384;
+ 0, 0, 0, 1]
+Current Frame: 161, BestMatchLKF: 28, SbBoW 0.75 matches: 194
+Current Frame: 162, BestMatchLKF: 28, SbBoW 0.75 matches: 179, Triangulate: 144
+[0.99790782, -0.064647108, 0.00081960857, -0.74069154;
+ 0.064641625, 0.99789345, 0.0054843575, -0.59967607;
+ -0.0011724532, -0.0054199249, 0.99998456, 0.30292666;
+ 0, 0, 0, 1]
+Current Frame: 163, BestMatchLKF: 28, SbBoW 0.75 matches: 165
+Current Frame: 164, BestMatchLKF: 28, SbBoW 0.75 matches: 136, Triangulate: 98
+[0.99639726, -0.080734149, -0.025971621, -0.3389644;
+ 0.080617756, 0.99672985, -0.0055023134, -0.7388525;
+ 0.026330858, 0.0033888519, 0.99964762, 0.58240885;
+ 0, 0, 0, 1]
+Current Frame: 165, BestMatchLKF: 28, SbBoW 0.75 matches: 147, Triangulate: 90
+[0.99702561, -0.069019057, -0.034296125, -0.22517732;
+ 0.068435542, 0.99749488, -0.017907441, -0.50649971;
+ 0.035446137, 0.015507162, 0.99925125, 0.83231801;
+ 0, 0, 0, 1]
+Current Frame: 166, BestMatchLKF: 27, SbBoW 0.75 matches: 121
+Current Frame: 167, BestMatchLKF: 29, SbBoW 0.75 matches: 130
+Current Frame: 168, BestMatchLKF: 29, SbBoW 0.75 matches: 151, Triangulate: 112
+[0.99563372, 0.038107902, -0.085212618, -0.78099048;
+ -0.035043567, 0.99869418, 0.037172869, 0.3096633;
+ 0.086518049, -0.034024358, 0.99566913, -0.54236752;
+ 0, 0, 0, 1]
+Current Frame: 169, BestMatchLKF: 29, SbBoW 0.75 matches: 168
+Current Frame: 170, BestMatchLKF: 29, SbBoW 0.75 matches: 184
+Current Frame: 171, BestMatchLKF: 29, SbBoW 0.75 matches: 291
+Current Frame: 172, BestMatchLKF: 29, SbBoW 0.75 matches: 254, Triangulate: 173
+[0.99541122, -0.052887224, 0.079745308, 0.99533921;
+ 0.050088651, 0.99807048, 0.036696717, -0.094002046;
+ -0.081532255, -0.032534003, 0.99613971, 0.021529505;
+ 0, 0, 0, 1]
+Current Frame: 173, BestMatchLKF: 29, SbBoW 0.75 matches: 130, Triangulate: 105
+[0.96758163, -0.1278937, 0.2177815, 0.8998872;
+ 0.11384483, 0.99059266, 0.07593102, 0.0087952726;
+ -0.22544383, -0.048676219, 0.97303933, -0.43603399;
+ 0, 0, 0, 1]
+Current Frame: 174, BestMatchLKF: 30, SbBoW 0.75 matches: 127
+Current Frame: 175, BestMatchLKF: 30, SbBoW 0.75 matches: 190
+Current Frame: 176, BestMatchLKF: 30, SbBoW 0.75 matches: 250
+Current Frame: 177, BestMatchLKF: 30, SbBoW 0.75 matches: 317
+Current Frame: 178, BestMatchLKF: 30, SbBoW 0.75 matches: 312
+Current Frame: 179, BestMatchLKF: 30, SbBoW 0.75 matches: 252, Triangulate: 119
+[0.99996305, 0.0021524429, 0.0083318651, 0.62537223;
+ -0.0018936433, 0.99951917, -0.030949794, -0.098558731;
+ -0.0083945394, 0.030932784, 0.99948627, -0.77407736;
+ 0, 0, 0, 1]
+Current Frame: 180, BestMatchLKF: 30, SbBoW 0.75 matches: 212, Triangulate: 127
+[0.99988902, -0.011639327, -0.0092993975, 0.8053931;
+ 0.011340141, 0.99943632, -0.03160049, -0.44874272;
+ 0.0096619725, 0.031491548, 0.99945742, -0.38726211;
+ 0, 0, 0, 1]
+Current Frame: 181, BestMatchLKF: 30, SbBoW 0.75 matches: 197, Triangulate: 148
+[0.99932241, -0.013836741, -0.034108192, 0.74265158;
+ 0.0137133, 0.99989855, -0.003849566, -0.60547167;
+ 0.034157947, 0.0033792108, 0.99941069, -0.28613383;
+ 0, 0, 0, 1]
+Current Frame: 182, BestMatchLKF: 30, SbBoW 0.75 matches: 162, Triangulate: 126
+[0.99862635, -0.017576754, -0.049359217, 0.66239524;
+ 0.017269135, 0.99982876, -0.0066526234, -0.71418142;
+ 0.049467817, 0.0057910532, 0.99875903, -0.22622415;
+ 0, 0, 0, 1]
+Current Frame: 183, BestMatchLKF: 30, SbBoW 0.75 matches: 158
+Current Frame: 184, BestMatchLKF: 30, SbBoW 0.75 matches: 150, Triangulate: 110
+[0.99781448, -0.020581633, -0.062791243, 0.69102603;
+ 0.019955575, 0.99974489, -0.01058124, -0.71758294;
+ 0.062992953, 0.0093050823, 0.99797052, -0.086935602;
+ 0, 0, 0, 1]
+Current Frame: 185, BestMatchLKF: 30, SbBoW 0.75 matches: 139
+Current Frame: 186, BestMatchLKF: 30, SbBoW 0.75 matches: 163
+Current Frame: 187, BestMatchLKF: 30, SbBoW 0.75 matches: 160, Triangulate: 110
+[0.99923956, -0.0030285418, -0.038875282, 0.83347452;
+ 0.0014329851, 0.99915802, -0.041002162, -0.55032253;
+ 0.038966745, 0.040915266, 0.99840254, 0.049652193;
+ 0, 0, 0, 1]
+Current Frame: 188, BestMatchLKF: 30, SbBoW 0.75 matches: 148, Triangulate: 109
+[0.99935651, -0.0106318, -0.03425841, 0.90396971;
+ 0.0092211664, 0.99911344, -0.041075125, -0.42511666;
+ 0.03466475, 0.040732816, 0.99856865, 0.045985334;
+ 0, 0, 0, 1]
+Current Frame: 189, BestMatchLKF: 30, SbBoW 0.75 matches: 192
+Current Frame: 190, BestMatchLKF: 30, SbBoW 0.75 matches: 185
+Current Frame: 191, BestMatchLKF: 30, SbBoW 0.75 matches: 142, Triangulate: 111
+[0.99995303, -0.0095677152, -0.001568228, 0.95412856;
+ 0.0095048323, 0.99930209, -0.036124244, 0.10374972;
+ 0.0019126832, 0.036107607, 0.9993462, 0.28084636;
+ 0, 0, 0, 1]
+Current Frame: 192, BestMatchLKF: 30, SbBoW 0.75 matches: 157, Triangulate: 96
+[0.99981582, -0.013262197, 0.013873309, 0.89454502;
+ 0.01367414, 0.99945551, -0.030028358, 0.20025758;
+ -0.013467461, 0.030212447, 0.99945277, 0.39960736;
+ 0, 0, 0, 1]
+Current Frame: 193, BestMatchLKF: 30, SbBoW 0.75 matches: 152
+Current Frame: 194, BestMatchLKF: 31, SbBoW 0.75 matches: 126, Triangulate: 83
+[0.98917949, -0.093331009, 0.11319622, 0.49119827;
+ 0.10315281, 0.99109089, -0.08425267, -0.79898888;
+ -0.1043244, 0.095017463, 0.98999411, -0.34690192;
+ 0, 0, 0, 1]
+Current Frame: 195, BestMatchLKF: 31, SbBoW 0.75 matches: 137
+Current Frame: 196, BestMatchLKF: 30, SbBoW 0.75 matches: 136
+Current Frame: 197, BestMatchLKF: 31, SbBoW 0.75 matches: 191
+Current Frame: 198, BestMatchLKF: 31, SbBoW 0.75 matches: 261, Triangulate: 136
+[0.99741066, -0.0079607666, 0.071474433, 0.69024938;
+ 0.010630578, 0.99925685, -0.037050903, -0.65161771;
+ -0.071126357, 0.037714839, 0.99675393, -0.31456342;
+ 0, 0, 0, 1]
+Current Frame: 199, BestMatchLKF: 31, SbBoW 0.75 matches: 287
+Current Frame: 200, BestMatchLKF: 31, SbBoW 0.75 matches: 325
+Current Frame: 201, BestMatchLKF: 31, SbBoW 0.75 matches: 259, Triangulate: 129
+[0.99511141, -0.010167152, -0.098233908, -0.8622703;
+ 0.013895988, 0.99920565, 0.037349582, 0.36485758;
+ 0.097776055, -0.038532108, 0.99446225, 0.35123914;
+ 0, 0, 0, 1]
+Current Frame: 202, BestMatchLKF: 31, SbBoW 0.75 matches: 174, Triangulate: 120
+[0.98275608, -0.025081933, -0.18319747, -0.91575861;
+ 0.034529209, 0.99822319, 0.048561618, 0.30709997;
+ 0.18165393, -0.054049872, 0.98187602, 0.25898987;
+ 0, 0, 0, 1]
+Current Frame: 203, BestMatchLKF: 31, SbBoW 0.75 matches: 151, Triangulate: 121
+[0.96424973, -0.047215626, -0.26075554, -0.95683336;
+ 0.058654547, 0.99761975, 0.036257744, 0.21996208;
+ 0.25842291, -0.050256062, 0.96472377, 0.1899648;
+ 0, 0, 0, 1]
+Current Frame: 204, BestMatchLKF: 32, SbBoW 0.75 matches: 160, Triangulate: 119
+[0.98761487, -0.081894189, 0.13382919, 0.43472284;
+ 0.070861995, 0.99383891, 0.085222065, 0.65556341;
+ -0.1399838, -0.07468307, 0.9873333, -0.61745656;
+ 0, 0, 0, 1]
+Current Frame: 205, BestMatchLKF: 32, SbBoW 0.75 matches: 208, Triangulate: 172
+[0.99367768, -0.08079192, 0.077957183, 0.43510336;
+ 0.07605806, 0.99518031, 0.061898232, 0.56533486;
+ -0.082582355, -0.055577546, 0.99503338, -0.70077205;
+ 0, 0, 0, 1]
+Current Frame: 206, BestMatchLKF: 32, SbBoW 0.75 matches: 244
+Current Frame: 207, BestMatchLKF: 32, SbBoW 0.75 matches: 279
+Current Frame: 208, BestMatchLKF: 32, SbBoW 0.75 matches: 213
+Current Frame: 209, BestMatchLKF: 33, SbBoW 0.75 matches: 152, Triangulate: 90
+[0.97282869, -0.081910163, 0.21655259, 0.38829383;
+ 0.085579745, 0.99630237, -0.0076062232, 0.91982073;
+ -0.21512869, 0.025932096, 0.97624141, -0.056193169;
+ 0, 0, 0, 1]
+Current Frame: 210, BestMatchLKF: 33, SbBoW 0.75 matches: 187
+Current Frame: 211, BestMatchLKF: 33, SbBoW 0.75 matches: 253
+Current Frame: 212, BestMatchLKF: 33, SbBoW 0.75 matches: 302
+Current Frame: 213, BestMatchLKF: 33, SbBoW 0.75 matches: 342
+Current Frame: 214, BestMatchLKF: 33, SbBoW 0.75 matches: 294
+Current Frame: 215, BestMatchLKF: 33, SbBoW 0.75 matches: 253
+Current Frame: 216, BestMatchLKF: 33, SbBoW 0.75 matches: 195, Triangulate: 162
+[0.99719197, 0.072537735, 0.018616363, -0.10030821;
+ -0.072752461, 0.99728793, 0.011130482, 0.39288476;
+ -0.017758548, -0.012453556, 0.9997648, -0.91410059;
+ 0, 0, 0, 1]
+Current Frame: 217, BestMatchLKF: 33, SbBoW 0.75 matches: 159
+Current Frame: 218, BestMatchLKF: 34, SbBoW 0.75 matches: 176
+Current Frame: 219, BestMatchLKF: 34, SbBoW 0.75 matches: 221
+Current Frame: 220, BestMatchLKF: 34, SbBoW 0.75 matches: 241, Triangulate: 193
+[0.99890912, -0.044185907, -0.015103847, 0.82481605;
+ 0.043867603, 0.9988209, -0.020797879, -0.29403219;
+ 0.016005009, 0.020112678, 0.99966961, 0.48293221;
+ 0, 0, 0, 1]
+Current Frame: 221, BestMatchLKF: 34, SbBoW 0.75 matches: 265
+Current Frame: 222, BestMatchLKF: 34, SbBoW 0.75 matches: 264
+Current Frame: 223, BestMatchLKF: 34, SbBoW 0.75 matches: 239, Triangulate: 194
+[0.99854147, -0.021947317, -0.049330175, -0.97480196;
+ 0.023747072, 0.99906242, 0.036198992, 0.080022253;
+ 0.048489481, -0.037317656, 0.99812633, -0.20822486;
+ 0, 0, 0, 1]
+Current Frame: 224, BestMatchLKF: 34, SbBoW 0.75 matches: 194, Triangulate: 167
+[0.99237221, -0.027545556, -0.12016069, -0.98470896;
+ 0.030099556, 0.99935693, 0.019492138, 0.17395447;
+ 0.11954653, -0.022960272, 0.99256307, 0.0093848258;
+ 0, 0, 0, 1]
+Current Frame: 225, BestMatchLKF: 35, SbBoW 0.75 matches: 142, Triangulate: 114
+[0.99723637, -0.04648076, 0.057959318, 0.98365325;
+ 0.044543356, 0.99841905, 0.034283351, 0.17472707;
+ -0.05946121, -0.031606905, 0.99773008, -0.04355089;
+ 0, 0, 0, 1]
+Current Frame: 226, BestMatchLKF: 35, SbBoW 0.75 matches: 202
+Current Frame: 227, BestMatchLKF: 35, SbBoW 0.75 matches: 196
+Current Frame: 228, BestMatchLKF: 35, SbBoW 0.75 matches: 262
+Current Frame: 229, BestMatchLKF: 35, SbBoW 0.75 matches: 272
+Current Frame: 230, BestMatchLKF: 35, SbBoW 0.75 matches: 283
+Current Frame: 231, BestMatchLKF: 35, SbBoW 0.75 matches: 287
+Current Frame: 232, BestMatchLKF: 35, SbBoW 0.75 matches: 222
+Current Frame: 233, BestMatchLKF: 35, SbBoW 0.75 matches: 187
+Current Frame: 234, BestMatchLKF: 36, SbBoW 0.75 matches: 124, Triangulate: 66
+[0.99774975, 0.034083113, 0.057740062, 0.42683476;
+ -0.028307397, 0.99477869, -0.098050401, -0.11551116;
+ -0.060780525, 0.096195266, 0.993505, 0.89692211;
+ 0, 0, 0, 1]
+Current Frame: 235, BestMatchLKF: 36, SbBoW 0.75 matches: 140, Triangulate: 93
+[0.99940479, 0.034127384, -0.0050193667, 0.67403316;
+ -0.034422882, 0.99608707, -0.081399135, -0.20519006;
+ 0.0022217333, 0.081523545, 0.99666893, 0.70963109;
+ 0, 0, 0, 1]
+Current Frame: 236, BestMatchLKF: 36, SbBoW 0.75 matches: 168, Triangulate: 107
+[0.9987762, 0.048378512, -0.01026541, 0.68692321;
+ -0.048998803, 0.9961462, -0.072743207, -0.22367735;
+ 0.0067065656, 0.073157191, 0.99729788, 0.69145125;
+ 0, 0, 0, 1]
+Current Frame: 237, BestMatchLKF: 36, SbBoW 0.75 matches: 199
+Current Frame: 238, BestMatchLKF: 36, SbBoW 0.75 matches: 230, Triangulate: 127
+[0.9989295, 0.043675825, 0.015242487, 0.27830273;
+ -0.042841196, 0.99776167, -0.051346794, 0.1335253;
+ -0.017451048, 0.05063878, 0.9985646, 0.95116693;
+ 0, 0, 0, 1]
+Current Frame: 239, BestMatchLKF: 36, SbBoW 0.75 matches: 323
+Current Frame: 240, BestMatchLKF: 36, SbBoW 0.75 matches: 391
+Current Frame: 241, BestMatchLKF: 36, SbBoW 0.75 matches: 355
+Current Frame: 242, BestMatchLKF: 36, SbBoW 0.75 matches: 215
+Current Frame: 243, BestMatchLKF: 36, SbBoW 0.75 matches: 219, Triangulate: 162
+[0.99929243, -0.0043878853, 0.037353128, -0.61224097;
+ 0.0050167143, 0.99984694, -0.0167602, 0.78366804;
+ -0.037273921, 0.016935878, 0.99916154, -0.10500176;
+ 0, 0, 0, 1]
+Current Frame: 244, BestMatchLKF: 36, SbBoW 0.75 matches: 245, Triangulate: 154
+[0.99978149, 0.0091697574, 0.018791184, -0.5214411;
+ -0.0087870955, 0.99975419, -0.020350471, 0.81394541;
+ -0.018973261, 0.020180985, 0.99961615, -0.25610924;
+ 0, 0, 0, 1]
+Current Frame: 245, BestMatchLKF: 36, SbBoW 0.75 matches: 198
+Current Frame: 246, BestMatchLKF: 36, SbBoW 0.75 matches: 219
+Current Frame: 247, BestMatchLKF: 36, SbBoW 0.75 matches: 206
+Current Frame: 248, BestMatchLKF: 36, SbBoW 0.75 matches: 203
+Current Frame: 249, BestMatchLKF: 36, SbBoW 0.75 matches: 178
+Current Frame: 250, BestMatchLKF: 36, SbBoW 0.75 matches: 170
+Current Frame: 251, BestMatchLKF: 36, SbBoW 0.75 matches: 160
+Current Frame: 252, BestMatchLKF: 36, SbBoW 0.75 matches: 164, Triangulate: 104
+[0.98792988, 0.029924214, -0.15198413, -0.28080097;
+ -0.042265922, 0.99600726, -0.078633428, 0.92437595;
+ 0.1490242, 0.08410804, 0.98525006, 0.25822458;
+ 0, 0, 0, 1]
+Current Frame: 253, BestMatchLKF: 36, SbBoW 0.75 matches: 150
+Current Frame: 254, BestMatchLKF: 36, SbBoW 0.75 matches: 144, Triangulate: 102
+[0.97335386, 0.066195115, -0.21954595, -0.21020421;
+ -0.0853993, 0.99319738, -0.079158247, 0.92399848;
+ 0.21281251, 0.095798045, 0.97238553, 0.31943858;
+ 0, 0, 0, 1]
+Current Frame: 255, BestMatchLKF: 36, SbBoW 0.75 matches: 134
+Current Frame: 256, BestMatchLKF: 69, SbBoW 0.75 matches: 108
+Current Frame: 257, BestMatchLKF: 36, SbBoW 0.75 matches: 133
+Current Frame: 258, BestMatchLKF: 36, SbBoW 0.75 matches: 119, Triangulate: 66
+[0.96164238, 0.095561042, -0.25712234, 0.32276124;
+ -0.11605494, 0.99106675, -0.065711468, 0.91763508;
+ 0.2485459, 0.093031108, 0.96414214, 0.23188591;
+ 0, 0, 0, 1]
+Current Frame: 259, BestMatchLKF: 36, SbBoW 0.75 matches: 132
+Current Frame: 260, BestMatchLKF: 69, SbBoW 0.75 matches: 100, Triangulate: 66
+[0.99928594, 0.0084455963, -0.036829822, 0.096659966;
+ -0.0084579121, 0.9999643, -0.00017385185, -0.1612525;
+ 0.036827046, 0.00048521161, 0.99932164, -0.98216826;
+ 0, 0, 0, 1]
+Current Frame: 261, BestMatchLKF: 36, SbBoW 0.75 matches: 105
+Current Frame: 262, BestMatchLKF: 36, SbBoW 0.75 matches: 108
+Current Frame: 263, BestMatchLKF: 36, SbBoW 0.75 matches: 109
+Current Frame: 264, BestMatchLKF: 69, SbBoW 0.75 matches: 101, Triangulate: 66
+[0.99049371, 0.06420061, -0.12165698, 0.32348213;
+ -0.064906552, 0.99788964, -0.0018444508, -0.12671554;
+ 0.12128191, 0.0097232461, 0.9925704, -0.9377113;
+ 0, 0, 0, 1]
+Current Frame: 265, BestMatchLKF: 69, SbBoW 0.75 matches: 92
+Current Frame: 266, BestMatchLKF: 69, SbBoW 0.75 matches: 96
+Current Frame: 267, BestMatchLKF: 69, SbBoW 0.75 matches: 103
+Current Frame: 268, BestMatchLKF: 69, SbBoW 0.75 matches: 95
+Current Frame: 269, BestMatchLKF: 70, SbBoW 0.75 matches: 73
+Current Frame: 270, BestMatchLKF: 69, SbBoW 0.75 matches: 97
+Current Frame: 271, BestMatchLKF: 69, SbBoW 0.75 matches: 102
+Current Frame: 272, BestMatchLKF: 69, SbBoW 0.75 matches: 88
+Current Frame: 273, BestMatchLKF: 69, SbBoW 0.75 matches: 94, Triangulate: 56
+[0.89449966, 0.10996446, -0.43333369, 0.67005098;
+ -0.13675767, 0.99011803, -0.031042844, -0.32926875;
+ 0.4256379, 0.087029502, 0.90069884, -0.6652922;
+ 0, 0, 0, 1]
+Current Frame: 274, BestMatchLKF: 69, SbBoW 0.75 matches: 92
+Current Frame: 275, BestMatchLKF: 69, SbBoW 0.75 matches: 87
+Current Frame: 276, BestMatchLKF: 69, SbBoW 0.75 matches: 77
+Current Frame: 277, BestMatchLKF: 69, SbBoW 0.75 matches: 79
+Current Frame: 278, BestMatchLKF: 69, SbBoW 0.75 matches: 95, Triangulate: 53
+[0.84647489, 0.16878027, -0.504969, 0.71748036;
+ -0.18440016, 0.98266113, 0.019335061, -0.38173512;
+ 0.49947667, 0.076749846, 0.862921, -0.58266646;
+ 0, 0, 0, 1]
+Current Frame: 279, BestMatchLKF: 51, SbBoW 0.75 matches: 58
+Current Frame: 280, BestMatchLKF: 69, SbBoW 0.75 matches: 62
+Current Frame: 281, BestMatchLKF: 51, SbBoW 0.75 matches: 64
+Current Frame: 282, BestMatchLKF: 51, SbBoW 0.75 matches: 69
+Current Frame: 283, BestMatchLKF: 51, SbBoW 0.75 matches: 54
+Current Frame: 284, BestMatchLKF: 51, SbBoW 0.75 matches: 44
+Current Frame: 285, BestMatchLKF: 52, SbBoW 0.75 matches: 47
+Current Frame: 286, BestMatchLKF: 52, SbBoW 0.75 matches: 59
+Current Frame: 287, BestMatchLKF: 52, SbBoW 0.75 matches: 41
+Current Frame: 288, BestMatchLKF: 22, SbBoW 0.75 matches: 44
+Current Frame: 289, BestMatchLKF: 22, SbBoW 0.75 matches: 47
+Current Frame: 290, BestMatchLKF: 24, SbBoW 0.75 matches: 42
+Current Frame: 291, BestMatchLKF: 23, SbBoW 0.75 matches: 54
+Current Frame: 292, BestMatchLKF: 66, SbBoW 0.75 matches: 12
+Current Frame: 293, BestMatchLKF: 24, SbBoW 0.75 matches: 41
+Current Frame: 294, BestMatchLKF: 25, SbBoW 0.75 matches: 16
+Current Frame: 295, BestMatchLKF: 23, SbBoW 0.75 matches: 47
+Current Frame: 296, BestMatchLKF: 22, SbBoW 0.75 matches: 37
+Current Frame: 297, BestMatchLKF: 22, SbBoW 0.75 matches: 42
+Current Frame: 298, BestMatchLKF: 24, SbBoW 0.75 matches: 29
+Current Frame: 299, BestMatchLKF: 24, SbBoW 0.75 matches: 21
+Current Frame: 300, BestMatchLKF: 37, SbBoW 0.75 matches: 51
+Current Frame: 301, BestMatchLKF: 1, SbBoW 0.75 matches: 8Current Frame: 302, BestMatchLKF: 37, SbBoW 0.75 matches: 34
+Current Frame: 303, BestMatchLKF: 76, SbBoW 0.75 matches: 4Current Frame: 304, BestMatchLKF: 51, SbBoW 0.75 matches: 12
+Current Frame: 305, BestMatchLKF: 42, SbBoW 0.75 matches: 12
+Current Frame: 306, BestMatchLKF: 1, SbBoW 0.75 matches: 8Current Frame: 307, BestMatchLKF: 38, SbBoW 0.75 matches: 13
+Current Frame: 308, BestMatchLKF: 61, SbBoW 0.75 matches: 7Current Frame: 309, BestMatchLKF: 37, SbBoW 0.75 matches: 21
+Current Frame: 310, BestMatchLKF: 37, SbBoW 0.75 matches: 20
+Current Frame: 311, BestMatchLKF: 77, SbBoW 0.75 matches: 10
+Current Frame: 312, BestMatchLKF: 20, SbBoW 0.75 matches: 6Current Frame: 313, BestMatchLKF: 41, SbBoW 0.75 matches: 9Current Frame: 314, BestMatchLKF: 44, SbBoW 0.75 matches: 10
+Current Frame: 315, BestMatchLKF: 46, SbBoW 0.75 matches: 10
+Current Frame: 316, BestMatchLKF: 2, SbBoW 0.75 matches: 9Current Frame: 317, BestMatchLKF: 39, SbBoW 0.75 matches: 7Current Frame: 318, BestMatchLKF: 71, SbBoW 0.75 matches: 5Current Frame: 319, BestMatchLKF: 84, SbBoW 0.75 matches: 6Current Frame: 320, BestMatchLKF: 39, SbBoW 0.75 matches: 10
+Current Frame: 321, BestMatchLKF: 86, SbBoW 0.75 matches: 11
+Current Frame: 322, BestMatchLKF: 37, SbBoW 0.75 matches: 22
+Current Frame: 323, BestMatchLKF: 41, SbBoW 0.75 matches: 12
+Current Frame: 324, BestMatchLKF: 65, SbBoW 0.75 matches: 6Current Frame: 325, BestMatchLKF: 38, SbBoW 0.75 matches: 16
+Current Frame: 326, BestMatchLKF: 36, SbBoW 0.75 matches: 8Current Frame: 327, BestMatchLKF: 37, SbBoW 0.75 matches: 21
+Current Frame: 328, BestMatchLKF: 59, SbBoW 0.75 matches: 7Current Frame: 329, BestMatchLKF: 4, SbBoW 0.75 matches: 3Current Frame: 330, BestMatchLKF: 37, SbBoW 0.75 matches: 25
+Current Frame: 331, BestMatchLKF: 37, SbBoW 0.75 matches: 24
+Current Frame: 332, BestMatchLKF: 24, SbBoW 0.75 matches: 7Current Frame: 333, BestMatchLKF: 37, SbBoW 0.75 matches: 31
+Current Frame: 334, BestMatchLKF: 37, SbBoW 0.75 matches: 32
+Current Frame: 335, BestMatchLKF: 22, SbBoW 0.75 matches: 15
+Current Frame: 336, BestMatchLKF: 50, SbBoW 0.75 matches: 10
+Current Frame: 337, BestMatchLKF: 61, SbBoW 0.75 matches: 7Current Frame: 338, BestMatchLKF: 37, SbBoW 0.75 matches: 15
+Current Frame: 339, BestMatchLKF: 66, SbBoW 0.75 matches: 7Current Frame: 340, BestMatchLKF: 47, SbBoW 0.75 matches: 13
+Current Frame: 341, BestMatchLKF: 47, SbBoW 0.75 matches: 22
+Current Frame: 342, BestMatchLKF: 38, SbBoW 0.75 matches: 15
+Current Frame: 343, BestMatchLKF: 43, SbBoW 0.75 matches: 20
+Current Frame: 344, BestMatchLKF: 47, SbBoW 0.75 matches: 20
+Current Frame: 345, BestMatchLKF: 43, SbBoW 0.75 matches: 16
+Current Frame: 346, BestMatchLKF: 55, SbBoW 0.75 matches: 8Current Frame: 347, BestMatchLKF: 47, SbBoW 0.75 matches: 17
+Current Frame: 348, BestMatchLKF: 70, SbBoW 0.75 matches: 8Current Frame: 349, BestMatchLKF: 40, SbBoW 0.75 matches: 13
+Current Frame: 350, BestMatchLKF: 14, SbBoW 0.75 matches: 5Current Frame: 351, BestMatchLKF: 47, SbBoW 0.75 matches: 12
+Current Frame: 352, BestMatchLKF: 36, SbBoW 0.75 matches: 9Current Frame: 353, BestMatchLKF: 35, SbBoW 0.75 matches: 4Current Frame: 354, BestMatchLKF: 47, SbBoW 0.75 matches: 11
+Current Frame: 355, BestMatchLKF: 51, SbBoW 0.75 matches: 8Current Frame: 356, BestMatchLKF: 68, SbBoW 0.75 matches: 6Current Frame: 357, BestMatchLKF: 1, SbBoW 0.75 matches: 8Current Frame: 358, BestMatchLKF: 77, SbBoW 0.75 matches: 9Current Frame: 359, BestMatchLKF: 39, SbBoW 0.75 matches: 18
+Current Frame: 360, BestMatchLKF: 43, SbBoW 0.75 matches: 13
+Current Frame: 361, BestMatchLKF: 41, SbBoW 0.75 matches: 10
+Current Frame: 362, BestMatchLKF: 37, SbBoW 0.75 matches: 12
+Current Frame: 363, BestMatchLKF: 37, SbBoW 0.75 matches: 15
+Current Frame: 364, BestMatchLKF: 79, SbBoW 0.75 matches: 6Current Frame: 365, BestMatchLKF: 37, SbBoW 0.75 matches: 22
+Current Frame: 366, BestMatchLKF: 39, SbBoW 0.75 matches: 12
+Current Frame: 367, BestMatchLKF: 22, SbBoW 0.75 matches: 17
+Current Frame: 368, BestMatchLKF: 47, SbBoW 0.75 matches: 11
+Current Frame: 369, BestMatchLKF: 8, SbBoW 0.75 matches: 4Current Frame: 370, BestMatchLKF: 44, SbBoW 0.75 matches: 12
+Current Frame: 371, BestMatchLKF: 61, SbBoW 0.75 matches: 5Current Frame: 372, BestMatchLKF: 37, SbBoW 0.75 matches: 16
+Current Frame: 373, BestMatchLKF: 28, SbBoW 0.75 matches: 9Current Frame: 374, BestMatchLKF: 50, SbBoW 0.75 matches: 7Current Frame: 375, BestMatchLKF: 20, SbBoW 0.75 matches: 16
+Current Frame: 376, BestMatchLKF: 19, SbBoW 0.75 matches: 17
+Current Frame: 377, BestMatchLKF: 2, SbBoW 0.75 matches: 6Current Frame: 378, BestMatchLKF: 37, SbBoW 0.75 matches: 25
+Current Frame: 379, BestMatchLKF: 37, SbBoW 0.75 matches: 25
+Current Frame: 380, BestMatchLKF: 70, SbBoW 0.75 matches: 7Current Frame: 381, BestMatchLKF: 22, SbBoW 0.75 matches: 12
+Current Frame: 382, BestMatchLKF: 86, SbBoW 0.75 matches: 7Current Frame: 383, BestMatchLKF: 37, SbBoW 0.75 matches: 26
+Current Frame: 384, BestMatchLKF: 37, SbBoW 0.75 matches: 18
+Current Frame: 385, BestMatchLKF: 37, SbBoW 0.75 matches: 26
+Current Frame: 386, BestMatchLKF: 37, SbBoW 0.75 matches: 38
+Current Frame: 387, BestMatchLKF: 37, SbBoW 0.75 matches: 30
+Current Frame: 388, BestMatchLKF: 37, SbBoW 0.75 matches: 30
+Current Frame: 389, BestMatchLKF: 20, SbBoW 0.75 matches: 25
+Current Frame: 390, BestMatchLKF: 38, SbBoW 0.75 matches: 32
+Current Frame: 391, BestMatchLKF: 37, SbBoW 0.75 matches: 27
+Current Frame: 392, BestMatchLKF: 38, SbBoW 0.75 matches: 38
+Current Frame: 393, BestMatchLKF: 38, SbBoW 0.75 matches: 43
+Current Frame: 394, BestMatchLKF: 18, SbBoW 0.75 matches: 13
+Current Frame: 395, BestMatchLKF: 38, SbBoW 0.75 matches: 43
+Current Frame: 396, BestMatchLKF: 38, SbBoW 0.75 matches: 43
+Current Frame: 397, BestMatchLKF: 37, SbBoW 0.75 matches: 38
+Current Frame: 398, BestMatchLKF: 23, SbBoW 0.75 matches: 13
+Current Frame: 399, BestMatchLKF: 38, SbBoW 0.75 matches: 45
+Current Frame: 400, BestMatchLKF: 38, SbBoW 0.75 matches: 48
+Current Frame: 401, BestMatchLKF: 38, SbBoW 0.75 matches: 48
+Current Frame: 402, BestMatchLKF: 37, SbBoW 0.75 matches: 60
+Current Frame: 403, BestMatchLKF: 37, SbBoW 0.75 matches: 55
+Current Frame: 404, BestMatchLKF: 37, SbBoW 0.75 matches: 78
+Current Frame: 405, BestMatchLKF: 37, SbBoW 0.75 matches: 120, Triangulate: 89
+[0.95456874, 0.071429349, -0.28930324, 0.15272674;
+ -0.072471626, 0.99734491, 0.0071226656, 0.67568362;
+ 0.28904399, 0.014167219, 0.95721108, -0.72119772;
+ 0, 0, 0, 1]
+Current Frame: 406, BestMatchLKF: 37, SbBoW 0.75 matches: 160
+Current Frame: 407, BestMatchLKF: 37, SbBoW 0.75 matches: 154
+Current Frame: 408, BestMatchLKF: 37, SbBoW 0.75 matches: 155
+Current Frame: 409, BestMatchLKF: 37, SbBoW 0.75 matches: 136, Triangulate: 107
+[0.96781337, 0.058582276, -0.24475609, 0.5158841;
+ -0.053803653, 0.99820852, 0.026170343, -0.80860215;
+ 0.24585071, -0.012159228, 0.96923131, -0.28288886;
+ 0, 0, 0, 1]
+Current Frame: 410, BestMatchLKF: 37, SbBoW 0.75 matches: 166
+Current Frame: 411, BestMatchLKF: 37, SbBoW 0.75 matches: 140, Triangulate: 109
+[0.97450066, 0.036887541, -0.22133157, 0.14235984;
+ -0.042369023, 0.99890041, -0.020067751, -0.76410449;
+ 0.22034797, 0.028933644, 0.97499204, -0.62918836;
+ 0, 0, 0, 1]
+Current Frame: 412, BestMatchLKF: 37, SbBoW 0.75 matches: 133, Triangulate: 106
+[0.97476017, 0.040123299, -0.21961948, 0.21536973;
+ -0.0416504, 0.99912959, -0.0023254454, -0.93654406;
+ 0.21933506, 0.011414051, 0.97558284, -0.27658835;
+ 0, 0, 0, 1]
+Current Frame: 413, BestMatchLKF: 37, SbBoW 0.75 matches: 161, Triangulate: 121
+[0.97478515, 0.049300313, -0.21763174, 0.22373205;
+ -0.046186447, 0.99874496, 0.019375145, -0.93231434;
+ 0.21831384, -0.0088349879, 0.97583866, -0.28413707;
+ 0, 0, 0, 1]
+Current Frame: 414, BestMatchLKF: 37, SbBoW 0.75 matches: 173, Triangulate: 128
+[0.97761661, 0.087676041, -0.19125599, 0.12116174;
+ -0.080761664, 0.99577641, 0.043667942, -0.84617221;
+ 0.19427682, -0.027244449, 0.98056841, -0.5189532;
+ 0, 0, 0, 1]
+Current Frame: 415, BestMatchLKF: 37, SbBoW 0.75 matches: 181
+Current Frame: 416, BestMatchLKF: 37, SbBoW 0.75 matches: 264
+Current Frame: 417, BestMatchLKF: 37, SbBoW 0.75 matches: 990
+Current Frame: 418, BestMatchLKF: 37, SbBoW 0.75 matches: 287
+Current Frame: 419, BestMatchLKF: 37, SbBoW 0.75 matches: 261, Triangulate: 234
+[0.99858022, -0.04733631, 0.024429247, -0.35742962;
+ 0.047330692, 0.99887908, 0.0008045435, 0.72075659;
+ -0.024440035, 0.0003528595, 0.99970126, 0.59393102;
+ 0, 0, 0, 1]
+Current Frame: 420, BestMatchLKF: 37, SbBoW 0.75 matches: 206
+Current Frame: 421, BestMatchLKF: 37, SbBoW 0.75 matches: 172
+Current Frame: 422, BestMatchLKF: 38, SbBoW 0.75 matches: 221, Triangulate: 171
+[0.99761909, -0.068918258, -0.0025327802, 0.91885489;
+ 0.068959117, 0.99733555, 0.023800321, -0.27395955;
+ 0.00088584423, -0.023918301, 0.99971354, -0.28399265;
+ 0, 0, 0, 1]
+Current Frame: 423, BestMatchLKF: 38, SbBoW 0.75 matches: 266, Triangulate: 220
+[0.99838728, -0.055272419, -0.012954041, 0.97741967;
+ 0.05539453, 0.99842161, 0.0092592668, -0.0051616011;
+ 0.012421787, -0.0099620214, 0.99987316, 0.21124429;
+ 0, 0, 0, 1]
+Current Frame: 424, BestMatchLKF: 38, SbBoW 0.75 matches: 251
+Current Frame: 425, BestMatchLKF: 38, SbBoW 0.75 matches: 394
+Current Frame: 426, BestMatchLKF: 38, SbBoW 0.75 matches: 985
+Current Frame: 427, BestMatchLKF: 38, SbBoW 0.75 matches: 293
+Current Frame: 428, BestMatchLKF: 38, SbBoW 0.75 matches: 266
+Current Frame: 429, BestMatchLKF: 38, SbBoW 0.75 matches: 228, Triangulate: 166
+[0.99875242, -0.038990766, 0.031196453, -0.95842224;
+ 0.03915906, 0.9992215, -0.0048019849, 0.27903283;
+ -0.030984927, 0.0060176104, 0.99950165, -0.05972892;
+ 0, 0, 0, 1]
+Current Frame: 430, BestMatchLKF: 39, SbBoW 0.75 matches: 163
+Current Frame: 431, BestMatchLKF: 38, SbBoW 0.75 matches: 156
+Current Frame: 432, BestMatchLKF: 39, SbBoW 0.75 matches: 174
+Current Frame: 433, BestMatchLKF: 39, SbBoW 0.75 matches: 250, Triangulate: 184
+[0.9999994, -0.00092613697, -0.00056308508, 0.85140651;
+ 0.00092324615, 0.99998641, -0.0051427931, 0.30421501;
+ 0.00056782365, 0.0051422268, 0.99998653, -0.42727059;
+ 0, 0, 0, 1]
+Current Frame: 434, BestMatchLKF: 39, SbBoW 0.75 matches: 297
+Current Frame: 435, BestMatchLKF: 39, SbBoW 0.75 matches: 202
+Current Frame: 436, BestMatchLKF: 40, SbBoW 0.75 matches: 190
+Current Frame: 437, BestMatchLKF: 40, SbBoW 0.75 matches: 219
+Current Frame: 438, BestMatchLKF: 40, SbBoW 0.75 matches: 303, Triangulate: 266
+[0.99990833, 0.0052545313, -0.012472332, 0.99239409;
+ -0.0052370839, 0.99998522, 0.0014309711, -0.013733838;
+ 0.012479685, -0.0013654972, 0.9999212, -0.12233306;
+ 0, 0, 0, 1]
+Current Frame: 439, BestMatchLKF: 40, SbBoW 0.75 matches: 366
+Current Frame: 440, BestMatchLKF: 40, SbBoW 0.75 matches: 243, Triangulate: 180
+[0.99993336, -0.010596871, -0.0045679808, -0.80152386;
+ 0.010599375, 0.99994373, 0.00051300973, 0.19895254;
+ 0.0045623481, -0.00056138635, 0.99998939, 0.56389481;
+ 0, 0, 0, 1]
+Current Frame: 441, BestMatchLKF: 40, SbBoW 0.75 matches: 183
+Current Frame: 442, BestMatchLKF: 41, SbBoW 0.75 matches: 170
+Current Frame: 443, BestMatchLKF: 40, SbBoW 0.75 matches: 165
+Current Frame: 444, BestMatchLKF: 41, SbBoW 0.75 matches: 194
+Current Frame: 445, BestMatchLKF: 41, SbBoW 0.75 matches: 210, Triangulate: 160
+[0.99849421, 0.0078466032, -0.054293692, 0.78661752;
+ -0.0082893465, 0.9999342, -0.0079348087, -0.010767933;
+ 0.05422771, 0.0083728181, 0.99849367, 0.61734664;
+ 0, 0, 0, 1]
+Current Frame: 446, BestMatchLKF: 41, SbBoW 0.75 matches: 233
+Current Frame: 447, BestMatchLKF: 41, SbBoW 0.75 matches: 350
+Current Frame: 448, BestMatchLKF: 41, SbBoW 0.75 matches: 246, Triangulate: 203
+[0.99897909, -0.020935412, 0.040030688, -0.91223043;
+ 0.020754881, 0.99977249, 0.0049199443, -0.049115226;
+ -0.040124536, -0.0040840581, 0.99918634, -0.40672261;
+ 0, 0, 0, 1]
+Current Frame: 449, BestMatchLKF: 41, SbBoW 0.75 matches: 185
+Current Frame: 450, BestMatchLKF: 41, SbBoW 0.75 matches: 159, Triangulate: 115
+[0.99809778, -0.037049402, 0.049277931, -0.74798656;
+ 0.034873918, 0.99840963, 0.04429793, -0.11407966;
+ -0.050840735, -0.042495158, 0.99780232, -0.65383631;
+ 0, 0, 0, 1]
+Current Frame: 451, BestMatchLKF: 42, SbBoW 0.75 matches: 164, Triangulate: 127
+[0.99992281, 0.0066652894, -0.01049684, 0.95677537;
+ -0.0063600093, 0.99956346, 0.028853152, -0.11909398;
+ 0.01068455, -0.028784122, 0.99952841, 0.26532528;
+ 0, 0, 0, 1]
+Current Frame: 452, BestMatchLKF: 42, SbBoW 0.75 matches: 189, Triangulate: 147
+[0.99994528, 0.0028024763, 0.010079324, 0.79780835;
+ -0.0028620884, 0.99997848, 0.0059081055, -0.084370963;
+ -0.010062605, -0.0059366226, 0.99993169, 0.59697849;
+ 0, 0, 0, 1]
+Current Frame: 453, BestMatchLKF: 42, SbBoW 0.75 matches: 238
+Current Frame: 454, BestMatchLKF: 42, SbBoW 0.75 matches: 331
+Current Frame: 455, BestMatchLKF: 42, SbBoW 0.75 matches: 262
+Current Frame: 456, BestMatchLKF: 42, SbBoW 0.75 matches: 205
+Current Frame: 457, BestMatchLKF: 42, SbBoW 0.75 matches: 175
+Current Frame: 458, BestMatchLKF: 42, SbBoW 0.75 matches: 175, Triangulate: 132
+[0.99789166, -0.019706249, 0.061837405, -0.86359251;
+ 0.020693481, 0.99966782, -0.015364811, 0.36576232;
+ -0.061514109, 0.016612008, 0.9979679, -0.34702435;
+ 0, 0, 0, 1]
+Current Frame: 459, BestMatchLKF: 43, SbBoW 0.75 matches: 117
+Current Frame: 460, BestMatchLKF: 43, SbBoW 0.75 matches: 133, Triangulate: 97
+[0.99972749, 0.016371965, 0.016640544, 0.59740782;
+ -0.016062811, 0.99969894, -0.018548191, -0.34353819;
+ -0.016939104, 0.018275827, 0.99968958, 0.72462773;
+ 0, 0, 0, 1]
+Current Frame: 461, BestMatchLKF: 43, SbBoW 0.75 matches: 183
+Current Frame: 462, BestMatchLKF: 43, SbBoW 0.75 matches: 273
+Current Frame: 463, BestMatchLKF: 43, SbBoW 0.75 matches: 241
+Current Frame: 464, BestMatchLKF: 43, SbBoW 0.75 matches: 205, Triangulate: 163
+[0.99985707, 0.011945248, 0.011961788, -0.73731732;
+ -0.011974216, 0.99992561, 0.0023542792, 0.35662422;
+ -0.01193285, -0.002497226, 0.99992573, -0.57374412;
+ 0, 0, 0, 1]
+Current Frame: 465, BestMatchLKF: 43, SbBoW 0.75 matches: 177
+Current Frame: 466, BestMatchLKF: 43, SbBoW 0.75 matches: 156
+Current Frame: 467, BestMatchLKF: 44, SbBoW 0.75 matches: 197
+Current Frame: 468, BestMatchLKF: 44, SbBoW 0.75 matches: 237
+Current Frame: 469, BestMatchLKF: 44, SbBoW 0.75 matches: 343
+Current Frame: 470, BestMatchLKF: 44, SbBoW 0.75 matches: 296
+Current Frame: 471, BestMatchLKF: 44, SbBoW 0.75 matches: 247
+Current Frame: 472, BestMatchLKF: 44, SbBoW 0.75 matches: 228
+Current Frame: 473, BestMatchLKF: 44, SbBoW 0.75 matches: 192
+Current Frame: 474, BestMatchLKF: 46, SbBoW 0.75 matches: 180, Triangulate: 137
+[0.98009896, 0.086094826, -0.17886801, 0.2637592;
+ -0.089198425, 0.99596965, -0.0093666166, -0.17685218;
+ 0.1773407, 0.025134914, 0.98382849, 0.94823754;
+ 0, 0, 0, 1]
+Current Frame: 475, BestMatchLKF: 45, SbBoW 0.75 matches: 217
+Current Frame: 476, BestMatchLKF: 45, SbBoW 0.75 matches: 223
+Current Frame: 477, BestMatchLKF: 45, SbBoW 0.75 matches: 248
+Current Frame: 478, BestMatchLKF: 45, SbBoW 0.75 matches: 319
+Current Frame: 479, BestMatchLKF: 45, SbBoW 0.75 matches: 274
+Current Frame: 480, BestMatchLKF: 46, SbBoW 0.75 matches: 286
+Current Frame: 481, BestMatchLKF: 46, SbBoW 0.75 matches: 216
+Current Frame: 482, BestMatchLKF: 47, SbBoW 0.75 matches: 179
+Current Frame: 483, BestMatchLKF: 47, SbBoW 0.75 matches: 171, Triangulate: 145
+[0.99849844, 0.017137319, 0.052030087, 0.15219219;
+ -0.014287248, 0.9984026, -0.054663718, -0.53716421;
+ -0.052883707, 0.053838402, 0.99714839, 0.82963377;
+ 0, 0, 0, 1]
+Current Frame: 484, BestMatchLKF: 47, SbBoW 0.75 matches: 228, Triangulate: 158
+[0.99897742, 0.006833002, 0.044692375, 0.047998905;
+ -0.00467228, 0.99882311, -0.048273772, -0.45107538;
+ -0.044969622, 0.048015594, 0.99783385, 0.89119422;
+ 0, 0, 0, 1]
+Current Frame: 485, BestMatchLKF: 47, SbBoW 0.75 matches: 251, Triangulate: 132
+[0.99952, 0.0093114311, 0.029545993, 0.029661784;
+ -0.0084847305, 0.99957246, -0.027983159, -0.39859122;
+ -0.029793955, 0.02771914, 0.99917161, 0.91664886;
+ 0, 0, 0, 1]
+Current Frame: 486, BestMatchLKF: 47, SbBoW 0.75 matches: 306
+Current Frame: 487, BestMatchLKF: 47, SbBoW 0.75 matches: 280
+Current Frame: 488, BestMatchLKF: 47, SbBoW 0.75 matches: 185
+Current Frame: 489, BestMatchLKF: 47, SbBoW 0.75 matches: 168
+Current Frame: 490, BestMatchLKF: 47, SbBoW 0.75 matches: 169, Triangulate: 122
+[0.99857324, -0.030707663, -0.043687418, 0.015984837;
+ 0.030637018, 0.99952793, -0.0022871792, 0.4298043;
+ 0.04373702, 0.00094544888, 0.99904257, -0.90278059;
+ 0, 0, 0, 1]
+Current Frame: 491, BestMatchLKF: 47, SbBoW 0.75 matches: 158, Triangulate: 117
+[0.99973297, 0.0026896596, -0.022953175, 0.12768362;
+ -0.003614936, 0.99917877, -0.040357441, 0.56238073;
+ 0.022825725, 0.040429831, 0.99892157, -0.81696069;
+ 0, 0, 0, 1]
+Current Frame: 492, BestMatchLKF: 47, SbBoW 0.75 matches: 143, Triangulate: 112
+[0.99998093, 0.0032260157, -0.0052542686, 0.12982845;
+ -0.0034280382, 0.99923742, -0.038893908, 0.482218;
+ 0.0051246881, 0.038911313, 0.99922949, -0.86637771;
+ 0, 0, 0, 1]
+Current Frame: 493, BestMatchLKF: 47, SbBoW 0.75 matches: 154, Triangulate: 117
+[0.99975139, -0.0021852329, 0.022186801, 0.1163906;
+ 0.0033400506, 0.99863386, -0.052146852, 0.50834388;
+ -0.022042543, 0.052208036, 0.99839294, -0.85325247;
+ 0, 0, 0, 1]
+Current Frame: 494, BestMatchLKF: 47, SbBoW 0.75 matches: 152
+Current Frame: 495, BestMatchLKF: 47, SbBoW 0.75 matches: 132, Triangulate: 113
+[0.99432826, -0.077170625, 0.073184237, 0.089839794;
+ 0.079999678, 0.99612474, -0.036543608, 0.44565579;
+ -0.070080578, 0.042191029, 0.99664867, -0.89068496;
+ 0, 0, 0, 1]
+Current Frame: 496, BestMatchLKF: 48, SbBoW 0.75 matches: 134
+Current Frame: 497, BestMatchLKF: 48, SbBoW 0.75 matches: 188, Triangulate: 144
+[0.99878079, -0.01069656, -0.048193038, -0.22205222;
+ 0.0096486695, 0.99971318, -0.021924227, -0.33220163;
+ 0.048413679, 0.021432579, 0.99859732, 0.9166978;
+ 0, 0, 0, 1]
+Current Frame: 498, BestMatchLKF: 48, SbBoW 0.75 matches: 230, Triangulate: 166
+[0.99976355, -0.00057741255, -0.02172789, -0.33421001;
+ 0.00034814328, 0.99994415, -0.010555372, -0.24163653;
+ 0.021732688, 0.010545284, 0.99970812, 0.91099691;
+ 0, 0, 0, 1]
+Current Frame: 499, BestMatchLKF: 48, SbBoW 0.75 matches: 268, Triangulate: 137
+[0.99995637, 0.003068611, -0.0088210106, -0.62345982;
+ -0.0031069815, 0.99998581, -0.0043407679, -0.25915268;
+ 0.0088074207, 0.0043679625, 0.99995166, 0.73765689;
+ 0, 0, 0, 1]
+Current Frame: 500, BestMatchLKF: 48, SbBoW 0.75 matches: 343
+Current Frame: 501, BestMatchLKF: 48, SbBoW 0.75 matches: 349
+Current Frame: 502, BestMatchLKF: 48, SbBoW 0.75 matches: 222, Triangulate: 163
+[0.99993777, -0.011117015, 0.0008893609, 0.37815893;
+ 0.011133321, 0.99971324, -0.021206662, 0.17533568;
+ -0.00065335631, 0.02121526, 0.99977475, -0.90898472;
+ 0, 0, 0, 1]
+Current Frame: 503, BestMatchLKF: 48, SbBoW 0.75 matches: 187, Triangulate: 125
+[0.99997556, -0.0054829568, 0.004356876, 0.1831823;
+ 0.0056351908, 0.99934554, -0.035732716, 0.31477845;
+ -0.0041580647, 0.035756469, 0.99935186, -0.93132097;
+ 0, 0, 0, 1]
+Current Frame: 504, BestMatchLKF: 49, SbBoW 0.75 matches: 178, Triangulate: 137
+[0.99803925, 0.011098847, -0.061599046, -0.42839521;
+ -0.012633696, 0.99961799, -0.024584159, -0.29933259;
+ 0.061302662, 0.025314227, 0.99779826, 0.85257113;
+ 0, 0, 0, 1]
+Current Frame: 505, BestMatchLKF: 49, SbBoW 0.75 matches: 221, Triangulate: 141
+[0.99886709, 0.014788955, -0.04523173, -0.44714561;
+ -0.015469804, 0.99977183, -0.014739618, -0.20317887;
+ 0.045003504, 0.015422702, 0.99886775, 0.87107927;
+ 0, 0, 0, 1]
+Current Frame: 506, BestMatchLKF: 49, SbBoW 0.75 matches: 293
+Current Frame: 507, BestMatchLKF: 49, SbBoW 0.75 matches: 302
+Current Frame: 508, BestMatchLKF: 49, SbBoW 0.75 matches: 223, Triangulate: 144
+[0.99852145, -0.039386295, 0.03746295, 0.2746948;
+ 0.038498923, 0.99896741, 0.024120361, 0.2246927;
+ -0.038374275, -0.022642449, 0.99900687, -0.93490958;
+ 0, 0, 0, 1]
+Current Frame: 509, BestMatchLKF: 49, SbBoW 0.75 matches: 201
+Current Frame: 510, BestMatchLKF: 49, SbBoW 0.75 matches: 168, Triangulate: 124
+[0.99490857, -0.079026416, 0.062544078, 0.55947948;
+ 0.076145589, 0.99597985, 0.047178507, 0.19670406;
+ -0.066020936, -0.04217571, 0.99692649, -0.80516481;
+ 0, 0, 0, 1]
+Current Frame: 511, BestMatchLKF: 50, SbBoW 0.75 matches: 232
+Current Frame: 512, BestMatchLKF: 50, SbBoW 0.75 matches: 286
+Current Frame: 513, BestMatchLKF: 50, SbBoW 0.75 matches: 981
+Current Frame: 514, BestMatchLKF: 50, SbBoW 0.75 matches: 259, Triangulate: 208
+[0.99978101, 0.020296536, 0.0051018298, 0.94121039;
+ -0.020328399, 0.99977374, 0.0062661301, 0.064803183;
+ -0.0049734712, -0.0063685495, 0.9999674, -0.33154711;
+ 0, 0, 0, 1]
+Current Frame: 515, BestMatchLKF: 50, SbBoW 0.75 matches: 213
+Current Frame: 516, BestMatchLKF: 50, SbBoW 0.75 matches: 183
+Current Frame: 517, BestMatchLKF: 68, SbBoW 0.75 matches: 181
+Current Frame: 518, BestMatchLKF: 51, SbBoW 0.75 matches: 175
+Current Frame: 519, BestMatchLKF: 68, SbBoW 0.75 matches: 204, Triangulate: 161
+[0.99986196, 0.0082339942, -0.014428735, -0.51094794;
+ -0.0079790652, 0.99981248, 0.017641425, -0.55444282;
+ 0.014571339, -0.017523885, 0.99974024, -0.65690583;
+ 0, 0, 0, 1]
+Current Frame: 520, BestMatchLKF: 68, SbBoW 0.75 matches: 208, Triangulate: 157
+[0.99986863, 0.015853412, 0.0033968091, -0.20758422;
+ -0.015879795, 0.99984312, 0.0078575313, -0.54653227;
+ -0.0032717139, -0.0079105794, 0.99996334, -0.81130219;
+ 0, 0, 0, 1]
+Current Frame: 521, BestMatchLKF: 51, SbBoW 0.75 matches: 260
+Current Frame: 522, BestMatchLKF: 51, SbBoW 0.75 matches: 292, Triangulate: 242
+[0.99998569, -0.0024899058, -0.004744567, 0.99639791;
+ 0.0023803823, 0.99973285, -0.022989625, -0.024486536;
+ 0.0048006624, 0.022977972, 0.99972445, 0.08118847;
+ 0, 0, 0, 1]
+Current Frame: 523, BestMatchLKF: 51, SbBoW 0.75 matches: 201
+Current Frame: 524, BestMatchLKF: 51, SbBoW 0.75 matches: 193
+Current Frame: 525, BestMatchLKF: 51, SbBoW 0.75 matches: 162
+Current Frame: 526, BestMatchLKF: 51, SbBoW 0.75 matches: 181
+Current Frame: 527, BestMatchLKF: 52, SbBoW 0.75 matches: 178, Triangulate: 125
+[0.99871886, -0.039860442, 0.031171445, -0.99795312;
+ 0.03923716, 0.99902242, 0.020357134, -0.046027519;
+ -0.031952415, -0.019107897, 0.99930674, 0.044396788;
+ 0, 0, 0, 1]
+Current Frame: 528, BestMatchLKF: 52, SbBoW 0.75 matches: 247
+Current Frame: 529, BestMatchLKF: 52, SbBoW 0.75 matches: 254, Triangulate: 207
+[0.9997983, -0.017294548, 0.010220855, -0.96281713;
+ 0.016958913, 0.99934208, 0.032059826, 0.00071701355;
+ -0.010768592, -0.031880043, 0.99943364, 0.27015299;
+ 0, 0, 0, 1]
+Current Frame: 530, BestMatchLKF: 52, SbBoW 0.75 matches: 258, Triangulate: 208
+[0.99994957, -0.0097802281, 0.0023213327, -0.98771173;
+ 0.0097285509, 0.99972528, 0.021321829, 0.08282461;
+ -0.0025292039, -0.021298178, 0.99977005, -0.13253538;
+ 0, 0, 0, 1]
+Current Frame: 531, BestMatchLKF: 52, SbBoW 0.75 matches: 319, Triangulate: 277
+[0.99999619, 0.00097329542, 0.0026015639, -0.90473473;
+ -0.00098958239, 0.99997979, 0.00625965, 0.024490092;
+ -0.0025954843, -0.0062622428, 0.99997699, -0.4252708;
+ 0, 0, 0, 1]
+Current Frame: 532, BestMatchLKF: 52, SbBoW 0.75 matches: 274, Triangulate: 221
+[0.99939716, -0.030352578, 0.016851276, 0.90500116;
+ 0.030382156, 0.99953735, -0.0014959499, 0.19698492;
+ -0.016798109, 0.0020069629, 0.99985683, -0.37705418;
+ 0, 0, 0, 1]
+Current Frame: 533, BestMatchLKF: 52, SbBoW 0.75 matches: 211
+Current Frame: 534, BestMatchLKF: 52, SbBoW 0.75 matches: 146
+Current Frame: 535, BestMatchLKF: 71, SbBoW 0.75 matches: 153
+Current Frame: 536, BestMatchLKF: 71, SbBoW 0.75 matches: 138
+Current Frame: 537, BestMatchLKF: 71, SbBoW 0.75 matches: 128, Triangulate: 95
+[0.99549371, 0.061936419, -0.071806014, 0.89250445;
+ -0.058203682, 0.99689883, 0.052962132, -0.045229502;
+ 0.074863613, -0.048544124, 0.99601161, 0.4487651;
+ 0, 0, 0, 1]
+Current Frame: 538, BestMatchLKF: 71, SbBoW 0.75 matches: 108
+Current Frame: 539, BestMatchLKF: 53, SbBoW 0.75 matches: 156, Triangulate: 107
+[0.97818154, 0.051252089, -0.20133069, -0.21714823;
+ -0.043390803, 0.99812067, 0.043270182, 0.07649862;
+ 0.20317002, -0.033590168, 0.97856718, 0.97313648;
+ 0, 0, 0, 1]
+Current Frame: 540, BestMatchLKF: 53, SbBoW 0.75 matches: 239
+Current Frame: 541, BestMatchLKF: 53, SbBoW 0.75 matches: 255
+Current Frame: 542, BestMatchLKF: 53, SbBoW 0.75 matches: 327
+Current Frame: 543, BestMatchLKF: 53, SbBoW 0.75 matches: 335
+Current Frame: 544, BestMatchLKF: 53, SbBoW 0.75 matches: 242
+Current Frame: 545, BestMatchLKF: 53, SbBoW 0.75 matches: 180
+Current Frame: 546, BestMatchLKF: 53, SbBoW 0.75 matches: 164, Triangulate: 129
+[0.9954232, -0.052662969, 0.079744995, -0.32339767;
+ 0.048702538, 0.99751949, 0.050820529, -0.69412816;
+ -0.082223564, -0.046704292, 0.9955191, -0.64311743;
+ 0, 0, 0, 1]
+Current Frame: 547, BestMatchLKF: 53, SbBoW 0.75 matches: 117
+Current Frame: 548, BestMatchLKF: 54, SbBoW 0.75 matches: 158
+Current Frame: 549, BestMatchLKF: 54, SbBoW 0.75 matches: 182
+Current Frame: 550, BestMatchLKF: 54, SbBoW 0.75 matches: 198
+Current Frame: 551, BestMatchLKF: 54, SbBoW 0.75 matches: 984
+Current Frame: 552, BestMatchLKF: 54, SbBoW 0.75 matches: 228
+Current Frame: 553, BestMatchLKF: 54, SbBoW 0.75 matches: 197
+Current Frame: 554, BestMatchLKF: 54, SbBoW 0.75 matches: 178, Triangulate: 145
+[0.99828565, -0.052278191, 0.026317064, -0.79222667;
+ 0.053974032, 0.99619091, -0.06848757, -0.60902405;
+ -0.022636387, 0.069790632, 0.99730474, 0.038296212;
+ 0, 0, 0, 1]
+Current Frame: 555, BestMatchLKF: 54, SbBoW 0.75 matches: 150, Triangulate: 128
+[0.99723172, -0.073588371, 0.010671392, -0.79377741;
+ 0.074197352, 0.99420297, -0.077814385, -0.60217011;
+ -0.0048832297, 0.078390747, 0.99691087, 0.085490018;
+ 0, 0, 0, 1]
+Current Frame: 556, BestMatchLKF: 54, SbBoW 0.75 matches: 149
+Current Frame: 557, BestMatchLKF: 54, SbBoW 0.75 matches: 151, Triangulate: 131
+[0.99850142, -0.054716408, 0.0010381639, -0.80302936;
+ 0.054633588, 0.99552679, -0.077081889, -0.49536148;
+ 0.0031841695, 0.077023119, 0.99702418, -0.33130175;
+ 0, 0, 0, 1]
+Current Frame: 558, BestMatchLKF: 54, SbBoW 0.75 matches: 147
+Current Frame: 559, BestMatchLKF: 55, SbBoW 0.75 matches: 140, Triangulate: 112
+[0.99994069, 0.0033294111, -0.0103589, -0.55620927;
+ -0.0040699691, 0.99737346, -0.07231611, -0.37126052;
+ 0.010090858, 0.072354034, 0.99732804, 0.74350309;
+ 0, 0, 0, 1]
+Current Frame: 560, BestMatchLKF: 55, SbBoW 0.75 matches: 155
+Current Frame: 561, BestMatchLKF: 55, SbBoW 0.75 matches: 193
+Current Frame: 562, BestMatchLKF: 55, SbBoW 0.75 matches: 982
+Current Frame: 563, BestMatchLKF: 55, SbBoW 0.75 matches: 231
+Current Frame: 564, BestMatchLKF: 55, SbBoW 0.75 matches: 185
+Current Frame: 565, BestMatchLKF: 55, SbBoW 0.75 matches: 163
+Current Frame: 566, BestMatchLKF: 55, SbBoW 0.75 matches: 105
+Current Frame: 567, BestMatchLKF: 56, SbBoW 0.75 matches: 104
+Current Frame: 568, BestMatchLKF: 56, SbBoW 0.75 matches: 114, Triangulate: 93
+[0.99814713, 0.060573474, -0.0057469308, -0.44830137;
+ -0.06072861, 0.99762672, -0.032447964, -0.43972206;
+ 0.0037677586, 0.032736838, 0.99945688, 0.77824831;
+ 0, 0, 0, 1]
+Current Frame: 569, BestMatchLKF: 56, SbBoW 0.75 matches: 137, Triangulate: 94
+[0.99899536, 0.043445811, -0.010974556, -0.3299405;
+ -0.043727458, 0.9986819, -0.026876003, -0.45409101;
+ 0.0097924471, 0.027328849, 0.99957848, 0.82761139;
+ 0, 0, 0, 1]
+Current Frame: 570, BestMatchLKF: 56, SbBoW 0.75 matches: 180, Triangulate: 136
+[0.99945939, 0.029354259, -0.014806807, -0.40714136;
+ -0.029512376, 0.99950844, -0.010575801, -0.42662245;
+ 0.014489144, 0.011006951, 0.99983442, 0.80760711;
+ 0, 0, 0, 1]
+Current Frame: 571, BestMatchLKF: 56, SbBoW 0.75 matches: 177, Triangulate: 137
+[0.99989235, 0.010647684, -0.010101557, -0.54637492;
+ -0.010573417, 0.99991691, 0.0073739886, -0.48809502;
+ 0.010179311, -0.0072664618, 0.99992186, 0.6806156;
+ 0, 0, 0, 1]
+Current Frame: 572, BestMatchLKF: 56, SbBoW 0.75 matches: 219
+Current Frame: 573, BestMatchLKF: 56, SbBoW 0.75 matches: 309
+Current Frame: 574, BestMatchLKF: 56, SbBoW 0.75 matches: 256
+Current Frame: 575, BestMatchLKF: 56, SbBoW 0.75 matches: 227, Triangulate: 159
+[0.99947762, -0.029385328, 0.013457745, 0.6521107;
+ 0.02938211, 0.9995681, 0.00043839216, 0.25611049;
+ -0.013464779, -4.2781234e-05, 0.9999094, -0.71355379;
+ 0, 0, 0, 1]
+Current Frame: 576, BestMatchLKF: 56, SbBoW 0.75 matches: 213, Triangulate: 138
+[0.99913067, -0.034326512, 0.02365309, 0.41827476;
+ 0.034400329, 0.99940437, -0.0027200729, 0.15970908;
+ -0.023545623, 0.0035314113, 0.99971646, -0.89416957;
+ 0, 0, 0, 1]
+Current Frame: 577, BestMatchLKF: 56, SbBoW 0.75 matches: 197, Triangulate: 121
+[0.99888897, -0.024845067, 0.040045738, 0.29558742;
+ 0.025421269, 0.99957961, -0.013941929, 0.14227067;
+ -0.039682537, 0.014944419, 0.99910063, -0.94466245;
+ 0, 0, 0, 1]
+Current Frame: 578, BestMatchLKF: 56, SbBoW 0.75 matches: 201, Triangulate: 163
+[0.99894166, -8.9734793e-05, 0.045995414, 0.62752891;
+ 0.00075526536, 0.99989522, -0.014455497, -0.22295983;
+ -0.045989305, 0.014474913, 0.99883711, -0.74598682;
+ 0, 0, 0, 1]
+Current Frame: 579, BestMatchLKF: 56, SbBoW 0.75 matches: 186, Triangulate: 149
+[0.99791181, 0.017872229, 0.062069774, 0.52867872;
+ -0.015977375, 0.99939495, -0.030891776, -0.23119169;
+ -0.062584341, 0.029835597, 0.99759364, -0.8167308;
+ 0, 0, 0, 1]
+Current Frame: 580, BestMatchLKF: 57, SbBoW 0.75 matches: 161, Triangulate: 117
+[0.99898869, 0.008859612, -0.044080008, 0.082380414;
+ -0.008711867, 0.99995583, 0.0035425425, -0.902587;
+ 0.044109434, -0.0031549037, 0.99902183, 0.42255205;
+ 0, 0, 0, 1]
+Current Frame: 581, BestMatchLKF: 56, SbBoW 0.75 matches: 178, Triangulate: 134
+[0.99807185, -0.017620325, 0.059518248, 0.45053741;
+ 0.020570204, 0.99857122, -0.049316883, -0.25116277;
+ -0.058564156, 0.050446004, 0.99700826, -0.85669905;
+ 0, 0, 0, 1]
+Current Frame: 582, BestMatchLKF: 57, SbBoW 0.75 matches: 160
+Current Frame: 583, BestMatchLKF: 57, SbBoW 0.75 matches: 188, Triangulate: 118
+[0.99896181, 0.031535074, -0.03287755, -0.21031044;
+ -0.03213951, 0.99932092, -0.018023521, -0.89253765;
+ 0.032286845, 0.019061387, 0.99929678, 0.39893118;
+ 0, 0, 0, 1]
+Current Frame: 584, BestMatchLKF: 57, SbBoW 0.75 matches: 215
+Current Frame: 585, BestMatchLKF: 57, SbBoW 0.75 matches: 980
+Current Frame: 586, BestMatchLKF: 57, SbBoW 0.75 matches: 190
+Current Frame: 587, BestMatchLKF: 57, SbBoW 0.75 matches: 181
+Current Frame: 588, BestMatchLKF: 58, SbBoW 0.75 matches: 151
+Current Frame: 589, BestMatchLKF: 58, SbBoW 0.75 matches: 164
+Current Frame: 590, BestMatchLKF: 58, SbBoW 0.75 matches: 173
+Current Frame: 591, BestMatchLKF: 58, SbBoW 0.75 matches: 174
+Current Frame: 592, BestMatchLKF: 58, SbBoW 0.75 matches: 201
+Current Frame: 593, BestMatchLKF: 58, SbBoW 0.75 matches: 195, Triangulate: 127
+[0.97096318, 0.017277874, -0.23860392, -0.12541297;
+ -0.02497901, 0.99925888, -0.029289156, -0.45377874;
+ 0.23792109, 0.034398794, 0.97067511, 0.88224512;
+ 0, 0, 0, 1]
+Current Frame: 594, BestMatchLKF: 58, SbBoW 0.75 matches: 208, Triangulate: 147
+[0.97413087, 0.054015651, -0.21943434, -0.24194343;
+ -0.058982287, 0.99812859, -0.016141325, -0.46653152;
+ 0.21815178, 0.028666556, 0.97549373, 0.85077125;
+ 0, 0, 0, 1]
+Current Frame: 595, BestMatchLKF: 58, SbBoW 0.75 matches: 215, Triangulate: 144
+[0.97942549, 0.069108471, -0.18960449, -0.4280546;
+ -0.073673673, 0.9971354, -0.017126799, -0.45174795;
+ 0.18787767, 0.030743241, 0.98171139, 0.78274709;
+ 0, 0, 0, 1]
+Current Frame: 596, BestMatchLKF: 58, SbBoW 0.75 matches: 256, Triangulate: 156
+[0.98790884, 0.059978083, -0.14296442, -0.36533284;
+ -0.063780844, 0.9977178, -0.022163033, -0.3977364;
+ 0.14130886, 0.03101337, 0.98947966, 0.84162796;
+ 0, 0, 0, 1]
+Current Frame: 597, BestMatchLKF: 58, SbBoW 0.75 matches: 326
+Current Frame: 598, BestMatchLKF: 58, SbBoW 0.75 matches: 371
+Current Frame: 599, BestMatchLKF: 58, SbBoW 0.75 matches: 288, Triangulate: 198
+[0.99857664, -0.038228452, 0.037193999, -0.11718355;
+ 0.037754107, 0.99919754, 0.013375312, 0.58465159;
+ -0.03767544, -0.011951953, 0.99921852, -0.80277669;
+ 0, 0, 0, 1]
+Current Frame: 600, BestMatchLKF: 59, SbBoW 0.75 matches: 186, Triangulate: 112
+[0.99775517, 0.05119811, -0.043163925, -0.14469506;
+ -0.051430639, 0.99866742, -0.0042929947, -0.28564623;
+ 0.042886607, 0.0065033436, 0.99905872, 0.94734871;
+ 0, 0, 0, 1]
+Current Frame: 601, BestMatchLKF: 58, SbBoW 0.75 matches: 192
+Current Frame: 602, BestMatchLKF: 59, SbBoW 0.75 matches: 210, Triangulate: 138
+[0.99971449, 0.019368619, -0.013997436, -0.33832675;
+ -0.018950582, 0.99938786, 0.029411167, -0.42208835;
+ 0.014558494, -0.029137403, 0.99946952, 0.84105676;
+ 0, 0, 0, 1]
+Current Frame: 603, BestMatchLKF: 58, SbBoW 0.75 matches: 164, Triangulate: 111
+[0.99173385, -0.11423797, 0.058427595, -0.18185827;
+ 0.11463267, 0.993402, -0.0034375489, 0.72302002;
+ -0.057649367, 0.010106862, 0.99828583, -0.66646045;
+ 0, 0, 0, 1]
+Current Frame: 604, BestMatchLKF: 58, SbBoW 0.75 matches: 163, Triangulate: 104
+[0.99125743, -0.12048976, 0.05376716, -0.14971319;
+ 0.12001565, 0.99269974, 0.011973172, 0.5185402;
+ -0.054817297, -0.0054155588, 0.99848163, -0.84184438;
+ 0, 0, 0, 1]
+Current Frame: 605, BestMatchLKF: 59, SbBoW 0.75 matches: 229, Triangulate: 156
+[0.99937868, -0.0011072606, -0.035226911, -0.32569388;
+ 0.00096208602, 0.99999094, -0.0041368157, -0.21578875;
+ 0.035231173, 0.0041003078, 0.99937075, 0.9205209;
+ 0, 0, 0, 1]
+Current Frame: 606, BestMatchLKF: 59, SbBoW 0.75 matches: 263, Triangulate: 173
+[0.9991082, 0.02648465, -0.032885432, -0.17222525;
+ -0.026849352, 0.99958229, -0.010696888, -0.24053013;
+ 0.032588392, 0.011570334, 0.99940187, 0.95524013;
+ 0, 0, 0, 1]
+Current Frame: 607, BestMatchLKF: 59, SbBoW 0.75 matches: 384
+Current Frame: 608, BestMatchLKF: 59, SbBoW 0.75 matches: 291
+Current Frame: 609, BestMatchLKF: 59, SbBoW 0.75 matches: 192, Triangulate: 125
+[0.99545604, 0.0011660652, 0.095215417, -0.035012119;
+ -0.0065442631, 0.99839854, 0.056192026, 0.081958905;
+ -0.094997406, -0.056559816, 0.99386948, -0.9960205;
+ 0, 0, 0, 1]
+Current Frame: 610, BestMatchLKF: 60, SbBoW 0.75 matches: 254, Triangulate: 154
+[0.99792159, 0.014981243, -0.062674485, -0.074288778;
+ -0.016273996, 0.99966413, -0.020165779, 0.098939121;
+ 0.062351339, 0.021143846, 0.99783033, 0.9923166;
+ 0, 0, 0, 1]
+Current Frame: 611, BestMatchLKF: 60, SbBoW 0.75 matches: 293, Triangulate: 208
+[0.99946678, 0.014065398, -0.029467069, 0.099070169;
+ -0.014720665, 0.99964648, -0.022139832, 0.22479393;
+ 0.029145099, 0.022561952, 0.99932045, 0.96935683;
+ 0, 0, 0, 1]
+Current Frame: 612, BestMatchLKF: 60, SbBoW 0.75 matches: 359
+Current Frame: 613, BestMatchLKF: 60, SbBoW 0.75 matches: 953
+Current Frame: 614, BestMatchLKF: 60, SbBoW 0.75 matches: 312
+Current Frame: 615, BestMatchLKF: 60, SbBoW 0.75 matches: 297, Triangulate: 183
+[0.99963307, -0.026622407, -0.0049905479, 0.44024935;
+ 0.026716977, 0.99944431, 0.019938305, -0.20013906;
+ 0.0044569671, -0.020064339, 0.99978876, -0.87528557;
+ 0, 0, 0, 1]
+Current Frame: 616, BestMatchLKF: 60, SbBoW 0.75 matches: 234
+Current Frame: 617, BestMatchLKF: 62, SbBoW 0.75 matches: 134
+Current Frame: 618, BestMatchLKF: 61, SbBoW 0.75 matches: 220
+Current Frame: 619, BestMatchLKF: 61, SbBoW 0.75 matches: 241
+Current Frame: 620, BestMatchLKF: 61, SbBoW 0.75 matches: 284
+Current Frame: 621, BestMatchLKF: 61, SbBoW 0.75 matches: 349
+Current Frame: 622, BestMatchLKF: 61, SbBoW 0.75 matches: 291
+Current Frame: 623, BestMatchLKF: 62, SbBoW 0.75 matches: 256
+Current Frame: 624, BestMatchLKF: 62, SbBoW 0.75 matches: 273
+Current Frame: 625, BestMatchLKF: 62, SbBoW 0.75 matches: 372
+Current Frame: 626, BestMatchLKF: 62, SbBoW 0.75 matches: 311
+Current Frame: 627, BestMatchLKF: 62, SbBoW 0.75 matches: 218
+Current Frame: 629, BestMatchLKF: 63, SbBoW 0.75 matches: 143
+Current Frame: 630, BestMatchLKF: 63, SbBoW 0.75 matches: 158
+Current Frame: 631, BestMatchLKF: 63, SbBoW 0.75 matches: 221
+Current Frame: 632, BestMatchLKF: 63, SbBoW 0.75 matches: 262
+Current Frame: 633, BestMatchLKF: 63, SbBoW 0.75 matches: 899
+Current Frame: 634, BestMatchLKF: 63, SbBoW 0.75 matches: 318
+Current Frame: 635, BestMatchLKF: 63, SbBoW 0.75 matches: 263
+Current Frame: 636, BestMatchLKF: 63, SbBoW 0.75 matches: 190
+Current Frame: 637, BestMatchLKF: 63, SbBoW 0.75 matches: 164, Triangulate: 112
+[0.97782779, 0.063899174, -0.19942293, 0.78973168;
+ -0.063916706, 0.99793488, 0.0063567683, -0.12430824;
+ 0.19941732, 0.00653065, 0.97989285, -0.60072559;
+ 0, 0, 0, 1]
+Current Frame: 638, BestMatchLKF: 63, SbBoW 0.75 matches: 141
+Current Frame: 639, BestMatchLKF: 63, SbBoW 0.75 matches: 127
+Current Frame: 640, BestMatchLKF: 64, SbBoW 0.75 matches: 114
+Current Frame: 641, BestMatchLKF: 64, SbBoW 0.75 matches: 138
+Current Frame: 642, BestMatchLKF: 64, SbBoW 0.75 matches: 171
+Current Frame: 643, BestMatchLKF: 64, SbBoW 0.75 matches: 214
+Current Frame: 644, BestMatchLKF: 64, SbBoW 0.75 matches: 278
+Current Frame: 645, BestMatchLKF: 64, SbBoW 0.75 matches: 304
+Current Frame: 646, BestMatchLKF: 64, SbBoW 0.75 matches: 311
+Current Frame: 647, BestMatchLKF: 64, SbBoW 0.75 matches: 231
+Current Frame: 648, BestMatchLKF: 64, SbBoW 0.75 matches: 201
+Current Frame: 649, BestMatchLKF: 64, SbBoW 0.75 matches: 185
+Current Frame: 650, BestMatchLKF: 65, SbBoW 0.75 matches: 142
+Current Frame: 651, BestMatchLKF: 65, SbBoW 0.75 matches: 147
+Current Frame: 652, BestMatchLKF: 65, SbBoW 0.75 matches: 213
+Current Frame: 653, BestMatchLKF: 65, SbBoW 0.75 matches: 218
+Current Frame: 654, BestMatchLKF: 65, SbBoW 0.75 matches: 208, Triangulate: 154
+[0.99895674, 0.010137796, 0.044527709, 0.86189657;
+ -0.009750694, 0.9999128, -0.0089026764, -0.48496246;
+ -0.044614106, 0.0084591433, 0.99896842, -0.14814049;
+ 0, 0, 0, 1]
+Current Frame: 655, BestMatchLKF: 65, SbBoW 0.75 matches: 254
+Current Frame: 656, BestMatchLKF: 65, SbBoW 0.75 matches: 324
+Current Frame: 657, BestMatchLKF: 65, SbBoW 0.75 matches: 339
+Current Frame: 658, BestMatchLKF: 65, SbBoW 0.75 matches: 245
+Current Frame: 659, BestMatchLKF: 65, SbBoW 0.75 matches: 191
+Current Frame: 660, BestMatchLKF: 65, SbBoW 0.75 matches: 143
+Current Frame: 661, BestMatchLKF: 65, SbBoW 0.75 matches: 129
+Current Frame: 662, BestMatchLKF: 65, SbBoW 0.75 matches: 125
+Current Frame: 663, BestMatchLKF: 66, SbBoW 0.75 matches: 97, Triangulate: 77
+[0.99904352, -0.00091967359, 0.043715224, 0.96429151;
+ -0.0013965983, 0.99859756, 0.052925274, 0.017735193;
+ -0.043702528, -0.052935727, 0.99764127, -0.26424849;
+ 0, 0, 0, 1]
+Current Frame: 664, BestMatchLKF: 66, SbBoW 0.75 matches: 110, Triangulate: 77
+[0.99868286, 0.051268563, -0.0019688904, 0.99450523;
+ -0.051097292, 0.99734116, 0.051957119, 0.020838007;
+ 0.0046274588, -0.051788062, 0.99864733, -0.10259232;
+ 0, 0, 0, 1]
+Current Frame: 665, BestMatchLKF: 66, SbBoW 0.75 matches: 124
+Current Frame: 666, BestMatchLKF: 66, SbBoW 0.75 matches: 151
+Current Frame: 667, BestMatchLKF: 66, SbBoW 0.75 matches: 168
+Current Frame: 668, BestMatchLKF: 66, SbBoW 0.75 matches: 211, Triangulate: 171
+[0.99996537, 0.0015164129, -0.008179754, 0.96706623;
+ -0.0012999661, 0.99965042, 0.026401557, -0.035927765;
+ 0.0082168728, -0.026390031, 0.99961787, -0.25197646;
+ 0, 0, 0, 1]
+Current Frame: 669, BestMatchLKF: 66, SbBoW 0.75 matches: 259
+Current Frame: 670, BestMatchLKF: 66, SbBoW 0.75 matches: 381
+Current Frame: 671, BestMatchLKF: 66, SbBoW 0.75 matches: 310, Triangulate: 275
+[0.99987489, 0.0023082942, 0.015649647, -0.98107594;
+ -0.0022946298, 0.99999696, -0.00088178646, 0.17156459;
+ -0.015651792, 0.00084576197, 0.9998771, 0.089752972;
+ 0, 0, 0, 1]
+Current Frame: 672, BestMatchLKF: 66, SbBoW 0.75 matches: 234, Triangulate: 209
+[0.99968815, 0.0057797469, 0.02429644, -0.99592072;
+ -0.0056322515, 0.99996543, -0.0061348034, 0.052087482;
+ -0.024331078, 0.0059960224, 0.99968594, 0.073680565;
+ 0, 0, 0, 1]
+Current Frame: 673, BestMatchLKF: 66, SbBoW 0.75 matches: 186, Triangulate: 166
+[0.99959809, 0.001975596, 0.0282823, -0.96565807;
+ -0.0013731867, 0.99977201, -0.021304173, 0.2539517;
+ -0.028317902, 0.021256901, 0.99937296, -0.054890968;
+ 0, 0, 0, 1]
+Current Frame: 674, BestMatchLKF: 66, SbBoW 0.75 matches: 144
+Current Frame: 675, BestMatchLKF: 66, SbBoW 0.75 matches: 116, Triangulate: 88
+[0.99912059, -0.018820554, 0.037469387, -0.90373129;
+ 0.01819995, 0.99969268, 0.016835682, 0.30119541;
+ -0.037774742, -0.016138919, 0.99915588, -0.30422217;
+ 0, 0, 0, 1]
+Current Frame: 676, BestMatchLKF: 67, SbBoW 0.75 matches: 119
+Current Frame: 677, BestMatchLKF: 67, SbBoW 0.75 matches: 144, Triangulate: 107
+[0.98425794, 0.11835185, -0.13126022, 0.93854821;
+ -0.11349227, 0.99256712, 0.043931622, -0.079818405;
+ 0.13548398, -0.028343134, 0.99037409, 0.33579198;
+ 0, 0, 0, 1]
+Current Frame: 678, BestMatchLKF: 67, SbBoW 0.75 matches: 141, Triangulate: 117
+[0.98632765, 0.096607432, -0.13350956, 0.94163513;
+ -0.090026543, 0.99444759, 0.054493267, -0.1167817;
+ 0.1380327, -0.041728664, 0.98954827, 0.31572974;
+ 0, 0, 0, 1]
+Current Frame: 679, BestMatchLKF: 67, SbBoW 0.75 matches: 183
+Current Frame: 680, BestMatchLKF: 67, SbBoW 0.75 matches: 229
+Current Frame: 681, BestMatchLKF: 67, SbBoW 0.75 matches: 263, Triangulate: 227
+[0.99762243, 0.030646995, -0.061727405, 0.97420442;
+ -0.030163169, 0.99950659, 0.0087547638, -0.17291063;
+ 0.061965108, -0.0068720561, 0.99805468, -0.14500904;
+ 0, 0, 0, 1]
+Current Frame: 682, BestMatchLKF: 67, SbBoW 0.75 matches: 991
+Current Frame: 683, BestMatchLKF: 67, SbBoW 0.75 matches: 262, Triangulate: 228
+[0.99432224, -0.043645203, 0.097048014, -0.94819385;
+ 0.043681763, 0.99904394, 0.0017491728, -0.11025362;
+ -0.097031593, 0.0025001224, 0.99527818, -0.29794717;
+ 0, 0, 0, 1]
+Current Frame: 684, BestMatchLKF: 67, SbBoW 0.75 matches: 189
+Current Frame: 685, BestMatchLKF: 67, SbBoW 0.75 matches: 145
+Current Frame: 686, BestMatchLKF: 67, SbBoW 0.75 matches: 130, Triangulate: 114
+[0.96950608, -0.12284355, 0.21205547, -0.98576558;
+ 0.12011118, 0.99242598, 0.02576966, -0.047914151;
+ -0.21361496, 0.00048638042, 0.97691786, -0.16115347;
+ 0, 0, 0, 1]
+Current Frame: 687, BestMatchLKF: 67, SbBoW 0.75 matches: 140
+Current Frame: 688, BestMatchLKF: 77, SbBoW 0.75 matches: 151, Triangulate: 105
+[0.99617279, -0.036637537, 0.079357505, 0.16837618;
+ 0.034649707, 0.99905384, 0.02628313, 0.16577661;
+ -0.080245398, -0.023432821, 0.99649966, 0.97168285;
+ 0, 0, 0, 1]
+Current Frame: 689, BestMatchLKF: 77, SbBoW 0.75 matches: 164
+Current Frame: 690, BestMatchLKF: 77, SbBoW 0.75 matches: 158, Triangulate: 110
+[0.99721611, -0.04868599, 0.056478925, -0.029783238;
+ 0.046652898, 0.99823403, 0.036772579, 0.15773991;
+ -0.058169469, -0.03403528, 0.99772638, 0.9870314;
+ 0, 0, 0, 1]
+Current Frame: 691, BestMatchLKF: 77, SbBoW 0.75 matches: 177
+Current Frame: 692, BestMatchLKF: 77, SbBoW 0.75 matches: 176, Triangulate: 135
+[0.99781799, -0.052177709, 0.040455565, -0.26146519;
+ 0.053428546, 0.99810636, -0.030477479, 0.16557094;
+ -0.038788795, 0.032572448, 0.99871635, 0.95090598;
+ 0, 0, 0, 1]
+Current Frame: 693, BestMatchLKF: 77, SbBoW 0.75 matches: 180, Triangulate: 123
+[0.99748725, -0.060904458, 0.03619197, -0.31760859;
+ 0.062540561, 0.99698466, -0.045938745, 0.16849977;
+ -0.033284932, 0.048086748, 0.99828839, 0.9331305;
+ 0, 0, 0, 1]
+Current Frame: 694, BestMatchLKF: 77, SbBoW 0.75 matches: 169, Triangulate: 131
+[0.99757385, -0.064201415, 0.026914775, -0.42097637;
+ 0.065250896, 0.99706191, -0.040122882, 0.21698748;
+ -0.024259657, 0.041781709, 0.99883223, 0.88073564;
+ 0, 0, 0, 1]
+Current Frame: 695, BestMatchLKF: 77, SbBoW 0.75 matches: 174, Triangulate: 119
+[0.99889779, -0.031764373, 0.0345608, -0.59519619;
+ 0.030932114, 0.99922472, 0.024353981, 0.3352634;
+ -0.035307616, -0.023258135, 0.99910599, 0.73030126;
+ 0, 0, 0, 1]
+Current Frame: 696, BestMatchLKF: 77, SbBoW 0.75 matches: 158, Triangulate: 120
+[0.99780917, -0.004683584, 0.065992415, -0.74227059;
+ 0.0032855272, 0.99976814, 0.021279156, 0.51721674;
+ -0.066076845, -0.021015748, 0.99759316, 0.42605299;
+ 0, 0, 0, 1]
+Current Frame: 697, BestMatchLKF: 77, SbBoW 0.75 matches: 139, Triangulate: 111
+[0.99863422, -0.035089582, 0.038708866, -0.8382352;
+ 0.033667535, 0.99875528, 0.036801219, 0.44993261;
+ -0.03995207, -0.035447776, 0.99857265, 0.30809474;
+ 0, 0, 0, 1]
+Current Frame: 698, BestMatchLKF: 77, SbBoW 0.75 matches: 130
+Current Frame: 699, BestMatchLKF: 52, SbBoW 0.75 matches: 88, Triangulate: 61
+[0.97043818, 0.068728313, -0.23135722, -0.28457892;
+ -0.067591444, 0.99763036, 0.01284644, -0.13464859;
+ 0.2316919, 0.0031710863, 0.97278416, 0.94914937;
+ 0, 0, 0, 1]
+Current Frame: 700, BestMatchLKF: 77, SbBoW 0.75 matches: 60
+Current Frame: 701, BestMatchLKF: 52, SbBoW 0.75 matches: 95
+Current Frame: 702, BestMatchLKF: 51, SbBoW 0.75 matches: 101, Triangulate: 66
+[0.98039687, 0.073323168, -0.18288177, 0.40057996;
+ -0.074343428, 0.99723184, 0.001280278, -0.066411309;
+ 0.18246934, 0.012340875, 0.98313415, 0.91385186;
+ 0, 0, 0, 1]
+Current Frame: 703, BestMatchLKF: 68, SbBoW 0.75 matches: 112, Triangulate: 86
+[0.97725087, 0.08585915, -0.19393083, 0.67975736;
+ -0.086091712, 0.99626082, 0.0072444081, -0.31916302;
+ 0.19382766, 0.0096162707, 0.98098838, 0.66035205;
+ 0, 0, 0, 1]
+Current Frame: 704, BestMatchLKF: 68, SbBoW 0.75 matches: 136, Triangulate: 85
+[0.98073149, 0.097514033, -0.16928303, 0.67448163;
+ -0.099996135, 0.99496865, -0.0061787665, -0.2801052;
+ 0.1678288, 0.022987321, 0.98554814, 0.68309259;
+ 0, 0, 0, 1]
+Current Frame: 705, BestMatchLKF: 68, SbBoW 0.75 matches: 144
+Current Frame: 706, BestMatchLKF: 68, SbBoW 0.75 matches: 184, Triangulate: 142
+[0.97788811, 0.11580829, -0.17413655, 0.64669997;
+ -0.11511493, 0.99325192, 0.01411134, -0.32507074;
+ 0.17459559, 0.0062464327, 0.98462045, 0.69000584;
+ 0, 0, 0, 1]
+Current Frame: 707, BestMatchLKF: 51, SbBoW 0.75 matches: 159, Triangulate: 92
+[0.98186308, 0.074669264, -0.17426825, 0.033696566;
+ -0.078676499, 0.99676871, -0.016191334, 0.31142077;
+ 0.17249615, 0.029608577, 0.98456514, 0.94967449;
+ 0, 0, 0, 1]
+Current Frame: 708, BestMatchLKF: 68, SbBoW 0.75 matches: 187, Triangulate: 133
+[0.98225486, 0.092088878, -0.1633859, 0.52471769;
+ -0.094585873, 0.99548805, -0.0075529665, -0.13086343;
+ 0.16195321, 0.022872921, 0.98653322, 0.84115756;
+ 0, 0, 0, 1]
+Current Frame: 709, BestMatchLKF: 68, SbBoW 0.75 matches: 227
+Current Frame: 710, BestMatchLKF: 68, SbBoW 0.75 matches: 285, Triangulate: 234
+[0.99598569, 0.015180364, -0.088216245, 0.75911373;
+ -0.015419438, 0.99987912, -0.0020287856, -0.2288169;
+ 0.08817482, 0.0033809245, 0.99609935, 0.60941702;
+ 0, 0, 0, 1]
+Current Frame: 711, BestMatchLKF: 68, SbBoW 0.75 matches: 360
+Current Frame: 712, BestMatchLKF: 68, SbBoW 0.75 matches: 310
+Current Frame: 713, BestMatchLKF: 68, SbBoW 0.75 matches: 236
+Current Frame: 714, BestMatchLKF: 68, SbBoW 0.75 matches: 163
+Current Frame: 715, BestMatchLKF: 68, SbBoW 0.75 matches: 168, Triangulate: 116
+[0.96850359, -0.086405747, 0.23352727, -0.58834505;
+ 0.093406335, 0.99544549, -0.019064778, 0.032009833;
+ -0.23081639, 0.040277224, 0.97216344, -0.80797619;
+ 0, 0, 0, 1]
+Current Frame: 716, BestMatchLKF: 69, SbBoW 0.75 matches: 172, Triangulate: 106
+[0.99821198, -0.039783511, 0.044610322, 0.12401041;
+ 0.041255418, 0.99861759, -0.03257522, -0.30522323;
+ -0.043252736, 0.034357429, 0.99847323, 0.94417167;
+ 0, 0, 0, 1]
+Current Frame: 717, BestMatchLKF: 69, SbBoW 0.75 matches: 179, Triangulate: 121
+[0.99861228, -0.044339649, 0.028415971, 0.11040182;
+ 0.044819809, 0.99885893, -0.016488314, -0.22330552;
+ -0.02765242, 0.017738998, 0.99946022, 0.96847618;
+ 0, 0, 0, 1]
+Current Frame: 718, BestMatchLKF: 69, SbBoW 0.75 matches: 248, Triangulate: 152
+[0.99887472, -0.034593746, 0.032443032, -0.2593542;
+ 0.034360237, 0.99937963, 0.0077277124, -0.31812418;
+ -0.032690257, -0.0066041052, 0.99944377, 0.91188401;
+ 0, 0, 0, 1]
+Current Frame: 719, BestMatchLKF: 69, SbBoW 0.75 matches: 287, Triangulate: 183
+[0.9997946, -0.017980615, 0.0093496442, -0.14103414;
+ 0.018008389, 0.99983358, -0.0028868094, -0.12101822;
+ -0.0092961341, 0.0030546263, 0.99995208, 0.98258024;
+ 0, 0, 0, 1]
+Current Frame: 720, BestMatchLKF: 69, SbBoW 0.75 matches: 975
+Current Frame: 721, BestMatchLKF: 69, SbBoW 0.75 matches: 304, Triangulate: 209
+[0.99999738, 0.0012172088, -0.0020264052, 0.052597873;
+ -0.0012084767, 0.99998993, 0.0043227077, 0.33049828;
+ 0.0020316765, -0.0043201149, 0.9999885, -0.94233978;
+ 0, 0, 0, 1]
+Current Frame: 722, BestMatchLKF: 69, SbBoW 0.75 matches: 237, Triangulate: 143
+[0.99998152, -0.0060189762, 0.00097444654, 0.10664743;
+ 0.0059783962, 0.99928498, 0.037335008, -0.033312589;
+ -0.0011984557, -0.037328493, 0.99930233, -0.99373871;
+ 0, 0, 0, 1]
+Current Frame: 723, BestMatchLKF: 69, SbBoW 0.75 matches: 138, Triangulate: 95
+[0.99991447, 0.012598341, 0.0034892857, 0.2858364;
+ -0.012733363, 0.99904227, 0.041860294, 0.049464494;
+ -0.002958566, -0.04190135, 0.99911737, -0.95700097;
+ 0, 0, 0, 1]
+Current Frame: 724, BestMatchLKF: 70, SbBoW 0.75 matches: 103
+Current Frame: 725, BestMatchLKF: 70, SbBoW 0.75 matches: 167
+Current Frame: 726, BestMatchLKF: 70, SbBoW 0.75 matches: 175
+Current Frame: 727, BestMatchLKF: 70, SbBoW 0.75 matches: 188
+Current Frame: 728, BestMatchLKF: 70, SbBoW 0.75 matches: 192
+Current Frame: 729, BestMatchLKF: 70, SbBoW 0.75 matches: 139
+Current Frame: 730, BestMatchLKF: 70, SbBoW 0.75 matches: 162
+Current Frame: 731, BestMatchLKF: 70, SbBoW 0.75 matches: 273
+Current Frame: 732, BestMatchLKF: 70, SbBoW 0.75 matches: 361
+Current Frame: 733, BestMatchLKF: 70, SbBoW 0.75 matches: 258
+Current Frame: 734, BestMatchLKF: 70, SbBoW 0.75 matches: 238
+Current Frame: 735, BestMatchLKF: 70, SbBoW 0.75 matches: 150
+Current Frame: 736, BestMatchLKF: 70, SbBoW 0.75 matches: 136
+Current Frame: 737, BestMatchLKF: 71, SbBoW 0.75 matches: 167
+Current Frame: 738, BestMatchLKF: 71, SbBoW 0.75 matches: 186, Triangulate: 135
+[0.99941742, 0.025530398, 0.02265197, -0.9083305;
+ -0.026225507, 0.99917722, 0.030938484, 0.30930185;
+ -0.021843493, -0.031514466, 0.99926454, -0.28154582;
+ 0, 0, 0, 1]
+Current Frame: 739, BestMatchLKF: 71, SbBoW 0.75 matches: 250, Triangulate: 160
+[0.99997324, 0.0055133402, -0.0048139095, -0.78333789;
+ -0.0054198802, 0.99980104, 0.01919806, 0.25594172;
+ 0.0049187839, -0.019171447, 0.99980414, -0.56645876;
+ 0, 0, 0, 1]
+Current Frame: 740, BestMatchLKF: 71, SbBoW 0.75 matches: 976
+Current Frame: 741, BestMatchLKF: 71, SbBoW 0.75 matches: 262
+Current Frame: 742, BestMatchLKF: 71, SbBoW 0.75 matches: 235
+Current Frame: 743, BestMatchLKF: 71, SbBoW 0.75 matches: 238, Triangulate: 191
+[0.99988246, -0.015015022, 0.00309062, 0.87701833;
+ 0.014996979, 0.99987084, 0.0057790726, 0.03196549;
+ -0.003177017, -0.0057320311, 0.99997854, 0.47939253;
+ 0, 0, 0, 1]
+Current Frame: 744, BestMatchLKF: 71, SbBoW 0.75 matches: 220
+Current Frame: 745, BestMatchLKF: 71, SbBoW 0.75 matches: 192
+Current Frame: 746, BestMatchLKF: 71, SbBoW 0.75 matches: 161
+Current Frame: 747, BestMatchLKF: 71, SbBoW 0.75 matches: 131, Triangulate: 89
+[0.99815452, -0.056342945, -0.022649918, 0.98127097;
+ 0.056803651, 0.99818015, 0.020242933, 0.17697279;
+ 0.021468196, -0.021492075, 0.99953842, 0.076078117;
+ 0, 0, 0, 1]
+Current Frame: 748, BestMatchLKF: 53, SbBoW 0.75 matches: 115
+Current Frame: 749, BestMatchLKF: 72, SbBoW 0.75 matches: 180
+Current Frame: 750, BestMatchLKF: 72, SbBoW 0.75 matches: 206
+Current Frame: 751, BestMatchLKF: 72, SbBoW 0.75 matches: 237
+Current Frame: 752, BestMatchLKF: 72, SbBoW 0.75 matches: 324
+Current Frame: 753, BestMatchLKF: 72, SbBoW 0.75 matches: 246, Triangulate: 194
+[0.99999398, -0.0034334362, 0.00044777244, 0.9883433;
+ 0.0034317821, 0.99998748, 0.0036476888, 0.13122842;
+ -0.00046031922, -0.0036460217, 0.99999321, -0.077179395;
+ 0, 0, 0, 1]
+Current Frame: 754, BestMatchLKF: 72, SbBoW 0.75 matches: 216
+Current Frame: 755, BestMatchLKF: 72, SbBoW 0.75 matches: 177
+Current Frame: 756, BestMatchLKF: 72, SbBoW 0.75 matches: 155
+Current Frame: 757, BestMatchLKF: 72, SbBoW 0.75 matches: 116
+Current Frame: 758, BestMatchLKF: 72, SbBoW 0.75 matches: 113
+Current Frame: 759, BestMatchLKF: 73, SbBoW 0.75 matches: 128
+Current Frame: 760, BestMatchLKF: 73, SbBoW 0.75 matches: 158
+Current Frame: 761, BestMatchLKF: 73, SbBoW 0.75 matches: 187
+Current Frame: 762, BestMatchLKF: 73, SbBoW 0.75 matches: 216
+Current Frame: 763, BestMatchLKF: 73, SbBoW 0.75 matches: 314, Triangulate: 258
+[0.99869591, -0.019522637, 0.047175292, -0.96795702;
+ 0.019307002, 0.99980104, 0.0050218143, -0.24539787;
+ -0.047263939, -0.0041044448, 0.99887401, 0.05328289;
+ 0, 0, 0, 1]
+Current Frame: 764, BestMatchLKF: 73, SbBoW 0.75 matches: 342
+Current Frame: 765, BestMatchLKF: 73, SbBoW 0.75 matches: 264, Triangulate: 176
+[0.99808913, 0.035968624, -0.050242834, 0.99452615;
+ -0.036137711, 0.99934375, -0.0024617603, 0.046853837;
+ 0.05012133, 0.0042726728, 0.99873388, -0.093394123;
+ 0, 0, 0, 1]
+Current Frame: 766, BestMatchLKF: 73, SbBoW 0.75 matches: 222
+Current Frame: 767, BestMatchLKF: 73, SbBoW 0.75 matches: 178
+Current Frame: 768, BestMatchLKF: 73, SbBoW 0.75 matches: 137
+Current Frame: 769, BestMatchLKF: 11, SbBoW 0.75 matches: 114
+Current Frame: 770, BestMatchLKF: 11, SbBoW 0.75 matches: 107
+Current Frame: 771, BestMatchLKF: 11, SbBoW 0.75 matches: 100
+Current Frame: 772, BestMatchLKF: 74, SbBoW 0.75 matches: 109, Triangulate: 86
+[0.91888463, -0.15956782, 0.36081755, -0.77670908;
+ 0.15826461, 0.98683274, 0.0333682, -0.11219641;
+ -0.36139113, 0.026443122, 0.93203938, 0.61978614;
+ 0, 0, 0, 1]
+Current Frame: 773, BestMatchLKF: 74, SbBoW 0.75 matches: 136
+Current Frame: 774, BestMatchLKF: 74, SbBoW 0.75 matches: 164
+Current Frame: 775, BestMatchLKF: 74, SbBoW 0.75 matches: 242, Triangulate: 188
+[0.99436975, -0.047708839, 0.094619125, -0.71487999;
+ 0.046589136, 0.99881595, 0.014008567, -0.20403723;
+ -0.095175505, -0.0095215365, 0.99541497, 0.66881645;
+ 0, 0, 0, 1]
+Current Frame: 776, BestMatchLKF: 74, SbBoW 0.75 matches: 289
+Current Frame: 777, BestMatchLKF: 74, SbBoW 0.75 matches: 210
+Current Frame: 778, BestMatchLKF: 74, SbBoW 0.75 matches: 123
+Current Frame: 779, BestMatchLKF: 16, SbBoW 0.75 matches: 104, Triangulate: 84
+[0.92945009, -0.092568293, 0.35714704, -0.23956335;
+ 0.098982058, 0.99508917, 0.00032135926, -0.0018480025;
+ -0.35542291, 0.03505253, 0.9340483, 0.97087896;
+ 0, 0, 0, 1]
+Current Frame: 780, BestMatchLKF: 74, SbBoW 0.75 matches: 131
+Current Frame: 781, BestMatchLKF: 74, SbBoW 0.75 matches: 131, Triangulate: 93
+[0.96301949, 0.071902364, -0.25966048, 0.544586;
+ -0.069502994, 0.99741161, 0.018421978, 0.24943122;
+ 0.26031303, 0.00030654669, 0.9655242, -0.80075598;
+ 0, 0, 0, 1]
+Current Frame: 782, BestMatchLKF: 74, SbBoW 0.75 matches: 126, Triangulate: 95
+[0.95718759, 0.080660269, -0.27800328, 0.49028355;
+ -0.079587273, 0.99671257, 0.015162379, 0.38985655;
+ 0.27831233, 0.0076122582, 0.96046054, -0.77950871;
+ 0, 0, 0, 1]
+Current Frame: 783, BestMatchLKF: 74, SbBoW 0.75 matches: 115
+Current Frame: 784, BestMatchLKF: 74, SbBoW 0.75 matches: 113, Triangulate: 84
+[0.95858419, 0.1353831, -0.25057507, 0.34325591;
+ -0.12818974, 0.99073327, 0.044887811, 0.41435319;
+ 0.2543301, -0.01090759, 0.96705592, -0.84290379;
+ 0, 0, 0, 1]
+Current Frame: 785, BestMatchLKF: 75, SbBoW 0.75 matches: 187
+Current Frame: 786, BestMatchLKF: 74, SbBoW 0.75 matches: 110
+Current Frame: 787, BestMatchLKF: 75, SbBoW 0.75 matches: 172, Triangulate: 141
+[0.99797583, -0.058978021, -0.023785532, 0.94670552;
+ 0.059819423, 0.99754655, 0.036366735, -0.080682933;
+ 0.021582305, -0.037715942, 0.99905539, 0.31183147;
+ 0, 0, 0, 1]
+Current Frame: 788, BestMatchLKF: 75, SbBoW 0.75 matches: 216, Triangulate: 190
+[0.99783957, -0.058126837, -0.03061717, 0.99855214;
+ 0.059117083, 0.99772203, 0.032496709, -0.0066686715;
+ 0.028658492, -0.034236465, 0.99900281, 0.053377017;
+ 0, 0, 0, 1]
+Current Frame: 789, BestMatchLKF: 75, SbBoW 0.75 matches: 221
+Current Frame: 790, BestMatchLKF: 75, SbBoW 0.75 matches: 221
+Current Frame: 791, BestMatchLKF: 75, SbBoW 0.75 matches: 261
+Current Frame: 792, BestMatchLKF: 75, SbBoW 0.75 matches: 365
+Current Frame: 793, BestMatchLKF: 75, SbBoW 0.75 matches: 251
+Current Frame: 794, BestMatchLKF: 75, SbBoW 0.75 matches: 195, Triangulate: 169
+[0.99868011, -0.051352337, 0.00095117092, -0.9831605;
+ 0.051360391, 0.99859381, -0.013138994, -0.16783419;
+ -0.00027512759, 0.013170541, 0.99991328, -0.072298706;
+ 0, 0, 0, 1]
+Current Frame: 795, BestMatchLKF: 75, SbBoW 0.75 matches: 153
+Current Frame: 796, BestMatchLKF: 76, SbBoW 0.75 matches: 99
+Current Frame: 797, BestMatchLKF: 75, SbBoW 0.75 matches: 133
+Current Frame: 798, BestMatchLKF: 76, SbBoW 0.75 matches: 141
+Current Frame: 799, BestMatchLKF: 76, SbBoW 0.75 matches: 152, Triangulate: 134
+[0.99987549, 0.014569394, -0.0060549974, 0.94647592;
+ -0.014696412, 0.99966097, -0.021497428, 0.091041721;
+ 0.0057397187, 0.021583598, 0.99975055, 0.30966857;
+ 0, 0, 0, 1]
+Current Frame: 800, BestMatchLKF: 76, SbBoW 0.75 matches: 183
+Current Frame: 801, BestMatchLKF: 76, SbBoW 0.75 matches: 217
+Current Frame: 802, BestMatchLKF: 76, SbBoW 0.75 matches: 260
+Current Frame: 803, BestMatchLKF: 76, SbBoW 0.75 matches: 371
+Current Frame: 804, BestMatchLKF: 76, SbBoW 0.75 matches: 288
+Current Frame: 805, BestMatchLKF: 76, SbBoW 0.75 matches: 207
+Current Frame: 806, BestMatchLKF: 76, SbBoW 0.75 matches: 159, Triangulate: 126
+[0.99950165, -0.020173386, 0.024280205, -0.9572224;
+ 0.020132929, 0.99979556, 0.0019093417, 0.17192134;
+ -0.024313763, -0.0014194772, 0.99970335, -0.23274073;
+ 0, 0, 0, 1]
+Current Frame: 807, BestMatchLKF: 76, SbBoW 0.75 matches: 155, Triangulate: 115
+[0.99780679, -0.018137187, 0.063662052, -0.96620405;
+ 0.01768887, 0.99981469, 0.0075998083, 0.18858553;
+ -0.063788131, -0.0064570084, 0.99794269, -0.17574187;
+ 0, 0, 0, 1]
+Current Frame: 808, BestMatchLKF: 76, SbBoW 0.75 matches: 138, Triangulate: 102
+[0.99384856, -0.031391442, 0.106206, -0.96801889;
+ 0.03252098, 0.99943125, -0.0089198761, 0.16198821;
+ -0.1058656, 0.012318913, 0.99430424, -0.19157036;
+ 0, 0, 0, 1]
+Current Frame: 809, BestMatchLKF: 67, SbBoW 0.75 matches: 114, Triangulate: 86
+[0.96173012, 0.097045533, -0.25623673, 0.22162247;
+ -0.098635674, 0.99510133, 0.0066703185, -0.094170392;
+ 0.25562882, 0.018859066, 0.96659106, -0.97057474;
+ 0, 0, 0, 1]
+Current Frame: 810, BestMatchLKF: 67, SbBoW 0.75 matches: 116, Triangulate: 95
+[0.98126686, 0.044084676, -0.18754126, -0.020865723;
+ -0.04760699, 0.99876344, -0.014317393, -0.10300986;
+ 0.1866782, 0.022977471, 0.9821524, -0.99446148;
+ 0, 0, 0, 1]
+Current Frame: 811, BestMatchLKF: 67, SbBoW 0.75 matches: 103, Triangulate: 70
+[0.9958061, -0.017096668, -0.089877039, -0.28482127;
+ 0.016361803, 0.99982649, -0.0089071542, -0.12340245;
+ 0.090013742, 0.0073992312, 0.99591303, -0.95060438;
+ 0, 0, 0, 1]
+Current Frame: 812, BestMatchLKF: 77, SbBoW 0.75 matches: 167, Triangulate: 130
+[0.98776746, -0.012864046, -0.15540203, 0.54724127;
+ 0.013043851, 0.99991494, 0.00013721734, -0.15397875;
+ 0.1553871, -0.0021626502, 0.98785114, 0.82268924;
+ 0, 0, 0, 1]
+Current Frame: 813, BestMatchLKF: 77, SbBoW 0.75 matches: 199, Triangulate: 168
+[0.99419242, -0.009364754, -0.1072087, 0.54678977;
+ 0.0094805062, 0.99995482, 0.00057029724, -0.28997302;
+ 0.10719866, -0.0015833676, 0.99423635, 0.78545308;
+ 0, 0, 0, 1]
+Current Frame: 814, BestMatchLKF: 77, SbBoW 0.75 matches: 236
+Current Frame: 815, BestMatchLKF: 77, SbBoW 0.75 matches: 302, Triangulate: 250
+[0.99955165, 0.0015218258, -0.029898435, 0.88107967;
+ -0.0018116981, 0.99995148, -0.0096714869, -0.2641975;
+ 0.029882252, 0.0097213611, 0.99950612, 0.39229861;
+ 0, 0, 0, 1]
+Current Frame: 816, BestMatchLKF: 77, SbBoW 0.75 matches: 419
+Current Frame: 817, BestMatchLKF: 77, SbBoW 0.75 matches: 224, Triangulate: 183
+[0.99972814, -0.0016629696, 0.023254097, -0.52423936;
+ 0.0016492754, 0.99999845, 0.00060734153, 0.32534385;
+ -0.02325502, -0.00056877732, 0.99972934, -0.78697175;
+ 0, 0, 0, 1]
+Current Frame: 818, BestMatchLKF: 77, SbBoW 0.75 matches: 170
+Current Frame: 819, BestMatchLKF: 77, SbBoW 0.75 matches: 131
+Current Frame: 820, BestMatchLKF: 52, SbBoW 0.75 matches: 132
+Current Frame: 821, BestMatchLKF: 52, SbBoW 0.75 matches: 150, Triangulate: 112
+[0.99440902, 0.016548991, -0.1042926, -0.57353151;
+ -0.012500413, 0.99914718, 0.03935422, -0.1593667;
+ 0.10485494, -0.037830509, 0.99376774, 0.80353212;
+ 0, 0, 0, 1]
+Current Frame: 822, BestMatchLKF: 68, SbBoW 0.75 matches: 140, Triangulate: 88
+[0.9888373, 0.059486255, -0.13661025, 0.94122678;
+ -0.056066751, 0.99801302, 0.028747402, -0.2957716;
+ 0.1380489, -0.020767197, 0.99020767, 0.16312975;
+ 0, 0, 0, 1]
+Current Frame: 823, BestMatchLKF: 68, SbBoW 0.75 matches: 156
+Current Frame: 824, BestMatchLKF: 51, SbBoW 0.75 matches: 171, Triangulate: 98
+[0.99993652, -0.0016836822, -0.011139899, 0.7787658;
+ 0.0017506182, 0.99998039, 0.0060094148, 0.26580524;
+ 0.011129469, -0.0060285032, 0.99991989, 0.56821775;
+ 0, 0, 0, 1]
+Current Frame: 825, BestMatchLKF: 51, SbBoW 0.75 matches: 175, Triangulate: 142
+[0.99586225, -0.038468242, 0.082332343, 0.78013623;
+ 0.039034754, 0.99922395, -0.0052805096, 0.39500871;
+ -0.082065225, 0.0084723979, 0.99659097, 0.48513463;
+ 0, 0, 0, 1]
+Current Frame: 826, BestMatchLKF: 68, SbBoW 0.75 matches: 144, Triangulate: 106
+[0.98553318, -0.073431373, 0.15274876, 0.82422036;
+ 0.073398761, 0.99728543, 0.005859457, -0.10177157;
+ -0.15276432, 0.0054368228, 0.98824769, -0.5570488;
+ 0, 0, 0, 1]
+Current Frame: 827, BestMatchLKF: 69, SbBoW 0.75 matches: 113
+Current Frame: 828, BestMatchLKF: 69, SbBoW 0.75 matches: 101
+Current Frame: 829, BestMatchLKF: 78, SbBoW 0.75 matches: 238
+Current Frame: 830, BestMatchLKF: 78, SbBoW 0.75 matches: 241
+Current Frame: 831, BestMatchLKF: 78, SbBoW 0.75 matches: 291
+Current Frame: 832, BestMatchLKF: 78, SbBoW 0.75 matches: 978
+Current Frame: 833, BestMatchLKF: 78, SbBoW 0.75 matches: 293
+Current Frame: 834, BestMatchLKF: 78, SbBoW 0.75 matches: 199
+Current Frame: 835, BestMatchLKF: 78, SbBoW 0.75 matches: 172
+Current Frame: 836, BestMatchLKF: 78, SbBoW 0.75 matches: 135
+Current Frame: 837, BestMatchLKF: 78, SbBoW 0.75 matches: 129
+Current Frame: 838, BestMatchLKF: 78, SbBoW 0.75 matches: 101
+Current Frame: 839, BestMatchLKF: 79, SbBoW 0.75 matches: 117
+Current Frame: 840, BestMatchLKF: 79, SbBoW 0.75 matches: 147, Triangulate: 95
+[0.97698021, 0.049014926, -0.20762232, -0.66568571;
+ -0.053147398, 0.99848318, -0.014369249, 0.16576464;
+ 0.20660323, 0.025073119, 0.97810358, 0.72758818;
+ 0, 0, 0, 1]
+Current Frame: 841, BestMatchLKF: 79, SbBoW 0.75 matches: 176, Triangulate: 126
+[0.99179637, 0.031178556, -0.12396741, -0.74915814;
+ -0.03324499, 0.99934, -0.014635231, 0.074894637;
+ 0.12342933, 0.018636495, 0.99217838, 0.65814346;
+ 0, 0, 0, 1]
+Current Frame: 842, BestMatchLKF: 79, SbBoW 0.75 matches: 180
+Current Frame: 843, BestMatchLKF: 79, SbBoW 0.75 matches: 237, Triangulate: 178
+[0.99923986, -0.0045459718, -0.038717777, -0.36971584;
+ 0.0038331044, 0.99982214, -0.018466327, 0.022801012;
+ 0.038794816, 0.018303894, 0.99907953, 0.92886508;
+ 0, 0, 0, 1]
+Current Frame: 844, BestMatchLKF: 79, SbBoW 0.75 matches: 301, Triangulate: 238
+[0.99901569, 0.034974072, 0.027286291, -0.49426156;
+ -0.034328591, 0.99912775, -0.023774445, 0.10495859;
+ -0.028093964, 0.022814333, 0.99934494, 0.86295378;
+ 0, 0, 0, 1]
+Current Frame: 845, BestMatchLKF: 79, SbBoW 0.75 matches: 269
+Current Frame: 846, BestMatchLKF: 79, SbBoW 0.75 matches: 991
+Current Frame: 847, BestMatchLKF: 79, SbBoW 0.75 matches: 333
+Current Frame: 848, BestMatchLKF: 79, SbBoW 0.75 matches: 257, Triangulate: 172
+[0.99894845, -0.034462795, 0.030235529, 0.47737014;
+ 0.034128528, 0.99935114, 0.011503544, -0.047369558;
+ -0.030612379, -0.01045958, 0.99947667, -0.87742454;
+ 0, 0, 0, 1]
+Current Frame: 849, BestMatchLKF: 80, SbBoW 0.75 matches: 198, Triangulate: 145
+[0.99786532, -0.044712566, -0.047599137, -0.40507191;
+ 0.046837538, 0.99791056, 0.044505693, 0.16123632;
+ 0.045509815, -0.046640128, 0.99787444, 0.89995533;
+ 0, 0, 0, 1]
+Current Frame: 850, BestMatchLKF: 80, SbBoW 0.75 matches: 227, Triangulate: 170
+[0.99655002, -0.062743589, -0.054327108, 0.082329184;
+ 0.063332804, 0.99795002, 0.0091940993, 0.015233134;
+ 0.053638846, -0.012603067, 0.9984808, 0.99648875;
+ 0, 0, 0, 1]
+Current Frame: 851, BestMatchLKF: 80, SbBoW 0.75 matches: 284, Triangulate: 195
+[0.99919087, -0.033723269, -0.021921795, 0.039631203;
+ 0.033740092, 0.99943054, 0.00039291382, -0.14079833;
+ 0.021896087, -0.0011322647, 0.99975961, 0.98924476;
+ 0, 0, 0, 1]
+Current Frame: 852, BestMatchLKF: 80, SbBoW 0.75 matches: 377
+Current Frame: 853, BestMatchLKF: 80, SbBoW 0.75 matches: 303, Triangulate: 227
+[0.99991781, 0.0071804989, 0.010617167, -0.32629117;
+ -0.0072929095, 0.99991739, 0.01057753, 0.060068592;
+ -0.010540307, -0.010654107, 0.9998877, -0.94335878;
+ 0, 0, 0, 1]
+Current Frame: 854, BestMatchLKF: 80, SbBoW 0.75 matches: 186, Triangulate: 123
+[0.99998093, -0.0030695647, 0.0053440332, -0.26155743;
+ 0.0028587282, 0.9992336, 0.039037824, 0.29426765;
+ -0.0054597557, -0.03902179, 0.99922341, -0.91923565;
+ 0, 0, 0, 1]
+Current Frame: 855, BestMatchLKF: 80, SbBoW 0.75 matches: 170, Triangulate: 126
+[0.99968123, -0.019939654, -0.015486509, -0.21687986;
+ 0.020931888, 0.99754691, 0.066797793, 0.23342791;
+ 0.0141166, -0.067100674, 0.99764639, -0.94787896;
+ 0, 0, 0, 1]
+Current Frame: 856, BestMatchLKF: 81, SbBoW 0.75 matches: 140, Triangulate: 92
+[0.99821258, 0.0438108, 0.040649831, 0.51109922;
+ -0.042821728, 0.99877256, -0.024892114, -0.044456303;
+ -0.041690469, 0.023106914, 0.99886334, 0.85837126;
+ 0, 0, 0, 1]
+Current Frame: 857, BestMatchLKF: 81, SbBoW 0.75 matches: 163, Triangulate: 112
+[0.99863923, 0.034975342, 0.038684517, 0.48023024;
+ -0.034523867, 0.99932843, -0.012279395, 0.025978001;
+ -0.039088041, 0.010927189, 0.99917603, 0.87675768;
+ 0, 0, 0, 1]
+Current Frame: 858, BestMatchLKF: 81, SbBoW 0.75 matches: 197
+Current Frame: 859, BestMatchLKF: 81, SbBoW 0.75 matches: 197, Triangulate: 129
+[0.99856734, 0.03971668, 0.035858408, 0.29369035;
+ -0.038895, 0.99897093, -0.02332826, 0.016089424;
+ -0.036748022, 0.021900084, 0.99908459, 0.95576519;
+ 0, 0, 0, 1]
+Current Frame: 860, BestMatchLKF: 81, SbBoW 0.75 matches: 199, Triangulate: 147
+[0.99959719, 0.025754571, 0.011928856, 0.43242523;
+ -0.025308665, 0.99902618, -0.036142193, 0.10196069;
+ -0.012848139, 0.035825759, 0.99927545, 0.89588642;
+ 0, 0, 0, 1]
+Current Frame: 861, BestMatchLKF: 81, SbBoW 0.75 matches: 262
+Current Frame: 862, BestMatchLKF: 81, SbBoW 0.75 matches: 318
+Current Frame: 863, BestMatchLKF: 81, SbBoW 0.75 matches: 289
+Current Frame: 864, BestMatchLKF: 81, SbBoW 0.75 matches: 281
+Current Frame: 865, BestMatchLKF: 81, SbBoW 0.75 matches: 351
+Current Frame: 866, BestMatchLKF: 81, SbBoW 0.75 matches: 297
+Current Frame: 867, BestMatchLKF: 81, SbBoW 0.75 matches: 215
+Current Frame: 868, BestMatchLKF: 81, SbBoW 0.75 matches: 170
+Current Frame: 869, BestMatchLKF: 81, SbBoW 0.75 matches: 138
+Current Frame: 870, BestMatchLKF: 82, SbBoW 0.75 matches: 195, Triangulate: 162
+[0.99411786, -0.0057636052, 0.10815036, -0.96707487;
+ 0.0062977225, 0.99996948, -0.0045980327, -0.18620628;
+ -0.10812049, 0.0052521266, 0.99412394, -0.1734744;
+ 0, 0, 0, 1]
+Current Frame: 871, BestMatchLKF: 82, SbBoW 0.75 matches: 202
+Current Frame: 872, BestMatchLKF: 82, SbBoW 0.75 matches: 267, Triangulate: 157
+[0.99917305, -0.0035873652, 0.040500283, -0.75024283;
+ 0.0034584403, 0.99998879, 0.0032523572, -0.32525527;
+ -0.04051137, -0.0031095892, 0.99917436, 0.57562542;
+ 0, 0, 0, 1]
+Current Frame: 873, BestMatchLKF: 82, SbBoW 0.75 matches: 317
+Current Frame: 874, BestMatchLKF: 82, SbBoW 0.75 matches: 232, Triangulate: 208
+[0.99715483, 0.031023517, -0.068701804, 0.9819569;
+ -0.031444699, 0.99949265, -0.0050574844, 0.14889063;
+ 0.068510175, 0.0072033927, 0.99762446, 0.11658593;
+ 0, 0, 0, 1]
+Current Frame: 875, BestMatchLKF: 82, SbBoW 0.75 matches: 137, Triangulate: 103
+[0.9872129, 0.08666873, -0.13378796, 0.97171843;
+ -0.089206882, 0.9959271, -0.013083922, 0.12030917;
+ 0.13210906, 0.024851412, 0.9909237, 0.20319694;
+ 0, 0, 0, 1]
+Current Frame: 876, BestMatchLKF: 82, SbBoW 0.75 matches: 112
+Current Frame: 877, BestMatchLKF: 82, SbBoW 0.75 matches: 81
+Current Frame: 878, BestMatchLKF: 83, SbBoW 0.75 matches: 92
+Current Frame: 879, BestMatchLKF: 83, SbBoW 0.75 matches: 107
+Current Frame: 880, BestMatchLKF: 83, SbBoW 0.75 matches: 127
+Current Frame: 881, BestMatchLKF: 83, SbBoW 0.75 matches: 216, Triangulate: 130
+[0.999946, -0.0075160861, -0.0071659088, -0.87107021;
+ 0.0073492825, 0.99970782, -0.023018099, -0.32496372;
+ 0.0073367059, 0.02296415, 0.99970943, 0.36828688;
+ 0, 0, 0, 1]
+Current Frame: 882, BestMatchLKF: 83, SbBoW 0.75 matches: 183, Triangulate: 131
+[0.99937832, 0.035124332, 0.0030231178, 0.8096717;
+ -0.035208464, 0.99877423, 0.034789681, 0.3271699;
+ -0.0017975569, -0.034874469, 0.99939007, -0.48722842;
+ 0, 0, 0, 1]
+Current Frame: 883, BestMatchLKF: 83, SbBoW 0.75 matches: 142
+Current Frame: 884, BestMatchLKF: 83, SbBoW 0.75 matches: 132, Triangulate: 88
+[0.9982664, 0.037646204, -0.045243055, 0.75586742;
+ -0.035632133, 0.99837255, 0.044527113, 0.31542063;
+ 0.046845675, -0.042837784, 0.99798322, -0.57373708;
+ 0, 0, 0, 1]
+Current Frame: 885, BestMatchLKF: 84, SbBoW 0.75 matches: 79
+Current Frame: 886, BestMatchLKF: 83, SbBoW 0.75 matches: 91
+Current Frame: 887, BestMatchLKF: 83, SbBoW 0.75 matches: 102
+Current Frame: 888, BestMatchLKF: 84, SbBoW 0.75 matches: 82
+Current Frame: 889, BestMatchLKF: 84, SbBoW 0.75 matches: 83, Triangulate: 51
+[0.99371135, -0.11119241, -0.013198152, -0.96795654;
+ 0.11192384, 0.98984194, 0.08767084, -0.10740696;
+ 0.0033157617, -0.088596709, 0.9960621, 0.22698858;
+ 0, 0, 0, 1]
+Current Frame: 890, BestMatchLKF: 84, SbBoW 0.75 matches: 95, Triangulate: 71
+[0.99529225, -0.095778078, -0.014832276, -0.99306017;
+ 0.096728273, 0.9912402, 0.089925341, -0.11758897;
+ 0.0060894703, -0.090936683, 0.99583799, 0.0020694162;
+ 0, 0, 0, 1]
+Current Frame: 891, BestMatchLKF: 84, SbBoW 0.75 matches: 160, Triangulate: 113
+[0.99944872, -0.031911351, -0.0091628805, -0.99703282;
+ 0.032364171, 0.99799091, 0.054468602, -0.040605005;
+ 0.0074063018, -0.054735024, 0.99847341, 0.065397248;
+ 0, 0, 0, 1]
+Current Frame: 892, BestMatchLKF: 84, SbBoW 0.75 matches: 990
+Current Frame: 893, BestMatchLKF: 84, SbBoW 0.75 matches: 242, Triangulate: 182
+[0.99998122, 0.0022614598, -0.0057269335, 0.9849999;
+ -0.0023692697, 0.99981886, -0.018887646, 0.10739467;
+ 0.0056831688, 0.018900735, 0.99980521, -0.13506134;
+ 0, 0, 0, 1]
+Current Frame: 894, BestMatchLKF: 84, SbBoW 0.75 matches: 175
+Current Frame: 895, BestMatchLKF: 84, SbBoW 0.75 matches: 160, Triangulate: 104
+[0.99887288, -0.012915969, -0.045673341, 0.9368493;
+ 0.012824848, 0.99991512, -0.0022872984, 0.23368227;
+ 0.045699, 0.0016989447, 0.99895376, -0.26020357;
+ 0, 0, 0, 1]
+Current Frame: 896, BestMatchLKF: 84, SbBoW 0.75 matches: 110, Triangulate: 68
+[0.99399215, 0.020413354, -0.10753044, 0.9137671;
+ -0.022031188, 0.99966103, -0.013878688, 0.25200465;
+ 0.10721061, 0.016164318, 0.99410492, -0.31862736;
+ 0, 0, 0, 1]
+Current Frame: 897, BestMatchLKF: 85, SbBoW 0.75 matches: 95
+Current Frame: 898, BestMatchLKF: 84, SbBoW 0.75 matches: 72
+Current Frame: 899, BestMatchLKF: 85, SbBoW 0.75 matches: 155, Triangulate: 103
+[0.99393189, 0.015895337, 0.10884362, -0.46060276;
+ -0.012745202, 0.99948132, -0.029577315, -0.43522581;
+ -0.10925734, 0.028010517, 0.99361879, 0.77357841;
+ 0, 0, 0, 1]
+Current Frame: 900, BestMatchLKF: 85, SbBoW 0.75 matches: 242, Triangulate: 130
+[0.99944615, 0.0041894391, 0.033012986, -0.37215748;
+ -0.0038572475, 0.99994141, -0.010120422, -0.30425531;
+ -0.033053547, 0.0099874437, 0.99940372, 0.87688512;
+ 0, 0, 0, 1]
+Current Frame: 901, BestMatchLKF: 85, SbBoW 0.75 matches: 321
+Current Frame: 902, BestMatchLKF: 85, SbBoW 0.75 matches: 235
+Current Frame: 903, BestMatchLKF: 85, SbBoW 0.75 matches: 148
+Current Frame: 904, BestMatchLKF: 85, SbBoW 0.75 matches: 106, Triangulate: 78
+[0.99633199, 0.075889625, -0.039535552, 0.65291268;
+ -0.074444368, 0.99654484, 0.036829419, 0.13516387;
+ 0.042194009, -0.033751115, 0.99853921, -0.74527562;
+ 0, 0, 0, 1]
+Current Frame: 905, BestMatchLKF: 85, SbBoW 0.75 matches: 73
+Current Frame: 906, BestMatchLKF: 86, SbBoW 0.75 matches: 52
+Current Frame: 907, BestMatchLKF: 86, SbBoW 0.75 matches: 51, Triangulate: 22
+[0.87023306, -0.14971049, 0.4693414, -0.51280093;
+ 0.15088476, 0.98791873, 0.035362147, -0.0020122677;
+ -0.46896514, 0.040043131, 0.88230842, 0.85850519;
+ 0, 0, 0, 1]
+Current Frame: 908, BestMatchLKF: 86, SbBoW 0.75 matches: 66
+Current Frame: 909, BestMatchLKF: 86, SbBoW 0.75 matches: 73
+Current Frame: 910, BestMatchLKF: 86, SbBoW 0.75 matches: 62
+Current Frame: 911, BestMatchLKF: 86, SbBoW 0.75 matches: 107
+Current Frame: 912, BestMatchLKF: 86, SbBoW 0.75 matches: 191
+Current Frame: 913, BestMatchLKF: 86, SbBoW 0.75 matches: 997
+Current Frame: 914, BestMatchLKF: 86, SbBoW 0.75 matches: 163, Triangulate: 114
+[0.99531662, 0.048442036, -0.08365491, 0.79702699;
+ -0.049491122, 0.99871922, -0.010511853, -0.17284098;
+ 0.083038598, 0.014602803, 0.99643934, -0.57868296;
+ 0, 0, 0, 1]
+Current Frame: 915, BestMatchLKF: 86, SbBoW 0.75 matches: 114
+Current Frame: 916, BestMatchLKF: 86, SbBoW 0.75 matches: 97
+Current Frame: 917, BestMatchLKF: 86, SbBoW 0.75 matches: 65
+Current Frame: 918, BestMatchLKF: 86, SbBoW 0.75 matches: 45
+Current Frame: 919, BestMatchLKF: 86, SbBoW 0.75 matches: 43
+Current Frame: 920, BestMatchLKF: 86, SbBoW 0.75 matches: 24
+Current Frame: 921, BestMatchLKF: 86, SbBoW 0.75 matches: 35
+Current Frame: 922, BestMatchLKF: 86, SbBoW 0.75 matches: 18
+Current Frame: 923, BestMatchLKF: 86, SbBoW 0.75 matches: 24, Triangulate: 11
+[0.73287559, 0.16894005, -0.6590544, 0.98274493;
+ -0.19855998, 0.97961986, 0.030312065, -0.025132483;
+ 0.65074366, 0.10864694, 0.75148416, -0.18325059;
+ 0, 0, 0, 1]
+Current Frame: 924, BestMatchLKF: 87, SbBoW 0.75 matches: 64
+Current Frame: 925, BestMatchLKF: 87, SbBoW 0.75 matches: 69
+Current Frame: 926, BestMatchLKF: 87, SbBoW 0.75 matches: 119, Triangulate: 80
+[0.99993861, -0.0028865039, 0.010685861, -0.87081307;
+ 0.0030798912, 0.99983078, -0.018132888, -0.32935137;
+ -0.01063171, 0.018164724, 0.99977845, 0.36498252;
+ 0, 0, 0, 1]
+Current Frame: 927, BestMatchLKF: 87, SbBoW 0.75 matches: 985
+Current Frame: 928, BestMatchLKF: 87, SbBoW 0.75 matches: 90
+Current Frame: 929, BestMatchLKF: 87, SbBoW 0.75 matches: 82
+Current Frame: 930, BestMatchLKF: 87, SbBoW 0.75 matches: 60
+Current Frame: 931, BestMatchLKF: 88, SbBoW 0.75 matches: 48
+Current Frame: 932, BestMatchLKF: 89, SbBoW 0.75 matches: 45
+Current Frame: 933, BestMatchLKF: 88, SbBoW 0.75 matches: 82
+Current Frame: 934, BestMatchLKF: 89, SbBoW 0.75 matches: 71
+Current Frame: 935, BestMatchLKF: 88, SbBoW 0.75 matches: 86, Triangulate: 68
+[0.99927944, -0.037215248, -0.0074450374, -0.36823347;
+ 0.037041813, 0.99906671, -0.022216499, -0.42018044;
+ 0.0082648396, 0.021924794, 0.99972546, 0.82936871;
+ 0, 0, 0, 1]
+Current Frame: 936, BestMatchLKF: 89, SbBoW 0.75 matches: 98, Triangulate: 70
+[0.9989289, -0.0067307279, -0.045780331, -0.47615501;
+ 0.0068221018, 0.99997509, 0.0018402115, 0.1209394;
+ 0.04576686, -0.0021505579, 0.99894989, 0.87100518;
+ 0, 0, 0, 1]
+Current Frame: 937, BestMatchLKF: 89, SbBoW 0.75 matches: 87
+Current Frame: 938, BestMatchLKF: 88, SbBoW 0.75 matches: 112, Triangulate: 91
+[0.99735796, -0.02385845, -0.06861335, -0.36308822;
+ 0.0164693, 0.99419671, -0.10630904, -0.17272082;
+ 0.070751518, 0.10489818, 0.99196291, 0.91560602;
+ 0, 0, 0, 1]
+Current Frame: 939, BestMatchLKF: 88, SbBoW 0.75 matches: 153, Triangulate: 118
+[0.99752188, -0.022722263, -0.066588193, -0.55830741;
+ 0.018055836, 0.99739331, -0.069861732, 0.0062407129;
+ 0.068002015, 0.068486311, 0.99533188, 0.82961071;
+ 0, 0, 0, 1]
+Current Frame: 940, BestMatchLKF: 88, SbBoW 0.75 matches: 154, Triangulate: 131
+[0.99653399, -0.028452218, -0.078168511, -0.56780136;
+ 0.024207251, 0.99820787, -0.054726753, 0.0027904313;
+ 0.079585522, 0.052644864, 0.99543691, 0.82316089;
+ 0, 0, 0, 1]
+Current Frame: 941, BestMatchLKF: 88, SbBoW 0.75 matches: 183, Triangulate: 150
+[0.99560207, -0.051951095, -0.077958405, -0.63249743;
+ 0.048606299, 0.99783921, -0.044207215, -0.099043258;
+ 0.08008644, 0.040223528, 0.99597597, 0.76820403;
+ 0, 0, 0, 1]
+Current Frame: 942, BestMatchLKF: 88, SbBoW 0.75 matches: 194
+Current Frame: 943, BestMatchLKF: 88, SbBoW 0.75 matches: 263, Triangulate: 192
+[0.99835128, -0.034012988, -0.046236485, -0.95499343;
+ 0.034080684, 0.99941885, 0.00067500398, -0.27811268;
+ 0.046186619, -0.0022495873, 0.99893028, 0.10315486;
+ 0, 0, 0, 1]
+Current Frame: 944, BestMatchLKF: 88, SbBoW 0.75 matches: 223, Triangulate: 181
+[0.99934906, -0.027926683, -0.022838559, -0.94760197;
+ 0.027425259, 0.99938208, -0.021982607, -0.31836376;
+ 0.023438413, 0.021341899, 0.99949741, 0.0263643;
+ 0, 0, 0, 1]
+Current Frame: 945, BestMatchLKF: 88, SbBoW 0.75 matches: 240
+Current Frame: 946, BestMatchLKF: 88, SbBoW 0.75 matches: 321
+Current Frame: 947, BestMatchLKF: 88, SbBoW 0.75 matches: 315
+Current Frame: 948, BestMatchLKF: 88, SbBoW 0.75 matches: 257
+Current Frame: 949, BestMatchLKF: 88, SbBoW 0.75 matches: 218
+Current Frame: 950, BestMatchLKF: 88, SbBoW 0.75 matches: 210
+Current Frame: 951, BestMatchLKF: 88, SbBoW 0.75 matches: 194, Triangulate: 155
+[0.99959815, -0.027664304, 0.0061837733, 0.47218132;
+ 0.027879715, 0.99889034, -0.037957758, -0.77110922;
+ -0.0051268041, 0.038114965, 0.99926025, 0.4271245;
+ 0, 0, 0, 1]
+Current Frame: 952, BestMatchLKF: 88, SbBoW 0.75 matches: 180
+Current Frame: 953, BestMatchLKF: 88, SbBoW 0.75 matches: 179
+Current Frame: 954, BestMatchLKF: 88, SbBoW 0.75 matches: 181
+Current Frame: 955, BestMatchLKF: 88, SbBoW 0.75 matches: 156
+Current Frame: 956, BestMatchLKF: 88, SbBoW 0.75 matches: 157
+Current Frame: 957, BestMatchLKF: 89, SbBoW 0.75 matches: 107, Triangulate: 85
+[0.99997699, -0.0051065683, 0.0044421256, -0.37015137;
+ 0.0051091611, 0.99998653, -0.00057089329, 0.82264638;
+ -0.0044391751, 0.00059363246, 0.99998999, 0.43155625;
+ 0, 0, 0, 1]
+Current Frame: 958, BestMatchLKF: 89, SbBoW 0.75 matches: 160
+Current Frame: 959, BestMatchLKF: 89, SbBoW 0.75 matches: 984
+Current Frame: 960, BestMatchLKF: 89, SbBoW 0.75 matches: 135
+Current Frame: 961, BestMatchLKF: 89, SbBoW 0.75 matches: 66
+Current Frame: 962, BestMatchLKF: 89, SbBoW 0.75 matches: 71
+Current Frame: 963, BestMatchLKF: 89, SbBoW 0.75 matches: 65
+Current Frame: 964, BestMatchLKF: 89, SbBoW 0.75 matches: 64
+Current Frame: 965, BestMatchLKF: 89, SbBoW 0.75 matches: 72
+Current Frame: 966, BestMatchLKF: 89, SbBoW 0.75 matches: 54
+Current Frame: 967, BestMatchLKF: 89, SbBoW 0.75 matches: 46
+Current Frame: 968, BestMatchLKF: 89, SbBoW 0.75 matches: 40
+Current Frame: 969, BestMatchLKF: 88, SbBoW 0.75 matches: 31
+Current Frame: 970, BestMatchLKF: 91, SbBoW 0.75 matches: 80
+Current Frame: 971, BestMatchLKF: 90, SbBoW 0.75 matches: 980
+Current Frame: 972, BestMatchLKF: 90, SbBoW 0.75 matches: 183
+Current Frame: 973, BestMatchLKF: 91, SbBoW 0.75 matches: 191
+Current Frame: 974, BestMatchLKF: 91, SbBoW 0.75 matches: 234
+Current Frame: 975, BestMatchLKF: 91, SbBoW 0.75 matches: 260
+Current Frame: 976, BestMatchLKF: 91, SbBoW 0.75 matches: 273
+Current Frame: 977, BestMatchLKF: 91, SbBoW 0.75 matches: 317
