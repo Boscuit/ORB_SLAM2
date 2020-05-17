@@ -207,83 +207,85 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
       mpTracker->mvSimilarityMatches.push_back(currentFrameGT);
       mpTracker->mvSimilarityMatches.push_back(mpNextLKF->mGroundTruth);
 
-      //Calculate R and t from current frame to NextLKF
-      if(mpInitializer != NULL)
-      {
-        // cout <<"delete initializer"<<endl;
-        delete mpInitializer;
-        mpInitializer = static_cast<Initializer*>(NULL);
-      }
+      // //Calculate R and t from current frame to NextLKF
+      // if(mpInitializer != NULL)
+      // {
+      //   // cout <<"delete initializer"<<endl;
+      //   delete mpInitializer;
+      //   mpInitializer = static_cast<Initializer*>(NULL);
+      // }
 
-      //            -----change pBestLKF/mpNextLKF-----start     //
+      // //            -----change pBestLKF/mpNextLKF-----start     //
 
-      // cout << "New initializer"<<endl;
-      mpInitializer =  new Initializer(pBestLKF->mvKeysUn,mpCurrentFrame->mK,1.0,200);//mK is Calibration matrix
-      fill(mvIniMatches.begin(),mvIniMatches.end(),-1);// May not use
+      // // cout << "New initializer"<<endl;
+      // mpInitializer =  new Initializer(pBestLKF->mvKeysUn,mpCurrentFrame->mK,1.0,200);//mK is Calibration matrix
+      // fill(mvIniMatches.begin(),mvIniMatches.end(),-1);// May not use
 
-      // If user have matches between two points set (mvIniMatches), don't need to search
-      // ------------------------------------------------------------
-      cout<< "mvbPrevMatched initialize"<<endl;
-      mvbPrevMatched.resize(pBestLKF->mvKeysUn.size());
-      for(size_t i=0; i<pBestLKF->mvKeysUn.size(); i++)
-          mvbPrevMatched[i]=pBestLKF->mvKeysUn[i].pt;
+      // // If user have matches between two points set (mvIniMatches), don't need to search
+      // // ------------------------------------------------------------
+      // cout<< "mvbPrevMatched initialize"<<endl;
+      // mvbPrevMatched.resize(pBestLKF->mvKeysUn.size());
+      // for(size_t i=0; i<pBestLKF->mvKeysUn.size(); i++)
+      //     mvbPrevMatched[i]=pBestLKF->mvKeysUn[i].pt;
 
-      // Find correspondences
-      ORBmatcher matcher(0.9,true);
-      // cout<<"serchbyinitialization"<<endl;
-      nInimatches = matcher.SearchForInitialization(pBestLKF,*mpCurrentFrame,mvbPrevMatched,mvIniMatches,200);
-      // Check if there are enough correspondences
-      cout<<"SfInit 0.9 matches: "<< nInimatches << endl;
-      BTlog<<"BestMatchLKF: "<<pBestLKF->mnId;
-      BTlog<<", SfInit 0.9 matches: "<< nInimatches << endl;
-
-      vector<int> vInvertMatches = vector<int>(mpCurrentFrame->mvKeysUn.size(),-1);//store index of referenceLKF's keypoints
-      for (size_t i=0;i<mvIniMatches.size();i++)
-      {
-        if(mvIniMatches[i]>=0)
-        {
-          vInvertMatches[mvIniMatches[i]] = i;
-        }
-      }
-       mpFrameDrawer -> UpdateBTMatch(pBestLKF->mvKeys,vInvertMatches,mpLoadedKeyFrameDB->mvLoadedImages[pBestLKF->mnId]);
-      if(nInimatches<10)
-      {
-        cout << "Not enough correspondences! Pose estimate may be not accurate." << endl;
-        return 0;
-      }
-      //------------------------------------------------------------
-      //            -----change pBestLKF/mpNextLKF-----end     //
-
-      cv::Mat Rcw(3,3,CV_32F); // Current Camera Rotation
-      cv::Mat tcw(3,1,CV_32F); // Current Camera Translation
-      vector<bool> vbTriangulated; // Triangulated Correspondences (mvIniMatches)
-      // cout<<"initialize"<<endl;
-      if(mpInitializer->Initialize(mpCurrentFrame->mvKeysUn, mvIniMatches, Rcw, tcw, mvIniP3D, vbTriangulated))
-      {
-        cout<<"Pose estimate succeed"<<endl;
-        BTlog<<"Pose estimate succeed"<<endl;
-          for(size_t i=0, iend=mvIniMatches.size(); i<iend;i++)
-          {
-              if(mvIniMatches[i]>=0 && !vbTriangulated[i])
-              {
-                mvIniMatches[i]=-1;
-                nInimatches--;
-              }
-          }
-
-          // Set Frame Poses
-          cv::Mat Tcw = cv::Mat::eye(4,4,CV_32F);
-          Rcw.copyTo(Tcw.rowRange(0,3).colRange(0,3));
-          tcw.copyTo(Tcw.rowRange(0,3).col(3));
-          cout << Tcw << endl;
-          BTlog<< Tcw << endl;
-      }
-
-      // ORBmatcher matcher2(0.75,true);
-      // nBowmatches = matcher2.SearchByBoW(pBestLKF,*mpCurrentFrame);
-      // cout<<"Sb 0.9 matches: "<< nInimatches << endl;
+      // // Find correspondences
+      // ORBmatcher matcher(0.9,true);
+      // // cout<<"serchbyinitialization"<<endl;
+      // nInimatches = matcher.SearchForInitialization(pBestLKF,*mpCurrentFrame,mvbPrevMatched,mvIniMatches,200);
+      // // Check if there are enough correspondences
+      // cout<<"SfInit 0.9 matches: "<< nInimatches << endl;
       // BTlog<<"BestMatchLKF: "<<pBestLKF->mnId;
-      // BTlog<<", SbInit 0.9 matches: "<< nInimatches << endl;
+      // BTlog<<", SfInit 0.9 matches: "<< nInimatches << endl;
+
+      // vector<int> vInvertMatches = vector<int>(mpCurrentFrame->mvKeysUn.size(),-1);//store index of referenceLKF's keypoints
+      // for (size_t i=0;i<mvIniMatches.size();i++)
+      // {
+      //   if(mvIniMatches[i]>=0)
+      //   {
+      //     vInvertMatches[mvIniMatches[i]] = i;
+      //   }
+      // }
+      //  mpFrameDrawer -> UpdateBTMatch(pBestLKF->mvKeys,vInvertMatches,mpLoadedKeyFrameDB->mvLoadedImages[pBestLKF->mnId]);
+      // if(nInimatches<10)
+      // {
+      //   cout << "Not enough correspondences! Pose estimate may be not accurate." << endl;
+      //   return 0;
+      // }
+      // //------------------------------------------------------------
+      // //            -----change pBestLKF/mpNextLKF-----end     //
+
+      // cv::Mat Rcw(3,3,CV_32F); // Current Camera Rotation
+      // cv::Mat tcw(3,1,CV_32F); // Current Camera Translation
+      // vector<bool> vbTriangulated; // Triangulated Correspondences (mvIniMatches)
+      // // cout<<"initialize"<<endl;
+      // if(mpInitializer->Initialize(mpCurrentFrame->mvKeysUn, mvIniMatches, Rcw, tcw, mvIniP3D, vbTriangulated))
+      // {
+      //   cout<<"Pose estimate succeed"<<endl;
+      //   BTlog<<"Pose estimate succeed"<<endl;
+      //     for(size_t i=0, iend=mvIniMatches.size(); i<iend;i++)
+      //     {
+      //         if(mvIniMatches[i]>=0 && !vbTriangulated[i])
+      //         {
+      //           mvIniMatches[i]=-1;
+      //           nInimatches--;
+      //         }
+      //     }
+
+      //     // Set Frame Poses
+      //     cv::Mat Tcw = cv::Mat::eye(4,4,CV_32F);
+      //     Rcw.copyTo(Tcw.rowRange(0,3).colRange(0,3));
+      //     tcw.copyTo(Tcw.rowRange(0,3).col(3));
+      //     cout << Tcw << endl;
+      //     BTlog<< Tcw << endl;
+      // }
+
+      ORBmatcher matcher2(0.75,true);
+      vector<int> vBTMatches21;
+      nBoWmatches = matcher2.SearchByBoW(pBestLKF,*mpCurrentFrame,vBTMatches21);
+      cout<<"SbBoW 0.75 matches: "<< nBoWmatches << endl;
+      BTlog<<"BestMatchLKF: "<<pBestLKF->mnId;
+      BTlog<<", SbBoW 0.75 matches: "<< nBoWmatches << endl;
+      mpFrameDrawer -> UpdateBTMatch(pBestLKF->mvKeys,vBTMatches21,mpLoadedKeyFrameDB->mvLoadedImages[pBestLKF->mnId]);
 
     }
 

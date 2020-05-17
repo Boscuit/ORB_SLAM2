@@ -1786,11 +1786,13 @@ int ORBmatcher::DescriptorDistance(const cv::Mat &a, const cv::Mat &b)
 }
 
 //LKF:1 F:2
-int ORBmatcher::SearchByBoW(LoadedKeyFrame* pLKF,Frame &F)
+int ORBmatcher::SearchByBoW(LoadedKeyFrame* pLKF,Frame &F, vector<int> &vnMatches21)
 {
     // const vector<MapPoint*> vpMapPointsKF = pLKF->GetMapPointMatches();
 
     // vpMapPointMatches = vector<MapPoint*>(F.N,static_cast<MapPoint*>(NULL));
+
+    vnMatches21 = vector<int>(F.N,-1);
 
     vector<bool> vbMatched = vector<bool>(F.N,false);
 
@@ -1866,7 +1868,7 @@ int ORBmatcher::SearchByBoW(LoadedKeyFrame* pLKF,Frame &F)
                 {
                     if(static_cast<float>(bestDist1)<mfNNratio*static_cast<float>(bestDist2))
                     {
-                        
+                        vnMatches21[bestIdxF]=realIdxKF;
                         vbMatched[bestIdxF]=true;
 
                         const cv::KeyPoint &kp = pLKF->mvKeys[realIdxKF];
@@ -1915,6 +1917,7 @@ int ORBmatcher::SearchByBoW(LoadedKeyFrame* pLKF,Frame &F)
                 continue;
             for(size_t j=0, jend=rotHist[i].size(); j<jend; j++)
             {
+                vnMatches21[rotHist[i][j]]=-1;
                 vbMatched[rotHist[i][j]]=false;
                 nmatches--;
             }
