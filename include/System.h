@@ -145,6 +145,8 @@ public:
     std::vector<cv::Mat> GetKeyCameraPoseVector();
     bool isClear();
 
+    void CompareImgs(cv::Mat Im1, cv::Mat Im2);
+
 private:
 
     // Input sensor

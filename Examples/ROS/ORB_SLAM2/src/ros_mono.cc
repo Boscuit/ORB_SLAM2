@@ -37,6 +37,7 @@
 #include "visualization_msgs/Marker.h"
 #include "nav_msgs/Path.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/Int8.h"
 
 using namespace std;
 
@@ -53,7 +54,7 @@ public:
       sub_ = n_.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,this);
       subGT_ = n_.subscribe("/vicon/firefly_sbx/firefly_sbx", 1, &ImageGrabber::ShowGroundTruth,this);
       subRR_ = n_.subscribe("/RequestRecord", 1, &ImageGrabber::SetRecord,this);
-
+      subR_ = n_.subscribe("/Request", 1, &ImageGrabber::LoadImgs,this);
     }
 
     void GrabImage(const sensor_msgs::ImageConstPtr& msg); //callback
@@ -62,10 +63,12 @@ public:
 
     void SetRecord(const std_msgs::Bool& brr);
 
+    void LoadImgs(const std_msgs::Int8& nr);
+
     ORB_SLAM2::System* mpSLAM;
 
 private:
-    int count = -1;
+    int nImgsCount = 0;
     float offset = -0.2;//offset of last groundtruth for visualization
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
@@ -88,6 +91,7 @@ private:
     ros::Subscriber sub_;
     ros::Subscriber subGT_;
     ros::Subscriber subRR_;
+    ros::Subscriber subR_;
 
 };
 
@@ -401,4 +405,31 @@ void ImageGrabber::SetRecord(const std_msgs::Bool& brr)
   else if(!mpSLAM->isRecording() && bRequestRecord)//request start
     mpSLAM->StartRecord();
 
+}
+
+void ImageGrabber::LoadImgs(const std_msgs::Int8& nr)
+{
+  if (nr.data == 'p')
+  {
+    cv::Mat Im1, Im2;
+    stringstream name1,name2;
+    name1 << "CompImages/"<< nImgsCount << ".png";
+    Im1 = cv::imread(name1.str(),CV_LOAD_IMAGE_UNCHANGED);
+    nImgsCount++;
+    name2 << "CompImages/"<< nImgsCount << ".png";
+    Im2 = cv::imread(name2.str(),CV_LOAD_IMAGE_UNCHANGED);
+    nImgsCount++;
+
+    if(Im1.empty() || Im2.empty())
+    {
+      cerr << endl << "Failed to load image at: " <<  name1.str() << endl;
+      return;
+    }
+    if(Im1.channels()==3)
+      cvtColor(Im1,Im1,CV_RGB2GRAY);
+    if(Im2.channels()==3)
+      cvtColor(Im2,Im2,CV_RGB2GRAY);
+    mpSLAM->CompareImgs(Im1,Im2);
+  }
+  cout << "p"<<endl;
 }

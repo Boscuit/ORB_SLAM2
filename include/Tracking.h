@@ -77,6 +77,7 @@ public:
     // Use this function if you have deactivated local mapping and you only want to localize the camera.
     void InformOnlyTracking(const bool &flag);
 
+    void CompareImgs(cv::Mat Im1, cv::Mat Im2);
 
 public:
 

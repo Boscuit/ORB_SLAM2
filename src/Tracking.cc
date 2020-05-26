@@ -36,6 +36,7 @@
 #include<iostream>
 
 #include<mutex>
+#include<chrono>
 
 
 using namespace std;
@@ -1643,6 +1644,113 @@ void Tracking::StopRecord()
   unique_lock<mutex> lock(mMutexRecord);
   mbRecord = false;
   cout << "Record Stop"<<endl;
+}
+
+void Tracking::CompareImgs(cv::Mat Im1, cv::Mat Im2)
+{
+    // cv::imshow("Compare Frame 1",Im1);
+    // cv::imshow("Compare Frame 2",Im2);
+    cv::Mat im = cv::Mat(max(Im1.rows,Im2.rows),Im1.cols+Im2.cols,Im1.type());
+
+    cout << "Copied."<<endl;
+
+    Frame FrameComp1 = Frame(Im1,1,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+    Frame FrameComp2 = Frame(Im2,2,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+    FrameComp1.ComputeBoW();
+    FrameComp2.ComputeBoW();
+    ORBmatcher matcherComp(0.75,true);
+    vector<int> vCompMatches21;
+    auto BoWstart = chrono::high_resolution_clock::now();//get start time 
+    int nCompBoWmatches = matcherComp.SearchByBoW(FrameComp1,FrameComp2,vCompMatches21);
+    auto BoWstop = chrono::high_resolution_clock::now();//get stop time
+    auto BoWduration =  chrono::duration_cast<chrono::microseconds>(BoWstop - BoWstart);
+
+    cout << "nCompBoWmatches: "<<nCompBoWmatches<<endl;
+   
+    Im1.copyTo(im.rowRange(0,Im1.rows).colRange(0,Im1.cols));
+    Im2.copyTo(im.rowRange(0,Im2.rows).colRange(Im1.cols,Im1.cols+Im2.cols));
+    if(im.channels()<3) //this should be always true
+        cvtColor(im,im,CV_GRAY2BGR);
+
+    const float r = 5;
+    vector<cv::KeyPoint> vF1Keys = FrameComp1.mvKeys;
+    vector<cv::KeyPoint> vF2Keys = FrameComp2.mvKeys;
+    for(int i=0;i<vF1Keys.size();i++)
+    {
+        cv::Point2f pt1,pt2;
+        pt1.x=vF1Keys[i].pt.x-r;
+        pt1.y=vF1Keys[i].pt.y-r;
+        pt2.x=vF1Keys[i].pt.x+r;
+        pt2.y=vF1Keys[i].pt.y+r;
+
+        cv::rectangle(im,pt1,pt2,cv::Scalar(0,255,0));
+        cv::circle(im,vF1Keys[i].pt,2,cv::Scalar(0,255,0),-1);
+        
+    }
+    for(int j=0;j<vF2Keys.size();j++)
+    {
+        cv::Point2f ptR,ptR1,ptR2;
+        ptR.x=vF2Keys[j].pt.x+Im1.cols;
+        ptR.y=vF2Keys[j].pt.y;
+        ptR1.x=ptR.x-r-1;
+        ptR1.y=ptR.y-r-1;
+        ptR2.x=ptR.x+r+1;
+        ptR2.y=ptR.y+r+1;
+
+        cv::rectangle(im,ptR1,ptR2,cv::Scalar(0,253,0));
+        cv::circle(im,ptR,2,cv::Scalar(0,253,0),-1);
+    
+        if(vCompMatches21[j]>=0)
+        {
+            cv::Point2f ptL;
+            ptL.x=vF1Keys[vCompMatches21[j]].pt.x;
+            ptL.y=vF1Keys[vCompMatches21[j]].pt.y;
+            cv::line(im,ptR,ptL,cv::Scalar(0,0,255));
+        }
+    }
+
+    stringstream sText;
+    sText << "Search By BoW matches: "<<nCompBoWmatches << ". Time taken: " << BoWduration.count();
+    int baseline=0;
+    cv::Size textSize = cv::getTextSize(sText.str(),cv::FONT_HERSHEY_PLAIN,1,1,&baseline);
+    cv::Mat imText = cv::Mat(im.rows+textSize.height+10,im.cols,im.type());
+    im.copyTo(imText.rowRange(0,im.rows).colRange(0,im.cols));
+    imText.rowRange(im.rows,imText.rows) = cv::Mat::zeros(textSize.height+10,im.cols,im.type());
+    cv::putText(imText,sText.str(),cv::Point(5,imText.rows-5),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,255,255),1,8);
+    cv::imshow("BowMatches",imText);
+
+
+
+    // Initiate ORB detector
+    cv::Ptr<cv::Feature2D> orb = cv::ORB::create();
+    // find the keypoints and descriptors with ORB
+    vector<cv::KeyPoint> vBFKeys1,vBFKeys2;
+    cv::Mat des1, des2;
+    orb->detectAndCompute(Im1,cv::Mat(),vBFKeys1,des1);
+    orb->detectAndCompute(Im2,cv::Mat(),vBFKeys2,des2);
+
+    //create BFMatcher object
+    cv::Ptr<cv::DescriptorMatcher> bf = cv::BFMatcher::create(cv::NORM_HAMMING,true);
+    
+    auto BFstart = chrono::high_resolution_clock::now();
+    //Match descriptors.
+    vector<cv::DMatch> vDmatch;
+    bf->match(des1,des2,vDmatch,cv::Mat());
+    auto BFstop = chrono::high_resolution_clock::now();
+    auto BFduration = chrono::duration_cast<chrono::microseconds>(BFstop - BFstart);
+
+    //Sort them in the order of their distance.
+    sort(vDmatch.begin(),vDmatch.end());
+    stringstream sTextBF;
+    sTextBF << "BruteForce-Hamming ORB matches: " << vDmatch.size() << ". Time taken: " << BFduration.count();
+    //Draw all matches.
+    cv::Mat imMatches;
+	cv::drawMatches(Im1, vBFKeys1, Im2, vBFKeys2, vDmatch, imMatches);
+    cv::Mat imTextBF = cv::Mat(imMatches.rows+textSize.height+10,imMatches.cols,imMatches.type());
+    imMatches.copyTo(imTextBF.rowRange(0,imMatches.rows).colRange(0,imMatches.cols));
+    imTextBF.rowRange(imMatches.rows,imTextBF.rows) = cv::Mat::zeros(textSize.height+10,imMatches.cols,imMatches.type());
+    cv::putText(imTextBF,sTextBF.str(),cv::Point(5,imTextBF.rows-5),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,255,255),1,8);
+	cv::imshow("BFmatches", imTextBF);
 }
 
 

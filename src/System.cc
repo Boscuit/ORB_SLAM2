@@ -804,4 +804,9 @@ bool System::isClear()
   else return true;
 }
 
+void System::CompareImgs(cv::Mat Im1, cv::Mat Im2)
+{
+  mpTracker->CompareImgs(Im1, Im2);
+}
+
 } //namespace ORB_SLAM
