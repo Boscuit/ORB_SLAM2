@@ -204,7 +204,7 @@ bool Initializer::Initialize(const vector<cv::KeyPoint> &CurrentKeyPoints, const
     cout <<"SH="<<SH<<" SF="<<SF<<" RH="<<RH<<endl;
 
     // Try to reconstruct from homography or fundamental depending on the ratio (0.40-0.45)
-    if(RH>0.40)
+    if(RH>1.00)
         return ReconstructH(vbMatchesInliersH,H,mK,R21,t21,vP3D,vbTriangulated,1.0,10);
     else //if(pF_HF>0.6)
         return ReconstructF(vbMatchesInliersF,F,mK,R21,t21,vP3D,vbTriangulated,1.0,10);
@@ -594,7 +594,7 @@ bool Initializer::ReconstructF(vector<bool> &vbMatchesInliers, cv::Mat &F21, cv:
     R21 = cv::Mat();
     t21 = cv::Mat();
 
-    int nMinGood = max(static_cast<int>(0.9*N),minTriangulated);
+    int nMinGood = max(static_cast<int>(0.5*N),minTriangulated);
 
     int nsimilar = 0;
     if(nGood1>0.7*maxGood)

@@ -265,6 +265,10 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
     else
         mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
 
+    //if backtrack only need 2D-2D matches, update backtracking frame from here
+    if(mpBackTracker->isBackTrack())
+        mpBackTracker->Update();
+
     Track();
 
     return mCurrentFrame.mTcw.clone();
@@ -424,9 +428,9 @@ void Tracking::Track()
         // Update drawer
         mpFrameDrawer->Update(this);
 
-        //update backtracking frame
-        if(mpBackTracker->isBackTrack())
-          mpBackTracker->Update(this);
+        //update backtracking frame (old version)
+        // if(mpBackTracker->isBackTrack())
+        //   mpBackTracker->Update(this);
 
         // If tracking were good, check if we insert a keyframe
         if(bOK)
@@ -576,6 +580,7 @@ void Tracking::MonocularInitialization()
 
     if(!mpInitializer)
     {
+        //cout << "Set Reference Frame" << endl;
         // Set Reference Frame
         if(mCurrentFrame.mvKeys.size()>100)
         {
@@ -599,6 +604,7 @@ void Tracking::MonocularInitialization()
     }
     else
     {
+        //cout << "Try to initialize" << endl;
         // Try to initialize
         if((int)mCurrentFrame.mvKeys.size()<=100)
         {
@@ -642,6 +648,7 @@ void Tracking::MonocularInitialization()
             tcw.copyTo(Tcw.rowRange(0,3).col(3));
             mCurrentFrame.SetPose(Tcw);
 
+            //cout << "CreateIniMap" << endl;
             CreateInitialMapMonocular();
         }
     }
@@ -1554,6 +1561,16 @@ void Tracking::Reset()
             usleep(3000);
     }
 
+    if(mpBackTracker->isBackTrack())
+    {
+        mpBackTracker->RequestStop();
+        while(!mpBackTracker->isStopped())//wait for unfinished job
+            {
+                cout << "Tracker waiting"<<endl;
+                usleep(3000);
+            }
+    }
+
     // Reset Local Mapping
     cout << "Reseting Local Mapper...";
     mpLocalMapper->RequestReset();
@@ -1570,7 +1587,9 @@ void Tracking::Reset()
     cout << " done" << endl;
 
     // Clear Map (this erase MapPoints and KeyFrames)
+    //cout << "Reseting Map...";
     mpMap->clear();
+    //cout << " done" << endl;
 
     KeyFrame::nNextId = 0;
     Frame::nNextId = 0;
@@ -1592,6 +1611,8 @@ void Tracking::Reset()
 
     if(mpViewer)
         mpViewer->Release();
+
+    mpBackTracker->Release();
 }
 
 void Tracking::ChangeCalibration(const string &strSettingPath)

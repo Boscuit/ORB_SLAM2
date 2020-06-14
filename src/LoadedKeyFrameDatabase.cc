@@ -272,13 +272,14 @@ bool LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
     LoadedInvertedFile.clear();
     nline++;
   }
+  
+  cout<<"size of mvLoadedInvertedFile:"<<mvLoadedInvertedFile.size()<<endl;
   if(mvLoadedInvertedFile.size()!=mpLoadedVoc->size())
   {
     cout << "Loading last database failed. Initializing..." << endl;
     mvLoadedInvertedFile.resize(mpLoadedVoc->size());
     return false;
   }
-  cout<<"size of mvLoadedInvertedFile:"<<mvLoadedInvertedFile.size()<<endl;
   // for(size_t i=0;i<mvLoadedInvertedFile.size();i++)
   // {
   //   LoadedInvertedFile = mvLoadedInvertedFile[i];

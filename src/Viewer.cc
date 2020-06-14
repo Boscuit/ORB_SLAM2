@@ -167,6 +167,7 @@ void Viewer::Run()
             bRecord = false;
             bFollow = true;
             menuFollowCamera = true;
+            mpSystem->StopRecord();
             mpSystem->Reset();
             menuReset = false;
         }

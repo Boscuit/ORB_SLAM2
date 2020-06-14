@@ -27,6 +27,7 @@
 #include<thread>
 #include<opencv2/core/core.hpp>
 #include<unistd.h>
+#include<ros/ros.h>
 
 #include "Tracking.h"
 #include "BackTracking.h"
@@ -131,9 +132,9 @@ public:
     std::vector<cv::KeyPoint> GetTrackedKeyPointsUn();
     // cv::Mat GetTrackedKeyPointsDescriptor();
 
-    void StartRecord();
-    void StopRecord();
-    bool isRecording();
+    void StartRecord();//called by ros_mono and viewer
+    void StopRecord();//called by ros_mono and viewer and itself when reset
+    bool isRecording();//called by ros_mono
 
     void AddGroundTruth(const double &timestamp, const vector<float> &groundtruth);
     vector<vector<float> > GetvSimilarityMatches();
@@ -141,11 +142,12 @@ public:
     std::vector<float> Twc2sevenD(cv::Mat Twc);
     cv::Mat sevenDToTwc(vector<float>);
     cv::Mat InverseT(cv::Mat Tcw);
-    cv::Mat GetCurrentCameraPose();
     std::vector<cv::Mat> GetKeyCameraPoseVector();
     bool isClear();
 
     void CompareImgs(cv::Mat Im1, cv::Mat Im2);
+
+    void UpdateNodeHandle(ros::NodeHandle &n);
 
 private:
 
@@ -210,7 +212,7 @@ private:
     // cv::Mat mTrackedKeyPointsDescriptor;
     std::mutex mMutexState;
 
-    bool mbClear;
+    bool mbClear;//for viz, flase: dirty need to be clean, true: cleaned.
 };
 
 }// namespace ORB_SLAM

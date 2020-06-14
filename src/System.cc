@@ -770,16 +770,6 @@ cv::Mat System::InverseT(cv::Mat Tcw)
   return Twc;
 }
 
-cv::Mat System::GetCurrentCameraPose()
-{
-  //add <cv::Mat> TM to publish to rviz
-  cv::Mat Twc(4,4,CV_32F);
-  Twc = cv::Scalar(0);
-  mpMapDrawer->GetCurrentCameraPose(Twc);
-  cout << "MapDrawer_pose:" << endl << Twc << endl;
-  return Twc;
-}
-
 vector<cv::Mat> System::GetKeyCameraPoseVector()
 {
   vector<cv::Mat> vKeyPose;
@@ -807,6 +797,11 @@ bool System::isClear()
 void System::CompareImgs(cv::Mat Im1, cv::Mat Im2)
 {
   mpTracker->CompareImgs(Im1, Im2);
+}
+
+void System::UpdateNodeHandle(ros::NodeHandle &n)
+{
+  mpBackTracker->RegisterNodeHandle(n);
 }
 
 } //namespace ORB_SLAM

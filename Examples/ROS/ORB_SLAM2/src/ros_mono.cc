@@ -65,13 +65,16 @@ public:
 
     void LoadImgs(const std_msgs::Int8& nr);
 
+    void UpdateNodeHandle(ros::NodeHandle &n);
+
     ORB_SLAM2::System* mpSLAM;
+
+    ros::NodeHandle n_;//change to public at May 28
 
 private:
     int nImgsCount = 0;
-    float offset = -0.2;//offset of last groundtruth for visualization
+    float offset = 0;//offset of last groundtruth for visualization
     const int mfootprint; // constant variable can only be initialized in the constructor
-    cv::Mat Twc = cv::Mat::eye(4,4,CV_32F);
     cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
     vector<float> mvPubMapOrigin{0,0,0,0,0,0,1};
     vector<float> mvPubCurrentGT{0,0,0,0,0,0,1};
@@ -82,7 +85,6 @@ private:
     nav_msgs::Path GroundTruthPath;
     nav_msgs::Path LastGroundTruthPath;
     tf2_ros::TransformBroadcaster tf2_;
-    ros::NodeHandle n_;
     ros::Publisher path_;
     ros::Publisher key_;
     ros::Publisher gtpath_;
@@ -113,6 +115,7 @@ int main(int argc, char **argv)
 
     ImageGrabber igb(&SLAM,100);
 
+    igb.UpdateNodeHandle(igb.n_);
 
     ros::spin();
 
@@ -148,8 +151,8 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     cv::Mat Tcw = mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
     if (!Tcw.empty())
     {
-      Twc = mpSLAM->InverseT(Tcw);
-      cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame(Twv=Tcv)
+      cv::Mat Twc = mpSLAM->InverseT(Tcw);
+      cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame(Twv=Tc1c2)
       mvPubPose = mpSLAM->Twc2sevenD(Tvc);
       vKeyPose = mpSLAM->GetKeyCameraPoseVector();//vector<cv::Mat> base on world
     }
@@ -432,4 +435,9 @@ void ImageGrabber::LoadImgs(const std_msgs::Int8& nr)
     mpSLAM->CompareImgs(Im1,Im2);
   }
   cout << "p"<<endl;
+}
+
+void ImageGrabber::UpdateNodeHandle(ros::NodeHandle &n)
+{
+  mpSLAM->UpdateNodeHandle(n);
 }
