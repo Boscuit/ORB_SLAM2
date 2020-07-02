@@ -52,6 +52,7 @@ public:
 private:
 
     void FindHomography(vector<bool> &vbMatchesInliers, float &score, cv::Mat &H21);
+    //to determine inliers set with highest score(lowest repojection error)
     void FindFundamental(vector<bool> &vbInliers, float &score, cv::Mat &F21);
 
     cv::Mat ComputeH21(const vector<cv::Point2f> &vP1, const vector<cv::Point2f> &vP2);

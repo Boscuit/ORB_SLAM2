@@ -736,7 +736,7 @@ vector<float> System::Twc2sevenD(cv::Mat Twc)
   return vPubPose;
 }
 
-cv::Mat System::sevenDToTwc(vector<float> sevenD)
+cv::Mat System::sevenD2Twc(vector<float> sevenD)
 {
   cv::Mat Twc(4,4,CV_32F);
   vector<float> q(sevenD.begin()+3,sevenD.end());

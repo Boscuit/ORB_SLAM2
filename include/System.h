@@ -140,7 +140,7 @@ public:
     vector<vector<float> > GetvSimilarityMatches();
 
     std::vector<float> Twc2sevenD(cv::Mat Twc);
-    cv::Mat sevenDToTwc(vector<float>);
+    cv::Mat sevenD2Twc(vector<float>);
     cv::Mat InverseT(cv::Mat Tcw);
     std::vector<cv::Mat> GetKeyCameraPoseVector();
     bool isClear();

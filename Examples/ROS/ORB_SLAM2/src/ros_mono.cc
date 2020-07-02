@@ -46,6 +46,8 @@ class ImageGrabber
 public:
     ImageGrabber(ORB_SLAM2::System* pSLAM,int footprint):mpSLAM(pSLAM),mfootprint(footprint) //constructor ：mpSLAM is initialized as pSLAM.
     {
+      // mTcb = mpSystem->InverseT(mTbc);
+      // mTgb = mpSystem->InverseT(mTbg);
       path_ = n_.advertise<nav_msgs::Path>("Trajectory",1);
       key_ = n_.advertise<visualization_msgs::Marker>("keypose_marker", 1);
       gtpath_ = n_.advertise<nav_msgs::Path>("GroundTruthPath",1);
@@ -76,6 +78,20 @@ private:
     float offset = 0;//offset of last groundtruth for visualization
     const int mfootprint; // constant variable can only be initialized in the constructor
     cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
+    
+    // cv::Mat mTbc = (cv::Mat_<float>(4,4) << 
+    //   0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
+    //     0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
+    //   -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+    //     0.0, 0.0, 0.0, 1.0);
+    // cv::Mat mTbg = (cv::Mat_<float>(4,4) << 
+    //       0.33638, -0.01749,  0.94156,  0.06901,
+    //       -0.02078, -0.99972, -0.01114, -0.02781,
+    //       0.94150, -0.01582, -0.33665, -0.12395,
+    //           0.0,      0.0,      0.0,      1.0);
+    // cv::Mat mTcb;
+    // cv::Mat mTgb;
+
     vector<float> mvPubMapOrigin{0,0,0,0,0,0,1};
     vector<float> mvPubCurrentGT{0,0,0,0,0,0,1};
     vector<float> mvPubPose{0,0,0,0,0,0,1};
@@ -153,6 +169,8 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       cv::Mat Twc = mpSLAM->InverseT(Tcw);
       cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame(Twv=Tc1c2)
+      // cv::Mat Tmgw = mpSLAM->InverseT(mpSLAM->sevenD2Twc(mvPubMapOrigin));
+      // cv::Mat Tmgcg = Tmgw*Twc*mTcb*mTbg;
       mvPubPose = mpSLAM->Twc2sevenD(Tvc);
       vKeyPose = mpSLAM->GetKeyCameraPoseVector();//vector<cv::Mat> base on world
     }
@@ -251,6 +269,8 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     {
       cv::Mat keyTwc = vKeyPose[i];
       cv::Mat keyTvc = Twv.t()*keyTwc*Twv;//T of c2 based on viewer frame
+      // cv::Mat Tmgw = mpSLAM->InverseT(mpSLAM->sevenD2Twc(mvPubMapOrigin));
+      // cv::Mat keyTmgcg = Tmgw*Twc*mTcb*mTbg;
       mvPubKeyPose = mpSLAM->Twc2sevenD(keyTvc);
 
       float s = 0.1;//scales of the marker

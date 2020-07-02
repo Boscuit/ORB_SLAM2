@@ -344,10 +344,12 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
         BTlog<<", Triangulate: "<<nBoWmatches<<endl;
         Rcr.copyTo(Tcr.rowRange(0,3).colRange(0,3));
         tcr.copyTo(Tcr.rowRange(0,3).col(3));
+        cv::Mat Tcbrb = mTbc*Tcr*mTcb;
+        cv::Mat Tcgrg = mTgb*Tcbrb*mTbg;
         Tcr = mTwv.t()*Tcr*mTwv;
         cout << Tcr << endl;
         BTlog<< Tcr << endl;
-        vector<float> q = Converter::toQuaternion(Tcr.rowRange(0,3).colRange(0,3));
+        vector<float> q = Converter::toQuaternion(Tcgrg.rowRange(0,3).colRange(0,3));
         // geometry_msgs::PoseStamped Tcr_pose;
         // Tcr_pose.header.stamp = ros::Time::now();
         // Tcr_pose.header.frame_id = "Camera";
@@ -363,9 +365,9 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
         Tcr_tf2.header.stamp = ros::Time::now();
         Tcr_tf2.header.frame_id = "Current_Groundtruth";
         Tcr_tf2.child_frame_id = "Destination";
-        Tcr_tf2.transform.translation.x = Tcr.at<float>(0,3);
-        Tcr_tf2.transform.translation.y = Tcr.at<float>(1,3);
-        Tcr_tf2.transform.translation.z = Tcr.at<float>(2,3);
+        Tcr_tf2.transform.translation.x = Tcgrg.at<float>(0,3);
+        Tcr_tf2.transform.translation.y = Tcgrg.at<float>(1,3);
+        Tcr_tf2.transform.translation.z = Tcgrg.at<float>(2,3);
         Tcr_tf2.transform.rotation.x = q[0];
         Tcr_tf2.transform.rotation.y = q[1];
         Tcr_tf2.transform.rotation.z = q[2];
