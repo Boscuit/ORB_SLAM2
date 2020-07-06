@@ -37,7 +37,7 @@
 #include "visualization_msgs/Marker.h"
 #include "nav_msgs/Path.h"
 #include "std_msgs/Bool.h"
-#include "std_msgs/Int8.h"
+#include "std_msgs/Char.h"
 
 using namespace std;
 
@@ -56,7 +56,7 @@ public:
       sub_ = n_.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,this);
       subGT_ = n_.subscribe("/vicon/firefly_sbx/firefly_sbx", 1, &ImageGrabber::ShowGroundTruth,this);
       subRR_ = n_.subscribe("/RequestRecord", 1, &ImageGrabber::SetRecord,this);
-      subR_ = n_.subscribe("/Request", 1, &ImageGrabber::LoadImgs,this);
+      subR_ = n_.subscribe("/Request", 1, &ImageGrabber::Command_callback,this);
     }
 
     void GrabImage(const sensor_msgs::ImageConstPtr& msg); //callback
@@ -65,7 +65,9 @@ public:
 
     void SetRecord(const std_msgs::Bool& brr);
 
-    void LoadImgs(const std_msgs::Int8& nr);
+    // void LoadImgs(const std_msgs::Int8& nr);
+
+    void Command_callback(const std_msgs::Char& nCommand);
 
     void UpdateNodeHandle(ros::NodeHandle &n);
 
@@ -430,9 +432,36 @@ void ImageGrabber::SetRecord(const std_msgs::Bool& brr)
 
 }
 
-void ImageGrabber::LoadImgs(const std_msgs::Int8& nr)
+// void ImageGrabber::LoadImgs(const std_msgs::Int8& nr)
+// {
+//   if (nr.data == 'p')
+//   {
+//     cv::Mat Im1, Im2;
+//     stringstream name1,name2;
+//     name1 << "CompImages/"<< nImgsCount << ".png";
+//     Im1 = cv::imread(name1.str(),CV_LOAD_IMAGE_UNCHANGED);
+//     nImgsCount++;
+//     name2 << "CompImages/"<< nImgsCount << ".png";
+//     Im2 = cv::imread(name2.str(),CV_LOAD_IMAGE_UNCHANGED);
+//     nImgsCount++;
+
+//     if(Im1.empty() || Im2.empty())
+//     {
+//       cerr << endl << "Failed to load image at: " <<  name1.str() << endl;
+//       return;
+//     }
+//     if(Im1.channels()==3)
+//       cvtColor(Im1,Im1,CV_RGB2GRAY);
+//     if(Im2.channels()==3)
+//       cvtColor(Im2,Im2,CV_RGB2GRAY);
+//     mpSLAM->CompareImgs(Im1,Im2);
+//   }
+//   cout << "p"<<endl;
+// }
+
+void ImageGrabber::Command_callback(const std_msgs::Char& nCommand)
 {
-  if (nr.data == 'p')
+  if (nCommand.data == 'p')
   {
     cv::Mat Im1, Im2;
     stringstream name1,name2;
@@ -454,7 +483,23 @@ void ImageGrabber::LoadImgs(const std_msgs::Int8& nr)
       cvtColor(Im2,Im2,CV_RGB2GRAY);
     mpSLAM->CompareImgs(Im1,Im2);
   }
-  cout << "p"<<endl;
+  else if (nCommand.data == 'r')
+  {
+    if(!mpSLAM->isRecording()) mpSLAM->StartRecord();
+  }
+  else if (nCommand.data == 's')
+  {
+    if(mpSLAM->isRecording()) mpSLAM->StopRecord();
+  }
+  else if (nCommand.data == 'b')
+  {
+    mpSLAM->BTactivate();
+  }
+  else if (nCommand.data == 'x')
+  {
+    mpSLAM->BTrequestStop();
+  }
+  cout << "Command: " << nCommand.data << endl;
 }
 
 void ImageGrabber::UpdateNodeHandle(ros::NodeHandle &n)

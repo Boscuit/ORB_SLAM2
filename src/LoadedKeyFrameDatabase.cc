@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+//#include "KeyFrame.h"
+#include "Tracking.h"
 #include "Thirdparty/DBoW2/DBoW2/BowVector.h"
 #include "Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 
@@ -27,15 +29,6 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
 
     string KFline;
     string KPsline;
-    // int countKF=0;
-    // vector<float> vKPx;
-    // vector<float> vKPy;
-    // float KPxy;
-    bool bEvenline=true;
-    float KPx;
-    float KPy;
-    float KPangle;
-    int KPoctave;
     long unsigned int LKFid;//id of loaded key frame in last experiment
     vector<long unsigned int> vLKFid;//vector of id of loaded key frame in last experiment
     vector<cv::KeyPoint> vKeysUn;
@@ -54,11 +47,6 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
       {
         cv::KeyPoint kp;
         sscanf(KPsline.c_str(), "%f%f%f%d", &kp.pt.x, &kp.pt.y, &kp.angle, &kp.octave);
-        // cv::KeyPoint kp;
-        // kp.pt.x = KPx;
-        // kp.pt.y = KPy;
-        // kp.angle = KPangle;
-        // kp.octave = KPoctave;
         vKeysUn.push_back(kp);
       }
       vvKeysUn.push_back(vKeysUn);
@@ -82,7 +70,6 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
       return 0;
 
     //load frame id and key points
-    bEvenline=true;
     while (getline(k,KFline,'#'))
     {
       stringstream sKFline(KFline);
@@ -91,11 +78,6 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
       {
         cv::KeyPoint kp;
         sscanf(KPsline.c_str(), "%f%f%f%d", &kp.pt.x, &kp.pt.y, &kp.angle, &kp.octave);
-        // cv::KeyPoint kp;
-        // kp.pt.x = KPx;
-        // kp.pt.y = KPy;
-        // kp.angle = KPangle;
-        // kp.octave = KPoctave;
         vKeys.push_back(kp);
       }
       vvKeys.push_back(vKeys);
@@ -113,40 +95,6 @@ unsigned int LoadedKeyFrameDatabase::LoadLKFFromTextFile (const string &GroundTr
     //     cout << "size of vKeys:" << vvKeys[i].size()<<endl;
     //   }
     // }
-
-    // //load frame id and key points
-    // while (getline(k,KPsline))
-    // {
-    //   int countKP=0;
-    //   stringstream sKPsline(KPsline);
-    //   if(countKF%2 != 0)
-    //   {
-    //     while (sKPsline >> KPxy)
-    //     {
-    //       if (countKP%2 == 0)
-    //         vKPx.push_back(KPxy);
-    //       else
-    //       {
-    //         vKPy.push_back(KPxy);
-    //       }
-    //       countKP++;
-    //     }
-    //     //push KP
-    //     for (size_t i=0; i<vKPx.size(); i++)
-    //     {
-    //       cv::KeyPoint KP;
-    //       KP.pt.x=vKPx[i];
-    //       KP.pt.y=vKPy[i];
-    //       vKeys.push_back(KP);
-    //     }
-    //     vvKeys.push_back(vKeys);
-    //     vKPx.clear();
-    //     vKPy.clear();
-    //     vKeys.clear();
-    //   }
-    //   countKF++;
-    // }
-    // countKF=0;
 
     cout<<"size of vvKeys:"<<vvKeys.size()<<endl;
     if(vvKeys.size()==0)
@@ -277,6 +225,73 @@ bool LoadedKeyFrameDatabase::LoadDBFromTextFile (const string &vInvertedFileFile
   if(mvLoadedInvertedFile.size()!=mpLoadedVoc->size())
   {
     cout << "Loading last database failed. Initializing..." << endl;
+    mvLoadedInvertedFile.resize(mpLoadedVoc->size());
+    return false;
+  }
+  // for(size_t i=0;i<mvLoadedInvertedFile.size();i++)
+  // {
+  //   LoadedInvertedFile = mvLoadedInvertedFile[i];
+  //   if(!LoadedInvertedFile.empty())
+  //   {
+  //     cout<<i<<": ";
+  //     for(std::list<LoadedKeyFrame* >::const_iterator it=LoadedInvertedFile.begin(), itend=LoadedInvertedFile.end(); it != itend; it++)
+  //     {
+  //       LoadedKeyFrame* pLKF = *it;
+  //       cout<<pLKF->mnId<<" ";
+  //     }
+  //     cout <<endl;
+  //   }
+  // }
+  return true;
+}
+
+unsigned int LoadedKeyFrameDatabase::LoadLKFFromMap (Map* pMap,Tracking* pTracker)
+{
+  if(!mvpLoaedKeyFrame.empty())
+    mvpLoaedKeyFrame.clear();
+  vector<KeyFrame*> vpKFs = pMap->GetAllKeyFramesNoCulling();
+  if(vpKFs.empty())
+    return 0;
+  //sort(vpKFs.begin(),vpKFs.end(),KeyFrame::lId);
+  map<double, vector<float> > vGroundTruth = pTracker->mvGroundTruth;
+  for(size_t i=0; i<vpKFs.size(); i++)
+  {
+    KeyFrame* pKFi = vpKFs[i];
+    map<double,vector<float>>::iterator tempit = vGroundTruth.lower_bound(pKFi->mTimeStamp);
+      if(tempit==vGroundTruth.end())//incase the timestamp of LKF is larger than what GoundTruth has
+        tempit--;
+    cout << "Constructing LKF from Map: "<< fixed << tempit->first << endl;
+    
+    LoadedKeyFrame* pLKF = new LoadedKeyFrame(pKFi->mTimeStamp, pKFi->mnId, pKFi->N, pKFi->mvKeysUn, pKFi->mvKeys, 
+                    pKFi->mDescriptors, pKFi->mBowVec, pKFi->mFeatVec, tempit->second);
+    mvpLoaedKeyFrame.insert(pair<long unsigned int,LoadedKeyFrame*>(pKFi->mnId,pLKF));
+  }
+  mvLoadedImages = pTracker->mvKeyFramesIm;
+  return mvpLoaedKeyFrame.size();
+}
+
+bool LoadedKeyFrameDatabase::LoadDBFromKFDB (KeyFrameDatabase* pKeyFrameDatabase)
+{
+  if(!mvLoadedInvertedFile.empty())
+    mvLoadedInvertedFile.clear();
+  list<LoadedKeyFrame*> LoadedInvertedFile;
+  vector<vector<long unsigned int> > vInvertedFile = pKeyFrameDatabase->GetvInvertedFileNoCulling();
+  for(vector<vector<long unsigned int> >::iterator vit=vInvertedFile.begin(), vitend=vInvertedFile.end(); vit!=vitend; vit++)
+  {
+    vector<long unsigned int> vCommonKF = *vit;
+    for(size_t i=0; i<vCommonKF.size(); i++)
+    {
+      LoadedKeyFrame* pLKF = mvpLoaedKeyFrame.find(vCommonKF[i])->second;
+      LoadedInvertedFile.push_back(pLKF);
+    }
+    mvLoadedInvertedFile.push_back(LoadedInvertedFile);
+    LoadedInvertedFile.clear();
+  }
+
+  cout<<"size of mvLoadedInvertedFile from KFDB:"<<mvLoadedInvertedFile.size()<<endl;
+  if(mvLoadedInvertedFile.size()!=mpLoadedVoc->size())
+  {
+    cout << "Loading last database failed. Initializing database..." << endl;
     mvLoadedInvertedFile.resize(mpLoadedVoc->size());
     return false;
   }

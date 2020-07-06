@@ -7,7 +7,6 @@
 #include"ORBmatcher.h"
 #include"FrameDrawer.h"
 #include"Converter.h"
-#include"Map.h"
 #include"Initializer.h"
 
 #include"Optimizer.h"
@@ -24,20 +23,32 @@ namespace ORB_SLAM2
 {
 
 BackTracking::BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker, FrameDrawer* pFrameDrawer, unsigned int nKFload, bool bDBload, const string &strSettingPath):
-    mState(NOT_INITIALIZED), mnCurrentLKFId(0), mpNextLKF(static_cast<LoadedKeyFrame*>(NULL)), mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false),
+    mState(NOT_INITIALIZED), mnCurrentLKFId(0), mpNextLKF(static_cast<LoadedKeyFrame*>(NULL)), mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false), mbBackTrack(false), mbForward(false), mbOnCommand(false),
     mpInitializer(static_cast<Initializer*>(NULL)), mpORBVocabulary(pVoc), mpLoadedKeyFrameDB(pLKFDB), mpTracker(pTracker),mpFrameDrawer(pFrameDrawer)
 {
   cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
   int BackTrackMode = fSettings["BackTracking.Mode"];
   cout << "BackTrack.Mode: " << BackTrackMode << endl;
-  mbBackTrack = (nKFload!=0) && bDBload && (BackTrackMode!=0);
-  if(mbBackTrack)
-  {
-    pFrameDrawer->setSimilarity(nKFload);
-    if(BackTrackMode==1)
-      mbForward = true;
-    else
-      mbForward = false;
+  bool bLoadSucceed = (nKFload!=0) && bDBload;
+  pFrameDrawer->setSimilarity(max(nKFload,(unsigned int)1),1000);
+
+  mnCurrentLKFId = 0;
+  mpNextLKF = static_cast<LoadedKeyFrame*>(NULL);
+
+  switch (BackTrackMode){
+  case 1:
+    mbBackTrack = bLoadSucceed;
+    mbForward = true;
+    break;
+  case 2:
+    mbBackTrack = bLoadSucceed;
+    mbForward = false;
+    break;
+  case 3://mbBackTrack:false
+    mbOnCommand = true;
+    break;
+  default://include 0
+    break;
   }
 }
 
@@ -71,11 +82,19 @@ void BackTracking::Run()
 
     if(Stop())
     {
-      unique_lock<mutex> lock(mMutexBuffer);
-      mlFrameBuffer.clear();//buffer is lock while stopped
+      {
+        unique_lock<mutex> lock(mMutexBuffer);
+        unique_lock<mutex> lock2(mMutexBackTrack);
+        mlFrameBuffer.clear();//only lock when clearing
+        mbBackTrackPrev = mbBackTrack;
+        cout << "Store mbBackTrackPrev: " << mbBackTrack << "->" << mbBackTrackPrev << endl;
+        mbBackTrack = false;
+      }
       while(isStopped())
       {
         usleep(3000);
+        if(CheckFinish())
+          break;
       }
     }
 
@@ -84,6 +103,9 @@ void BackTracking::Run()
 
     usleep(3000);
   }
+  cout << "Request Finish" << endl;
+  unique_lock<mutex> lock2(mMutexBackTrack);
+  mbBackTrack = false;//when finish
   BTlog.close();
   SetFinish();
 }
@@ -115,7 +137,7 @@ bool BackTracking::isFinished()
 
 void BackTracking::RequestStop()
 {
-  //cout << "RequestStop" << endl;
+  cout << "BackTrack Request Stop" << endl;
   unique_lock<mutex> lock(mMutexStop);
   if(!mbStopped)
       mbStopRequested = true;
@@ -138,6 +160,7 @@ bool BackTracking::Stop()
         return false;
     else if(mbStopRequested)
     {
+        cout << "BT stop" << endl;
         mbStopped = true;
         mbStopRequested = false;
         return true;
@@ -148,12 +171,49 @@ bool BackTracking::Stop()
 void BackTracking::Release()
 {
     unique_lock<mutex> lock(mMutexStop);
+    unique_lock<mutex> lock2(mMutexBackTrack);
+    cout << "BT Release" << endl;
     mbStopped = false;
+    mbBackTrack = mbBackTrackPrev;
+    cout << "Restore mbBackTrack: " << mbBackTrackPrev << "->" << mbBackTrack << endl;
+    
 }
 
 bool BackTracking::isBackTrack()
 {
+    unique_lock<mutex> lock(mMutexBackTrack);
+    cout << "isBackTrack:" << mbBackTrack << endl;
     return mbBackTrack;
+}
+
+bool BackTracking::isOnCommand()
+{
+    return mbOnCommand;
+}
+
+void BackTracking::Activate(Map* pMap,KeyFrameDatabase* pKFDB)
+{
+  {
+    unique_lock<mutex> lock(mMutexStop);
+    unique_lock<mutex> lock2(mMutexFinish);
+    if (mbFinishRequested)
+      return;
+    if (mbStopped)//every time activate after request stop, but not the first activation after first start/reset(mbStopped=false)
+      mbStopped = false;
+  }
+  //only active when mbBacktrack is false
+  unsigned int nKFload = mpLoadedKeyFrameDB->LoadLKFFromMap(pMap,mpTracker);
+  bool bDBload = mpLoadedKeyFrameDB->LoadDBFromKFDB(pKFDB);
+  if ((nKFload!=0) && bDBload)
+  {
+    unique_lock<mutex> lock(mMutexBackTrack);
+    mbBackTrack = true;
+    cout << "BT activated." << endl;
+  }
+  else
+  {
+    cout << "Load online trajectory failed." << endl;
+  }
 }
 
 void BackTracking::Update()
@@ -221,12 +281,13 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
         return 0;
 
     LoadedKeyFrame* pBestLKF = vpCandidateLKFs[0];
-    mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
     LoadedKeyFrame** ppDsrLKF = &mpNextLKF;
     if(mState == NOT_INITIALIZED)
     {
-      // mpNextLKF = pBestLKF;
+      mpNextLKF = pBestLKF;
       // if(mpNextLKF->mBackTrackScore>matchTH)
+      mnCurrentLKFId = pBestLKF->mnId;
+      cout << "mnCurrentLKFId: " << mnCurrentLKFId << endl;
       if(pBestLKF->mBackTrackScore>matchTH)//
       {
         cout << "Initial matched"<<endl;
@@ -234,7 +295,6 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
         unique_lock<mutex> lock(mpTracker->mMutexSimilarityMatches);
         mpTracker->mvSimilarityMatches.push_back(currentFrameGT);
         mpTracker->mvSimilarityMatches.push_back(pBestLKF->mGroundTruth);//
-        mnCurrentLKFId = pBestLKF->mnId;//
         mpNextLKF = mpLoadedKeyFrameDB->GetNextLKF(mnCurrentLKFId,mbForward);
       }
     }
@@ -270,7 +330,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
       // vector<cv::KeyPoint> vEmptyKeys;
       // vector<int> vEmptyMatches;
       // mpFrameDrawer -> UpdateBTMatch(vEmptyKeys ,vEmptyMatches);//clear the ref KeyPoints in FrameDrawer
-      RequestFinish();
+      RequestStop();
       return 0;
     }
 

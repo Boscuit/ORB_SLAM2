@@ -23,6 +23,10 @@ public:
         return pLKF1->mBackTrackScore>pLKF2->mBackTrackScore;
     }
 
+    static bool lId(LoadedKeyFrame* pLKF1, LoadedKeyFrame* pLKF2){
+    return pLKF1->mnId<pLKF2->mnId;
+    }
+
 public:
     double mTimeStamp;
     long unsigned int mnId;

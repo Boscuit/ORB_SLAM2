@@ -12,6 +12,7 @@
 
 #include"Initializer.h"
 #include"Tracking.h"
+#include"Map.h"
 #include"FrameDrawer.h"
 #include"Frame.h"
 #include"LoadedKeyFrame.h"
@@ -26,6 +27,7 @@ namespace ORB_SLAM2
 
 class Tracking;
 class FrameDrawer;
+class LoadedKeyFrameDatabase;
 
 class BackTracking
 {
@@ -38,7 +40,7 @@ public:
         OK=2
     };
 
-    BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDBm, Tracking* pTracker, FrameDrawer* pFrameDrawer, unsigned int nKFload, bool bDBload, const string &strSettingPath);
+    BackTracking(ORBVocabulary* pVoc, LoadedKeyFrameDatabase* pLKFDB, Tracking* pTracker, FrameDrawer* pFrameDrawer, unsigned int nKFload, bool bDBload, const string &strSettingPath);
 
     void Run();
 
@@ -55,6 +57,10 @@ public:
     void Release();//release isStopped flag, continue back track on new-arrived frame
 
     bool isBackTrack();
+
+    bool isOnCommand();
+
+    void Activate(Map* pMap,KeyFrameDatabase* pKFDB);
 
     void RegisterNodeHandle(ros::NodeHandle &n);
 
@@ -77,9 +83,13 @@ private:
     long unsigned int BackTrack(Frame* mpCurrentFrame,ofstream& BTlog);
 
 protected:
-    //TRUE: if nLKF!=0, bDBload==1 and Backtracking.Setting!=0 in yaml file.
+    //TRUE: if nLKF!=0, bDBload==1 and Backtracking.Setting=1 or 2 in yaml file.
     bool mbBackTrack;
-    bool mbForward;
+    bool mbBackTrackPrev;
+    bool mbForward;//default backward
+    bool mbOnCommand;
+
+    std::mutex mMutexBackTrack;//for mbBackTrack and mbForward
 
     eBackTrackingState mState;
     // Frame* mpCurrentFrame;

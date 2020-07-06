@@ -136,6 +136,9 @@ public:
     void StopRecord();//called by ros_mono and viewer and itself when reset
     bool isRecording();//called by ros_mono
 
+    void BTactivate();
+    void BTrequestStop();//stop backtrack on command
+
     void AddGroundTruth(const double &timestamp, const vector<float> &groundtruth);
     vector<vector<float> > GetvSimilarityMatches();
 

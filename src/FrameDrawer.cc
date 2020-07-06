@@ -252,9 +252,9 @@ void FrameDrawer::Update(Tracking *pTracker)
     mState=static_cast<int>(pTracker->mLastProcessedState);
 }
 
-void FrameDrawer::setSimilarity(unsigned int nKFload)
+void FrameDrawer::setSimilarity(const unsigned int &nKFload, const unsigned int &width)
 {
-  mSimilarityGraph = cv::Mat(nKFload,1000,CV_8UC3, cv::Scalar(0,0,0));
+  mSimilarityGraph = cv::Mat(nKFload,width,CV_8UC3, cv::Scalar(0,0,0));
 }
 
 cv::Mat FrameDrawer::DrawSimilarity()

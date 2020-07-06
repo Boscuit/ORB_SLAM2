@@ -75,7 +75,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
 
     //Create LoadedKeyFrame Database
-    LoadedKeyFrameDatabase* mpLoadedKeyFrameDatabase = new LoadedKeyFrameDatabase(mpVocabulary);
+    mpLoadedKeyFrameDatabase = new LoadedKeyFrameDatabase(mpVocabulary);
     unsigned int nKFload = mpLoadedKeyFrameDatabase->LoadLKFFromTextFile("GroundTruth.csv","KeyFrameTrajectory.txt","KeyFrameKeyPointsUn.txt","KeyFrameKeyPoints.txt","KeyFrameDescriptor.txt","KeyFrameFeatureVector.txt","KeyFrameBowVector.txt");
     bool bDBload = mpLoadedKeyFrameDatabase->LoadDBFromTextFile("KeyFramevInvertedFile.txt");
 
@@ -92,7 +92,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
                              mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
 
     mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker, mpFrameDrawer, nKFload, bDBload, strSettingsFile);
-    if(mpBackTracker->isBackTrack())
+    if(mpBackTracker->isBackTrack() || mpBackTracker->isOnCommand())
       mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
 
     //Initialize the Local Mapping thread and launch
@@ -704,6 +704,25 @@ bool System::isRecording()
 {
   unique_lock<mutex> lock(mMutexRecord);
   return mbRecord;
+}
+
+void System::BTactivate()
+{
+  if (mpBackTracker->isOnCommand())
+    if (!mpBackTracker->isBackTrack())
+      mpBackTracker->Activate(mpMap,mpKeyFrameDatabase);
+    else
+      cout << "BT already run." << endl;
+  else
+    cout << "BT is not on command." << endl;
+}
+
+void System::BTrequestStop()
+{
+  if (mpBackTracker->isOnCommand())
+    mpBackTracker->RequestStop();
+  else
+    cout << "BT is not on command." << endl;
 }
 
 void System::AddGroundTruth(const double &timestamp, const vector<float> &groundtruth)

@@ -5,8 +5,11 @@
 #include <list>
 #include <set>
 
+#include "Tracking.h"
 #include "LoadedKeyFrame.h"
 #include "Frame.h"
+#include "Map.h"
+#include "KeyFrameDatabase.h"
 #include "ORBVocabulary.h"
 #include<opencv2/core/core.hpp>
 
@@ -16,6 +19,7 @@
 namespace ORB_SLAM2
 {
 
+class Tracking;
 class LoadedKeyFrame;
 class Frame;
 
@@ -29,6 +33,9 @@ public:
 
   unsigned int LoadLKFFromTextFile (const string &GroundTruthFile, const string &TrajectoryFile,const string &KeyPointsUnFile,const string &KeyPointsFile,const string &DescriptorsFile,const string &FeatureVectorFile,const string &BowVectorFile);
 
+  bool LoadDBFromKFDB (KeyFrameDatabase* pKeyFrameDatabase);
+
+  unsigned int LoadLKFFromMap (Map* pMap,Tracking* pTracker);
 
   //BackTrack candidate given by BowScore
   std::vector<LoadedKeyFrame*> DetectBackTrackCandidates(Frame *F, unsigned int nMaxCan);

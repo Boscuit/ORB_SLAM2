@@ -48,7 +48,7 @@ public:
     // Draw last processed frame.
     cv::Mat DrawFrame();
 
-    void setSimilarity(unsigned int nKFload);
+    void setSimilarity(const unsigned int &nKFload, const unsigned int &width);
 
     cv::Mat DrawSimilarity();
 

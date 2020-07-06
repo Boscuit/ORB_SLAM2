@@ -1561,7 +1561,7 @@ void Tracking::Reset()
             usleep(3000);
     }
 
-    if(mpBackTracker->isBackTrack())
+    if(!mpBackTracker->isStopped())
     {
         mpBackTracker->RequestStop();
         while(!mpBackTracker->isStopped())//wait for unfinished job
