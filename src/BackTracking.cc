@@ -406,7 +406,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
         tcr.copyTo(Tcr.rowRange(0,3).col(3));
         cv::Mat Tcbrb = mTbc*Tcr*mTcb;
         cv::Mat Tcgrg = mTgb*Tcbrb*mTbg;
-        Tcr = mTwv.t()*Tcr*mTwv;
+        // Tcr = mTwv.t()*Tcr*mTwv;
         cout << Tcr << endl;
         BTlog<< Tcr << endl;
         vector<float> q = Converter::toQuaternion(Tcgrg.rowRange(0,3).colRange(0,3));

@@ -46,8 +46,10 @@ class ImageGrabber
 public:
     ImageGrabber(ORB_SLAM2::System* pSLAM,int footprint):mpSLAM(pSLAM),mfootprint(footprint) //constructor ：mpSLAM is initialized as pSLAM.
     {
-      // mTcb = mpSystem->InverseT(mTbc);
-      // mTgb = mpSystem->InverseT(mTbg);
+      mTcb = mpSLAM->InverseT(mTbc);
+      mTgb = mpSLAM->InverseT(mTbg);
+      mvPubTcg = mpSLAM->Twc2sevenD(mTcb*mTbg);
+      mvPubTgc = mpSLAM->Twc2sevenD(mTgb*mTbc);
       path_ = n_.advertise<nav_msgs::Path>("Trajectory",1);
       key_ = n_.advertise<visualization_msgs::Marker>("keypose_marker", 1);
       gtpath_ = n_.advertise<nav_msgs::Path>("GroundTruthPath",1);
@@ -79,26 +81,27 @@ private:
     int nImgsCount = 0;
     float offset = 0;//offset of last groundtruth for visualization
     const int mfootprint; // constant variable can only be initialized in the constructor
-    cv::Mat Twv = (cv::Mat_<float>(4,4) << 0, -1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 0, 0, 1);
-    
-    // cv::Mat mTbc = (cv::Mat_<float>(4,4) << 
-    //   0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
-    //     0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
-    //   -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
-    //     0.0, 0.0, 0.0, 1.0);
-    // cv::Mat mTbg = (cv::Mat_<float>(4,4) << 
-    //       0.33638, -0.01749,  0.94156,  0.06901,
-    //       -0.02078, -0.99972, -0.01114, -0.02781,
-    //       0.94150, -0.01582, -0.33665, -0.12395,
-    //           0.0,      0.0,      0.0,      1.0);
-    // cv::Mat mTcb;
-    // cv::Mat mTgb;
+ 
+    cv::Mat mTbc = (cv::Mat_<float>(4,4) << 
+      0.0148655429818, -0.999880929698, 0.00414029679422, -0.0216401454975,
+        0.999557249008, 0.0149672133247, 0.025715529948, -0.064676986768,
+      -0.0257744366974, 0.00375618835797, 0.999660727178, 0.00981073058949,
+        0.0, 0.0, 0.0, 1.0);
+    cv::Mat mTbg = (cv::Mat_<float>(4,4) << 
+          0.33638, -0.01749,  0.94156,  0.06901,
+          -0.02078, -0.99972, -0.01114, -0.02781,
+          0.94150, -0.01582, -0.33665, -0.12395,
+              0.0,      0.0,      0.0,      1.0);
+    cv::Mat mTcb;
+    cv::Mat mTgb;
 
-    vector<float> mvPubMapOrigin{0,0,0,0,0,0,1};
+    vector<float> mvPubTcg{0,0,0,0,0,0,1};//initialize when construct ImageGrabber
+    vector<float> mvPubTgc{0,0,0,0,0,0,1};
+    vector<float> mvPubMapGT{0,0,0,0,0,0,1};
+    vector<float> mvPubMap{0,0,0,0,0,0,1};
     vector<float> mvPubCurrentGT{0,0,0,0,0,0,1};
     vector<float> mvPubPose{0,0,0,0,0,0,1};
-    vector<float> mvPubKeyPose{0,0,0,0,0,0,1};
-    vector<cv::Mat> vKeyPose;
+    vector<cv::Mat> mvKeyPose;
     nav_msgs::Path trajectory;//contains a vector of PoseStamped always needed to be kept.
     nav_msgs::Path GroundTruthPath;
     nav_msgs::Path LastGroundTruthPath;
@@ -166,30 +169,44 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
         return;
     }
 
-    cv::Mat Tcw = mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
-    if (!Tcw.empty())
-    {
-      cv::Mat Twc = mpSLAM->InverseT(Tcw);
-      cv::Mat Tvc = Twv.t()*Twc*Twv;//T of c2 based on viewer frame(Twv=Tc1c2)
-      // cv::Mat Tmgw = mpSLAM->InverseT(mpSLAM->sevenD2Twc(mvPubMapOrigin));
-      // cv::Mat Tmgcg = Tmgw*Twc*mTcb*mTbg;
-      mvPubPose = mpSLAM->Twc2sevenD(Tvc);
-      vKeyPose = mpSLAM->GetKeyCameraPoseVector();//vector<cv::Mat> base on world
-    }
-
     //align map to groundtruth in world frame
+    //align map(camera) to groundtruth(camera) in world frame
+    geometry_msgs::TransformStamped map_enu;
+    map_enu.header.stamp = ros::Time::now();
+    map_enu.header.frame_id = "world";
+    map_enu.child_frame_id = "map_ENU";
+    map_enu.transform.translation.x = mvPubMapGT[0];
+    map_enu.transform.translation.y = mvPubMapGT[1];
+    map_enu.transform.translation.z = mvPubMapGT[2];
+    map_enu.transform.rotation.x = mvPubMapGT[3];
+    map_enu.transform.rotation.y = mvPubMapGT[4];
+    map_enu.transform.rotation.z = mvPubMapGT[5];
+    map_enu.transform.rotation.w = mvPubMapGT[6];
+    tf2_.sendTransform(map_enu);
+
     geometry_msgs::TransformStamped map_origin;
     map_origin.header.stamp = ros::Time::now();
-    map_origin.header.frame_id = "world";
+    map_origin.header.frame_id = "map_ENU";
     map_origin.child_frame_id = "map";
-    map_origin.transform.translation.x = mvPubMapOrigin[0];
-    map_origin.transform.translation.y = mvPubMapOrigin[1];
-    map_origin.transform.translation.z = mvPubMapOrigin[2];
-    map_origin.transform.rotation.x = mvPubMapOrigin[3];
-    map_origin.transform.rotation.y = mvPubMapOrigin[4];
-    map_origin.transform.rotation.z = mvPubMapOrigin[5];
-    map_origin.transform.rotation.w = mvPubMapOrigin[6];
+    map_origin.transform.translation.x = mvPubTgc[0];
+    map_origin.transform.translation.y = mvPubTgc[1];
+    map_origin.transform.translation.z = mvPubTgc[2];
+    map_origin.transform.rotation.x = mvPubTgc[3];
+    map_origin.transform.rotation.y = mvPubTgc[4];
+    map_origin.transform.rotation.z = mvPubTgc[5];
+    map_origin.transform.rotation.w = mvPubTgc[6];
     tf2_.sendTransform(map_origin);
+
+    cv::Mat Tcm = mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
+    if (!Tcm.empty())
+    {
+      cv::Mat Tmc = mpSLAM->InverseT(Tcm);
+      // cv::Mat Tmgw = mpSLAM->InverseT(mpSLAM->sevenD2Twc(mvPubMapGT));
+      // cv::Mat Tmgcg = Tmgw*Twc*mTcb*mTbg;
+      mvPubPose = mpSLAM->Twc2sevenD(Tmc);
+      mvKeyPose = mpSLAM->GetKeyCameraPoseVector();//vector<cv::Mat> base on map
+    }
+
 
     /*--------------Current Pose with tf2---------------*/
     geometry_msgs::TransformStamped current_tf;
@@ -205,6 +222,18 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     current_tf.transform.rotation.w = mvPubPose[6];
     tf2_.sendTransform(current_tf);
 
+    geometry_msgs::TransformStamped current_vicon_tf;
+    current_vicon_tf.header.stamp = ros::Time::now();
+    current_vicon_tf.header.frame_id = "Camera";
+    current_vicon_tf.child_frame_id = "Vicon";
+    current_vicon_tf.transform.translation.x = mvPubTcg[0];
+    current_vicon_tf.transform.translation.y = mvPubTcg[1];
+    current_vicon_tf.transform.translation.z = mvPubTcg[2];
+    current_vicon_tf.transform.rotation.x = mvPubTcg[3];
+    current_vicon_tf.transform.rotation.y = mvPubTcg[4];
+    current_vicon_tf.transform.rotation.z = mvPubTcg[5];
+    current_vicon_tf.transform.rotation.w = mvPubTcg[6];
+    tf2_.sendTransform(current_vicon_tf);
 
     /*---------Current Pose with PoseStamped-------*/
     geometry_msgs::PoseStamped current_pose;
@@ -223,9 +252,9 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     trajectory.header.frame_id = "map";
     trajectory.poses.push_back(current_pose);
 
-    if (!mpSLAM->isClear() || vKeyPose.size()<1) //Reset or initialze
+    if (!mpSLAM->isClear() || mvKeyPose.size()<1) //Reset or initialze
     {
-      vKeyPose.clear();
+      mvKeyPose.clear();
       trajectory.poses.clear();
       current_pose.pose.position.x = 0;
       current_pose.pose.position.y = 0;
@@ -235,7 +264,10 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
       current_pose.pose.orientation.z = 0;
       current_pose.pose.orientation.w = 1;
       trajectory.poses.push_back(current_pose);
-      mvPubMapOrigin = mvPubCurrentGT;//update map origin to current groundtruth
+      mvPubMapGT = mvPubCurrentGT;//update map origin to current groundtruth
+      cv::Mat Twmg = mpSLAM->sevenD2Twc(mvPubMapGT);
+      cv::Mat Twm = Twmg*mTgb*mTbc;
+      mvPubMap = mpSLAM->Twc2sevenD(Twm);
     }
     path_.publish(trajectory);
 
@@ -267,19 +299,20 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     keypose_marker.color.g = 0.0f;
     keypose_marker.color.b = 1.0f;
     keypose_marker.color.a = 0.5;
-    for (size_t i = 0; i < vKeyPose.size(); i++)
+    for (size_t i = 0; i < mvKeyPose.size(); i++)
     {
-      cv::Mat keyTwc = vKeyPose[i];
-      cv::Mat keyTvc = Twv.t()*keyTwc*Twv;//T of c2 based on viewer frame
-      // cv::Mat Tmgw = mpSLAM->InverseT(mpSLAM->sevenD2Twc(mvPubMapOrigin));
-      // cv::Mat keyTmgcg = Tmgw*Twc*mTcb*mTbg;
-      mvPubKeyPose = mpSLAM->Twc2sevenD(keyTvc);
+      cv::Mat keyTmc = mvKeyPose[i];
 
       float s = 0.1;//scales of the marker
-      cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 0.5, 0.5, 0.5, 0.5, 0,
-                                                  1, -1, -1, 1, 0,
-                                                  1, 1, -1, -1, 0,
-                                                  1/s, 1/s, 1/s, 1/s ,1/s)*s;
+      // cv::Mat fr = keyTvc*(cv::Mat_<float>(4,5) << 0.5, 0.5, 0.5, 0.5, 0,
+      //                                             1, -1, -1, 1, 0,
+      //                                             1, 1, -1, -1, 0,
+      //                                             1/s, 1/s, 1/s, 1/s ,1/s)*s;
+      cv::Mat fr = s*keyTmc*(cv::Mat_<float>(4,5) << 1,   -1,   -1,    1, 0,
+                                              1,    1,   -1,   -1, 0,
+                                            0.5,  0.5,  0.5,  0.5, 0,
+                                            1/s,  1/s,  1/s,  1/s ,1/s);
+      
       geometry_msgs::Point p;
       vector<int> index = {0,1,1,2,2,3,3,0,4,0,4,1,4,2,4,3};
       for (int j = 0; j < 16; j++)
@@ -289,8 +322,8 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
         p.z = fr.at<float>(2,index[j]);
         keypose_marker.points.push_back(p);
       }
-      cv::Mat text = keyTvc*(cv::Mat_<float>(4,1) << 0, 0, s, 1);
-      keypose_index.id = i;//index in vKeyPose
+      cv::Mat text = keyTmc*(cv::Mat_<float>(4,1) << 0, (-1)*s, 0, 1);
+      keypose_index.id = i;//index in mvKeyPose
       keypose_index.pose.position.x = text.at<float>(0);
       keypose_index.pose.position.y = text.at<float>(1);
       keypose_index.pose.position.z = text.at<float>(2);
@@ -342,7 +375,7 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
   LastGroundTruthPath.header.stamp = ros::Time::now();
   LastGroundTruthPath.header.frame_id = "world";
 
-  if (vKeyPose.size()<1) //Reset or initialze
+  if (mvKeyPose.size()<1) //Reset or initialze
   {
     LastGroundTruthPath.poses.clear();
     // cout << "load last_groundtruth from file"<<endl;
@@ -382,13 +415,13 @@ void ImageGrabber::ShowGroundTruth(const geometry_msgs::TransformStamped& tfs)
     }
     GroundTruthPath.poses.clear();
     //preserve the origin of path
-    GroundTruth_pose.pose.position.x = mvPubMapOrigin[0];
-    GroundTruth_pose.pose.position.y = mvPubMapOrigin[1];
-    GroundTruth_pose.pose.position.z = mvPubMapOrigin[2];
-    GroundTruth_pose.pose.orientation.x = mvPubMapOrigin[3];
-    GroundTruth_pose.pose.orientation.y = mvPubMapOrigin[4];
-    GroundTruth_pose.pose.orientation.z = mvPubMapOrigin[5];
-    GroundTruth_pose.pose.orientation.w = mvPubMapOrigin[6];
+    GroundTruth_pose.pose.position.x = mvPubMapGT[0];
+    GroundTruth_pose.pose.position.y = mvPubMapGT[1];
+    GroundTruth_pose.pose.position.z = mvPubMapGT[2];
+    GroundTruth_pose.pose.orientation.x = mvPubMapGT[3];
+    GroundTruth_pose.pose.orientation.y = mvPubMapGT[4];
+    GroundTruth_pose.pose.orientation.z = mvPubMapGT[5];
+    GroundTruth_pose.pose.orientation.w = mvPubMapGT[6];
     GroundTruthPath.poses.push_back(GroundTruth_pose);
   }
   lgtpath_.publish(LastGroundTruthPath);

@@ -58,5 +58,5 @@ Viewer.ViewpointF: 500
 #--------------------------------------------------------------------------------------------
 # BackTrack Parameters (0: off; 1: on and forward; 2: on and backward; 3: on command)
 #---------------------------------------------------------------------------------------------
-BackTracking.Mode: 3
+BackTracking.Mode: 1
 
