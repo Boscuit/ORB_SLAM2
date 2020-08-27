@@ -71,7 +71,6 @@ public:
 
     void Command_callback(const std_msgs::Char& nCommand);
 
-    void UpdateNodeHandle(ros::NodeHandle &n);
 
     ORB_SLAM2::System* mpSLAM;
 
@@ -136,7 +135,6 @@ int main(int argc, char **argv)
 
     ImageGrabber igb(&SLAM,100);
 
-    igb.UpdateNodeHandle(igb.n_);
 
     ros::spin();
 
@@ -178,15 +176,28 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     map_enu.transform.translation.x = mvPubMapGT[0];
     map_enu.transform.translation.y = mvPubMapGT[1];
     map_enu.transform.translation.z = mvPubMapGT[2];
-    map_enu.transform.rotation.x = mvPubMapGT[3];
-    map_enu.transform.rotation.y = mvPubMapGT[4];
-    map_enu.transform.rotation.z = mvPubMapGT[5];
-    map_enu.transform.rotation.w = mvPubMapGT[6];
+    map_enu.transform.rotation.x = 0;
+    map_enu.transform.rotation.y = 0;
+    map_enu.transform.rotation.z = 0;
+    map_enu.transform.rotation.w = 1;
     tf2_.sendTransform(map_enu);
+
+    geometry_msgs::TransformStamped map_vicon;
+    map_vicon.header.stamp = ros::Time::now();
+    map_vicon.header.frame_id = "map_ENU";
+    map_vicon.child_frame_id = "map_vicon";
+    map_vicon.transform.translation.x = 0;
+    map_vicon.transform.translation.y = 0;
+    map_vicon.transform.translation.z = 0;
+    map_vicon.transform.rotation.x = mvPubMapGT[3];
+    map_vicon.transform.rotation.y = mvPubMapGT[4];
+    map_vicon.transform.rotation.z = mvPubMapGT[5];
+    map_vicon.transform.rotation.w = mvPubMapGT[6];
+    tf2_.sendTransform(map_vicon);
 
     geometry_msgs::TransformStamped map_origin;
     map_origin.header.stamp = ros::Time::now();
-    map_origin.header.frame_id = "map_ENU";
+    map_origin.header.frame_id = "map_vicon";
     map_origin.child_frame_id = "map";
     map_origin.transform.translation.x = mvPubTgc[0];
     map_origin.transform.translation.y = mvPubTgc[1];
@@ -533,9 +544,4 @@ void ImageGrabber::Command_callback(const std_msgs::Char& nCommand)
     mpSLAM->BTrequestStop();
   }
   cout << "Command: " << nCommand.data << endl;
-}
-
-void ImageGrabber::UpdateNodeHandle(ros::NodeHandle &n)
-{
-  mpSLAM->UpdateNodeHandle(n);
 }

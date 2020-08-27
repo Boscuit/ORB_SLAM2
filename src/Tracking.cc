@@ -47,7 +47,7 @@ namespace ORB_SLAM2
 Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor):
     mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), mbVO(false), mpORBVocabulary(pVoc),
     mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys), mpViewer(NULL),
-    mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0), mbRecord(false)
+    mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mpBackTracker(NULL), mnLastRelocFrameId(0), mbRecord(false)
 {
     // Load camera parameters from settings file
 
@@ -265,9 +265,12 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
     else
         mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
 
-    //if backtrack only need 2D-2D matches, update backtracking frame from here
-    if(mpBackTracker->isBackTrack())
-        mpBackTracker->Update();
+    if(mpBackTracker)
+    {
+        //if backtrack only need 2D-2D matches, update backtracking frame from here
+        if(mpBackTracker->isBackTrack())
+            mpBackTracker->Update();
+    }
 
     Track();
 
@@ -723,6 +726,8 @@ void Tracking::CreateInitialMapMonocular()
 
     Optimizer::GlobalBundleAdjustemnt(mpMap,20);
 
+    cout << "BA done" << endl;
+
     // Set median depth to 1
     float medianDepth = pKFini->ComputeSceneMedianDepth(2);
     float invMedianDepth = 1.0f/medianDepth;
@@ -753,6 +758,8 @@ void Tracking::CreateInitialMapMonocular()
     mpLocalMapper->InsertKeyFrame(pKFini);
     mpLocalMapper->InsertKeyFrame(pKFcur);
 
+    cout << "Local Mapper insert KeyFrame" << endl;
+
     mCurrentFrame.SetPose(pKFcur->GetPose());
     mnLastKeyFrameId=mCurrentFrame.mnId;
     mpLastKeyFrame = pKFcur;
@@ -766,6 +773,8 @@ void Tracking::CreateInitialMapMonocular()
     mLastFrame = Frame(mCurrentFrame);
 
     mpMap->SetReferenceMapPoints(mvpLocalMapPoints);
+
+    cout << "SetReferenceMapPoints" << endl;
 
     mpMapDrawer->SetCurrentCameraPose(pKFcur->GetPose());
 
@@ -1561,7 +1570,8 @@ void Tracking::Reset()
             usleep(3000);
     }
 
-    if(!mpBackTracker->isStopped())
+
+    if (mpBackTracker)
     {
         mpBackTracker->RequestStop();
         while(!mpBackTracker->isStopped())//wait for unfinished job
@@ -1612,7 +1622,9 @@ void Tracking::Reset()
     if(mpViewer)
         mpViewer->Release();
 
-    mpBackTracker->Release();
+    if(mpBackTracker)
+        if(!mpBackTracker->isOnCommand())
+            mpBackTracker->Release();
 }
 
 void Tracking::ChangeCalibration(const string &strSettingPath)

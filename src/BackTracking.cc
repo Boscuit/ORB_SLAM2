@@ -57,7 +57,9 @@ void BackTracking::Run()
 {
   mbFinished = false;//if BackTracking thread is not open. mbFinished is default as true.
   mbStopped = false;
-  
+  if(mbOnCommand)
+    mbStopRequested = true;//stop running and wait for activation
+    
   ofstream BTlog;
   BTlog.open("BTlog.txt");
   BTlog << fixed;
@@ -65,7 +67,6 @@ void BackTracking::Run()
   {
     if (CheckNewFrames())
     {
-      // cout <<mCurrentFrame.mnId<<endl;
       Frame CurrentFrame;
       {
         unique_lock<mutex> lock(mMutexBuffer);
@@ -76,20 +77,12 @@ void BackTracking::Run()
       }
       //cout << "mMutextBuffer free."<<endl;
       //cout << "CurrentFrame: "<<CurrentFrame.mnId<<endl;
-      long unsigned int nMatches = BackTrack(&CurrentFrame,BTlog);
+      BackTrack(&CurrentFrame,BTlog);
       // cout<<"Bset match: " << result <<endl;
     }
 
     if(Stop())
     {
-      {
-        unique_lock<mutex> lock(mMutexBuffer);
-        unique_lock<mutex> lock2(mMutexBackTrack);
-        mlFrameBuffer.clear();//only lock when clearing
-        mbBackTrackPrev = mbBackTrack;
-        cout << "Store mbBackTrackPrev: " << mbBackTrack << "->" << mbBackTrackPrev << endl;
-        mbBackTrack = false;
-      }
       while(isStopped())
       {
         usleep(3000);
@@ -161,6 +154,10 @@ bool BackTracking::Stop()
     else if(mbStopRequested)
     {
         cout << "BT stop" << endl;
+        unique_lock<mutex> lock3(mMutexBackTrack);
+        unique_lock<mutex> lock4(mMutexBuffer);
+        mlFrameBuffer.clear();//only lock when clearing
+        mbBackTrack = false;
         mbStopped = true;
         mbStopRequested = false;
         return true;
@@ -174,9 +171,7 @@ void BackTracking::Release()
     unique_lock<mutex> lock2(mMutexBackTrack);
     cout << "BT Release" << endl;
     mbStopped = false;
-    mbBackTrack = mbBackTrackPrev;
-    cout << "Restore mbBackTrack: " << mbBackTrackPrev << "->" << mbBackTrack << endl;
-    
+    mbBackTrack = true;
 }
 
 bool BackTracking::isBackTrack()
@@ -194,20 +189,25 @@ bool BackTracking::isOnCommand()
 void BackTracking::Activate(Map* pMap,KeyFrameDatabase* pKFDB)
 {
   {
-    unique_lock<mutex> lock(mMutexStop);
-    unique_lock<mutex> lock2(mMutexFinish);
-    if (mbFinishRequested)
+    unique_lock<mutex> lock(mMutexFinish);
+    if(mbFinishRequested)
       return;
-    if (mbStopped)//every time activate after request stop, but not the first activation after first start/reset(mbStopped=false)
-      mbStopped = false;
   }
-  //only active when mbBacktrack is false
+  unique_lock<mutex> lock(mMutexBackTrack);
+  unique_lock<mutex> lock2(mMutexStop);
+  if(!mbStopped)
+  {
+    cout << "BT is running." << endl;
+    return;
+  }
+
+  //only active when stopped (mbBacktrack is false)
   unsigned int nKFload = mpLoadedKeyFrameDB->LoadLKFFromMap(pMap,mpTracker);
   bool bDBload = mpLoadedKeyFrameDB->LoadDBFromKFDB(pKFDB);
   if ((nKFload!=0) && bDBload)
   {
-    unique_lock<mutex> lock(mMutexBackTrack);
     mbBackTrack = true;
+    mbStopped = false;
     cout << "BT activated." << endl;
   }
   else
@@ -234,16 +234,12 @@ bool BackTracking::CheckNewFrames()
     return(!mlFrameBuffer.empty());
 }
 
-void BackTracking::RegisterNodeHandle(ros::NodeHandle &n)
-{
-  Pub_Tcr = n.advertise<geometry_msgs::PoseStamped>("Tcr_pose",1);
-}
 
 long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
 {
     float matchTH = 0.1;
     float lostTH = 0.01;
-    int nInimatches;//Number of matches in SearchForInitialization
+    // int nInimatches;//Number of matches in SearchForInitialization
     int nBoWmatches;//Number of matches in SearchByBoW
 
     // Compute Bag of Words Vector
@@ -363,6 +359,7 @@ long unsigned int BackTracking::BackTrack(Frame* mpCurrentFrame,ofstream& BTlog)
       BTlog<<"Current Frame: "<<mpCurrentFrame->mnId<<", desired LKF: "<<(*ppDsrLKF)->mnId<<", SbBoW 0.75 matches: "<< nBoWmatches << endl;
       mpFrameDrawer -> UpdateBTMatch((*ppDsrLKF)->mvKeys,vBTMatches21,mpLoadedKeyFrameDB->mvLoadedImages[(*ppDsrLKF)->mnId]);
 
+      //Reference frame 1; Current Frame 2
       vector<int> vBTMatches12 = vector<int>((*ppDsrLKF)->mvKeysUn.size(),-1);//store index of Current Frame's keypoints
       for (size_t i=0;i<vBTMatches21.size();i++)
       {

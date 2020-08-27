@@ -93,7 +93,17 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     mpBackTracker = new BackTracking(mpVocabulary, mpLoadedKeyFrameDatabase, mpTracker, mpFrameDrawer, nKFload, bDBload, strSettingsFile);
     if(mpBackTracker->isBackTrack() || mpBackTracker->isOnCommand())
+    {
       mptBackTracking = new thread(&ORB_SLAM2::BackTracking::Run, mpBackTracker);
+      mpTracker->SetBackTracker(mpBackTracker);
+    }
+    else
+    {
+      //Back Track mode: 0 or 1,2 but failed to load path;
+      delete mpBackTracker;
+      mpBackTracker = static_cast<BackTracking*>(NULL);
+    }
+      
 
     //Initialize the Local Mapping thread and launch
     mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
@@ -114,8 +124,6 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     //Set pointers between threads
     mpTracker->SetLocalMapper(mpLocalMapper);
     mpTracker->SetLoopClosing(mpLoopCloser);
-
-    mpTracker->SetBackTracker(mpBackTracker);
 
     mpLocalMapper->SetTracker(mpTracker);
     mpLocalMapper->SetLoopCloser(mpLoopCloser);
@@ -317,7 +325,6 @@ void System::Shutdown()
 {
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
-    mpBackTracker->RequestFinish();
     if(mpViewer)
     {
         mpViewer->RequestFinish();
@@ -325,8 +332,15 @@ void System::Shutdown()
             usleep(5000);
     }
 
+    if(mpBackTracker)
+    {
+      mpBackTracker->RequestFinish();
+      while(!mpBackTracker->isFinished())
+        usleep(5000);
+    }
+
     // Wait until all thread have effectively stopped
-    while(!mpBackTracker->isFinished() || !mpLocalMapper->isFinished() || !mpLoopCloser->isFinished() || mpLoopCloser->isRunningGBA())
+    while(!mpLocalMapper->isFinished() || !mpLoopCloser->isFinished() || mpLoopCloser->isRunningGBA())
     {
         usleep(5000);
     }
@@ -708,21 +722,32 @@ bool System::isRecording()
 
 void System::BTactivate()
 {
-  if (mpBackTracker->isOnCommand())
-    if (!mpBackTracker->isBackTrack())
-      mpBackTracker->Activate(mpMap,mpKeyFrameDatabase);
-    else
-      cout << "BT already run." << endl;
-  else
+  if(!mpBackTracker)
+  {
+    cout << "BT is invalid." << endl;
+    return;
+  }
+  if(!mpBackTracker->isOnCommand())
+  {
     cout << "BT is not on command." << endl;
+    return;
+  }
+  mpBackTracker->Activate(mpMap,mpKeyFrameDatabase);
 }
 
 void System::BTrequestStop()
 {
-  if (mpBackTracker->isOnCommand())
-    mpBackTracker->RequestStop();
-  else
+  if(!mpBackTracker)
+  {
+    cout << "BT is invalid." << endl;
+    return;
+  }
+  if(!mpBackTracker->isOnCommand())
+  {
     cout << "BT is not on command." << endl;
+    return;
+  }
+  mpBackTracker->RequestStop();
 }
 
 void System::AddGroundTruth(const double &timestamp, const vector<float> &groundtruth)
@@ -818,9 +843,5 @@ void System::CompareImgs(cv::Mat Im1, cv::Mat Im2)
   mpTracker->CompareImgs(Im1, Im2);
 }
 
-void System::UpdateNodeHandle(ros::NodeHandle &n)
-{
-  mpBackTracker->RegisterNodeHandle(n);
-}
 
 } //namespace ORB_SLAM

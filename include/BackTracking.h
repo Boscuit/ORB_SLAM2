@@ -62,8 +62,6 @@ public:
 
     void Activate(Map* pMap,KeyFrameDatabase* pKFDB);
 
-    void RegisterNodeHandle(ros::NodeHandle &n);
-
 private:
     bool Stop();
 
@@ -85,7 +83,6 @@ private:
 protected:
     //TRUE: if nLKF!=0, bDBload==1 and Backtracking.Setting=1 or 2 in yaml file.
     bool mbBackTrack;
-    bool mbBackTrackPrev;
     bool mbForward;//default backward
     bool mbOnCommand;
 

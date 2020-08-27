@@ -171,7 +171,6 @@ protected:
     //Other Thread Pointers
     LocalMapping* mpLocalMapper;
     LoopClosing* mpLoopClosing;
-    BackTracking* mpBackTracker;
 
     //ORB
     ORBextractor* mpORBextractorLeft, *mpORBextractorRight;
@@ -199,6 +198,9 @@ protected:
 
     //Map
     Map* mpMap;
+
+    //BackTracker
+    BackTracking* mpBackTracker;
 
     //Calibration matrix
     cv::Mat mK;
